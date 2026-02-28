@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useSEO from '../hooks/useSEO';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,10 +10,6 @@ import { MdSecurity } from 'react-icons/md';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Home = () => {
-  useSEO({
-    title: 'NOVALISEO | Defence Intelligence & Strategic AI Systems',
-    description: 'NOVALISEO develops sovereign defence intelligence platforms, tactical AI-driven simulations, and strategic software-defined engineering solutions.',
-  });
   const [services] = useState([
     {
       id: '1',
@@ -48,6 +44,10 @@ const Home = () => {
 
   return (
     <div className="relative">
+      <SEO
+        title="NOVALISEO | Defence Intelligence & Strategic AI Systems"
+        description="NOVALISEO develops sovereign defence intelligence platforms, tactical AI-driven simulations, and strategic software-defined engineering solutions."
+      />
       <ParticleBackground />
 
       {/* Animated Background Elements */}

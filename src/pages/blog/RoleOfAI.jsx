@@ -2,16 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import useSEO from '../../hooks/useSEO';
+import SEO from '../../components/SEO';
 
 const RoleOfAI = () => {
-    useSEO({
-        title: 'Role of AI in Defence Intelligence | NOVALISEO',
-        description: 'Discover how Artificial Intelligence is reshaping defence intelligence, enabling autonomous systems, and ensuring strategic superiority in contested environments.',
-    });
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Role of AI in Defence Intelligence",
+        "author": {
+            "@type": "Organization",
+            "name": "NOVALISEO"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NOVALISEO",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://novaliseo.com/favicon.png"
+            }
+        }
+    };
 
     return (
         <div className="relative pt-32 pb-24 bg-slate-50 min-h-screen">
+            <SEO
+                title="Role of AI in Defence Intelligence | NOVALISEO"
+                description="Discover how Artificial Intelligence is reshaping defence intelligence, enabling autonomous systems, and ensuring strategic superiority in contested environments."
+                schema={articleSchema}
+            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:!text-blue-800 transition-colors">
                     <FaArrowLeft /> Back to Knowledge Hub
@@ -58,8 +76,8 @@ const RoleOfAI = () => {
                         <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">The NOVALISEO Advantage</h2>
                         <p>
                             As a premier <strong>defence intelligence company</strong>, NOVALISEO bridges the gap between
-                            state-of-the-art computational neural engines and the realities of the frontline. Our SHIVA platform
-                            represents the pinnacle of this software-defined approach, delivering 100% indigenous intelligence
+                            state-of-the-art computational neural engines and the realities of the frontline. Learn more about our flagship <Link to="/defence" className="text-blue-600 font-semibold hover:underline">Defence Intelligence systems →</Link> which
+                            represent the pinnacle of this software-defined approach, delivering 100% indigenous intelligence
                             that scales from the tactical edge to national command centers.
                         </p>
                     </div>

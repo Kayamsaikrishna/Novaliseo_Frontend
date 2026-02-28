@@ -2,15 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaRegBookmark, FaArrowRight, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import useSEO from '../hooks/useSEO';
+import SEO from '../components/SEO';
 
 const Blog = () => {
-  useSEO({
-    title: 'Knowledge Hub | AI Defence Software & Strategic Engineering',
-    description: 'Read the latest NOVALISEO insights on AI defence software, software-defined systems, and the future of strategic intelligence engineering.',
-  });
   return (
     <div className="relative pt-20">
+      <SEO
+        title="Knowledge Hub | AI Defence Software & Strategic Engineering"
+        description="Read the latest NOVALISEO insights on AI defence software, software-defined systems, and the future of strategic intelligence engineering."
+      />
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-b from-slate-50 via-white/50 to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -17,6 +17,7 @@ import RoleOfAI from './pages/blog/RoleOfAI';
 import FutureOfStrategicSoftware from './pages/blog/FutureOfStrategicSoftware';
 import SoftwareDefinedDefence from './pages/blog/SoftwareDefinedDefence';
 import InnovationLab from './pages/InnovationLab';
+import SEO from './components/SEO';
 import Defence from './pages/Defence';
 import DeniedNavigation from './pages/DeniedNavigation';
 import AttitudeControl from './pages/AttitudeControl';
@@ -46,6 +47,18 @@ function ScrollToTop() {
 }
 
 function App() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NOVALISEO",
+    "url": "https://novaliseo.com",
+    "logo": "https://novaliseo.com/logo.png",
+    "description": "NOVALISEO engineers 100% indigenous, software-defined AI systems for strategic defence intelligence and industrial manufacturing.",
+    "sameAs": [
+      "https://www.linkedin.com/company/novaliseo"
+    ]
+  };
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -72,6 +85,7 @@ function App() {
   return (
     <div className="App relative min-h-screen w-full overflow-x-hidden">
       <BrowserRouter>
+        <SEO schema={organizationSchema} />
         <ScrollToTop />
         <Navbar />
         <main className="relative">

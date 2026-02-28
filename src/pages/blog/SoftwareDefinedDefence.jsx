@@ -2,16 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import useSEO from '../../hooks/useSEO';
+import SEO from '../../components/SEO';
 
 const SoftwareDefinedDefence = () => {
-    useSEO({
-        title: 'Software-Defined Defence Systems Explained | NOVALISEO',
-        description: 'Understand the mechanics of Software-Defined Defence (SDD). Learn how leading defence intelligence companies replace rigid hardware with adaptable AI software scopes.',
-    });
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Software-Defined Defence Systems Explained",
+        "author": {
+            "@type": "Organization",
+            "name": "NOVALISEO"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NOVALISEO",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://novaliseo.com/favicon.png"
+            }
+        }
+    };
 
     return (
         <div className="relative pt-32 pb-24 bg-slate-50 min-h-screen">
+            <SEO
+                title="Software-Defined Defence Systems Explained | NOVALISEO"
+                description="Understand the mechanics of Software-Defined Defence (SDD). Learn how leading defence intelligence companies replace rigid hardware with adaptable AI software scopes."
+                schema={articleSchema}
+            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:!text-blue-800 transition-colors">
                     <FaArrowLeft /> Back to Knowledge Hub
@@ -57,8 +75,8 @@ const SoftwareDefinedDefence = () => {
 
                         <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">NOVALISEO's Architecture</h2>
                         <p>
-                            As a leading <strong>defence intelligence company</strong>, NOVALISEO architects these abstract software layers.
-                            Our sovereign platform framework guarantees that allied forces can continuously push updates, new tactical doctrines,
+                            As a leading <strong>defence intelligence company</strong>, NOVALISEO architect these abstract software layers.
+                            Explore our <Link to="/defence" className="text-cyan-600 font-semibold hover:underline">SHIVA Platform and Defence AI services →</Link> which guarantee that allied forces can continuously push updates, new tactical doctrines,
                             and advanced swarm algorithms to all autonomous units instantly, maintaining a permanent overmatch against rigid,
                             hardware-locked adversaries.
                         </p>

@@ -2,16 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import useSEO from '../../hooks/useSEO';
+import SEO from '../../components/SEO';
 
 const FutureOfStrategicSoftware = () => {
-    useSEO({
-        title: 'Future of Strategic Defence Software | NOVALISEO',
-        description: 'Explore the future of strategic defence software. Learn how software-defined engineering and autonomous systems are replacing legacy hardware in national security.',
-    });
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Future of Strategic Defence Software",
+        "author": {
+            "@type": "Organization",
+            "name": "NOVALISEO"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NOVALISEO",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://novaliseo.com/favicon.png"
+            }
+        }
+    };
 
     return (
         <div className="relative pt-32 pb-24 bg-slate-50 min-h-screen">
+            <SEO
+                title="Future of Strategic Defence Software | NOVALISEO"
+                description="Explore the future of strategic defence software. Learn how software-defined engineering and autonomous systems are replacing legacy hardware in national security."
+                schema={articleSchema}
+            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:!text-blue-800 transition-colors">
                     <FaArrowLeft /> Back to Knowledge Hub
@@ -60,7 +78,7 @@ const FutureOfStrategicSoftware = () => {
                         <p>
                             Relying on imported black-box software is a structural vulnerability. For true operational independence,
                             the core operating system governing autonomous assets must be indigenously engineered. NOVALISEO
-                            specializes in building this foundational <strong>strategic AI software</strong>, ensuring that the logic
+                            specializes in building this foundational <strong>strategic AI software</strong>. Discover how our <Link to="/defence" className="text-indigo-600 font-semibold hover:underline">Sovereign Autonomy Software →</Link> ensures that the logic
                             controlling the nation's critical assets is entirely sovereign, transparent, and secure.
                         </p>
                     </div>

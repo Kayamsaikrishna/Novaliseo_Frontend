@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import useSEO from '../hooks/useSEO';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import {
@@ -46,10 +46,6 @@ import RealTimeMappingImg from '../assets/defence/real_time_mapping.png';
  */
 
 const Defence = () => {
-    useSEO({
-        title: 'SHIVA Platform | Sovereign Autonomy & Tactical AI For Defence',
-        description: 'The SHIVA Platform is India\'s first unified autonomy hardware layer, providing GNSS-denied navigation, drone swarm intelligence, and post-quantum security.',
-    });
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -59,7 +55,11 @@ const Defence = () => {
     const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
     return (
-        <div ref={containerRef} className="bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white relative overflow-hidden">
+        <div ref={containerRef} className="relative bg-[#020617] min-h-screen text-slate-300 font-sans selection:bg-blue-500/30">
+            <SEO
+                title="SHIVA Platform | Sovereign Autonomy & Tactical AI For Defence"
+                description="The SHIVA Platform is India's first unified autonomy hardware layer, providing GNSS-denied navigation, drone swarm intelligence, and post-quantum security."
+            />
 
             {/* 1. SHIVA HERO - INDIA'S FIRST INDIGENOUS AUTONOMY PLATFORM */}
             <SHIVAHero />

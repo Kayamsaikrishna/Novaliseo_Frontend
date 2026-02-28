@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useSEO from '../hooks/useSEO';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaCog, FaRobot, FaSearch, FaBrain, FaFileAlt, FaTools, FaChartLine, FaCloud, FaNetworkWired, FaShieldAlt, FaMicrochip } from 'react-icons/fa';
@@ -7,10 +7,6 @@ import { GiRadarSweep } from 'react-icons/gi';
 import { MdSecurity } from 'react-icons/md';
 
 const Services = () => {
-  useSEO({
-    title: 'Our Solutions | Defence Intelligence & AI Engineering Services',
-    description: 'Explore NOVALISEO\'s strategic solutions: from tactical intelligence edge infrastructure to AI manufacturing optimization and predictive aerospace maintenance.',
-  });
   const getDefaultServices = () => [
     {
       id: 'defence-1',
@@ -136,7 +132,11 @@ const Services = () => {
   };
 
   return (
-    <div className="relative pt-20">
+    <div className="relative pt-20 bg-slate-50">
+      <SEO
+        title="Our Solutions | Defence Intelligence & AI Engineering Services"
+        description="Explore NOVALISEO's strategic solutions: from tactical intelligence edge infrastructure to AI manufacturing optimization and predictive aerospace maintenance."
+      />
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-b from-slate-50 via-white to-transparent" data-testid="services-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
