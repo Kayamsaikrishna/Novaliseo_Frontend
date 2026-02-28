@@ -32,4 +32,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./build/
         server-dir: /public_html/
+        state-name: .ftp-deploy-sync-state-v2.json
         dry-run: false
