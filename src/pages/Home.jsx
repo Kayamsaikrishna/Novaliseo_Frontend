@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useSEO from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,6 +10,10 @@ import { MdSecurity } from 'react-icons/md';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Home = () => {
+  useSEO({
+    title: 'NOVALISEO | Defence Intelligence & Strategic AI Systems',
+    description: 'NOVALISEO develops sovereign defence intelligence platforms, tactical AI-driven simulations, and strategic software-defined engineering solutions.',
+  });
   const [services] = useState([
     {
       id: '1',

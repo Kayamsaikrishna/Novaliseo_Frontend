@@ -13,6 +13,9 @@ import Contact from './pages/Contact';
 import Industries from './pages/Industries';
 import Careers from './pages/Careers';
 import Blog from './pages/Blog';
+import RoleOfAI from './pages/blog/RoleOfAI';
+import FutureOfStrategicSoftware from './pages/blog/FutureOfStrategicSoftware';
+import SoftwareDefinedDefence from './pages/blog/SoftwareDefinedDefence';
 import InnovationLab from './pages/InnovationLab';
 import Defence from './pages/Defence';
 import DeniedNavigation from './pages/DeniedNavigation';
@@ -81,6 +84,9 @@ function App() {
             <Route path="/innovation-lab" element={<InnovationLab />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/role-of-ai-in-defence-intelligence" element={<RoleOfAI />} />
+            <Route path="/blog/future-of-strategic-defence-software" element={<FutureOfStrategicSoftware />} />
+            <Route path="/blog/software-defined-defence-systems" element={<SoftwareDefinedDefence />} />
             <Route path="/defence" element={<Defence />} />
             <Route path="/defence/denied-navigation" element={<DeniedNavigation />} />
             <Route path="/defence/attitude-control" element={<AttitudeControl />} />

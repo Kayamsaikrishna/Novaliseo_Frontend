@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import useSEO from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import {
@@ -45,6 +46,10 @@ import RealTimeMappingImg from '../assets/defence/real_time_mapping.png';
  */
 
 const Defence = () => {
+    useSEO({
+        title: 'SHIVA Platform | Sovereign Autonomy & Tactical AI For Defence',
+        description: 'The SHIVA Platform is India\'s first unified autonomy hardware layer, providing GNSS-denied navigation, drone swarm intelligence, and post-quantum security.',
+    });
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,

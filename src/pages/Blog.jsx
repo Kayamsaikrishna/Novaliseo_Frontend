@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaRegBookmark } from 'react-icons/fa';
+import { FaRegBookmark, FaArrowRight, FaCalendarAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import useSEO from '../hooks/useSEO';
 
 const Blog = () => {
+  useSEO({
+    title: 'Knowledge Hub | AI Defence Software & Strategic Engineering',
+    description: 'Read the latest NOVALISEO insights on AI defence software, software-defined systems, and the future of strategic intelligence engineering.',
+  });
   return (
     <div className="relative pt-20">
       {/* Hero Section */}
@@ -28,44 +34,86 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Coming Soon Message */}
-      <section className="relative py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center bg-white border border-slate-200 p-12 rounded-3xl shadow-xl shadow-slate-100"
-          >
-            <div className="inline-block p-8 bg-slate-50 rounded-2xl border border-slate-100 mb-8 w-full max-w-2xl">
-              <FaRegBookmark className="text-5xl text-blue-500 mx-auto mb-6" />
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">Content Coming Soon</h2>
-              <p className="text-slate-600 mb-8 text-lg">
-                We're working on creating insightful blog posts about AI, engineering, and industry trends.
-                Check back soon for valuable content!
-              </p>
-              <div className="text-slate-700 bg-white p-6 rounded-xl border border-slate-100 shadow-sm text-left inline-block">
-                <p className="font-bold text-slate-900 mb-4">Stay tuned for updates on:</p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                    Latest AI developments in manufacturing
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></div>
-                    Engineering best practices
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                    Industry case studies
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-                    Technical tutorials and guides
-                  </li>
-                </ul>
+      {/* Articles Grid */}
+      <section className="relative py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* Article 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-blue-50 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            >
+              <div className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4">
+                <FaCalendarAlt /> <span>Feb 28, 2026</span>
               </div>
-            </div>
-          </motion.div>
+              <div className="inline-block px-3 py-1 bg-blue-50 text-blue-600 font-bold text-[10px] rounded-full uppercase tracking-widest mb-4 w-max">
+                Defence Intelligence
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4 flex-grow">
+                The Crucial Role of AI in Modern Defence Intelligence
+              </h2>
+              <p className="text-slate-600 mb-6 line-clamp-3">
+                Discover how Artificial Intelligence is reshaping defence intelligence, enabling autonomous systems, and ensuring strategic superiority in contested environments.
+              </p>
+              <Link to="/blog/role-of-ai-in-defence-intelligence" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors mt-auto group">
+                Read Article <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Article 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-indigo-50 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            >
+              <div className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4">
+                <FaCalendarAlt /> <span>Feb 25, 2026</span>
+              </div>
+              <div className="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 font-bold text-[10px] rounded-full uppercase tracking-widest mb-4 w-max">
+                Strategic Software
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4 flex-grow">
+                The Future of Strategic Defence Software
+              </h2>
+              <p className="text-slate-600 mb-6 line-clamp-3">
+                Explore the future of strategic defence software. Learn how software-defined engineering and autonomous systems are replacing legacy hardware in national security.
+              </p>
+              <Link to="/blog/future-of-strategic-defence-software" className="inline-flex items-center gap-2 text-indigo-600 font-bold hover:text-indigo-800 transition-colors mt-auto group">
+                Read Article <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Article 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-cyan-50 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            >
+              <div className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4">
+                <FaCalendarAlt /> <span>Feb 20, 2026</span>
+              </div>
+              <div className="inline-block px-3 py-1 bg-cyan-50 text-cyan-600 font-bold text-[10px] rounded-full uppercase tracking-widest mb-4 w-max">
+                System Architecture
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4 flex-grow">
+                Software-Defined Defence Systems Explained
+              </h2>
+              <p className="text-slate-600 mb-6 line-clamp-3">
+                Understand the mechanics of Software-Defined Defence (SDD). Learn how leading defence intelligence companies replace rigid hardware with adaptable AI software scopes.
+              </p>
+              <Link to="/blog/software-defined-defence-systems" className="inline-flex items-center gap-2 text-cyan-600 font-bold hover:text-cyan-800 transition-colors mt-auto group">
+                Read Article <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

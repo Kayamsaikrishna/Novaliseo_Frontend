@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useSEO from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaCog, FaRobot, FaSearch, FaBrain, FaFileAlt, FaTools, FaChartLine, FaCloud, FaNetworkWired, FaShieldAlt, FaMicrochip } from 'react-icons/fa';
@@ -6,6 +7,10 @@ import { GiRadarSweep } from 'react-icons/gi';
 import { MdSecurity } from 'react-icons/md';
 
 const Services = () => {
+  useSEO({
+    title: 'Our Solutions | Defence Intelligence & AI Engineering Services',
+    description: 'Explore NOVALISEO\'s strategic solutions: from tactical intelligence edge infrastructure to AI manufacturing optimization and predictive aerospace maintenance.',
+  });
   const getDefaultServices = () => [
     {
       id: 'defence-1',

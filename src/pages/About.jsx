@@ -1,4 +1,5 @@
 import React from 'react';
+import useSEO from '../hooks/useSEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -9,6 +10,10 @@ import {
 import sovereignBg from '../assets/about/background.png';
 
 const About = () => {
+    useSEO({
+        title: 'About NOVALISEO | Engineers of Sovereign Defence Intelligence',
+        description: 'Learn how NOVALISEO engineers 100% indigenous, software-defined AI systems for strategic sectors, guaranteeing data sovereignty and operational superiority.',
+    });
     const { scrollYProgress } = useScroll();
     const y1 = useTransform(scrollYProgress, [0, 1], [0, -80]);
     const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
