@@ -13,7 +13,7 @@ const KNOWLEDGE_BASE = [
     id: 'greetings',
     keywords: ['hello', 'hi', 'hey', 'greetings', 'morning', 'afternoon', 'evening', 'sup', 'yo'],
     responses: [
-      "Hello! 👋 I'm your intelligence guide to NOVALISEO. I can help you explore our Defence Systems, Engineering Services, Innovation Lab, or Careers. What's on your mind?",
+      "Hello! 👋 I'm your intelligence guide to NOVALISEO. I can help you explore our Autonomous Software Based Systems, Engineering Services, Innovation Lab, or Careers. What's on your mind?",
       "Hi there! 🚀 Ready to discover how NOVALISEO is shaping the future of intelligence? Ask me about our projects, team, or latest blog updates!",
       "Greetings! 🌟 I'm fully loaded with knowledge about our entire platform. Curious about our Ultra-Low Latency drones or our Generative Intelligence solutions?"
     ],
@@ -24,26 +24,26 @@ const KNOWLEDGE_BASE = [
     keywords: ['who are you', 'what are you', 'bot', 'real', 'human', 'ai'],
     responses: [
       "I am the NOVALISEO Intelligent Assistant, a specialized intelligence guide designed to guide you through our engineering ecosystem. 🧠 I can explain complex technical topics, guide you to specific services, or help you apply for a job.",
-      "Think of me as a digital engineer who knows everything about NOVALISEO. 🛠️ I'm here to save you time and get you the exact information you need about our Sovereign Defence Tech or Enterprise Solutions."
+      "Think of me as a digital engineer who knows everything about NOVALISEO. 🛠️ I'm here to save you time and get you the exact information you need about our Sovereign Autonomous Software Based Tech or Enterprise Solutions."
     ],
     weight: 2
   },
 
-  // --- DEFENCE SECTOR ---
+  // --- AUTONOMOUS SOFTWARE BASED SECTOR ---
   {
     id: 'defence_general',
-    keywords: ['defence', 'defense', 'military', 'security', 'border', 'surveillance', 'army', 'navy', 'air force'],
+    keywords: ['autonomous software based', 'defense', 'military', 'security', 'border', 'surveillance', 'army', 'navy', 'air force'],
     responses: [
-      "Our Defence division builds indigenous, sovereign intelligence for critical national security missions. 🛡️ We focus on:\n\n• **GPS-Denied Navigation**: Autonomy without satellites.\n• **Attitude Control**: Uncrashable flight stability.\n• **Edge Intelligence**: Zero-latency processing on-chip.\n\nAsk me about a specific technology like 'Edge Efficiency' or 'Denied Navigation'!",
+      "Our Autonomous Software Based division builds indigenous, sovereign intelligence for critical national security missions. 🛡️ We focus on:\n\n• **GPS-Denied Navigation**: Autonomy without satellites.\n• **Attitude Control**: Uncrashable flight stability.\n• **Edge Intelligence**: Zero-latency processing on-chip.\n\nAsk me about a specific technology like 'Edge Efficiency' or 'Denied Navigation'!",
       "We are revolutionizing tactical autonomy. Our systems run advanced intelligence directly on the drone (Edge Computing), allowing for millisecond reaction times even in jammed environments. 🚁"
     ],
     weight: 4
   },
   {
     id: 'defence_denied_nav',
-    keywords: ['gps', 'denied', 'navigation', 'satellite', 'jamming', 'spoofing', 'signal', 'lost'],
+    keywords: ['gps', 'denied', 'navigation', 'satellite', 'interference', 'disruption', 'signal', 'lost'],
     responses: [
-      "Our **GPS-Denied Navigation** technology allows drones to operate fully autonomously even when GPS signals are jammed or spoofed. 🛰️🚫\n\nWe use **Visual Odometry** and **SLAM** (Simultaneous Localization and Mapping) to navigate by 'seeing' the terrain, just like a human pilot would.",
+      "Our **GPS-Denied Navigation** technology allows drones to operate fully autonomously even when GPS signals are interfered with or disrupted. 🛰️🚫\n\nWe use **Visual Odometry** and **SLAM** (Simultaneous Localization and Mapping) to navigate by 'seeing' the terrain, just like a human pilot would.",
     ],
     weight: 5
   },
@@ -142,7 +142,7 @@ const UniqueCompanyBot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "System initialized. 🟢 I am the NOVALISEO Intelligent Assistant. \n\nI have access to our entire knowledge base—from Defence R&D to Career opportunities. How can I help you today?",
+      text: "System initialized. 🟢 I am the NOVALISEO Intelligent Assistant. \n\nI have access to our entire knowledge base—from Autonomous Software Based R&D to Career opportunities. How can I help you today?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -214,7 +214,7 @@ const UniqueCompanyBot = () => {
 
     // Fallback contextual responses that encourage more specific queries
     const fallbacks = [
-      "I'm analyzing your request... 🧠 It seems interesting, but I need a bit more detail. Are you asking about our **Intelligence Services**, **Defence Tech**, or perhaps **Job Openings**?",
+      "I'm analyzing your request... 🧠 It seems interesting, but I need a bit more detail. Are you asking about our **Intelligence Services**, **Autonomous Software Based Tech**, or perhaps **Job Openings**?",
       "That's a broad topic! 🌐 to give you the best answer, could you specify if this is related to a **Project**, our **Innovation Lab**, or general **Company Info**?",
       "I don't have a pre-programmed answer for that specific phrase, but I can deduce you might be interested in our technology. 🚀 Try asking about **Deep Learning**, **Drones**, or **Careers**!",
       "I'm tuned to answer questions about NOVALISEO. �️ Try asking: 'What is GPS-Denied Navigation?' or 'Do you offer Internships?'"
@@ -404,10 +404,10 @@ const UniqueCompanyBot = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => handleQuickQuestion("Defence Capabilities")}
+                  onClick={() => handleQuickQuestion("Autonomous Software Based Capabilities")}
                   className="text-xs whitespace-nowrap bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700 hover:text-white"
                 >
-                  <FaRocket className="h-3 w-3 mr-1.5" /> Defence
+                  <FaRocket className="h-3 w-3 mr-1.5" /> Autonomous Software Based
                 </Button>
               </div>
             </div>

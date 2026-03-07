@@ -6,17 +6,17 @@ import {
     FaBan, FaThermometerHalf, FaSun, FaWind
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/sovereign_hero_majestic_refined_1771334252324.png';
-import Img1 from '../../assets/defence/sensor.png';
-import Img2 from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/sovereign_hero_majestic_refined_1771334252324.png';
+import Img1 from '../../assets/autonomous-systems/sensor.png';
+import Img2 from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Section & Scenario Assets
-import ProblemImg from '../../assets/defence/efficency.png';
-import FrontierImg from '../../assets/defence/Boarder Security.png';
-import MaritimeImg from '../../assets/defence/sovereign_hero_majestic_refined_1771334252324.png';
-import StrategicImg from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
-import DesertImg from '../../assets/defence/defence_hero_strategic_v2_1771334764385.png';
+import ProblemImg from '../../assets/autonomous-systems/efficency.png';
+import FrontierImg from '../../assets/autonomous-systems/Boarder Security.png';
+import MaritimeImg from '../../assets/autonomous-systems/sovereign_hero_majestic_refined_1771334252324.png';
+import StrategicImg from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
+import DesertImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334764385.png';
 
 const scenarios = [
     { title: 'Himalayan Frontier Patrol', sub: 'Multi-hour autonomous surveillance across extreme altitude sectors.', img: FrontierImg, detail: 'Patrolling the world’s highest frontier requires platforms that manage energy with extreme precision. Our ISR engine optimizes flight profiles and sensor duty cycles to maintain persistent eyes on critical passes for durations previously impossible.' },

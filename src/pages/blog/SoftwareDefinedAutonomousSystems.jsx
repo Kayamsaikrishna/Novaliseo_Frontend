@@ -4,14 +4,19 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 
-const SoftwareDefinedDefence = () => {
+const SoftwareDefinedAutonomousSystems = () => {
     const articleSchema = {
         "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Software-Defined Defence Systems Explained",
+        "@type": "TechArticle",
+        "headline": "Software-Defined Autonomous Systems Systems Explained",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://novaliseo.com/blog/software-defined-autonomous software based-systems"
+        },
+        "datePublished": "2026-02-28T12:00:00+05:30",
         "author": {
-            "@type": "Organization",
-            "name": "NOVALISEO"
+            "@type": "Person",
+            "name": "NOVALISEO Research Team"
         },
         "publisher": {
             "@type": "Organization",
@@ -23,12 +28,31 @@ const SoftwareDefinedDefence = () => {
         }
     };
 
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Blog",
+                "item": "https://novaliseo.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Software-Defined Autonomous Systems Systems Explained",
+                "item": "https://novaliseo.com/blog/software-defined-autonomous software based-systems"
+            }
+        ]
+    };
+
     return (
         <div className="relative pt-32 pb-24 bg-slate-50 min-h-screen">
             <SEO
-                title="Software-Defined Defence Systems Explained | NOVALISEO"
-                description="Understand the mechanics of Software-Defined Defence (SDD). Learn how leading defence intelligence companies replace rigid hardware with adaptable AI software scopes."
-                schema={articleSchema}
+                title="Software-Defined Autonomous Systems Systems Explained | NOVALISEO"
+                description="Understand the mechanics of Software-Defined Autonomous Systems (SDD). Learn how leading autonomous software based intelligence companies replace rigid hardware with adaptable AI software scopes."
+                schema={[articleSchema, breadcrumbSchema]}
             />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:!text-blue-800 transition-colors">
@@ -45,14 +69,14 @@ const SoftwareDefinedDefence = () => {
                     </div>
 
                     <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
-                        Software-Defined Defence Systems Explained
+                        Software-Defined Autonomous Systems Systems Explained
                     </h1>
 
                     <div className="prose prose-lg text-slate-600 max-w-none">
                         <p>
                             TThe concept of "Software-Defined" technology revolutionized the commercial networking and communications
                             industries over the past decade. Now, this exact same paradigm shift is violently upending the traditional
-                            military-industrial complex. <strong>Software-Defined Defence (SDD)</strong> is the philosophy that the primary
+                            military-industrial complex. <strong>Software-Defined Autonomous Systems (SDD)</strong> is the philosophy that the primary
                             strategic value of a weapon or reconnaissance system lies in its code, rather than its steel.
                         </p>
 
@@ -67,7 +91,7 @@ const SoftwareDefinedDefence = () => {
 
                         <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">The Role of Edge Computing</h2>
                         <p>
-                            To accomplish this without latency, <strong>AI defence software</strong> must operate at the "Edge". This means
+                            To accomplish this without latency, <strong>AI autonomous software based software</strong> must operate at the "Edge". This means
                             the heavy computational neural networks are run locally on the drone or vehicle's own internal processors, rather
                             than beaming data back to a central cloud which can be jammed. This creates a decentralized mesh of highly
                             intelligent, autonomous actors capable of making split-second decisions.
@@ -75,8 +99,8 @@ const SoftwareDefinedDefence = () => {
 
                         <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">NOVALISEO's Architecture</h2>
                         <p>
-                            As a leading <strong>defence intelligence company</strong>, NOVALISEO architect these abstract software layers.
-                            Explore our <Link to="/defence" className="text-cyan-600 font-semibold hover:underline">SHIVA Platform and Defence AI services →</Link> which guarantee that allied forces can continuously push updates, new tactical doctrines,
+                            As a leading <strong>autonomous software based intelligence company</strong>, NOVALISEO architect these abstract software layers.
+                            Explore our <Link to="/autonomous-systems" className="text-cyan-600 font-semibold hover:underline">SHIVA Platform and Autonomous Software Based AI services →</Link> which guarantee that allied forces can continuously push updates, new tactical doctrines,
                             and advanced swarm algorithms to all autonomous units instantly, maintaining a permanent overmatch against rigid,
                             hardware-locked adversaries.
                         </p>
@@ -87,4 +111,4 @@ const SoftwareDefinedDefence = () => {
     );
 };
 
-export default SoftwareDefinedDefence;
+export default SoftwareDefinedAutonomousSystems;

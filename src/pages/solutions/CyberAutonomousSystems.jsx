@@ -6,35 +6,35 @@ import {
     FaNetworkWired, FaUserShield, FaHackerNews, FaMicrochip
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img1 from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img2 from '../../assets/defence/indigenous_core_abstract_1771333830627.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img1 from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img2 from '../../assets/autonomous-systems/indigenous_core_abstract_1771333830627.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Scenario Assets
-import GridImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import VaultImg from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
-import EwImg from '../../assets/defence/Boarder Security.png';
-import AptImg from '../../assets/defence/sensor.png';
+import GridImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import VaultImg from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
+import EwImg from '../../assets/autonomous-systems/Boarder Security.png';
+import AptImg from '../../assets/autonomous-systems/sensor.png';
 
 const scenarios = [
-    { title: 'Critical Grid Defence', sub: 'Autonomous detection of zero-day exploits in power infrastructure.', img: GridImg, detail: 'Protecting the national power grid requires more than firewalls. Our AI engine identifies the subtle lateral movement of sophisticated state-sponsored actors, sandboxing threats before they can trigger logic-based failures in SCADA systems.' },
+    { title: 'Critical Grid Autonomous Software Based', sub: 'Autonomous detection of zero-day exploits in power infrastructure.', img: GridImg, detail: 'Protecting the national power grid requires more than firewalls. Our AI engine identifies the subtle lateral movement of sophisticated state-sponsored actors, sandboxing threats before they can trigger logic-based failures in SCADA systems.' },
     { title: 'Sovereign Data Vault', sub: 'Hardware-agnostic encryption for classified tactical networks.', img: VaultImg, detail: 'In tactical environments, hardware visibility is often limited. We provide high-assurance encryption that runs at the edge, ensuring that data-in-transit remains unreadable even if physical terminal nodes are compromised.' },
-    { title: 'EW Mesh Protection', sub: 'Signal resilience against high-intensity electronic jamming.', img: EwImg, detail: 'Modern battlefields are saturated with EW. Our system uses cognitive frequency hopping and AI-driven denoising to maintain a secure digital link when standard communications are completely suppressed by adversary jamming.' },
+    { title: 'EW Mesh Protection', sub: 'Signal resilience against high-intensity electronic interference.', img: EwImg, detail: 'Modern battlefields are saturated with EW. Our system uses cognitive frequency hopping and AI-driven denoising to maintain a secure digital link when standard communications are completely suppressed by adversary interference.' },
     { title: 'Advanced Persistent Threat (APT) Hunting', sub: 'Continuous behavioral audit across distributed clusters.', img: AptImg, detail: 'APTs don’t break doors; they pick locks over months. Our "Persistent Hunter" logic monitors billions of system calls for the tiny deviations in entropy and access timing that signal a breach in progress, allowing for systemic self-healing.' },
 ];
 
 const layers = [
     { num: 1, color: 'slate', side: 'left', img: Img1, title: 'Network Immune System', body: 'We move beyond perimeter defense. Our AI-native immune system monitors internal traffic patterns at wire-speed, detecting anomalies that human SOC operators can’t see.', hud: [['THREAT', 'ID'], ['STATE', 'SECURE'], ['AUDIT', 'LIVE']], items: ['Zero-trust micro-segmentation', 'Behavioral flow analysis', 'Automated containment protocols', 'Wire-speed packet inspection'] },
     { num: 2, color: 'indigo', side: 'right', img: Img2, title: 'Cognitive Cryptography', body: 'Post-quantum ready encryption that adapts to the compute environment. It secures data not just with math, but with contextual authority bounds that prevent unauthorized usage.', hud: [['CRYPT', 'PQ'], ['KEY', 'SHARD'], ['AUTH', 'BOUND']], items: ['Post-quantum crypto algorithms', 'Context-aware key management', 'Identity-bound execution silos', 'Hardware-rooted trust anchors'] },
-    { num: 3, color: 'slate', side: 'left', img: Img3, title: 'EW-Resilient Comms', body: 'A software-defined radio (SDR) intelligence layer that protects the digital link. It detects jamming signatures and autonomously modifies signal parameters to maintain throughput.', hud: [['LINK', 'HIGH'], ['JAM', 'NULL'], ['SNR', 'RESIL']], items: ['AI-driven signal denoising', 'Cognitive frequency agility', 'LPI/LPD waveform generation', 'Distributed mesh relay logic'] },
+    { num: 3, color: 'slate', side: 'left', img: Img3, title: 'EW-Resilient Comms', body: 'A software-defined radio (SDR) intelligence layer that protects the digital link. It detects interference signatures and autonomously modifies signal parameters to maintain throughput.', hud: [['LINK', 'HIGH'], ['JAM', 'NULL'], ['SNR', 'RESIL']], items: ['AI-driven signal denoising', 'Cognitive frequency agility', 'LPI/LPD waveform generation', 'Distributed mesh relay logic'] },
 ];
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
 const fadeLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 const fadeRight = { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 
-const CyberDefence = () => {
+const CyberAutonomousSystems = () => {
     const [activeScenario, setActiveScenario] = useState(0);
 
     return (
@@ -42,7 +42,7 @@ const CyberDefence = () => {
             {/* HERO - SECURITY MATRIX DESIGN */}
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-gradient-to-b from-indigo-50/50 to-white border-b border-indigo-100">
                 <motion.div initial={{ scale: 1.05, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.5 }} className="absolute inset-0 z-0">
-                    <img src={HeroImg} alt="Cyber Defence" className="w-full h-full object-cover grayscale opacity-20" />
+                    <img src={HeroImg} alt="Cyber Autonomous Software Based" className="w-full h-full object-cover grayscale opacity-20" />
                     <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
 
                     {/* DIGITAL HUD OVERLAY */}
@@ -271,4 +271,4 @@ const CyberDefence = () => {
     );
 };
 
-export default CyberDefence;
+export default CyberAutonomousSystems;

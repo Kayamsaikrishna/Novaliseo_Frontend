@@ -6,20 +6,20 @@ import {
     FaMountain, FaCity, FaMicrochip, FaSatellite
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/dined nav.png';
-import Img1 from '../../assets/defence/gnss_visual_tracking.png';
-import Img2 from '../../assets/defence/attitude.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/dined nav.png';
+import Img1 from '../../assets/autonomous-systems/gnss_visual_tracking.png';
+import Img2 from '../../assets/autonomous-systems/attitude.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Section & Scenario Assets
-import ProblemImg from '../../assets/defence/latency.png';
-import FrontierImg from '../../assets/defence/Boarder Security.png';
-import UrbanImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import CanopyImg from '../../assets/defence/defence_hero_strategic_v2_1771334713607.png';
-import SubterraneanImg from '../../assets/defence/sensor.png';
+import ProblemImg from '../../assets/autonomous-systems/latency.png';
+import FrontierImg from '../../assets/autonomous-systems/Boarder Security.png';
+import UrbanImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import CanopyImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334713607.png';
+import SubterraneanImg from '../../assets/autonomous-systems/sensor.png';
 
 const scenarios = [
-    { title: 'Frontier Border Patrol', sub: 'Navigating high-altitude Himalayan valleys where GNSS signals are spoofed or jammed.', img: FrontierImg, detail: 'In contested border regions, GPS is no longer a reliable reference. Our terrain-referenced navigation uses the unique geometry of the landscape — ridges, peaks, and valleys — to maintain sub-meter positioning without any external signal dependency.' },
+    { title: 'Frontier Border Patrol', sub: 'Navigating high-altitude Himalayan valleys where GNSS signals are disrupted or interfered with.', img: FrontierImg, detail: 'In contested border regions, GPS is no longer a reliable reference. Our terrain-referenced navigation uses the unique geometry of the landscape — ridges, peaks, and valleys — to maintain sub-meter positioning without any external signal dependency.' },
     { title: 'Urban Canyon Engagement', sub: 'Precision positioning in dense Indian metropolitan centers like Mumbai or Bangalore.', img: UrbanImg, detail: 'High-rise density in Indian cities creates extreme multipath errors, jumping coordinates by hundreds of meters. Visual-inertial odometry tracks local motion relative to urban features, providing the precision required for low-altitude autonomous flight.' },
     { title: 'Dense Canopy Navigation', sub: 'Operating in thick jungle environments where the sky is obscured.', img: CanopyImg, detail: 'In dense tropical forests, satellite visibility is zero. Navigation by sight allows the platform to weave through the canopy, mapping and remembering its path through complex 3D environments where traditional GPS systems are blind.' },
     { title: 'Subterranean ISR', sub: 'Navigating bunkers, tunnels, and underground facilities.', img: SubterraneanImg, detail: 'Subterranean spaces are the ultimate GNSS-denied environment. Concurrent Mapping and Localization (SLAM) enables platforms to build a 3D structural map of unknown underground spaces, ensuring mission success where no signal can penetrate.' },
@@ -27,7 +27,7 @@ const scenarios = [
 
 const layers = [
     { num: 1, color: 'blue', side: 'left', img: Img1, title: 'Visual Odometry', body: 'The platform "sees" its motion. By tracking thousands of features across high-frequency camera frames, the system computes its exact delta-movement, maintaining precise positioning across any terrain without ever needing a satellite fix.', hud: [['NAV', 'VISUAL'], ['TRACK', '1.2Kpts'], ['REF', 'LOCAL']], items: ['High-frequency feature tracking', 'Cumulative drift correction', 'Zero RF emission / Complete silence', 'Day/Night multi-modal sensing'] },
-    { num: 2, color: 'indigo', side: 'right', img: Img2, title: 'Terrain Referencing', body: 'The system matches the local 3D landscape against on-board strategic maps. Peaks, ridges, and man-made structures become the new "satellites," providing absolute positioning references that cannot be jammed or spoofed.', hud: [['MAP', 'ACTIVE'], ['MATCH', '98%'], ['ALT', 'Himalayan']], items: ['Strategic map cross-referencing', 'Absolute position via landmarking', 'Robust to seasonal terrain changes', 'Anti-spoofing geometric validation'] },
+    { num: 2, color: 'indigo', side: 'right', img: Img2, title: 'Terrain Referencing', body: 'The system matches the local 3D landscape against on-board strategic maps. Peaks, ridges, and man-made structures become the new "satellites," providing absolute positioning references that cannot be interfered with or manipulated.', hud: [['MAP', 'ACTIVE'], ['MATCH', '98%'], ['ALT', 'Himalayan']], items: ['Strategic map cross-referencing', 'Absolute position via landmarking', 'Robust to seasonal terrain changes', 'Anti-disruption geometric validation'] },
     { num: 3, color: 'blue', side: 'left', img: Img3, title: 'Deep Inertial Fusion', body: 'When visuals are obscured by smoke or dust, deep learning models predict motion patterns by fusing skeletal IMU data with environmental physics — ensuring the navigation thread is never broken, even in the "blind" window.', hud: [['FUSE', 'NEURAL'], ['IMU', 'STABLE'], ['BUFFER', 'ACTIVE']], items: ['Neural motion prediction', 'Robustness to visual obscuration', 'Sub-millisecond sensor fusion', 'Physics-aware dead reckoning'] },
 ];
 
@@ -102,7 +102,7 @@ const ComplexNavigation = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {[
-                                    { title: 'GPS Spoofing', body: 'False signals that lead platforms off-course.', val: '99% Error' },
+                                    { title: 'GPS Disruption', body: 'False signals that lead platforms off-course.', val: '99% Error' },
                                     { title: 'Multipath Lag', body: 'Signal bounces in dense urban areas.', val: '340m+ Drift' }
                                 ].map((stat, i) => (
                                     <div key={i} className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
@@ -219,7 +219,7 @@ const ComplexNavigation = () => {
                             <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-10">Standard GPS Navigation</h4>
                             <div className="space-y-6">
                                 {[
-                                    'Total failure in jammed or spoofed zones.',
+                                    'Total failure in interfered or disrupted zones.',
                                     'Geometric drift in urban environments.',
                                     'Requires external satellite lock.',
                                     'Predictable vulnerabilities in EW conflict.',

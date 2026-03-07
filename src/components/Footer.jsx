@@ -12,7 +12,7 @@ const Footer = () => {
     { name: 'Services', path: '/services' },
     { name: 'Projects', path: '/projects' },
     { name: 'Innovation Lab', path: '/innovation-lab' },
-    { name: 'Defence', path: '/defence' },
+    { name: 'Autonomous Software Based', path: '/autonomous-systems' },
     { name: 'Industries', path: '/industries' },
     { name: 'Careers', path: '/careers' },
   ];

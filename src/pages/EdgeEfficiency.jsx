@@ -6,10 +6,10 @@ import {
     FaExclamationTriangle, FaRocket
 } from 'react-icons/fa';
 
-import HeroImg from '../assets/defence/efficency.png';
-import MeshImg from '../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import AbstractImg from '../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import MapImg from '../assets/defence/strategic_map_visualization_1771333852873.png';
+import HeroImg from '../assets/autonomous-systems/efficency.png';
+import MeshImg from '../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import AbstractImg from '../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import MapImg from '../assets/autonomous-systems/strategic_map_visualization_1771333852873.png';
 
 /* ─── Animation presets ─── */
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
@@ -283,7 +283,7 @@ const EdgeEfficiency = () => {
                                         'Lower precision compute — dramatically less power draw',
                                         'Significant speed improvement as an engineering target',
                                         'Accuracy preserved within operational tolerance',
-                                        'Compatible with defence-grade embedded hardware',
+                                        'Compatible with autonomous software based-grade embedded hardware',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-center gap-3 text-slate-700">
                                             <FaCheckCircle className="text-blue-500 flex-shrink-0" />

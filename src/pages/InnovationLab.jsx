@@ -317,19 +317,24 @@ const InnovationLab = () => {
             </section>
 
             {/* INTELLIGENCE ADVANTAGE COMPARISON */}
-            <section className="relative py-40 z-10 overflow-hidden bg-white">
-                <div className="max-w-7xl mx-auto px-4">
+            <section className="relative py-40 z-10 overflow-hidden bg-slate-50">
+                <div className="max-w-7xl mx-auto px-4 relative z-10">
                     <div className="text-center mb-24">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
+                        >
                             The Intelligence <span className="text-blue-600">Advantage</span>
-                        </h2>
-                        <p className="text-xl text-slate-500">Neural Power vs Legacy Systems</p>
+                        </motion.h2>
+                        <p className="text-lg md:text-xl text-slate-500 font-medium tracking-wide">Legacy Systems vs Sovereign Neural Power</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative items-center">
                         {/* VS Label */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-full font-bold text-xl border-4 border-white shadow-xl">
-                            VS
+                        <div className="absolute top-[45%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center justify-center w-20 h-20 bg-white text-slate-900 rounded-full font-black text-2xl border-4 border-slate-100 shadow-[0_10px_30px_rgba(59,130,246,0.15)]">
+                            <span>VS</span>
                         </div>
 
                         {/* Legacy Side */}
@@ -337,9 +342,11 @@ const InnovationLab = () => {
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-slate-50 rounded-3xl p-10 border border-slate-200 grayscale relative opacity-60 hover:opacity-100 transition-all"
+                            className="bg-white rounded-3xl p-10 lg:p-12 border border-slate-200 relative opacity-60 hover:opacity-100 transition-all duration-500 shadow-xl group"
                         >
-                            <h3 className="text-3xl font-bold text-slate-400 mb-8">Legacy Models</h3>
+                            <h3 className="text-2xl font-bold text-slate-500 mb-10 flex items-center gap-4 uppercase tracking-widest">
+                                <div className="w-2 h-2 rounded-full bg-slate-400"></div> Legacy Models
+                            </h3>
                             <div className="space-y-8">
                                 {[
                                     { l: "Processing Speed", v: "1.0x (Baseline)", p: "30%" },
@@ -347,13 +354,13 @@ const InnovationLab = () => {
                                     { l: "Reliability", v: "Reactive Scaling", p: "45%" },
                                     { l: "Sovereignty", v: "Dependency Heavy", p: "15%" }
                                 ].map((item, i) => (
-                                    <div key={i}>
-                                        <div className="flex justify-between text-sm mb-2 text-slate-400">
+                                    <div key={i} className="relative">
+                                        <div className="flex justify-between text-sm mb-3 text-slate-500 font-semibold uppercase tracking-wider">
                                             <span>{item.l}</span>
                                             <span>{item.v}</span>
                                         </div>
-                                        <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                                            <div className="h-full bg-slate-400" style={{ width: item.p }}></div>
+                                        <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                            <div className="h-full bg-slate-300 rounded-full transition-all group-hover:bg-slate-400" style={{ width: item.p }}></div>
                                         </div>
                                     </div>
                                 ))}
@@ -365,31 +372,38 @@ const InnovationLab = () => {
                             initial={{ opacity: 0, x: 40 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-slate-900 rounded-3xl p-10 border border-blue-500/20 relative shadow-2xl overflow-hidden"
+                            className="bg-white rounded-3xl p-10 lg:p-12 border border-blue-200 relative shadow-[0_20px_50px_rgba(59,130,246,0.15)] overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500"
                         >
-                            <div className="absolute top-0 right-0 p-8">
-                                <FaShieldAlt className="text-blue-500 text-3xl opacity-50" />
+                            {/* Animated Background Pulse */}
+                            <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-50 blur-[80px] rounded-full transition-all duration-700"></div>
+
+                            <div className="absolute top-0 right-0 p-8 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
+                                <FaShieldAlt className="text-blue-100 text-6xl drop-shadow-sm" />
                             </div>
-                            <h3 className="text-3xl font-bold text-white mb-8">Sovereign Intelligence</h3>
-                            <div className="space-y-8">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-widest">
+                                <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] animate-pulse"></div> Sovereign Intelligence
+                            </h3>
+                            <div className="space-y-8 relative z-10">
                                 {[
-                                    { l: "Processing Speed", v: "100x Accelerated", p: "95%", c: "bg-blue-500" },
-                                    { l: "Strategic Depth", v: "Neural/Dynamic", p: "88%", c: "bg-indigo-500" },
-                                    { l: "Reliability", v: "Predictive Edge", p: "99.9%", c: "bg-cyan-500" },
-                                    { l: "Sovereignty", v: "100% Indigenous", p: "100%", c: "bg-blue-600" }
+                                    { l: "Processing Speed", v: "100x Accelerated", p: "95%", c: "from-blue-500 to-cyan-400" },
+                                    { l: "Strategic Depth", v: "Neural/Dynamic", p: "88%", c: "from-indigo-500 to-blue-400" },
+                                    { l: "Reliability", v: "Predictive Edge", p: "99.9%", c: "from-cyan-500 to-teal-400" },
+                                    { l: "Sovereignty", v: "100% Indigenous", p: "100%", c: "from-blue-600 to-indigo-400" }
                                 ].map((item, i) => (
                                     <div key={i}>
-                                        <div className="flex justify-between text-sm mb-2 text-blue-400">
-                                            <span>{item.l}</span>
-                                            <span>{item.v}</span>
+                                        <div className="flex justify-between text-sm mb-3">
+                                            <span className="text-blue-600 font-bold uppercase tracking-wider">{item.l}</span>
+                                            <span className="text-slate-800 font-extrabold tracking-wider">{item.v}</span>
                                         </div>
-                                        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                                        <div className="h-2 bg-blue-50 rounded-full overflow-hidden border border-blue-100/50">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: item.p }}
-                                                transition={{ duration: 1.5 }}
-                                                className={`h-full ${item.c} rounded-full`}
-                                            ></motion.div>
+                                                transition={{ duration: 1.5, delay: i * 0.15, ease: 'easeOut' }}
+                                                className={`h-full bg-gradient-to-r ${item.c} rounded-full relative overflow-hidden`}
+                                            >
+                                                <div className="absolute top-0 left-0 w-full h-full bg-white/30 animate-shimmer" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)' }}></div>
+                                            </motion.div>
                                         </div>
                                     </div>
                                 ))}

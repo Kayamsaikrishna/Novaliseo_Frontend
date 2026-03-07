@@ -43,7 +43,7 @@ const Navbar = () => {
     { name: 'Industries', path: '/industries' },
     { name: 'Projects', path: '/projects' },
     { name: 'Innovation Lab', path: '/innovation-lab' },
-    { name: 'Defence', path: '/defence' },
+    { name: 'Autonomous Systems', path: '/autonomous-systems' },
     { name: 'Blog', path: '/blog' },
     { name: 'Careers', path: '/careers' },
   ];
@@ -57,7 +57,7 @@ const Navbar = () => {
         }`}
     >
       <div className="glint-overlay"></div>
-      <div className="w-full px-4 sm:px-6 lg:px-6 xl:px-8 relative z-10">
+      <div className="w-full px-2 sm:px-4 lg:px-6 xl:px-8 relative z-10 max-w-[100vw] overflow-x-hidden">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 h-full py-2 pr-2 sm:pr-4 lg:pr-6" data-testid="navbar-logo">
@@ -69,8 +69,8 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu - Pushed to the right with mandatory Safe Zone */}
-          <div className="hidden lg:flex items-center justify-end ml-auto pl-2 lg:pl-4 xl:pl-8">
-            <div className="flex items-center gap-0.5 xl:gap-2">
+          <div className="hidden lg:flex items-center justify-end ml-auto pr-4 lg:pr-8 xl:pr-12 overflow-hidden">
+            <div className="flex items-center gap-0.5 lg:gap-1 xl:gap-2 justify-end w-full">
               {navItems.map((item, index) => (
                 <motion.div
                   key={`desktop-${item.path}`}
@@ -83,13 +83,13 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     data-testid={`nav-link-${item.name.toLowerCase().replace(' ', '-')}`}
-                    className={`glass-interaction px-2 xl:px-4 py-2 rounded-full text-[10px] xl:text-xs font-bold transition-all duration-300 relative whitespace-nowrap group tracking-tighter xl:tracking-normal ${location.pathname === item.path
+                    className={`glass-interaction px-1.5 lg:px-2 xl:px-3 py-1.5 xl:py-2 rounded-full text-[9px] lg:text-[10px] xl:text-[11px] font-bold transition-all duration-300 relative whitespace-nowrap group tracking-tighter lg:tracking-normal overflow-hidden text-ellipsis ${location.pathname === item.path
                       ? 'text-blue-600 bg-blue-50/10'
                       : 'text-slate-900 hover:text-blue-600'
                       }`}
                   >
                     {/* Standard Navigation Indicator */}
-                    {location.pathname === item.path && item.name !== 'Defence' && (
+                    {location.pathname === item.path && item.name !== 'Autonomous Systems' && (
                       <motion.div
                         layoutId="navIndicator"
                         className="absolute inset-0 bg-blue-50/50 rounded-full border border-blue-100/50 -z-10"
@@ -97,8 +97,8 @@ const Navbar = () => {
                       />
                     )}
 
-                    {/* Elite HUD Corners for Defence */}
-                    {item.name === 'Defence' && (
+                    {/* Elite HUD Corners for Autonomous Systems */}
+                    {item.name === 'Autonomous Systems' && (
                       <>
                         <motion.div
                           className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-blue-400 group-hover:border-blue-600"
@@ -136,7 +136,7 @@ const Navbar = () => {
                             y: location.pathname === item.path ? 0 : 4
                           }}
                         />
-                        {/* Subtle Radial Pulse for Defence */}
+                        {/* Subtle Radial Pulse for Autonomous Software Based */}
                         {location.pathname === item.path && (
                           <motion.div
                             animate={{ opacity: [0.1, 0.2, 0.1] }}

@@ -15,37 +15,37 @@ import { RiSpyLine } from 'react-icons/ri';
 import { TechnologyMarquee } from './InnovationLab';
 
 // Local Strategic Assets (Hero preserved as Unsplash per user request)
-import CoreImg from '../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import ResilienceImg from '../assets/defence/Boarder Security.png';
-import MeshImg from '../assets/defence/strategic_mesh_india_minimalist.png';
-import MapImg from '../assets/defence/strategic_map_visualization_1771333852873.png';
-import FlightImg from '../assets/defence/sovereign_hero_majestic_refined_1771334252324.png';
-import OpsImg1 from '../assets/defence/defence_hero_strategic_1771334627855.png';
-import OpsImg2 from '../assets/defence/sovereign_hero_v2_abstract_1771334110754.png';
-import OpsImg3 from '../assets/defence/sovereign_strat_hero_abstract_1771334310686.png';
-import ResearchImg from '../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
-import IntelImg from '../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png'; // Added as per instruction
+import CoreImg from '../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import ResilienceImg from '../assets/autonomous-systems/Boarder Security.png';
+import MeshImg from '../assets/autonomous-systems/strategic_mesh_india_minimalist.png';
+import MapImg from '../assets/autonomous-systems/strategic_map_visualization_1771333852873.png';
+import FlightImg from '../assets/autonomous-systems/sovereign_hero_majestic_refined_1771334252324.png';
+import OpsImg1 from '../assets/autonomous-systems/defence_hero_strategic_1771334627855.png';
+import OpsImg2 from '../assets/autonomous-systems/sovereign_hero_v2_abstract_1771334110754.png';
+import OpsImg3 from '../assets/autonomous-systems/sovereign_strat_hero_abstract_1771334310686.png';
+import ResearchImg from '../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
+import IntelImg from '../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png'; // Added as per instruction
 
 // User provided card images
-import CardDeniedNavImg from '../assets/defence/defence_card_denied_nav_1771344705855.png';
-import CardAttitudeImg from '../assets/defence/defence_card_attitude_control_1771344808087.png';
-import CardLatencyImg from '../assets/defence/defence_card_low_latency_1771344914035.png';
-import CardEfficiencyImg from '../assets/defence/defence_card_efficiency_1771344362161.png';
+import CardDeniedNavImg from '../assets/autonomous-systems/defence_card_denied_nav_1771344705855.png';
+import CardAttitudeImg from '../assets/autonomous-systems/defence_card_attitude_control_1771344808087.png';
+import CardLatencyImg from '../assets/autonomous-systems/defence_card_low_latency_1771344914035.png';
+import CardEfficiencyImg from '../assets/autonomous-systems/defence_card_efficiency_1771344362161.png';
 
 // Additional Unique Assets for Differentiations
-import SensorImg from '../assets/defence/threat.png';
-import GnssImg from '../assets/defence/gnss_visual_tracking.png';
-import RealTimeMappingImg from '../assets/defence/real_time_mapping.png';
+import SensorImg from '../assets/autonomous-systems/threat.png';
+import GnssImg from '../assets/autonomous-systems/gnss_visual_tracking.png';
+import RealTimeMappingImg from '../assets/autonomous-systems/real_time_mapping.png';
 
 
 /**
- * NOVALISEO DEFENCE - SOVEREIGN EXCELLENCE (V6.0)
+ * NOVALISEO AUTONOMOUS SOFTWARE BASED - SOVEREIGN EXCELLENCE (V6.0)
  * Focus: High-Information Density, Custom SVG Visualizations, National Security.
  * Identity: Atmanirbhar Bharat, Strategic Autonomy, Tactical Resilience.
  * Compliance: Zero technical secrets leaks (metrics/architecture names minimized).
  */
 
-const Defence = () => {
+const AutonomousSystems = () => {
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -57,7 +57,7 @@ const Defence = () => {
     return (
         <div ref={containerRef} className="relative bg-[#020617] min-h-screen text-slate-300 font-sans selection:bg-blue-500/30">
             <SEO
-                title="SHIVA Platform | Sovereign Autonomy & Tactical AI For Defence"
+                title="SHIVA Platform | Sovereign Autonomy & Tactical AI For Autonomous Software Based"
                 description="The SHIVA Platform is India's first unified autonomy hardware layer, providing GNSS-denied navigation, drone swarm intelligence, and post-quantum security."
             />
 
@@ -279,7 +279,7 @@ const StrategicGap = () => {
                             </div>
 
                             <div className="space-y-6">
-                                <VulnerabilityBar label="GPS / GNSS Signal" status="Jamming Detected" percent={85} color="red" />
+                                <VulnerabilityBar label="GPS / GNSS Signal" status="Interference Detected" percent={85} color="red" />
                                 <VulnerabilityBar label="Cloud Connectivity" status="Connection Severed" percent={100} color="orange" />
                                 <VulnerabilityBar label="Sensor Latency" status="Critical Delay" percent={65} color="red" />
                             </div>
@@ -304,8 +304,8 @@ const StrategicGap = () => {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                             <GapPoint
-                                title="GPS Jamming"
-                                desc="Platforms go blind in contested zones when GNSS is spoofed or denied."
+                                title="GPS Interference"
+                                desc="Platforms go blind in contested zones when GNSS is manipulated or denied."
                             />
                             <GapPoint
                                 title="Cloud Dependency"
@@ -426,7 +426,7 @@ const ShivaTacticalHUD = () => {
             text: 'text-red-700',
             hex: '#DC2626',
             useCases: ['Border patrol', 'Combat resupply', 'Tactical payload deployment'],
-            caps: ['Encrypted communication stack', 'Anti-jamming resilience', 'Hardened fail-safes']
+            caps: ['Encrypted communication stack', 'Anti-interference resilience', 'Hardened fail-safes']
         },
         {
             id: 'I',
@@ -448,17 +448,17 @@ const ShivaTacticalHUD = () => {
             text: 'text-slate-700',
             hex: '#475569',
             useCases: ['Disaster response', 'Mining risk inspection', 'Signal-compromised regions'],
-            caps: ['GNSS spoof detection', 'Redundant navigation', 'Terrain-adaptive routing']
+            caps: ['GNSS disruption detection', 'Redundant navigation', 'Terrain-adaptive routing']
         },
         {
             id: 'A',
-            title: 'Adaptive Defence',
+            title: 'Adaptive Autonomous Software Based',
             focus: 'Strategic Counter-Threat',
             chip: 'chip_a.jpg',
             color: 'bg-indigo-600',
             text: 'text-indigo-700',
             hex: '#4F46E5',
-            useCases: ['Counter-UAV operations', 'Autonomous defence patrol', 'Strategic deployment'],
+            useCases: ['Counter-UAV operations', 'Autonomous autonomous software based patrol', 'Strategic deployment'],
             caps: ['Autonomous threat classification', 'Defensive maneuver algorithms', 'Swarm protocols']
         }
     ];
@@ -822,7 +822,7 @@ const TacticalResilience = () => {
                         >
                             <TacticalPoint
                                 title="Electronic Hardening"
-                                desc="Signal spectrum analysis allows the system to identify and ignore jamming attempts in real-time."
+                                desc="Signal spectrum analysis allows the system to identify and ignore interference attempts in real-time."
                             />
                         </motion.div>
                     </div>
@@ -901,25 +901,25 @@ const FutureWarfarePipeline = () => {
         {
             title: "GNSS-Denied Navigation",
             desc: "GNSS-independent positioning using optical flow.",
-            path: "/defence/denied-navigation",
+            path: "/autonomous-systems/denied-navigation",
             icon: <FaEye />
         },
         {
             title: "Self-Healing Control",
             desc: "Neural network flight control for damage tolerance.",
-            path: "/defence/attitude-control",
+            path: "/autonomous-systems/attitude-control",
             icon: <FaRocket />
         },
         {
             title: "Ultra-Low Latency",
             desc: "Edge computing metrics for instant command loops.",
-            path: "/defence/ultra-low-latency",
+            path: "/autonomous-systems/ultra-low-latency",
             icon: <FaMicrochip />
         },
         {
             title: "Edge Efficiency",
             desc: "Watt-per-inference optimization for extended endurance.",
-            path: "/defence/edge-efficiency",
+            path: "/autonomous-systems/edge-efficiency",
             icon: <FaBolt />
         }
     ];
@@ -956,15 +956,15 @@ const FutureWarfarePipeline = () => {
                 >
                     {/* --- CAPABILITY PAGES --- */}
                     {[
-                        { title: 'Threat Surveillance', desc: 'Persistent detection and classification across all domains.', path: '/defence/threat-surveillance', img: SensorImg, accent: 'red' },
-                        { title: 'Decentralized Decision', desc: 'Distributed command architecture with no single point of failure.', path: '/defence/decentralized-decision', img: MeshImg, accent: 'violet' },
-                        { title: 'Combat Operations', desc: 'Authority-bounded autonomous engagement at machine speed.', path: '/defence/combat-operations', img: OpsImg1, accent: 'red' },
-                        { title: 'Complex Navigation', desc: 'Navigate through GPS-denied, urban, and underground environments.', path: '/defence/complex-navigation', img: CardDeniedNavImg, accent: 'blue' },
-                        { title: 'Perception-Driven Ops', desc: 'Multi-modal sensor fusion for full scene comprehension.', path: '/defence/perception-ops', img: GnssImg, accent: 'cyan' },
-                        { title: 'Swarm Operations', desc: 'Self-organising multi-platform coordination without central control.', path: '/defence/swarm-ops', img: OpsImg2, accent: 'amber' },
-                        { title: 'Engagement & Counter-Threat', desc: 'Detect, decide, and neutralise — within commander authority.', path: '/defence/engagement-counter-threat', img: OpsImg3, accent: 'rose' },
-                        { title: 'Persistent ISR', desc: 'Energy-aware autonomy for maximum intelligence endurance.', path: '/defence/persistent-isr', img: CardEfficiencyImg, accent: 'emerald' },
-                        { title: 'Cyber Defence', desc: 'Sovereign security with post-quantum resilient architectures.', path: '/defence/cyber-defence', img: IntelImg, accent: 'slate' },
+                        { title: 'Threat Surveillance', desc: 'Persistent detection and classification across all domains.', path: '/autonomous-systems/threat-surveillance', img: SensorImg, accent: 'red' },
+                        { title: 'Decentralized Decision', desc: 'Distributed command architecture with no single point of failure.', path: '/autonomous-systems/decentralized-decision', img: MeshImg, accent: 'violet' },
+                        { title: 'Combat Operations', desc: 'Authority-bounded autonomous engagement at machine speed.', path: '/autonomous-systems/combat-operations', img: OpsImg1, accent: 'red' },
+                        { title: 'Complex Navigation', desc: 'Navigate through GPS-denied, urban, and underground environments.', path: '/autonomous-systems/complex-navigation', img: CardDeniedNavImg, accent: 'blue' },
+                        { title: 'Perception-Driven Ops', desc: 'Multi-modal sensor fusion for full scene comprehension.', path: '/autonomous-systems/perception-ops', img: GnssImg, accent: 'cyan' },
+                        { title: 'Swarm Operations', desc: 'Self-organising multi-platform coordination without central control.', path: '/autonomous-systems/swarm-ops', img: OpsImg2, accent: 'amber' },
+                        { title: 'Engagement & Counter-Threat', desc: 'Detect, decide, and neutralise — within commander authority.', path: '/autonomous-systems/engagement-counter-threat', img: OpsImg3, accent: 'rose' },
+                        { title: 'Persistent ISR', desc: 'Energy-aware autonomy for maximum intelligence endurance.', path: '/autonomous-systems/persistent-isr', img: CardEfficiencyImg, accent: 'emerald' },
+                        { title: 'Cyber Autonomous Software Based', desc: 'Sovereign security with post-quantum resilient architectures.', path: '/autonomous-systems/cyber-autonomous-systems', img: IntelImg, accent: 'slate' },
                     ].map((cap, i) => (
                         <motion.div
                             key={`new-cap-${i}`}
@@ -1065,9 +1065,9 @@ const SecurityCompliance = () => {
                         operational data is sequestration-locked.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                        <ComplianceCard icon={<GiRadarSweep className="text-2xl" />} title="Anti-Jam (Interference Resistant)" />
+                        <ComplianceCard icon={<GiRadarSweep className="text-2xl" />} title="Interference Resistant" />
                         <ComplianceCard icon={<MdSecurity className="text-2xl" />} title="Anti-Hack (Sovereign Integrity)" />
-                        <ComplianceCard icon={<MdRadar className="text-2xl" />} title="Anti-Spoof (Verified Fusion)" />
+                        <ComplianceCard icon={<MdRadar className="text-2xl" />} title="Disruption Resilient (Verified Fusion)" />
                         <ComplianceCard icon={<FaTimes className="text-2xl" />} title="Air-Gapped Security" />
                     </div>
                 </motion.div>
@@ -1119,7 +1119,7 @@ const PartnershipCTA = () => {
                     </p>
                     <Link
                         to="/contact"
-                        state={{ type: 'defence-partnership' }}
+                        state={{ type: 'autonomous software based-partnership' }}
                         className="btn-3d-glass group relative w-full md:w-auto px-12 md:px-24 py-6 md:py-8 text-white flex items-center justify-center uppercase tracking-[0.2em] md:tracking-[0.4em]"
                     >
                         Initialize Partnership <FaArrowRight className="ml-4 group-hover:translate-x-2 transition-transform duration-500" />
@@ -1171,4 +1171,4 @@ const StandardLine = ({ label, val }) => (
     </div>
 );
 
-export default Defence;
+export default AutonomousSystems;

@@ -9,10 +9,10 @@ import { MdSecurity } from 'react-icons/md';
 const Services = () => {
   const getDefaultServices = () => [
     {
-      id: 'defence-1',
-      title: 'Tactical Intelligence & Defence Solutions',
+      id: 'autonomous software based-1',
+      title: 'Tactical Intelligence & Autonomous Software Based Solutions',
       description: 'Mission-critical software for tactical intelligence, threat detection, and autonomous systems.',
-      long_description: 'Expanding the boundaries of software-defined defence. Our tactical intelligence solutions provide real-time battlefield intelligence, autonomous UAV navigation, and predictive threat analysis for strategic superiority.',
+      long_description: 'Expanding the boundaries of software-defined autonomous systems. Our tactical intelligence solutions provide real-time battlefield intelligence, autonomous UAV navigation, and predictive threat analysis for strategic superiority.',
       image_url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b',
       icon: 'GiRadarSweep',
       benefits: ['Real-time tactical intelligence', 'Strategic autonomous navigation', 'Precision threat detection', 'Mission-critical reliability'],
@@ -134,7 +134,7 @@ const Services = () => {
   return (
     <div className="relative pt-20 bg-slate-50">
       <SEO
-        title="Our Solutions | Defence Intelligence & AI Engineering Services"
+        title="Our Solutions | Autonomous Software Based Intelligence & AI Engineering Services"
         description="Explore NOVALISEO's strategic solutions: from tactical intelligence edge infrastructure to AI manufacturing optimization and predictive aerospace maintenance."
       />
       {/* Hero Section */}
@@ -149,7 +149,7 @@ const Services = () => {
               <span className="text-blue-600 font-semibold text-sm">OUR SOLUTIONS</span>
             </div>
             <h1 className="text-5xl sm:text-6xl font-bold mb-6">
-              <span className="gradient-text">Software-Defined Defence</span>
+              <span className="gradient-text">Software-Defined Autonomous Systems</span>
               <br />
               <span className="text-slate-900">& Strategic Engineering</span>
             </h1>

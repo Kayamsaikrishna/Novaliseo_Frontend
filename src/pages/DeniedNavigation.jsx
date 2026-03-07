@@ -5,10 +5,10 @@ import {
     FaShieldAlt, FaCheckCircle, FaBan, FaArrowRight,
     FaBroadcastTower, FaWifi
 } from 'react-icons/fa';
-import VisualTracking from '../assets/defence/gnss_visual_tracking.png';
-import RealTimeMapping from '../assets/defence/real_time_mapping.png';
-import SensorFusion from '../assets/defence/sensor.png';
-import FlightImg from '../assets/defence/dined nav.png';
+import VisualTracking from '../assets/autonomous-systems/gnss_visual_tracking.png';
+import RealTimeMapping from '../assets/autonomous-systems/real_time_mapping.png';
+import SensorFusion from '../assets/autonomous-systems/sensor.png';
+import FlightImg from '../assets/autonomous-systems/dined nav.png';
 
 /* ─── Shared animation presets ─── */
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
@@ -40,9 +40,9 @@ const DeniedNavigation = () => {
         },
         {
             title: 'Electronic Warfare Zones',
-            sub: 'Full mission integrity under active jamming and spoofing.',
+            sub: 'Full mission integrity under active interference and disruption.',
             img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070&auto=format&fit=crop',
-            detail: 'Operates without ever listening for a GNSS signal. Jamming arrays, spoofers, and signal-denial environments are operationally irrelevant — the system does not depend on any external RF navigation.',
+            detail: 'Operates without ever listening for a GNSS signal. Interference arrays, signal manipulations, and signal-denial environments are operationally irrelevant — the system does not depend on any external RF navigation.',
         },
     ];
 
@@ -138,7 +138,7 @@ const DeniedNavigation = () => {
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                                 Modern warfare relies heavily on GNSS. In contested operational theatres,
                                 when GNSS fails, standard drones drift and crash. Electronic warfare units
-                                can spoof signals to hijack or disable them within seconds.
+                                can manipulate signals to hijack or disable them within seconds.
                             </p>
                             <p className="text-lg text-slate-700 leading-relaxed border-l-4 border-blue-500 pl-6 py-1">
                                 Novaliseo uses <strong>Advanced Computer Vision</strong> to lock onto the terrain itself.
@@ -148,7 +148,7 @@ const DeniedNavigation = () => {
 
                         {/* Right — threat cards */}
                         <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-5">
-                            {/* Jamming */}
+                            {/* Interference */}
                             <div className="flex items-start gap-5 p-6 bg-red-50 border border-red-100 rounded-2xl hover:border-red-300 transition-all">
                                 <div className="w-12 h-12 bg-red-100 border border-red-200 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaBroadcastTower className="text-red-500 text-xl" />
@@ -157,12 +157,12 @@ const DeniedNavigation = () => {
                                     <div className="flex items-center gap-2 mb-1">
                                         <span className="text-red-500 text-xs font-bold uppercase tracking-widest">Threat 01</span>
                                     </div>
-                                    <h4 className="font-bold text-slate-900 text-lg mb-1">Signal Jamming</h4>
+                                    <h4 className="font-bold text-slate-900 text-lg mb-1">Signal Interference</h4>
                                     <p className="text-slate-500 text-sm leading-relaxed">High-power RF noise floor elevation that drowns all GNSS frequencies simultaneously, rendering satellite-dependent navigation blind within seconds.</p>
                                 </div>
                             </div>
 
-                            {/* Spoofing */}
+                            {/* Disruption */}
                             <div className="flex items-start gap-5 p-6 bg-orange-50 border border-orange-100 rounded-2xl hover:border-orange-300 transition-all">
                                 <div className="w-12 h-12 bg-orange-100 border border-orange-200 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaWifi className="text-orange-500 text-xl" />
@@ -171,7 +171,7 @@ const DeniedNavigation = () => {
                                     <div className="flex items-center gap-2 mb-1">
                                         <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Threat 02</span>
                                     </div>
-                                    <h4 className="font-bold text-slate-900 text-lg mb-1">Spoofing Attacks</h4>
+                                    <h4 className="font-bold text-slate-900 text-lg mb-1">Signal Disruption</h4>
                                     <p className="text-slate-500 text-sm leading-relaxed">False coordinate injection vectors that feed incorrect position data — causing the platform to fly off-course or into controlled airspace without awareness.</p>
                                 </div>
                             </div>
@@ -462,7 +462,7 @@ const DeniedNavigation = () => {
                             </div>
                             {[
                                 'Jammed by high-power RF within seconds',
-                                'Spoofable — can be hijacked remotely',
+                                'Susceptible to Disruption — can be hijacked remotely',
                                 'Fails in tunnels, urban canyons, indoors',
                                 'Signal outage = mission abort',
                                 'Dependent on foreign satellite infrastructure',
@@ -485,7 +485,7 @@ const DeniedNavigation = () => {
                             </div>
                             {[
                                 'Zero RF signal dependency — unjammable by design',
-                                'No external signal = nothing to spoof',
+                                'No external signal = nothing to disrupt',
                                 'Operates indoors, underground, in dense terrain',
                                 'Signal outage: operationally irrelevant',
                                 'Fully indigenous — sovereign from launch to landing',

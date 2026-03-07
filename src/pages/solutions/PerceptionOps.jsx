@@ -6,17 +6,17 @@ import {
     FaMicrochip, FaChartLine, FaShieldAlt
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/gnss_visual_tracking.png';
-import Img1 from '../../assets/defence/sensor.png';
-import Img2 from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/gnss_visual_tracking.png';
+import Img1 from '../../assets/autonomous-systems/sensor.png';
+import Img2 from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Section & Scenario Assets
-import ProblemImg from '../../assets/defence/latency.png';
-import UrbanImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import FrontierImg from '../../assets/defence/Boarder Security.png';
-import MaritimeImg from '../../assets/defence/sovereign_hero_majestic_refined_1771334252324.png';
-import CounterImg from '../../assets/defence/defence_hero_strategic_v2_1771334713607.png';
+import ProblemImg from '../../assets/autonomous-systems/latency.png';
+import UrbanImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import FrontierImg from '../../assets/autonomous-systems/Boarder Security.png';
+import MaritimeImg from '../../assets/autonomous-systems/sovereign_hero_majestic_refined_1771334252324.png';
+import CounterImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334713607.png';
 
 const scenarios = [
     { title: 'Dense Urban Perception', sub: 'Identifying anomalies in crowded Indian metropolitan centers.', img: UrbanImg, detail: 'Urban centers in India present extreme visual clutter. Our perception engine is designed to distinguish operationally significant activity — such as specific vehicle profiles or high-risk movement patterns — from the normal dense flow of city life.' },

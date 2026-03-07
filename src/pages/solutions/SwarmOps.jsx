@@ -6,17 +6,17 @@ import {
     FaBan, FaCogs, FaMicrochip, FaUsers
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/defence_hero_v6_webp_1771334667890.png';
-import Img1 from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import Img2 from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/defence_hero_v6_webp_1771334667890.png';
+import Img1 from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import Img2 from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Section & Scenario Assets
-import ProblemImg from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import FrontierImg from '../../assets/defence/Boarder Security.png';
-import UrbanImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import DesertImg from '../../assets/defence/defence_hero_strategic_v2_1771334764385.png';
-import HeterogeneousImg from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import ProblemImg from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import FrontierImg from '../../assets/autonomous-systems/Boarder Security.png';
+import UrbanImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import DesertImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334764385.png';
+import HeterogeneousImg from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 const scenarios = [
     { title: 'Frontier Search & Rescue', sub: 'Coordinating dozens of platforms to sweep vast Himalayan sectors.', img: FrontierImg, detail: 'Covering vast, high-altitude terrain with a single platform is a race against time. A coordinated swarm divides the search area autonomously, dynamically re-tasking when priority targets are discovered or when nodes face atmospheric challenges.' },

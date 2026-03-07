@@ -7,22 +7,22 @@ import {
 } from 'react-icons/fa';
 
 // Restoration of "Majestic" Hero Background
-import HeroImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import Img1 from '../../assets/defence/kernel.png';
-import Img2 from '../../assets/defence/signal mesh.png';
-import Img3 from '../../assets/defence/autonomous decisions.png';
+import HeroImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import Img1 from '../../assets/autonomous-systems/kernel.png';
+import Img2 from '../../assets/autonomous-systems/signal mesh.png';
+import Img3 from '../../assets/autonomous-systems/autonomous decisions.png';
 
 // Scenario Assets
-import GnssDeniedImg from '../../assets/defence/denied nav.png';
-import DynamicMeshImg from '../../assets/defence/meshing.png';
-import LowBandwidthImg from '../../assets/defence/low bandwidth.png';
+import GnssDeniedImg from '../../assets/autonomous-systems/denied nav.png';
+import DynamicMeshImg from '../../assets/autonomous-systems/meshing.png';
+import LowBandwidthImg from '../../assets/autonomous-systems/low bandwidth.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
 const fadeLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 const fadeRight = { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 
 const scenarios = [
-    { title: 'GNSS-Denied Coordination', sub: 'Autonomous drift correction through peer-to-peer visual anchoring.', img: GnssDeniedImg, detail: 'In environments where GPS is spoofed or jammed, nodes use their local perception and consensus from peers to maintain a collective coordinate system, enabling precision operations without external anchors.' },
+    { title: 'GNSS-Denied Coordination', sub: 'Autonomous drift correction through peer-to-peer visual anchoring.', img: GnssDeniedImg, detail: 'In environments where GPS is disrupted or interfered with, nodes use their local perception and consensus from peers to maintain a collective coordinate system, enabling precision operations without external anchors.' },
     { title: 'Dynamic Mesh Reconstitution', sub: 'Self-healing network logic for high-attrition theaters.', img: DynamicMeshImg, detail: 'If 60% of nodes are lost to attrition, the remaining mesh identifies the mission gap and redistributes intelligence tasks instantly, ensuring the strategic objective remains covered by the surviving collective.' },
     { title: 'Low-Bandwidth Consensus', sub: 'Distributed voting logic optimized for electronic noise.', img: LowBandwidthImg, detail: 'Our consensus protocol minimizes spectral footprint, allowing nodes to reach agreement on target priority using bits of data rather than megabytes, making the network virtually invisible to enemy RDF.' },
 ];
@@ -193,7 +193,7 @@ const DecentralizedDecision = () => {
                             <ul className="space-y-6">
                                 {[
                                     'Single command server vulnerability.',
-                                    'Uplink jamming results in node death.',
+                                    'Uplink interference results in node death.',
                                     'Decision latency (GCS round-trip).',
                                     'Scale limited by central compute.',
                                     'Static orchestration - brittle topology.'

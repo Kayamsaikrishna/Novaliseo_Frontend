@@ -7,22 +7,22 @@ import {
 } from 'react-icons/fa';
 
 // Restoration of "Majestic" Hero Background
-import HeroImg from '../../assets/defence/defence_hero_strategic_1771334627855.png';
-import Img1 from '../../assets/defence/authority shell.png';
-import Img2 from '../../assets/defence/response logic time.png';
-import Img3 from '../../assets/defence/neural flight control.png';
+import HeroImg from '../../assets/autonomous-systems/defence_hero_strategic_1771334627855.png';
+import Img1 from '../../assets/autonomous-systems/authority shell.png';
+import Img2 from '../../assets/autonomous-systems/response logic time.png';
+import Img3 from '../../assets/autonomous-systems/neural flight control.png';
 
 // Scenario Assets
-import TerminalPhaseImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import ContestedImg from '../../assets/defence/defence_hero_strategic_1771334581757.png';
-import FailSafeImg from '../../assets/defence/efficency.png';
+import TerminalPhaseImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import ContestedImg from '../../assets/autonomous-systems/defence_hero_strategic_1771334581757.png';
+import FailSafeImg from '../../assets/autonomous-systems/efficency.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
 const fadeLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 const fadeRight = { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };
 
 const scenarios = [
-    { title: 'Terminal Phase Autonomy', sub: 'Precision terminal adjustments under localized jamming.', img: TerminalPhaseImg, detail: 'In the final seconds of an engagement, communication links are often severed by adversary countermeasures. Our terminal logic operates independently, performing micro-adjustments to ensure the mission objective is met with surgical precision.' },
+    { title: 'Terminal Phase Autonomy', sub: 'Precision terminal adjustments under localized interference.', img: TerminalPhaseImg, detail: 'In the final seconds of an engagement, communication links are often severed by adversary countermeasures. Our terminal logic operates independently, performing micro-adjustments to ensure the mission objective is met with surgical precision.' },
     { title: 'Contested Zone Ingress', sub: 'Autonomous route shifting to avoid active radar acquisition.', img: ContestedImg, detail: 'Operating in deep-contested airspace requires sub-second reactions to incoming radar signatures. The platform autonomously modifies its flight path to minimize RCS and avoid active engagement zones.' },
     { title: 'Structural Fail-Safe', sub: 'Recomputing control laws after kinetic platform degradation.', img: FailSafeImg, detail: 'If a platform sustains kinetic damage, our neural flight controllers identify the changes in inertia and drag, instantly re-mapping steering inputs to keep the platform operational and mission-focused.' },
 ];
@@ -91,7 +91,7 @@ const CombatOperations = () => {
 
                         <div className="lg:w-1/2 space-y-4">
                             {[
-                                { title: 'Link Latency Risk', body: 'Remote operation depends on stable bandwidth. Jamming destroys the OODA loop. Our autonomy executes on-edge.', p: '01' },
+                                { title: 'Link Latency Risk', body: 'Remote operation depends on stable bandwidth. Interference destroys the OODA loop. Our autonomy executes on-edge.', p: '01' },
                                 { title: 'Cognitive Overload', body: 'A human cannot process 50+ incoming vectors at once. Our logic handles the noise, presenting only the final decision.', p: '02' },
                                 { title: 'ROE Compliance', body: 'In the heat of combat, manual ROE verification is slow. Our hard-coded shells ensure authority is never exceeded.', p: '03' }
                             ].map((item, i) => (

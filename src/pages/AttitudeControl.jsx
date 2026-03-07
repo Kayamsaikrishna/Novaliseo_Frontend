@@ -5,10 +5,10 @@ import {
     FaArrowRight, FaWind, FaRocket, FaExchangeAlt, FaBolt
 } from 'react-icons/fa';
 
-import FlightImg from '../assets/defence/attitude.png';
-import CardImg from '../assets/defence/defence_card_attitude_control_1771344808087.png';
-import AbstractImg from '../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import MeshImg from '../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
+import FlightImg from '../assets/autonomous-systems/attitude.png';
+import CardImg from '../assets/autonomous-systems/defence_card_attitude_control_1771344808087.png';
+import AbstractImg from '../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import MeshImg from '../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
 
 /* ─── Animation presets ─── */
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };

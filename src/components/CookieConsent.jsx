@@ -34,13 +34,13 @@ const CookieConsent = () => {
       // Essential cookies for website functionality
       document.cookie = "cookieConsent=true; path=/; max-age=31536000"; // 1 year
     }
-    
+
     // Initialize analytics cookies if accepted
     if (prefs.analytics) {
       // Google Analytics or similar
       // This would typically load analytics scripts
     }
-    
+
     // Initialize marketing cookies if accepted
     if (prefs.marketing) {
       // Marketing/tracking cookies
@@ -54,13 +54,13 @@ const CookieConsent = () => {
       analytics: true,
       marketing: true
     };
-    
+
     setPreferences(allAccepted);
     localStorage.setItem('cookieConsent', JSON.stringify({
       timestamp: new Date().toISOString(),
       preferences: allAccepted
     }));
-    
+
     initializeCookies(allAccepted);
     setIsVisible(false);
   };
@@ -71,13 +71,13 @@ const CookieConsent = () => {
       analytics: false,
       marketing: false
     };
-    
+
     setPreferences(onlyNecessary);
     localStorage.setItem('cookieConsent', JSON.stringify({
       timestamp: new Date().toISOString(),
       preferences: onlyNecessary
     }));
-    
+
     initializeCookies(onlyNecessary);
     setIsVisible(false);
   };
@@ -87,7 +87,7 @@ const CookieConsent = () => {
       timestamp: new Date().toISOString(),
       preferences: preferences
     }));
-    
+
     initializeCookies(preferences);
     setIsVisible(false);
     setShowPreferences(false);
@@ -119,7 +119,7 @@ const CookieConsent = () => {
                 <div className="flex-1">
                   <h3 className="text-lg font-medium text-white">Cookie Preferences</h3>
                   <p className="mt-2 text-sm text-gray-300">
-                    We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. 
+                    We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
                     You can choose which cookies to accept. Read our{' '}
                     <a href="/privacy-policy" className="text-blue-400 hover:text-blue-300 underline">
                       Privacy Policy
@@ -127,7 +127,7 @@ const CookieConsent = () => {
                     for more information.
                   </p>
                 </div>
-                
+
                 <div className="mt-6 md:mt-0 md:ml-6 flex flex-col sm:flex-row gap-3">
                   <Button
                     onClick={handleRejectAll}
@@ -151,7 +151,7 @@ const CookieConsent = () => {
                   </Button>
                 </div>
               </div>
-              
+
               <div className="mt-4 text-xs text-gray-500">
                 <p>Your privacy is important to us. You can change your cookie preferences at any time by clicking the cookie settings link in the footer.</p>
               </div>
@@ -211,7 +211,7 @@ const CookieConsent = () => {
                       <p className="text-gray-400 text-sm mt-1">Required for the website to function properly. Cannot be disabled.</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <div className="flex items-center h-5 mt-1">
                       <input
@@ -219,7 +219,7 @@ const CookieConsent = () => {
                         name="analytics"
                         type="checkbox"
                         checked={preferences.analytics}
-                        onChange={(e) => setPreferences({...preferences, analytics: e.target.checked})}
+                        onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
                         className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                       />
                     </div>
@@ -230,7 +230,7 @@ const CookieConsent = () => {
                       <p className="text-gray-400 text-sm mt-1">Help us understand how visitors interact with our site. Used for statistical analysis.</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <div className="flex items-center h-5 mt-1">
                       <input
@@ -238,7 +238,7 @@ const CookieConsent = () => {
                         name="marketing"
                         type="checkbox"
                         checked={preferences.marketing}
-                        onChange={(e) => setPreferences({...preferences, marketing: e.target.checked})}
+                        onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })}
                         className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                       />
                     </div>

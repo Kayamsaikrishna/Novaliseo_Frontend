@@ -54,7 +54,7 @@ const About = () => {
         {
             icon: <FaFlag className="text-2xl text-indigo-500" />,
             title: "Our Vision",
-            description: "To become the leading provider of mission-critical AI systems for defence and industrial sectors — built and deployed entirely within India's borders.",
+            description: "To become the leading provider of mission-critical AI systems for autonomous software based and industrial sectors — built and deployed entirely within India's borders.",
         },
         {
             icon: <FaMicrochip className="text-2xl text-cyan-500" />,
@@ -73,7 +73,7 @@ const About = () => {
     return (
         <div className="min-h-screen bg-white relative overflow-hidden font-sans">
             <SEO
-                title="About NOVALISEO | Engineers of Sovereign Defence Intelligence"
+                title="About NOVALISEO | Engineers of Sovereign Autonomous Software Based Intelligence"
                 description="Learn how NOVALISEO engineers 100% indigenous, software-defined AI systems for strategic sectors, guaranteeing data sovereignty and operational superiority."
             />
 
@@ -115,7 +115,7 @@ const About = () => {
                         </h1>
 
                         <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto font-medium leading-relaxed mb-12">
-                            NOVALISEO engineers sovereign intelligence systems for defence and critical industries.
+                            NOVALISEO engineers sovereign intelligence systems for autonomous software based and critical industries.
                             We don't sell subscriptions — we deliver intelligence infrastructure that your organisation owns and controls.
                         </p>
 

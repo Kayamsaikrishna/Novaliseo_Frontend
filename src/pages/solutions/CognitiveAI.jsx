@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaBrain, FaSearch, FaNetworkWired, FaChess, FaEye, FaMicrochip, FaArrowRight } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import VizImg from '../../assets/defence/strategic_map_visualization_1771333852873.png';
+import HeroImg from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import VizImg from '../../assets/autonomous-systems/strategic_map_visualization_1771333852873.png';
 
 const CognitiveAI = () => {
     return (
@@ -27,7 +27,7 @@ const CognitiveAI = () => {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-500/10 border border-violet-400/20 rounded-full backdrop-blur-md mb-8">
                             <FaBrain className="text-violet-400" />
-                            <span className="text-violet-200 text-xs font-bold tracking-[0.2em] uppercase">Sentient Defence Systems</span>
+                            <span className="text-violet-200 text-xs font-bold tracking-[0.2em] uppercase">Sentient Autonomous Software Based Systems</span>
                         </div>
                         <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
                             DECISION <br />

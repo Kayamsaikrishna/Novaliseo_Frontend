@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaVrCardboard, FaGamepad, FaUsers, FaGlobe, FaCube, FaBolt } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
-import SimImg from '../../assets/defence/attitude.png';
+import HeroImg from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
+import SimImg from '../../assets/autonomous-systems/attitude.png';
 
 const VirtualTraining = () => {
     return (

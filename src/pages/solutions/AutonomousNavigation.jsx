@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaSatellite, FaMapMarkedAlt, FaSignal, FaShieldAlt, FaMicrochip, FaEye, FaArrowRight } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/dined nav.png';
-import ProblemImg from '../../assets/defence/latency.png';
-import Case1Img from '../../assets/defence/Boarder Security.png';
-import Case2Img from '../../assets/defence/real_time_mapping.png';
+import HeroImg from '../../assets/autonomous-systems/dined nav.png';
+import ProblemImg from '../../assets/autonomous-systems/latency.png';
+import Case1Img from '../../assets/autonomous-systems/Boarder Security.png';
+import Case2Img from '../../assets/autonomous-systems/real_time_mapping.png';
 
 const AutonomousNavigation = () => {
     return (
@@ -69,7 +69,7 @@ const AutonomousNavigation = () => {
                                 When Satellite Signals <span className="text-red-600">Go Dark</span>.
                             </h3>
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                                Modern battlefields are defined by spectrum dominance. Enemy EW assets can spoof or jam GNSS/GPS signals instantly, rendering traditional platforms blind.
+                                Modern battlefields are defined by spectrum dominance. Enemy EW assets can disrupt or interfere with GNSS/GPS signals instantly, rendering traditional platforms blind.
                             </p>
                             <p className="text-lg text-slate-600 leading-relaxed border-l-4 border-blue-500 pl-6">
                                 Novaliseo's ANS (Autonomous Navigation System) doesn't rely on space assets. It uses "Visual Terrain Matching" and "Inertial Fusion" to determine location based on what it <em>sees</em>, not what it receives.

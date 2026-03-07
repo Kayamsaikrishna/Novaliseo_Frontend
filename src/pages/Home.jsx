@@ -45,8 +45,8 @@ const Home = () => {
   return (
     <div className="relative">
       <SEO
-        title="NOVALISEO | Defence Intelligence & Strategic AI Systems"
-        description="NOVALISEO develops sovereign defence intelligence platforms, tactical AI-driven simulations, and strategic software-defined engineering solutions."
+        title="NOVALISEO | Autonomous Software Based Intelligence & Strategic AI Systems"
+        description="NOVALISEO develops sovereign autonomous software based intelligence platforms, tactical AI-driven simulations, and strategic software-defined engineering solutions."
       />
       <ParticleBackground />
 
@@ -123,22 +123,22 @@ const Home = () => {
               className="inline-flex items-center gap-2 mb-8 px-6 py-2 bg-white/60 backdrop-blur-md border border-blue-100 rounded-full shadow-sm"
             >
               <GiRadarSweep className="text-blue-600 animate-pulse" />
-              <span className="text-blue-600 font-bold text-sm tracking-widest uppercase">Software-Defined Defence</span>
+              <span className="text-blue-600 font-bold text-sm tracking-widest uppercase">Software-Defined Autonomous Systems</span>
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight" data-testid="hero-title">
-              <span className="gradient-text">Pioneering Defence Intelligence</span>
+              <span className="gradient-text">Pioneering Autonomous Software Based Intelligence</span>
               <br />
               <span className="text-slate-900">& Strategic Engineering</span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-medium" data-testid="hero-subtitle">
-              Empowering India's Defence sector with tactical intelligence solutions, mission-critical simulations, and software-defined engineering. Built for the frontlines.
+              Empowering India's Autonomous Software Based sector with tactical intelligence solutions, mission-critical simulations, and software-defined engineering. Built for the frontlines.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <Link
-                to="/defence"
+                to="/autonomous-systems"
                 data-testid="hero-cta-primary"
                 className="btn-3d-glass px-10 py-5 text-white font-bold text-lg flex items-center gap-2 group shadow-xl shadow-blue-500/20"
               >
@@ -214,15 +214,15 @@ const Home = () => {
                 <span className="text-[#8b5cf6] font-medium text-sm">ABOUT US</span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-                <span className="gradient-text">Software-Defined Defence</span>
+                <span className="gradient-text">Software-Defined Autonomous Systems</span>
                 <br />
                 <span className="text-slate-900">Architecture</span>
               </h2>
               <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                NOVALISEO is a software-defined engineering firm primarily focused on augmenting the Defence sector with strategic AI. We specialize in transforming mission-critical operations through intelligent automation, tactical surveillance analytics, and advanced predictive modeling.
+                NOVALISEO is a software-defined engineering firm primarily focused on augmenting the Autonomous Software Based sector with strategic AI. We specialize in transforming mission-critical operations through intelligent automation, tactical surveillance analytics, and advanced predictive modeling.
               </p>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Our mission is to lead India's transition to software-defined defence equipment, delivering cutting-edge AI solutions that ensure operational superiority and strategic autonomy.
+                Our mission is to lead India's transition to software-defined autonomous systems equipment, delivering cutting-edge AI solutions that ensure operational superiority and strategic autonomy.
               </p>
               <Link
                 to="/services"
@@ -263,7 +263,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Strategic Division Showcase - NEW SECTION TO SHOWCASE DEFENCE ENTRY */}
+      {/* Strategic Division Showcase - NEW SECTION TO SHOWCASE AUTONOMOUS SOFTWARE BASED ENTRY */}
       {/* Strategic Division Showcase - REFINED TO ELITE LIGHT THEME */}
       <section className="relative py-24 bg-white text-slate-900 overflow-hidden border-y border-slate-100 shadow-sm">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -296,7 +296,7 @@ const Home = () => {
                 <span className="text-blue-600">Autonomous Battlefield.</span>
               </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed font-medium">
-                Our specialized Defence Division focuses on sovereign AI solutions for contested theaters. From GNSS-denied navigation to tactical swarm intelligence, we build the software that defines modern national security.
+                Our specialized Autonomous Software Based Division focuses on sovereign AI solutions for contested theaters. From GNSS-denied navigation to tactical swarm intelligence, we build the software that defines modern national security.
               </p>
 
               <div className="space-y-4 mb-10">
@@ -315,7 +315,7 @@ const Home = () => {
               </div>
 
               <Link
-                to="/defence"
+                to="/autonomous-systems"
                 className="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white rounded-full font-bold text-lg hover:bg-slate-800 transition-all duration-300 hover:scale-105 shadow-xl shadow-slate-200"
               >
                 Enter Strategic Portal <FaArrowRight />

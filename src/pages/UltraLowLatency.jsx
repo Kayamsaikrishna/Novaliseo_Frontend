@@ -6,10 +6,10 @@ import {
     FaCloud, FaExclamationTriangle
 } from 'react-icons/fa';
 
-import ChipImg from '../assets/defence/latency.png';
-import MeshImg from '../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
-import AbstractImg from '../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import MapImg from '../assets/defence/strategic_map_visualization_1771333852873.png';
+import ChipImg from '../assets/autonomous-systems/latency.png';
+import MeshImg from '../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
+import AbstractImg from '../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import MapImg from '../assets/autonomous-systems/strategic_map_visualization_1771333852873.png';
 
 /* ─── Animation presets ─── */
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
@@ -279,8 +279,8 @@ const UltraLowLatency = () => {
                                 <ul className="space-y-3">
                                     {[
                                         'Full inference on-device — zero external compute',
-                                        'Designed for defence-grade thermal and vibration environments',
-                                        'Operates under jamming, RF denial, and signal blackout',
+                                        'Designed for autonomous software based-grade thermal and vibration environments',
+                                        'Operates under interference, RF denial, and signal blackout',
                                         'Optimised for power-constrained airborne platforms',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-center gap-3 text-slate-700">
@@ -422,7 +422,7 @@ const UltraLowLatency = () => {
             <section className="py-24 bg-slate-50 border-t border-slate-200">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-14">
-                        <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Cloud AI Fails Defence</h2>
+                        <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Cloud AI Fails Autonomous Software Based</h2>
                         <p className="text-slate-500 text-lg">A direct comparison in contested, communications-degraded environments.</p>
                     </motion.div>
 

@@ -13,12 +13,13 @@ import Contact from './pages/Contact';
 import Industries from './pages/Industries';
 import Careers from './pages/Careers';
 import Blog from './pages/Blog';
+import AIAutonomousIntelligence2026 from './pages/blog/AIAutonomousIntelligence2026';
 import RoleOfAI from './pages/blog/RoleOfAI';
 import FutureOfStrategicSoftware from './pages/blog/FutureOfStrategicSoftware';
-import SoftwareDefinedDefence from './pages/blog/SoftwareDefinedDefence';
+import SoftwareDefinedAutonomousSystems from './pages/blog/SoftwareDefinedAutonomousSystems';
 import InnovationLab from './pages/InnovationLab';
 import SEO from './components/SEO';
-import Defence from './pages/Defence';
+import AutonomousSystems from './pages/AutonomousSystems';
 import DeniedNavigation from './pages/DeniedNavigation';
 import AttitudeControl from './pages/AttitudeControl';
 import UltraLowLatency from './pages/UltraLowLatency';
@@ -31,7 +32,7 @@ import PerceptionOps from './pages/solutions/PerceptionOps';
 import SwarmOps from './pages/solutions/SwarmOps';
 import EngagementCounterThreat from './pages/solutions/EngagementCounterThreat';
 import PersistentISR from './pages/solutions/PersistentISR';
-import CyberDefence from './pages/solutions/CyberDefence';
+import CyberAutonomousSystems from './pages/solutions/CyberAutonomousSystems';
 import CookieConsent from './components/CookieConsent';
 import UniqueCompanyBot from './components/SimplifiedChatBot';
 
@@ -49,14 +50,27 @@ function ScrollToTop() {
 function App() {
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "TechOrganization"],
     "name": "NOVALISEO",
     "url": "https://novaliseo.com",
     "logo": "https://novaliseo.com/logo.png",
-    "description": "NOVALISEO engineers 100% indigenous, software-defined AI systems for strategic defence intelligence and industrial manufacturing.",
+    "description": "NOVALISEO engineers 100% indigenous, software-defined AI systems for strategic autonomous software based intelligence and industrial manufacturing.",
+    "foundingLocation": "India",
     "sameAs": [
       "https://www.linkedin.com/company/novaliseo"
     ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NOVALISEO",
+    "url": "https://novaliseo.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://novaliseo.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   };
 
   useEffect(() => {
@@ -85,7 +99,7 @@ function App() {
   return (
     <div className="App relative min-h-screen w-full overflow-x-hidden">
       <BrowserRouter>
-        <SEO schema={organizationSchema} />
+        <SEO schema={[organizationSchema, websiteSchema]} />
         <ScrollToTop />
         <Navbar />
         <main className="relative">
@@ -97,24 +111,26 @@ function App() {
             <Route path="/industries" element={<Industries />} />
             <Route path="/innovation-lab" element={<InnovationLab />} />
             <Route path="/careers" element={<Careers />} />
+            {/* Blog & Articles */}
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/role-of-ai-in-defence-intelligence" element={<RoleOfAI />} />
-            <Route path="/blog/future-of-strategic-defence-software" element={<FutureOfStrategicSoftware />} />
-            <Route path="/blog/software-defined-defence-systems" element={<SoftwareDefinedDefence />} />
-            <Route path="/defence" element={<Defence />} />
-            <Route path="/defence/denied-navigation" element={<DeniedNavigation />} />
-            <Route path="/defence/attitude-control" element={<AttitudeControl />} />
-            <Route path="/defence/ultra-low-latency" element={<UltraLowLatency />} />
-            <Route path="/defence/edge-efficiency" element={<EdgeEfficiency />} />
-            <Route path="/defence/threat-surveillance" element={<ThreatSurveillance />} />
-            <Route path="/defence/decentralized-decision" element={<DecentralizedDecision />} />
-            <Route path="/defence/combat-operations" element={<CombatOperations />} />
-            <Route path="/defence/complex-navigation" element={<ComplexNavigation />} />
-            <Route path="/defence/perception-ops" element={<PerceptionOps />} />
-            <Route path="/defence/swarm-ops" element={<SwarmOps />} />
-            <Route path="/defence/engagement-counter-threat" element={<EngagementCounterThreat />} />
-            <Route path="/defence/persistent-isr" element={<PersistentISR />} />
-            <Route path="/defence/cyber-defence" element={<CyberDefence />} />
+            <Route path="/blog/ai-autonomous-intelligence-systems-2026-guide" element={<AIAutonomousIntelligence2026 />} />
+            <Route path="/blog/role-of-ai-in-autonomous software based-intelligence" element={<RoleOfAI />} />
+            <Route path="/blog/future-of-strategic-autonomous software based-software" element={<FutureOfStrategicSoftware />} />
+            <Route path="/blog/software-defined-autonomous software based-systems" element={<SoftwareDefinedAutonomousSystems />} />
+            <Route path="/autonomous-systems" element={<AutonomousSystems />} />
+            <Route path="/autonomous-systems/denied-navigation" element={<DeniedNavigation />} />
+            <Route path="/autonomous-systems/attitude-control" element={<AttitudeControl />} />
+            <Route path="/autonomous-systems/ultra-low-latency" element={<UltraLowLatency />} />
+            <Route path="/autonomous-systems/edge-efficiency" element={<EdgeEfficiency />} />
+            <Route path="/autonomous-systems/threat-surveillance" element={<ThreatSurveillance />} />
+            <Route path="/autonomous-systems/decentralized-decision" element={<DecentralizedDecision />} />
+            <Route path="/autonomous-systems/combat-operations" element={<CombatOperations />} />
+            <Route path="/autonomous-systems/complex-navigation" element={<ComplexNavigation />} />
+            <Route path="/autonomous-systems/perception-ops" element={<PerceptionOps />} />
+            <Route path="/autonomous-systems/swarm-ops" element={<SwarmOps />} />
+            <Route path="/autonomous-systems/engagement-counter-threat" element={<EngagementCounterThreat />} />
+            <Route path="/autonomous-systems/persistent-isr" element={<PersistentISR />} />
+            <Route path="/autonomous-systems/cyber-autonomous-systems" element={<CyberAutonomousSystems />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

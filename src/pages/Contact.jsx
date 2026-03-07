@@ -19,14 +19,14 @@ const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUB
 
 const Contact = () => {
   const location = useLocation();
-  const isDefence = location.state?.type === 'defence-partnership';
+  const isDefence = location.state?.type === 'autonomous software based-partnership';
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    subject: isDefence ? 'Strategic Defence Partnership Inquiry' : '',
+    subject: isDefence ? 'Strategic Autonomous Software Based Partnership Inquiry' : '',
     message: ''
   });
 
@@ -112,7 +112,7 @@ const Contact = () => {
     }
   ];
 
-  /* --- Defence Mode --- */
+  /* --- Autonomous Software Based Mode --- */
   if (isDefence) {
     if (defenceLoading) {
       return (
@@ -134,7 +134,7 @@ const Contact = () => {
           <div className="bg-slate-900 text-white p-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FaShieldAlt className="text-blue-400 text-xl" />
-              <span className="font-bold tracking-wider text-sm">NOVALISEO DEFENCE PORTAL</span>
+              <span className="font-bold tracking-wider text-sm">NOVALISEO AUTONOMOUS SOFTWARE BASED PORTAL</span>
             </div>
             <div className="flex items-center gap-2 text-xs font-medium bg-slate-800 px-3 py-1 rounded-full">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
@@ -146,7 +146,7 @@ const Contact = () => {
           <div className="bg-blue-50 border-b border-blue-100 p-4 text-blue-800 text-sm flex items-start gap-3">
             <FaLock className="mt-1 text-blue-600" />
             <div>
-              <strong>Official Use Only:</strong> This channel is reserved for government and authorized defence partners.
+              <strong>Official Use Only:</strong> This channel is reserved for government and authorized autonomous software based partners.
               All communications are encrypted and logged for security compliance.
             </div>
           </div>
@@ -155,7 +155,7 @@ const Contact = () => {
           <div className="p-8 md:p-12">
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Strategic Partnership Inquiry</h1>
             <p className="text-slate-600 mb-8 max-w-2xl">
-              Initiate a dialogue regarding sovereign defence capabilities. Please provide official credentials for verification.
+              Initiate a dialogue regarding sovereign autonomous software based capabilities. Please provide official credentials for verification.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -178,8 +178,8 @@ const Contact = () => {
                     <option>Indian Navy</option>
                     <option>Indian Air Force</option>
                     <option>DRDO / Tech Lab</option>
-                    <option>Defence PSU</option>
-                    <option>Private Defence Contractor</option>
+                    <option>Autonomous Software Based PSU</option>
+                    <option>Private Autonomous Software Based Contractor</option>
                     <option>Govt. Agency (Other)</option>
                   </select>
                 </div>

@@ -6,17 +6,17 @@ import {
     FaBan, FaGavel, FaEye, FaMicrochip
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/defence_hero_strategic_1771334627855.png';
-import Img1 from '../../assets/defence/sensor.png';
-import Img2 from '../../assets/defence/sovereign_intelligence_abstract_v2_1771334796018.png';
-import Img3 from '../../assets/defence/indigenous_core_abstract_v2_1771334339840.png';
+import HeroImg from '../../assets/autonomous-systems/defence_hero_strategic_1771334627855.png';
+import Img1 from '../../assets/autonomous-systems/sensor.png';
+import Img2 from '../../assets/autonomous-systems/sovereign_intelligence_abstract_v2_1771334796018.png';
+import Img3 from '../../assets/autonomous-systems/indigenous_core_abstract_v2_1771334339840.png';
 
 // Section & Scenario Assets
-import ProblemImg from '../../assets/defence/defence_hero_strategic_v2_1771334713607.png';
-import SurgicalImg from '../../assets/defence/sensor.png';
-import IndustrialImg from '../../assets/defence/Boarder Security.png';
-import ExclusionImg from '../../assets/defence/defence_hero_strategic_v2_1771334764385.png';
-import EscortImg from '../../assets/defence/strategic_mesh_nodes_v2_1771334837767.png';
+import ProblemImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334713607.png';
+import SurgicalImg from '../../assets/autonomous-systems/sensor.png';
+import IndustrialImg from '../../assets/autonomous-systems/Boarder Security.png';
+import ExclusionImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334764385.png';
+import EscortImg from '../../assets/autonomous-systems/strategic_mesh_nodes_v2_1771334837767.png';
 
 const scenarios = [
     { title: 'Surgical Counter-UAS', sub: 'Neutralising hostile drone incursions at the high-altitude frontier.', img: SurgicalImg, detail: 'Asymmetric drone threats along the Himalayan frontier move faster than human reaction. Our surgical engagement engine provides sub-second detection, classification, and neutralisation — keeping the operator in control while the platform acts at machine speed.' },
@@ -109,7 +109,7 @@ const EngagementCounterThreat = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {[
                                     { title: 'Observe-Act', body: 'Biological OODA loop latency.', val: '8-12s Delay' },
-                                    { title: 'Jamming Window', body: 'Comms loss during attacks.', val: '90% Risk' }
+                                    { title: 'Interference Window', body: 'Comms loss during attacks.', val: '90% Risk' }
                                 ].map((stat, i) => (
                                     <div key={i} className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
                                         <div className="text-2xl font-black text-rose-600 font-mono mb-2 italic">{stat.val}</div>
@@ -228,7 +228,7 @@ const EngagementCounterThreat = () => {
                                     'Identify and authorization requires 8s+ human input.',
                                     'Response speed limited by biological reaction time.',
                                     'Comms latency creates critical vulnerability window.',
-                                    'Indiscriminate jamming affects friendly signals.',
+                                    'Indiscriminate interference affects friendly signals.',
                                     'No local ROE validation at the moment of contact.'
                                 ].map((item, i) => (
                                     <div key={i} className="flex gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 text-slate-500 text-sm">
@@ -267,7 +267,7 @@ const EngagementCounterThreat = () => {
                             <FaCrosshairs className="text-rose-600 text-4xl shadow-[0_0_20px_rgba(225,29,72,0.3)]" />
                         </div>
                         <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">Machine Speed.</h2>
-                        <p className="text-slate-500 text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium">Integration support for all indigenous counter-UAS, active defence, and engagement platforms. Sovereign and accountable.</p>
+                        <p className="text-slate-500 text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium">Integration support for all indigenous counter-UAS, active autonomous software based, and engagement platforms. Sovereign and accountable.</p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6">
                             <a href="/contact" className="inline-flex items-center gap-4 px-12 py-6 bg-slate-900 text-white font-black rounded-full shadow-2xl hover:scale-105 transition-all text-xs uppercase tracking-widest">Initialize Shield <FaArrowRight /></a>
                             <a href="/contact" className="inline-flex items-center gap-4 px-12 py-6 bg-white border-2 border-rose-600 text-rose-600 font-bold rounded-full hover:bg-slate-50 transition-all text-sm tracking-tight">Engagement ROE</a>

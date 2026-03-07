@@ -7,8 +7,8 @@ const PortalTransition = () => {
     const [isScanning, setIsScanning] = useState(false);
 
     useEffect(() => {
-        // Trigger scan only when entering /defence or its sub-pages
-        if (location.pathname.startsWith('/defence')) {
+        // Trigger scan only when entering /autonomous-systems or its sub-pages
+        if (location.pathname.startsWith('/autonomous-systems')) {
             setIsScanning(true);
             const timer = setTimeout(() => setIsScanning(false), 2000);
             return () => clearTimeout(timer);

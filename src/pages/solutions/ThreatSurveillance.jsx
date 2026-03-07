@@ -6,17 +6,17 @@ import {
     FaBroadcastTower, FaSatellite, FaSearchPlus, FaStream
 } from 'react-icons/fa';
 
-import HeroImg from '../../assets/defence/Boarder Security.png';
-import Img1 from '../../assets/defence/sensor.png';
-import Img2 from '../../assets/defence/Edge Classification.png';
-import Img3 from '../../assets/defence/Threat survellieance.png';
+import HeroImg from '../../assets/autonomous-systems/Boarder Security.png';
+import Img1 from '../../assets/autonomous-systems/sensor.png';
+import Img2 from '../../assets/autonomous-systems/Edge Classification.png';
+import Img3 from '../../assets/autonomous-systems/Threat survellieance.png';
 
 // Section & Scenario Assets
-import DataOverloadImg from '../../assets/defence/defence_hero_strategic_v2_1771334713607.png';
-import BorderImg from '../../assets/defence/Boarder Security.png';
-import ForwardAreaImg from '../../assets/defence/Forward area.png';
-import UrbanISRImg from '../../assets/defence/real_time_mapping.png';
-import MaritimeImg from '../../assets/defence/maritime.png';
+import DataOverloadImg from '../../assets/autonomous-systems/defence_hero_strategic_v2_1771334713607.png';
+import BorderImg from '../../assets/autonomous-systems/Boarder Security.png';
+import ForwardAreaImg from '../../assets/autonomous-systems/Forward area.png';
+import UrbanISRImg from '../../assets/autonomous-systems/real_time_mapping.png';
+import MaritimeImg from '../../assets/autonomous-systems/maritime.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } };
 const fadeLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } };

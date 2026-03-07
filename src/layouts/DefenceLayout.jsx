@@ -22,7 +22,7 @@ const DefenceLayout = ({ children }) => {
                 {/* Status Ticker */}
                 <div className="absolute bottom-6 left-20 right-20 h-6 overflow-hidden flex items-center justify-center">
                     <div className="text-[10px] font-mono text-cyan-500/60 uppercase tracking-widest animate-pulse">
-                        System: ONLINE | Security: MAX | Nodes: ACTIVE | Latency: 4ms | Defence Protocols: ENGAGED
+                        System: ONLINE | Security: MAX | Nodes: ACTIVE | Latency: 4ms | Autonomous Software Based Protocols: ENGAGED
                     </div>
                 </div>
             </div>
