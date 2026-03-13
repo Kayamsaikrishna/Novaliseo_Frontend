@@ -43,11 +43,11 @@ export function ChromiqSection() {
             className="flex flex-col items-center justify-center gap-6 mb-8 lg:mb-12"
           >
             {/* Logo Text */}
-            <div className="h-24 sm:h-28 md:h-36 w-[320px] md:w-[450px] flex items-center justify-center">
+            <div className="h-24 sm:h-28 md:h-36 w-[320px] md:w-[450px] px-4 md:px-0 bg-gradient-to-br from-white/[0.08] to-transparent backdrop-blur-2xl rounded-[2.5rem] border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
               <img 
                 src="/images/Chromiq/logo-text.png" 
                 alt="Chromiq" 
-                className="h-full w-full object-contain filter brightness-200"
+                className="w-full h-auto object-contain brightness-0 invert opacity-90 scale-90"
               />
             </div>
             <p className="text-blue-400 font-medium tracking-[0.2em] text-sm md:text-base uppercase underline underline-offset-8 decoration-blue-500/40">Precision Chrome Metrology Suite</p>
