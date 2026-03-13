@@ -8,6 +8,8 @@ import { KachehriAISection } from "../components/KachehriAISection"
 import { CuraVoxSection } from "../components/CuraVoxSection"
 import { PhytoNirnayaSection } from "../components/PhytoNirnayaSection"
 import { MachTrolleySection } from "../components/MachTrolleySection"
+import { PearlixaiSection } from "../components/PearlixaiSection"
+import { ChromiqSection } from "../components/ChromiqSection"
 
 /* ───────────────────────────── SHIVA Profile Data ───────────────────────────── */
 
@@ -166,6 +168,10 @@ export default function SolutionsPage() {
 
       {/* ═══════════ MachTrolley Section ═══════════ */}
       <MachTrolleySection />
+
+      {/* ═══════════ Industrial AI Solutions ═══════════ */}
+      <PearlixaiSection />
+      <ChromiqSection />
     </div>
   )
 }
