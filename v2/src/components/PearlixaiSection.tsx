@@ -86,8 +86,12 @@ export function PearlixaiSection() {
           >
             <div className="bg-gradient-to-br from-white/[0.08] to-transparent backdrop-blur-2xl rounded-[4rem] p-10 md:p-14 border border-white/10 shadow-2xl shadow-black/50 relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
               {/* 3D Logo Watermark */}
-              <div className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] opacity-[0.03] pointer-events-none flex items-center justify-center z-0">
-                 <img src="/images/pearlixai/logo-3d.png" alt="" className="w-full h-full object-contain filter grayscale" />
+              <div className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] opacity-10 pointer-events-none flex items-center justify-center z-0">
+                 <img 
+                   src="/images/pearlixai/logo-3d.png" 
+                   alt="" 
+                   className="w-full h-full object-contain grayscale filter invert mix-blend-screen brightness-150" 
+                 />
               </div>
               <div className="relative z-10 space-y-12">
                 <div className="space-y-6">
