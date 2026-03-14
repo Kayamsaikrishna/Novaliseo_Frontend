@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { MeshGradient } from "@paper-design/shaders-react"
-import { LayeredText } from "../components/LayeredText"
 import { FeatureSteps } from "../components/FeatureSteps"
 import { KachehriAISection } from "../components/KachehriAISection"
 import { CuraVoxSection } from "../components/CuraVoxSection"
@@ -92,15 +91,7 @@ const profiles: ShivaProfile[] = [
   },
 ]
 
-const HERO_LINES = [
-  { top: "\u00A0", bottom: "SOVEREIGN" },
-  { top: "SOVEREIGN", bottom: "INTELLIGENCE" },
-  { top: "INTELLIGENCE", bottom: "AUTONOMOUS" },
-  { top: "AUTONOMOUS", bottom: "OPERATIONS" },
-  { top: "OPERATIONS", bottom: "INDIGENOUS" },
-  { top: "INDIGENOUS", bottom: "FUTURE" },
-  { top: "FUTURE", bottom: "\u00A0" },
-];
+
 
 /* ───────────────────────────── Solutions Page ───────────────────────────── */
 
