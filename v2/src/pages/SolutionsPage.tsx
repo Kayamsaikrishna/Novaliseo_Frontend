@@ -11,6 +11,9 @@ import { MachTrolleySection } from "../components/MachTrolleySection"
 import { PearlixaiSection } from "../components/PearlixaiSection"
 import { ChromiqSection } from "../components/ChromiqSection"
 
+import { GLSLHills } from "../components/GLSLHills"
+import { motion } from "framer-motion"
+
 /* ───────────────────────────── SHIVA Profile Data ───────────────────────────── */
 
 interface ShivaProfile {
@@ -118,14 +121,11 @@ export default function SolutionsPage() {
               className="absolute inset-0 w-full h-full"
               colors={["#020617", "#06b6d4", "#0891b2", "#164e63", "#030712"]}
               speed={0.3}
-              backgroundColor="#020617"
             />
             <MeshGradient
               className="absolute inset-0 w-full h-full opacity-50"
               colors={["#020617", "#ffffff", "#06b6d4", "#0e4a5c"]}
               speed={0.2}
-              wireframe="true"
-              backgroundColor="transparent"
             />
             <div className="absolute inset-0 pointer-events-none bg-black/15" />
           </>
@@ -133,13 +133,43 @@ export default function SolutionsPage() {
       </div>
 
       {/* Hero Section */}
-      <main className="relative z-20 min-h-screen flex items-center justify-center pt-32 px-8 md:px-16 lg:px-20 overflow-hidden">
-        <div className="max-w-7xl text-center w-full">
-          <LayeredText
-            lines={HERO_LINES}
-            fontSize="clamp(35px, 6vw, 100px)"
-            className="drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
-          />
+      <main className="relative z-20 min-h-screen flex items-center justify-center pt-32 px-6 overflow-hidden">
+        {/* GLSL Hills Shader Background */}
+        <GLSLHills 
+          width="100%" 
+          height="100%" 
+          cameraZ={110} 
+          planeSize={200}
+          speed={0.4} 
+        />
+
+        <div className="max-w-5xl text-center w-full relative z-30">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="space-y-8"
+          >
+            <motion.h1 
+              className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none uppercase drop-shadow-[0_0_30px_rgba(6,182,212,0.4)]"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
+              Sovereign <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Intelligence</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-slate-400 text-lg md:text-2xl font-light tracking-[0.3em] uppercase max-w-3xl mx-auto leading-relaxed border-t border-white/10 pt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
+              Architecting the Future of <br />
+              <span className="text-white font-medium">Indigenous Autonomous Operations</span>
+            </motion.p>
+          </motion.div>
         </div>
       </main>
 
