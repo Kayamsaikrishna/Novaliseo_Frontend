@@ -18,7 +18,7 @@ export default function Footer() {
     glow: "drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]"
   };
 
-  if (path === '/platforms' || path === '/partner' || path === '/about') {
+  if (path === '/platforms' || path === '/partner' || path === '/about' || path === '/technology') {
     theme = {
       bg: "bg-transparent",
       cardBg: "bg-[#06b6d4]/[0.02] border-[#06b6d4]/20 hover:border-[#06b6d4]/40 shadow-[0_0_30px_rgba(6,182,212,0.05)]",

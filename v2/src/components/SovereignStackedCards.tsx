@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import SectorHeroText from "./SectorHeroText";
 
 const cardData = [
-    { id: 1, img: "/images/Sovereign/The Sovereign Ecosystem.jpg" },
-    { id: 2, img: "/images/Sovereign/Sovereign Infrastructure.jpg" },
-    { id: 3, img: "/images/Sovereign/Privatised Scalability.jpg" },
-    { id: 4, img: "/images/Sovereign/Private Intelligence.jpg" },
-    { id: 5, img: "/images/Sovereign/Indigenous Security.jpg" },
-    { id: 6, img: "/images/Sovereign/Indigenous Ecosystem.jpg" },
-    { id: 7, img: "/images/Sovereign/Autonomous Operations.jpeg" },
+    { id: 1, title: "Universal", subtitle: "Ecosystem" },
+    { id: 2, title: "Strategic", subtitle: "Infrastructure" },
+    { id: 3, title: "Private", subtitle: "Scalability" },
+    { id: 4, title: "Isolated", subtitle: "Intelligence" },
+    { id: 5, title: "Indigenous", subtitle: "Security" },
+    { id: 6, title: "Native", subtitle: "Architecture" },
+    { id: 7, title: "Autonomous", subtitle: "Operations" },
 ];
 
 export default function SovereignStackedCards() {
@@ -39,10 +39,10 @@ export default function SovereignStackedCards() {
 
     return (
         <div className="relative w-full bg-transparent flex flex-col items-center overflow-x-hidden pt-20">
-            {/* Separate Screen for the Animated Title */}
+            {/* Main Stage Title */}
             <div className="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center flex-shrink-0 z-20">
                 <SectorHeroText
-                    text="SOVEREIGN"
+                    text="STRATEGIC"
                     subtitle="Uncompromising Indigenous Intelligence"
                 />
             </div>
@@ -67,10 +67,8 @@ export default function SovereignStackedCards() {
                         const angle = offset * (360 / total);
                         const angleRad = angle * (Math.PI / 180);
 
-                        // Translate over physical space to create an elliptical orbit
-                        // Translate over physical space to create an elliptical orbit
                         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-                        const radiusX = radius * (isMobile ? 1.1 : 1.5); // Narrower horizontal on mobile
+                        const radiusX = radius * (isMobile ? 1.1 : 1.5); 
                         const radiusZ = radius * 1.0;
 
                         const x = Math.sin(angleRad) * radiusX;
@@ -82,17 +80,16 @@ export default function SovereignStackedCards() {
                         const blur = absOffset * (isMobile ? 2 : 3);
                         const isCenter = absOffset === 0;
 
-                        // Explicitly separate the physical planes to prevent piercing
                         if (isCenter) {
                             z += isMobile ? 30 : 50; 
                         } else {
-                            z -= absOffset * (isMobile ? 150 : 250); // Less aggressive depth on mobile
+                            z -= absOffset * (isMobile ? 150 : 250); 
                         }
 
                         return (
                             <motion.div
                                 key={card.id}
-                                className={`absolute w-[92%] sm:w-[85%] md:w-[70%] aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden cursor-pointer shadow-2xl bg-[#eef1f5] dark:bg-zinc-900 border ${isCenter ? 'z-30' : 'z-10'}`}
+                                className={`absolute w-[92%] sm:w-[85%] md:w-[70%] aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden cursor-pointer shadow-2xl flex items-center justify-center bg-zinc-900/40 backdrop-blur-xl border ${isCenter ? 'z-30' : 'z-10'}`}
                                 animate={{
                                     x: x,
                                     z: z,
@@ -107,14 +104,21 @@ export default function SovereignStackedCards() {
                                     boxShadow: isCenter ? "0 30px 60px -15px rgba(6, 182, 212, 0.4), 0 0 40px rgba(6, 182, 212, 0.2)" : "0 10px 30px -10px rgba(0,0,0,0.5)",
                                 }}
                             >
-                                {/* The Image fully contained without cropping */}
-                                <div
-                                    className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute top-4 left-4 md:w-[calc(100%-4rem)] md:h-[calc(100%-4rem)] md:top-8 md:left-8 bg-contain bg-center bg-no-repeat transition-transform duration-700"
-                                    style={{ backgroundImage: `url('${card.img}')` }}
-                                />
-
-                                {/* Dark vignette over everything */}
-                                <div className="absolute inset-0 z-20 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-70 pointer-events-none" />
+                                {/* Text Content instead of image */}
+                                <div className="text-center p-12">
+                                    <motion.p 
+                                        animate={{ opacity: isCenter ? 1 : 0.5 }}
+                                        className="text-[10px] md:text-sm font-black uppercase tracking-[0.5em] text-cyan-400 mb-6"
+                                    >
+                                        // Sector Module 0{card.id}
+                                    </motion.p>
+                                    <h3 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none text-white mb-4">
+                                        {card.title}
+                                    </h3>
+                                    <p className="text-3xl md:text-5xl font-light uppercase tracking-tight text-white/30 leading-none">
+                                        {card.subtitle}
+                                    </p>
+                                </div>
 
                                 {/* Click shield and extra darkness for side items not in focus */}
                                 {!isCenter && (

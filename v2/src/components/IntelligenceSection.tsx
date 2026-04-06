@@ -6,10 +6,10 @@ import Beams from "./EtherealBeams";
 import RotatingEarth from "./RotatingEarth";
 
 const NOVALISEO_PHRASES = [
-  "SOVEREIGN INDIA HUB",
+  "INDIGENOUS INDIA HUB",
   "UNIVERSAL PRIVATISED",
   "DECENTRALIZED INTELLIGENCE",
-  "INDIGENOUS NUCLEUS",
+  "STRATEGIC NUCLEUS",
 ];
 
 function CornerFrame({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -96,7 +96,7 @@ export default function IntelligenceSection() {
             <div className="text-cyan-400 font-mono text-[9px] sm:text-[10px] tracking-[0.2em] mb-2 uppercase">Core System Status</div>
             <div className="text-white/70 font-mono text-[10px] sm:text-xs leading-loose">
               DEPLOYMENT: FULL INDIGENOUS<br/>
-              INFRASTRUCTURE: SOVEREIGN<br/>
+              INFRASTRUCTURE: STRATEGIC<br/>
               NETWORK INTEGRITY: OPTIMAL
             </div>
           </CornerFrame>

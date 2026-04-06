@@ -3,11 +3,10 @@ import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import Hero from './components/Hero';
 import IntelligenceSection from './components/IntelligenceSection';
-import SovereignStackedCards from './components/SovereignStackedCards';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import PlatformsPage from './pages/PlatformsPage';
-import SolutionsPage from './pages/SolutionsPage';
+import TechnologyPage from './pages/TechnologyPage';
 import AboutPage from './pages/AboutPage';
 import CareersPage from './pages/CareersPage';
 import PartnerPage from './pages/PartnerPage';
@@ -18,7 +17,6 @@ function HomePage() {
     <>
       <Hero />
       <IntelligenceSection />
-      <SovereignStackedCards />
       <Newsletter />
     </>
   );
@@ -33,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/platforms" element={<PlatformsPage />} />
-          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/technology" element={<TechnologyPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/partner" element={<PartnerPage />} />
           <Route path="/about" element={<AboutPage />} />

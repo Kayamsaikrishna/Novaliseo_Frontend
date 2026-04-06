@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 pointer-events-none mt-20">
         <div className="max-w-4xl text-left pointer-events-auto">
           <h1 className="mb-6 text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[1.1]">
-            Sovereign <br />
+            Autonomous <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200">
               Intelligence
             </span>

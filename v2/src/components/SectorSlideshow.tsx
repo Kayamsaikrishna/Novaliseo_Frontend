@@ -5,7 +5,7 @@ import SectorHeroText from "./SectorHeroText";
 
 const slides = [
     { img: "/images/sectors/The Sectoral Ecosystem.jpg" },
-    { img: "/images/sectors/Sovereign Infrastructure and Sectoral Intelligence.jpg" },
+    { img: "/images/sectors/Native Infrastructure and Sectoral Intelligence.jpg" },
     { img: "/images/sectors/Defence & Aerospace.jpg" },
     { img: "/images/sectors/Healthcare and Biotech.jpg" },
     { img: "/images/sectors/Finance & Fintech.jpg" },
