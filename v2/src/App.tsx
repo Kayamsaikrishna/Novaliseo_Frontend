@@ -11,6 +11,8 @@ import AboutPage from './pages/AboutPage';
 import CareersPage from './pages/CareersPage';
 import PartnerPage from './pages/PartnerPage';
 import CertificateVerifyPage from './pages/CertificateVerifyPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ContactPage from './pages/ContactPage';
 
 function HomePage() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/partner" element={<PartnerPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/verify" element={<CertificateVerifyPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
       <Footer />

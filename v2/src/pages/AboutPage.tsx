@@ -32,29 +32,18 @@ export default function AboutPage() {
       <section className="py-8 md:py-12 relative z-10">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative group w-full"
+            initial={{ opacity: 0, rotateY: 180, scale: 0.5 }}
+            animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+            transition={{ duration: 1.5, type: "spring", bounce: 0.4 }}
+            style={{ perspective: 2000 }}
+            className="relative group w-full flex justify-center"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-[4rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000" />
-            <div className="relative z-10 w-full h-[60vh] md:h-[70vh] overflow-hidden rounded-[4rem] border border-white/5 shadow-2xl">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-square bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000" />
+            <div className="relative z-10 w-full max-w-2xl aspect-square overflow-hidden rounded-full border border-white/10 shadow-[0_0_50px_rgba(6,182,212,0.3)] flex items-center justify-center">
               <img
-                className="w-full h-full object-cover"
-                src={ASSETS.HERO}
-                alt="Novaliseo Ecosystem Hero"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60" />
-            </div>
-            {/* LOGO CENTERED ON HERO IMAGE */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 px-8 md:px-16 pointer-events-none">
-              <img
-                src={logo}
-                alt="Novaliseo"
-                className="w-full md:w-[95%] max-w-5xl h-auto"
-                style={{
-                  filter: "drop-shadow(0 0 30px rgba(255,255,255,0.25)) drop-shadow(0 0 60px rgba(6,182,212,0.3)) drop-shadow(0 2px 4px rgba(255,255,255,0.15)) brightness(1.15) contrast(1.05)"
-                }}
+                className="w-full h-full object-cover scale-[1.01]"
+                src="/images/about_hero.jpeg"
+                alt="About Novaliseo"
               />
             </div>
           </motion.div>
@@ -97,9 +86,8 @@ export default function AboutPage() {
             <motion.h2 {...fadeInUp} className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter">
               About Us
             </motion.h2>
-            <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed">
-              We are a specialized team of architects and engineers dedicated to creating intelligence
-              that remains unshakeably sovereign, equitable, and autonomous.
+            <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-lg md:text-xl text-slate-400 font-light leading-relaxed">
+              Novaliseo is an intelligence-driven technology and innovation company dedicated to developing next-generation products and intelligent solutions that transform critical industries. By integrating artificial intelligence, advanced engineering, digital technologies, research & development, automation, and human expertise, we create scalable solutions that solve complex real-world challenges.
             </motion.p>
           </div>
 
@@ -114,10 +102,10 @@ export default function AboutPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-1000 z-10 rounded-[4rem] pointer-events-none" />
               <div className="overflow-hidden rounded-[4rem] relative h-[400px] lg:h-full">
-              <img
-                src={ASSETS.CHAT}
-                alt="Intelligence Fluidity"
-                className="w-full h-[400px] lg:h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                <img
+                  src={ASSETS.CHAT}
+                  alt="Intelligence Fluidity"
+                  className="w-full h-[400px] lg:h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
                 />
               </div>
               {/* HUGE ICON WATERMARK - Subtle Centered Watermark */}
@@ -129,9 +117,9 @@ export default function AboutPage() {
                 />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20 rounded-b-[4rem]">
-                <h3 className="text-4xl font-bold text-white mb-4">Neural Sovereignty</h3>
+                <h3 className="text-4xl font-bold text-white mb-4">Vision</h3>
                 <p className="text-slate-300 text-lg font-light leading-relaxed max-w-md">
-                  We empower enterprises to govern their cognitive assets with absolute transparency.
+                  To become a global AI and intelligence solutions company, building next-generation intelligent infrastructure that empowers industries through autonomous technologies, advanced engineering, and digital innovation.
                 </p>
               </div>
             </motion.div>
@@ -154,11 +142,13 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0f1e] to-transparent" />
                 </div>
-                <div className="p-10 space-y-4">
-                  <h3 className="text-3xl font-bold text-white tracking-tight">Accelerate Growth</h3>
-                  <p className="text-slate-300 text-lg font-light leading-relaxed">
-                    Eliminating the friction between raw potential and market dominance through neurological momentum.
-                  </p>
+                <div className="p-8 space-y-4">
+                  <h3 className="text-3xl font-bold text-white tracking-tight">Mission</h3>
+                  <ul className="text-slate-300 text-base font-light leading-relaxed space-y-2">
+                    <li>• Develop proprietary technologies that redefine intelligent operations.</li>
+                    <li>• Deliver industry-specific AI and engineering solutions across critical sectors.</li>
+                    <li>• Accelerate digital transformation through research, automation, and data intelligence.</li>
+                  </ul>
                 </div>
               </motion.div>
 
@@ -174,14 +164,64 @@ export default function AboutPage() {
                   className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-[2s] opacity-40 grayscale-[0.5] group-hover:grayscale-0 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-12 flex flex-col justify-end">
-                  <h3 className="text-3xl font-bold text-white mb-4">Future-Ready Design</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">Our Positioning</h3>
                   <p className="text-slate-300 text-lg font-light leading-relaxed font-light">
-                    Modular architectures designed for 2030 and beyond, combining ethereal aesthetics with liquid logic.
+                    We build proprietary technologies while delivering industry-specific intelligent solutions. Novaliseo combines the capabilities of a deep-tech product company, an AI innovation laboratory, and an engineering solutions provider.
                   </p>
                 </div>
               </motion.div>
 
             </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ---------------- OUR TEAM SECTION ---------------- */}
+      <section className="py-24 md:py-40 relative z-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16">
+            <motion.h2 {...fadeInUp} className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-4">
+              Our Team
+            </motion.h2>
+            <motion.p {...fadeInUp} transition={{ delay: 0.1 }} className="text-xl text-slate-400 font-light max-w-none">
+              Building India's sovereign technology future through strategic innovation and world-class engineering.
+            </motion.p>
+          </div>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="relative group rounded-[3rem] border border-white/10 overflow-hidden shadow-2xl bg-black p-4 md:p-8"
+          >
+            <div className="absolute inset-0 bg-cyan-500/5 group-hover:opacity-100 transition-opacity duration-1000 opacity-0" />
+            <img
+              src="/our team/team.jpg"
+              alt="Novaliseo Team"
+              className="w-full h-auto rounded-2xl object-contain shadow-2xl"
+            />
+          </motion.div>
+
+          {/* Business Partner Section */}
+          <div className="mt-24 text-center">
+            <motion.div {...fadeInUp} className="space-y-8">
+              <h3 className="text-xl md:text-2xl font-bold text-slate-500 uppercase tracking-[0.3em]">
+                Strategic Business Partner
+              </h3>
+              <a
+                href="https://ieto.online/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center group relative h-48 w-48 md:h-80 md:w-80 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden shadow-2xl mx-auto"
+              >
+                <div className="absolute -inset-8 bg-cyan-500/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <img
+                  src="/our team/IETO.png"
+                  alt="IETO Business Partner"
+                  className="w-[80%] h-[80%] relative z-10 brightness-110 group-hover:brightness-125 transition-all duration-500 object-contain"
+                />
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -26,9 +26,9 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 pointer-events-none mt-20">
         <div className="max-w-4xl text-left pointer-events-auto">
-          <h1 className="mb-6 text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[1.1]">
+          <h1 className="mb-6 text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[1.1] pb-4">
             Autonomous <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200 pb-4 inline-block">
               Intelligence
             </span>
           </h1>
@@ -37,12 +37,12 @@ export default function Hero() {
             Engineering next-generation software intelligence. We build autonomous, scalable platforms designed to solve the world's most complex challenges
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link to="/platforms" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(59,130,246,0.3)]">
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
+            <Link to="/projects" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(59,130,246,0.3)]">
               Explore Platform <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link to="/solutions" className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
-              View Capabilities
+            <Link to="/about" className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
+              About Us
             </Link>
           </div>
         </div>
