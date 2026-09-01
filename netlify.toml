@@ -1,0 +1,9 @@
+[build]
+  command = "cd v2 && npm install && npm run build"
+  publish = "v2/dist"
+  base = "/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
