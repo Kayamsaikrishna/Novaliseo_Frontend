@@ -73,9 +73,14 @@ export default function Footer() {
               <div className="flex items-center gap-4 mb-6">
                 <img src={logo} alt="Novaliseo" className={`h-[60px] object-contain ${theme.glow}`} />
               </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                Novaliseo provides a set of reusable cognitive intelligence components and utilities to help you secure and automate contested environments efficiently.
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                Novaliseo Global Tech Pvt Ltd provides a set of reusable cognitive intelligence components and utilities to help you secure and automate contested environments efficiently.
               </p>
+              
+              <div className="mb-8">
+                <p className="text-sm font-semibold text-white mb-2">For more information contact:</p>
+                <a href="mailto:info@novaliseo.com" className={`text-sm ${theme.accentText} hover:underline transition-all`}>info@novaliseo.com</a>
+              </div>
 
               {/* Social Icons */}
               <div className="flex items-center gap-4">
@@ -114,7 +119,7 @@ export default function Footer() {
 
         <div className="text-center">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Novaliseo All rights reserved
+            © {new Date().getFullYear()} Novaliseo Global Tech Pvt Ltd. All rights reserved.
           </p>
         </div>
       </motion.div>

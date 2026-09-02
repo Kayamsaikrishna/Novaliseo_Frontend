@@ -152,7 +152,8 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-white mb-4">Sri Paripoorna Sanathana Incubation Center</h4>
+                      <h4 className="text-2xl font-bold text-white mb-1">Novaliseo Global Tech Pvt Ltd</h4>
+                      <h5 className="text-md text-cyan-400 mb-4">Sri Paripoorna Sanathana Incubation Center</h5>
                       <p className="text-slate-300 leading-relaxed font-light text-lg">
                         No. 91, Kaivalya Sannidhanam,<br />
                         Arjunabettahalli, Kasaba Hobli,<br />

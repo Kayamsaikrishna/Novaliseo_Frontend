@@ -114,38 +114,56 @@ export default function CareersPage() {
 
           <p className="mx-auto max-w-2xl text-lg text-slate-400 leading-relaxed md:text-xl">
             Join a team of passionate engineers and researchers working on cutting-edge 
-            AI solutions that transform traditional industries across India.
+            AI solutions that transform traditional industries across India. We offer full-time roles, internships, and research programs.
           </p>
 
 
         </motion.div>
       </section>
 
-      {/* ── OPENINGS SECTION ── */}
+      {/* ── OPENINGS & INTERNSHIPS SECTION ── */}
       <section id="openings" className="relative z-10 py-32 px-6">
         <div className="mx-auto max-w-7xl">
           <div className="mb-20 text-center">
-            <h2 className="text-4xl font-black md:text-5xl">Opportunities Coming Soon</h2>
+            <h2 className="text-4xl font-black md:text-5xl">Opportunities & Internships</h2>
             <div className="mx-auto mt-4 h-1.5 w-24 rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.8)]" />
           </div>
 
-          <GlossyCard className="mx-auto max-w-4xl text-center py-20 px-12">
-            <Briefcase className="mx-auto h-16 w-16 text-cyan-400 mb-8" />
-            <h3 className="mb-6 text-3xl font-bold">Building the Future Together</h3>
-            <p className="mb-10 text-lg text-slate-400 leading-relaxed">
-              We're actively scaling our team and new positions will be announced shortly. 
-              In the meantime, we'd love to hear from talented individuals who share our 
-              vision for sovereign intelligence in India.
-            </p>
-            <motion.a
-              href="mailto:info@novaliseo.com"
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-12 py-5 text-lg font-black text-white shadow-2xl transition-all hover:shadow-cyan-500/30"
-            >
-              Express Interest
-              <ArrowRight className="h-5 w-5" />
-            </motion.a>
-          </GlossyCard>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <GlossyCard className="text-center py-16 px-10">
+              <Briefcase className="mx-auto h-16 w-16 text-cyan-400 mb-8" />
+              <h3 className="mb-4 text-3xl font-bold">Full-Time Roles</h3>
+              <p className="mb-10 text-lg text-slate-400 leading-relaxed">
+                We're actively scaling our team and new positions will be announced shortly. 
+                In the meantime, we'd love to hear from talented individuals who share our 
+                vision for sovereign intelligence in India.
+              </p>
+              <motion.a
+                href="mailto:info@novaliseo.com"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-lg font-black text-white shadow-2xl transition-all hover:shadow-cyan-500/30"
+              >
+                Apply for Full-Time
+                <ArrowRight className="h-5 w-5" />
+              </motion.a>
+            </GlossyCard>
+
+            <GlossyCard className="text-center py-16 px-10">
+              <Rocket className="mx-auto h-16 w-16 text-purple-400 mb-8" />
+              <h3 className="mb-4 text-3xl font-bold">Internships & Co-ops</h3>
+              <p className="mb-10 text-lg text-slate-400 leading-relaxed">
+                Kickstart your career with hands-on experience. We offer 3-6 month internships in AI Research, Frontend Engineering, Backend Development, and Drone Operations for ambitious students.
+              </p>
+              <motion.a
+                href="mailto:info@novaliseo.com"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 px-8 py-4 text-lg font-black text-white shadow-2xl transition-all hover:shadow-purple-500/30"
+              >
+                Apply for Internship
+                <ArrowRight className="h-5 w-5" />
+              </motion.a>
+            </GlossyCard>
+          </div>
         </div>
       </section>
 

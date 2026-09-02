@@ -13,6 +13,8 @@ import PartnerPage from './pages/PartnerPage';
 import CertificateVerifyPage from './pages/CertificateVerifyPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
+import IndustryTrainingsPage from './pages/IndustryTrainingsPage';
+import ResearchCollaborationsPage from './pages/ResearchCollaborationsPage';
 
 function HomePage() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/verify" element={<CertificateVerifyPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/trainings" element={<IndustryTrainingsPage />} />
+          <Route path="/collaborations" element={<ResearchCollaborationsPage />} />
         </Routes>
       </main>
       <Footer />

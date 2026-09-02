@@ -19,11 +19,17 @@ import {
 import { MeshGradient } from "@paper-design/shaders-react";
 import { useState, useEffect } from "react";
 
+import droneLogo from "../assets/projects/drone_intelligence_logo_1788367689377.jpg";
+import healthLogo from "../assets/projects/healthcare_intelligence_logo_1788367705464.jpg";
+import mfgLogo from "../assets/projects/manufacturing_intelligence_logo_1788367721706.jpg";
+import marineLogo from "../assets/projects/maritime_intelligence_logo_1788367739753.jpg";
+import digitalLogo from "../assets/projects/digital_intelligence_logo_1788367758679.jpg";
+
 const projects = [
   {
     domain: "DRONE INTELLIGENCE",
     color: "from-blue-500/20",
-    icon: Plane,
+    image: droneLogo,
     desc: "Autonomous systems for intelligent aerial operations and actionable insights.",
     items: [
       {
@@ -40,68 +46,108 @@ const projects = [
         title: "GPS Denied Navigation",
         desc: "Advanced navigation systems for UAVs with sensor fusion, SLAM, and AI for reliable operations in GPS denied environments.",
         icon: Navigation
+      },
+      {
+        title: "Swarm AI Operations",
+        desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.",
+        icon: Plane
       }
     ]
   },
   {
     domain: "HEALTHCARE INTELLIGENCE",
     color: "from-purple-500/20",
-    icon: HeartPulse,
+    image: healthLogo,
     desc: "Intelligent digital solutions to enhance healthcare delivery, operations, and compliance.",
     items: [
       {
-        title: "Healthcare Supply Chain Management Platform",
+        title: "Healthcare Supply Chain Management",
         desc: "AI-driven platform for demand forecasting, inventory optimization, supplier management, and logistics intelligence.",
         icon: Box
       },
       {
-        title: "Healthcare Management & Digital Operations Platform",
+        title: "Digital Operations Platform",
         desc: "End-to-end digital platform for patient management, workflows, resource allocation, and operational efficiency.",
         icon: ClipboardList
       },
       {
-        title: "Inspection & Compliance Management Platform",
+        title: "Inspection & Compliance System",
         desc: "Digital solution for automated inspections, regulatory compliance, audit management, and risk assessment.",
         icon: ShieldCheck
+      },
+      {
+        title: "AI Medical Diagnostics Assistant",
+        desc: "Computer vision and NLP integration to assist in rapid radiological analysis and patient record summarization.",
+        icon: HeartPulse
       }
     ]
   },
   {
     domain: "MANUFACTURING INTELLIGENCE",
     color: "from-cyan-500/20",
-    icon: Factory,
+    image: mfgLogo,
     desc: "AI-powered solutions for smart manufacturing, quality, and operational excellence.",
     items: [
       {
-        title: "AI Quality Inspection and Predictive Maintenance for Machines",
-        desc: "Computer vision-based defect detection and AI-driven predictive maintenance to reduce downtime, improve quality, and enhance machine performance.",
+        title: "AI Quality Inspection",
+        desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.",
         icon: Settings
+      },
+      {
+        title: "Predictive Maintenance AI",
+        desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.",
+        icon: Factory
+      },
+      {
+        title: "Digital Twin Orchestration",
+        desc: "Real-time virtual replicas of manufacturing lines to simulate efficiency improvements and workflow bottlenecks.",
+        icon: MonitorPlay
       }
     ]
   },
   {
     domain: "MARITIME INTELLIGENCE",
     color: "from-blue-400/20",
-    icon: Ship,
+    image: marineLogo,
     desc: "Smart maritime solutions for safer operations and sustainable growth.",
     items: [
       {
-        title: "Ship Analytics Platform for Inspection and Predictive Maintenance Intelligence",
+        title: "Ship Analytics & Predictive Maintenance",
         desc: "Comprehensive platform for ship condition assessment, predictive maintenance, lifecycle management, and operational analytics.",
         icon: BarChart
+      },
+      {
+        title: "Autonomous Naval Surveillance",
+        desc: "AI-powered optical and sonar integration for threat detection and coastal perimeter security.",
+        icon: Ship
+      },
+      {
+        title: "Smart Port Logistics",
+        desc: "Automated container tracking and crane optimization using computer vision for high-throughput port environments.",
+        icon: Box
       }
     ]
   },
   {
     domain: "DIGITAL INTELLIGENCE",
     color: "from-indigo-500/20",
-    icon: MonitorPlay,
+    image: digitalLogo,
     desc: "AI-driven platforms that transform data into intelligent decisions.",
     items: [
       {
-        title: "AI-Powered Document & Report Intelligence Platform",
-        desc: "AI platform to extract, analyze, and summarize documents and reports, enabling intelligent search, insights, and automated reporting.",
+        title: "AI Document & Report Intelligence",
+        desc: "AI platform to extract, analyze, and summarize documents and reports, enabling intelligent search and automated reporting.",
         icon: FileText
+      },
+      {
+        title: "Cyber Threat Hunting Platform",
+        desc: "Real-time anomaly detection and AI behavioral analysis to preemptively secure network infrastructures.",
+        icon: ShieldCheck
+      },
+      {
+        title: "Enterprise Data Lake Analytics",
+        desc: "Unifying structured and unstructured data streams for high-velocity predictive business intelligence.",
+        icon: BarChart
       }
     ]
   }
@@ -145,8 +191,8 @@ function ProjectSection({ project, index }: { project: typeof projects[0], index
     >
       {/* Sticky Domain Sidebar */}
       <div className={`w-full lg:w-1/3 lg:sticky top-32 p-10 rounded-[3rem] bg-gradient-to-br ${project.color} to-transparent border border-white/10 shadow-2xl backdrop-blur-md`}>
-        <div className="p-4 bg-white/5 rounded-2xl w-max mb-8 border border-white/10">
-          <project.icon className="w-12 h-12 text-white" />
+        <div className="mb-8 w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+          <img src={project.image} alt={`${project.domain} Logo`} className="w-full h-full object-cover mix-blend-screen" />
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">{project.domain}</h2>
         <p className="text-slate-300 font-light text-lg leading-relaxed">{project.desc}</p>
