@@ -1,300 +1,175 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { 
-  Plane, 
-  HeartPulse, 
-  Factory, 
-  Ship, 
-  MonitorPlay,
-  Leaf,
-  ScanSearch,
-  Navigation,
-  Box,
-  ClipboardList,
-  ShieldCheck,
-  Settings,
-  BarChart,
-  FileText
+  Leaf, ScanSearch, Navigation, Plane, Box, 
+  ClipboardList, ShieldCheck, HeartPulse, 
+  Settings, Factory, MonitorPlay, BarChart, 
+  Ship, FileText 
 } from "lucide-react";
-import { MeshGradient } from "@paper-design/shaders-react";
-import { useState, useEffect } from "react";
 
-import droneLogo from "../assets/projects/drone_intelligence_logo_1788367689377.jpg";
-import healthLogo from "../assets/projects/healthcare_intelligence_logo_1788367705464.jpg";
-import mfgLogo from "../assets/projects/manufacturing_intelligence_logo_1788367721706.jpg";
-import marineLogo from "../assets/projects/maritime_intelligence_logo_1788367739753.jpg";
-import digitalLogo from "../assets/projects/digital_intelligence_logo_1788367758679.jpg";
+import droneBg from "../assets/projects/drone_bg_1788369697669.jpg";
+import healthBg from "../assets/projects/health_bg_1788369710610.jpg";
+import mfgBg from "../assets/projects/mfg_bg_1788369729188.jpg";
+import marineBg from "../assets/projects/marine_bg_1788369743426.jpg";
+import digitalBg from "../assets/projects/digital_bg_1788369758908.jpg";
 
 const projects = [
   {
     domain: "DRONE INTELLIGENCE",
     color: "from-blue-500/20",
-    image: droneLogo,
+    accent: "text-blue-400",
+    bgImage: droneBg,
     desc: "Autonomous systems for intelligent aerial operations and actionable insights.",
     items: [
-      {
-        title: "Agri Crop Health Monitoring System",
-        desc: "AI-powered aerial monitoring for crop health, disease detection, yield prediction, and precision agriculture.",
-        icon: Leaf
-      },
-      {
-        title: "Ship Inspection Intelligence",
-        desc: "Autonomous aerial and onboard inspection solutions for ships using AI vision, anomaly detection, and digital reporting.",
-        icon: ScanSearch
-      },
-      {
-        title: "GPS Denied Navigation",
-        desc: "Advanced navigation systems for UAVs with sensor fusion, SLAM, and AI for reliable operations in GPS denied environments.",
-        icon: Navigation
-      },
-      {
-        title: "Swarm AI Operations",
-        desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.",
-        icon: Plane
-      }
+      { title: "Agri Crop Health Monitoring System", desc: "AI-powered aerial monitoring for crop health, disease detection, yield prediction, and precision agriculture.", icon: Leaf },
+      { title: "Ship Inspection Intelligence", desc: "Autonomous aerial and onboard inspection solutions for ships using AI vision, anomaly detection, and digital reporting.", icon: ScanSearch },
+      { title: "GPS Denied Navigation", desc: "Advanced navigation systems for UAVs with sensor fusion, SLAM, and AI for reliable operations in GPS denied environments.", icon: Navigation },
+      { title: "Swarm AI Operations", desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.", icon: Plane }
     ]
   },
   {
     domain: "HEALTHCARE INTELLIGENCE",
     color: "from-purple-500/20",
-    image: healthLogo,
+    accent: "text-purple-400",
+    bgImage: healthBg,
     desc: "Intelligent digital solutions to enhance healthcare delivery, operations, and compliance.",
     items: [
-      {
-        title: "Healthcare Supply Chain Management",
-        desc: "AI-driven platform for demand forecasting, inventory optimization, supplier management, and logistics intelligence.",
-        icon: Box
-      },
-      {
-        title: "Digital Operations Platform",
-        desc: "End-to-end digital platform for patient management, workflows, resource allocation, and operational efficiency.",
-        icon: ClipboardList
-      },
-      {
-        title: "Inspection & Compliance System",
-        desc: "Digital solution for automated inspections, regulatory compliance, audit management, and risk assessment.",
-        icon: ShieldCheck
-      },
-      {
-        title: "AI Medical Diagnostics Assistant",
-        desc: "Computer vision and NLP integration to assist in rapid radiological analysis and patient record summarization.",
-        icon: HeartPulse
-      }
+      { title: "Healthcare Supply Chain Management", desc: "AI-driven platform for demand forecasting, inventory optimization, supplier management, and logistics intelligence.", icon: Box },
+      { title: "Digital Operations Platform", desc: "End-to-end digital platform for patient management, workflows, resource allocation, and operational efficiency.", icon: ClipboardList },
+      { title: "Inspection & Compliance System", desc: "Digital solution for automated inspections, regulatory compliance, audit management, and risk assessment.", icon: ShieldCheck },
+      { title: "AI Medical Diagnostics Assistant", desc: "Computer vision and NLP integration to assist in rapid radiological analysis and patient record summarization.", icon: HeartPulse }
     ]
   },
   {
     domain: "MANUFACTURING INTELLIGENCE",
     color: "from-cyan-500/20",
-    image: mfgLogo,
+    accent: "text-cyan-400",
+    bgImage: mfgBg,
     desc: "AI-powered solutions for smart manufacturing, quality, and operational excellence.",
     items: [
-      {
-        title: "AI Quality Inspection",
-        desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.",
-        icon: Settings
-      },
-      {
-        title: "Predictive Maintenance AI",
-        desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.",
-        icon: Factory
-      },
-      {
-        title: "Digital Twin Orchestration",
-        desc: "Real-time virtual replicas of manufacturing lines to simulate efficiency improvements and workflow bottlenecks.",
-        icon: MonitorPlay
-      }
+      { title: "AI Quality Inspection", desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.", icon: Settings },
+      { title: "Predictive Maintenance AI", desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.", icon: Factory },
+      { title: "Digital Twin Orchestration", desc: "Real-time virtual replicas of manufacturing lines to simulate efficiency improvements and workflow bottlenecks.", icon: MonitorPlay }
     ]
   },
   {
     domain: "MARITIME INTELLIGENCE",
     color: "from-blue-400/20",
-    image: marineLogo,
+    accent: "text-blue-300",
+    bgImage: marineBg,
     desc: "Smart maritime solutions for safer operations and sustainable growth.",
     items: [
-      {
-        title: "Ship Analytics & Predictive Maintenance",
-        desc: "Comprehensive platform for ship condition assessment, predictive maintenance, lifecycle management, and operational analytics.",
-        icon: BarChart
-      },
-      {
-        title: "Autonomous Naval Surveillance",
-        desc: "AI-powered optical and sonar integration for threat detection and coastal perimeter security.",
-        icon: Ship
-      },
-      {
-        title: "Smart Port Logistics",
-        desc: "Automated container tracking and crane optimization using computer vision for high-throughput port environments.",
-        icon: Box
-      }
+      { title: "Ship Analytics & Predictive Maintenance", desc: "Comprehensive platform for ship condition assessment, predictive maintenance, lifecycle management, and operational analytics.", icon: BarChart },
+      { title: "Autonomous Naval Surveillance", desc: "AI-powered optical and sonar integration for threat detection and coastal perimeter security.", icon: Ship },
+      { title: "Smart Port Logistics", desc: "Automated container tracking and crane optimization using computer vision for high-throughput port environments.", icon: Box }
     ]
   },
   {
     domain: "DIGITAL INTELLIGENCE",
     color: "from-indigo-500/20",
-    image: digitalLogo,
+    accent: "text-indigo-400",
+    bgImage: digitalBg,
     desc: "AI-driven platforms that transform data into intelligent decisions.",
     items: [
-      {
-        title: "AI Document & Report Intelligence",
-        desc: "AI platform to extract, analyze, and summarize documents and reports, enabling intelligent search and automated reporting.",
-        icon: FileText
-      },
-      {
-        title: "Cyber Threat Hunting Platform",
-        desc: "Real-time anomaly detection and AI behavioral analysis to preemptively secure network infrastructures.",
-        icon: ShieldCheck
-      },
-      {
-        title: "Enterprise Data Lake Analytics",
-        desc: "Unifying structured and unstructured data streams for high-velocity predictive business intelligence.",
-        icon: BarChart
-      }
+      { title: "AI Document & Report Intelligence", desc: "AI platform to extract, analyze, and summarize documents and reports, enabling intelligent search and automated reporting.", icon: FileText },
+      { title: "Cyber Threat Hunting Platform", desc: "Real-time anomaly detection and AI behavioral analysis to preemptively secure network infrastructures.", icon: ShieldCheck },
+      { title: "Enterprise Data Lake Analytics", desc: "Unifying structured and unstructured data streams for high-velocity predictive business intelligence.", icon: BarChart }
     ]
   }
 ];
 
-function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 36 }, (_, i) => ({
-    id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.03,
-  }))
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <svg className="w-full h-full text-white" viewBox="0 0 696 316" fill="none">
-        {paths.map((path) => (
-          <motion.path
-            key={path.id}
-            d={path.d}
-            stroke="currentColor"
-            strokeWidth={path.width}
-            strokeOpacity={0.03 + path.id * 0.008}
-            initial={{ pathLength: 0.3, opacity: 0.6 }}
-            animate={{ pathLength: 1, opacity: [0.3, 0.6, 0.3], pathOffset: [0, 1, 0] }}
-            transition={{ duration: 20 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
-          />
-        ))}
-      </svg>
-    </div>
-  )
-}
-
-function ProjectSection({ project, index }: { project: typeof projects[0], index: number }) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
-      className="flex flex-col lg:flex-row gap-12 items-start relative mb-40"
-    >
-      {/* Sticky Domain Sidebar */}
-      <div className={`w-full lg:w-1/3 lg:sticky top-32 p-10 rounded-[3rem] bg-gradient-to-br ${project.color} to-transparent border border-white/10 shadow-2xl backdrop-blur-md`}>
-        <div className="mb-8 w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-          <img src={project.image} alt={`${project.domain} Logo`} className="w-full h-full object-cover mix-blend-screen" />
-        </div>
-        <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">{project.domain}</h2>
-        <p className="text-slate-300 font-light text-lg leading-relaxed">{project.desc}</p>
-      </div>
-
-      {/* Project Cards List */}
-      <div className="w-full lg:w-2/3 space-y-6">
-        {project.items.map((item, itemIdx) => (
-          <div 
-            key={itemIdx} 
-            className="p-8 md:p-12 rounded-[2.5rem] bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group relative overflow-hidden backdrop-blur-sm"
-          >
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 group-hover:scale-125 transition-all duration-500 pointer-events-none">
-              <item.icon className="w-32 h-32 text-cyan-400" />
-            </div>
-            
-            <div className="flex gap-6 items-start relative z-10">
-              <div className="p-4 rounded-[1.5rem] bg-black/40 border border-white/5 shrink-0 shadow-inner group-hover:border-cyan-500/30 group-hover:bg-cyan-500/10 transition-all duration-300">
-                <item.icon className="w-8 h-8 text-cyan-400" />
-              </div>
-              <div className="flex-1">
-                <h4 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">{item.title}</h4>
-                <p className="text-slate-400 font-light text-base md:text-lg leading-relaxed mb-6">{item.desc}</p>
-                <button className="flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors group/btn">
-                  View More Details
-                  <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 export default function ProjectsPage() {
-  const containerRef = useRef(null);
-  const [mounted, setMounted] = useState(false)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
-  useEffect(() => { setMounted(true) }, [])
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#020617] pt-32 pb-24 text-white relative selection:bg-cyan-500/30">
-      {/* Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {mounted && (
-          <>
-            <MeshGradient
-              className="absolute inset-0 w-full h-full"
-              colors={["#020617", "#06b6d4", "#0891b2", "#164e63", "#030712"]}
-              speed={0.3}
-              backgroundColor="#020617"
-            />
-            <MeshGradient
-              className="absolute inset-0 w-full h-full opacity-40"
-              colors={["#020617", "#ffffff", "#06b6d4", "#0e4a5c"]}
-              speed={0.2}
-              wireframe={true}
-              backgroundColor="transparent"
-            />
-            <div className="absolute inset-0 pointer-events-none bg-black/40 backdrop-blur-[2px]" />
-          </>
-        )}
-      </div>
-
-      {/* Floating SVG Paths overlay */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-50">
-        <FloatingPaths position={1} />
-        <FloatingPaths position={-1} />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
-        {/* Header */}
-        <motion.div 
+    <div className="min-h-screen bg-[#020617] text-white selection:bg-cyan-500/30">
+      
+      {/* Hero Section */}
+      <section className="relative pt-40 pb-20 px-6 text-center z-10">
+        <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-32 space-y-6"
+          className="text-6xl md:text-8xl font-black tracking-tighter mb-6"
         >
-          <div className="inline-flex items-center justify-center p-3 mb-4 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-             <span className="text-cyan-400 text-sm font-bold tracking-widest uppercase px-4">Innovating. Integrating. Transforming.</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter">
-            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">PROJECTS</span>
-          </h1>
-          <p className="text-slate-400 max-w-3xl mx-auto text-lg md:text-xl font-light leading-relaxed pt-6">
-            Novaliseo is building next-generation intelligent solutions across five strategic domains. Our ongoing projects are designed to solve real-world challenges with AI, advanced engineering, and data-driven intelligence.
-          </p>
-        </motion.div>
+          OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">INNOVATIONS</span>
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed"
+        >
+          Explore our suite of sovereign intelligence platforms engineered to redefine operations across defense, healthcare, manufacturing, and digital ecosystems.
+        </motion.p>
+      </section>
 
-        {/* Projects List using Sticky Sidebar Layout */}
-        <div>
-          {projects.map((project, idx) => (
-            <ProjectSection key={idx} project={project} index={idx} />
-          ))}
-        </div>
+      {/* Domain Sections */}
+      <div className="space-y-0">
+        {projects.map((project, idx) => (
+          <section key={project.domain} className="relative min-h-[90vh] flex items-center justify-center py-32 overflow-hidden group border-t border-white/5">
+            
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 transition-transform duration-[20s] ease-linear group-hover:scale-110">
+              <img src={project.bgImage} alt={project.domain} className="w-full h-full object-cover" />
+            </div>
+            
+            {/* Dark/Gradient Overlays */}
+            <div className="absolute inset-0 z-0 bg-[#020617]/80" />
+            <div className={`absolute inset-0 z-0 bg-gradient-to-t ${project.color} to-transparent opacity-50`} />
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617]" />
 
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid xl:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Column: Domain Info */}
+              <div className="xl:col-span-4 space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <div className={`w-20 h-2 mb-8 bg-gradient-to-r ${project.color.replace('/20', '')} to-transparent rounded-full`} />
+                  <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1]">
+                    {project.domain.split(' ').map((word, i) => (
+                      <span key={i} className={i === 1 ? project.accent : "text-white"}>{word} </span>
+                    ))}
+                  </h2>
+                  <p className="text-xl text-slate-300 font-light leading-relaxed backdrop-blur-sm bg-black/20 p-6 rounded-2xl border border-white/10 shadow-2xl">
+                    {project.desc}
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Bento Grid of Items */}
+              <div className="xl:col-span-8">
+                <div className="grid md:grid-cols-2 gap-6">
+                  {project.items.map((item, itemIdx) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.6, delay: itemIdx * 0.15 }}
+                      className="group/card relative rounded-[2rem] bg-white/5 border border-white/10 p-8 backdrop-blur-xl hover:bg-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden"
+                    >
+                      {/* Top Inner Glow on Hover */}
+                      <div className={`absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-${project.accent.split('-')[1]}-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500`} />
+                      
+                      <div className="relative z-10 flex flex-col h-full">
+                        <div className={`w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white group-hover/card:scale-110 group-hover/card:${project.accent} transition-all duration-500`}>
+                          <item.icon className="w-7 h-7" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-4 leading-snug">{item.title}</h3>
+                        <p className="text-slate-400 font-light leading-relaxed mt-auto">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </section>
+        ))}
       </div>
+      
     </div>
   );
 }
