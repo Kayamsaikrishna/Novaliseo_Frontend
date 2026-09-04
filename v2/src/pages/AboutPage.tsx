@@ -226,25 +226,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- MISSION & VISION FOOTER ---------------- */}
-      <section className="py-32 relative z-10 bg-black/40">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid md:grid-cols-2 gap-24">
-            <motion.div {...fadeInUp} className="space-y-6 border-l-2 border-cyan-500/20 pl-8">
-              <h4 className="text-cyan-400 font-bold tracking-widest uppercase text-sm">Our Mission</h4>
-              <p className="text-2xl text-slate-200 font-light leading-snug">
-                To deliver industry-specific engineering solutions and proprietary technologies that accelerate digital transformation across critical sectors.
-              </p>
-            </motion.div>
-            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="space-y-6 border-l-2 border-purple-500/20 pl-8">
-              <h4 className="text-purple-400 font-bold tracking-widest uppercase text-sm">Our Vision</h4>
-              <p className="text-2xl text-slate-200 font-light leading-snug">
-                To become a globally trusted technology company, shaping the future of industries through intelligent solutions, engineering excellence, and sustainable digital transformation.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* FINAL STATEMENT */}
       <section className="py-40 relative z-10">
