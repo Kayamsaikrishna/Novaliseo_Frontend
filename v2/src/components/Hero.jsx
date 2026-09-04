@@ -14,14 +14,6 @@ export default function Hero() {
       {/* Bottom fade out to blend with rest of site */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent z-10" />
 
-      {/* Massive Glowing Logo on Right Edge */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[30%] opacity-[0.10] mix-blend-screen pointer-events-none z-10">
-        <img 
-          src={icon} 
-          alt="Novaliseo Graphic" 
-          className="h-[750px] w-auto object-contain drop-shadow-[0_0_80px_rgba(59,130,246,0.6)]" 
-        />
-      </div>
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 pointer-events-none mt-20">

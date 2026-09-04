@@ -119,7 +119,7 @@ export default function ProjectsPage() {
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid xl:grid-cols-12 gap-12 items-center">
               
               {/* Left Column: Domain Info */}
-              <div className="xl:col-span-4 space-y-6">
+              <div className="xl:col-span-5 space-y-6">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -127,7 +127,7 @@ export default function ProjectsPage() {
                   transition={{ duration: 0.8 }}
                 >
                   <div className={`w-20 h-2 mb-8 bg-gradient-to-r ${project.color.replace('/20', '')} to-transparent rounded-full`} />
-                  <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1]">
+                  <h2 className="text-4xl md:text-5xl xl:text-6xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1] break-words">
                     {project.domain.split(' ').map((word, i) => (
                       <span key={i} className={i === 1 ? project.accent : "text-white"}>{word} </span>
                     ))}
@@ -139,7 +139,7 @@ export default function ProjectsPage() {
               </div>
 
               {/* Right Column: Bento Grid of Items */}
-              <div className="xl:col-span-8">
+              <div className="xl:col-span-7">
                 <div className="grid md:grid-cols-2 gap-6">
                   {project.items.map((item, itemIdx) => (
                     <motion.div
