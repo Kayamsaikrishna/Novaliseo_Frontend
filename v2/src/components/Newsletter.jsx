@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import img1 from '../assets/news_bg1.png';
-import img2 from '../assets/news_bg2.jpg';
-import img3 from '../assets/news_bg3.png';
+import img1 from '../assets/projects/digital_bg_1788369758908.jpg';
+import img2 from '../assets/projects/mfg_bg_1788369729188.jpg';
+import img3 from '../assets/projects/drone_bg_1788369697669.jpg';
 
 export default function Newsletter() {
   const containerRef = useRef(null);
