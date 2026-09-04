@@ -127,7 +127,7 @@ export default function ProjectsPage() {
                   transition={{ duration: 0.8 }}
                 >
                   <div className={`w-20 h-2 mb-8 bg-gradient-to-r ${project.color.replace('/20', '')} to-transparent rounded-full`} />
-                  <h2 className="text-4xl md:text-5xl xl:text-6xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1] break-words">
+                  <h2 className="text-4xl md:text-5xl xl:text-5xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1]">
                     {project.domain.split(' ').map((word, i) => (
                       <span key={i} className={i === 1 ? project.accent : "text-white"}>{word} </span>
                     ))}
