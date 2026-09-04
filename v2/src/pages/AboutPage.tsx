@@ -58,7 +58,7 @@ export default function AboutPage() {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter">
                 The Novaliseo <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Ecosystem</span> <br />
                 <span className="text-slate-500">
-                  Defines Sovereign Intelligence.
+                  Defines Engineering Excellence.
                 </span>
               </h1>
             </motion.div>
@@ -68,8 +68,8 @@ export default function AboutPage() {
               className="space-y-8 flex flex-col justify-center"
             >
               <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed">
-                Novaliseo is evolving beyond the models. We support an entire cognitive infrastructure —
-                from hardware-rooted security to the high-performance APIs driving global innovation.
+                Novaliseo is evolving beyond traditional software. We support an entire technological infrastructure —
+                from hardware-rooted systems to the high-performance platforms driving global innovation.
               </p>
               <div className="w-24 h-1 bg-cyan-500/30 rounded-full" />
             </motion.div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
               About Us
             </motion.h2>
             <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-lg md:text-xl text-slate-400 font-light leading-relaxed">
-              Novaliseo is an intelligence-driven technology and innovation company dedicated to developing next-generation products and intelligent solutions that transform critical industries. By integrating artificial intelligence, advanced engineering, digital technologies, research & development, automation, and human expertise, we create scalable solutions that solve complex real-world challenges.
+              Novaliseo is an innovative technology company dedicated to developing next-generation products and intelligent solutions that transform critical industries. By integrating advanced engineering, digital technologies, research & development, automation, and human expertise, we create scalable solutions that solve complex real-world challenges.
             </motion.p>
           </div>
 
@@ -119,7 +119,7 @@ export default function AboutPage() {
               <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20 rounded-b-[4rem]">
                 <h3 className="text-4xl font-bold text-white mb-4">Vision</h3>
                 <p className="text-slate-300 text-lg font-light leading-relaxed max-w-md">
-                  To become a global AI and intelligence solutions company, building next-generation intelligent infrastructure that empowers industries through autonomous technologies, advanced engineering, and digital innovation.
+                  To become a globally trusted technology company, shaping the future of industries through intelligent solutions, engineering excellence, and sustainable digital transformation.
                 </p>
               </div>
             </motion.div>
@@ -145,9 +145,9 @@ export default function AboutPage() {
                 <div className="p-8 space-y-4">
                   <h3 className="text-3xl font-bold text-white tracking-tight">Mission</h3>
                   <ul className="text-slate-300 text-base font-light leading-relaxed space-y-2">
-                    <li>• Develop proprietary technologies that redefine intelligent operations.</li>
-                    <li>• Deliver industry-specific AI and engineering solutions across critical sectors.</li>
-                    <li>• Accelerate digital transformation through research, automation, and data intelligence.</li>
+                    <li>• Develop proprietary technologies that redefine industrial operations.</li>
+                    <li>• Deliver industry-specific engineering solutions across critical sectors.</li>
+                    <li>• Accelerate digital transformation through research, automation, and data analytics.</li>
                   </ul>
                 </div>
               </motion.div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-12 flex flex-col justify-end">
                   <h3 className="text-3xl font-bold text-white mb-4">Our Positioning</h3>
                   <p className="text-slate-300 text-lg font-light leading-relaxed font-light">
-                    We build proprietary technologies while delivering industry-specific intelligent solutions. Novaliseo combines the capabilities of a deep-tech product company, an AI innovation laboratory, and an engineering solutions provider.
+                    We build proprietary technologies while delivering industry-specific solutions. Novaliseo combines the capabilities of a deep-tech product company, a research laboratory, and an engineering solutions provider.
                   </p>
                 </div>
               </motion.div>
@@ -233,13 +233,13 @@ export default function AboutPage() {
             <motion.div {...fadeInUp} className="space-y-6 border-l-2 border-cyan-500/20 pl-8">
               <h4 className="text-cyan-400 font-bold tracking-widest uppercase text-sm">Our Mission</h4>
               <p className="text-2xl text-slate-200 font-light leading-snug">
-                To provide the world with unshakeable cognitive borders, ensuring intelligence remains a universal right.
+                To deliver industry-specific engineering solutions and proprietary technologies that accelerate digital transformation across critical sectors.
               </p>
             </motion.div>
             <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="space-y-6 border-l-2 border-purple-500/20 pl-8">
               <h4 className="text-purple-400 font-bold tracking-widest uppercase text-sm">Our Vision</h4>
               <p className="text-2xl text-slate-200 font-light leading-snug">
-                Building a decentralized neural fabric where every interaction is sovereign and every model is secure.
+                To become a globally trusted technology company, shaping the future of industries through intelligent solutions, engineering excellence, and sustainable digital transformation.
               </p>
             </motion.div>
           </div>
@@ -260,7 +260,7 @@ export default function AboutPage() {
             Is Yours.
           </motion.h2>
           <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-slate-500 uppercase tracking-[0.6em] font-bold text-xs">
-            NOVALISEO INTELLIGENCE © 2026
+            NOVALISEO © 2026
           </motion.p>
         </div>
       </section>

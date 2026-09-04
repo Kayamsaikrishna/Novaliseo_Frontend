@@ -39,7 +39,7 @@ export default function IndustryTrainingsPage() {
           </h1>
           
           <p className="text-slate-400 max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed pt-8">
-            Bridging the gap between academia and industry. We provide cutting-edge training programs for students and professionals in AI, Autonomous Systems, and Advanced Engineering.
+            Bridging the gap between academia and industry. We provide cutting-edge training programs for students and professionals in Advanced Engineering, Automation, and Digital Technologies.
           </p>
         </motion.div>
 

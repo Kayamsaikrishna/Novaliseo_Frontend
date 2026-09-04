@@ -29,7 +29,7 @@ export default function ResearchCollaborationsPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">COLLABORATIONS</span>
           </h1>
           <p className="text-slate-300 text-lg font-light leading-relaxed max-w-sm drop-shadow-lg">
-            We partner with leading universities and visionary companies to push the boundaries of AI, robotics, and advanced engineering.
+            We partner with leading universities and visionary companies to push the boundaries of automation, digital technologies, and advanced engineering.
           </p>
         </motion.div>
       </div>

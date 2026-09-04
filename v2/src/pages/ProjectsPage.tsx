@@ -18,12 +18,12 @@ const projects = [
     color: "from-blue-500/20",
     accent: "text-blue-400",
     bgImage: droneBg,
-    desc: "Autonomous systems for intelligent aerial operations and actionable insights.",
+    desc: "Advanced systems for smart aerial operations and actionable insights.",
     items: [
-      { title: "Agri Crop Health Monitoring System", desc: "AI-powered aerial monitoring for crop health, disease detection, yield prediction, and precision agriculture.", icon: Leaf },
-      { title: "Ship Inspection Intelligence", desc: "Autonomous aerial and onboard inspection solutions for ships using AI vision, anomaly detection, and digital reporting.", icon: ScanSearch },
-      { title: "GPS Denied Navigation", desc: "Advanced navigation systems for UAVs with sensor fusion, SLAM, and AI for reliable operations in GPS denied environments.", icon: Navigation },
-      { title: "Swarm AI Operations", desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.", icon: Plane }
+      { title: "Agri Crop Health Monitoring System", desc: "Advanced aerial monitoring for crop health, disease detection, yield prediction, and precision agriculture.", icon: Leaf },
+      { title: "Ship Inspection Solutions", desc: "Automated aerial and onboard inspection solutions for ships using computer vision, anomaly detection, and digital reporting.", icon: ScanSearch },
+      { title: "GPS Denied Navigation", desc: "Advanced navigation systems for UAVs with sensor fusion and SLAM for reliable operations in GPS denied environments.", icon: Navigation },
+      { title: "Coordinated Aerial Operations", desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.", icon: Plane }
     ]
   },
   {
@@ -31,12 +31,12 @@ const projects = [
     color: "from-purple-500/20",
     accent: "text-purple-400",
     bgImage: healthBg,
-    desc: "Intelligent digital solutions to enhance healthcare delivery, operations, and compliance.",
+    desc: "Integrated digital solutions to enhance healthcare delivery, operations, and compliance.",
     items: [
-      { title: "Healthcare Supply Chain Management", desc: "AI-driven platform for demand forecasting, inventory optimization, supplier management, and logistics intelligence.", icon: Box },
+      { title: "Healthcare Supply Chain Management", desc: "Data-driven platform for demand forecasting, inventory optimization, supplier management, and logistics planning.", icon: Box },
       { title: "Digital Operations Platform", desc: "End-to-end digital platform for patient management, workflows, resource allocation, and operational efficiency.", icon: ClipboardList },
       { title: "Inspection & Compliance System", desc: "Digital solution for automated inspections, regulatory compliance, audit management, and risk assessment.", icon: ShieldCheck },
-      { title: "AI Medical Diagnostics Assistant", desc: "Computer vision and NLP integration to assist in rapid radiological analysis and patient record summarization.", icon: HeartPulse }
+      { title: "Medical Diagnostics Assistant", desc: "Advanced analytics and NLP integration to assist in rapid radiological analysis and patient record summarization.", icon: HeartPulse }
     ]
   },
   {
@@ -44,10 +44,10 @@ const projects = [
     color: "from-cyan-500/20",
     accent: "text-cyan-400",
     bgImage: mfgBg,
-    desc: "AI-powered solutions for smart manufacturing, quality, and operational excellence.",
+    desc: "Advanced solutions for smart manufacturing, quality control, and operational excellence.",
     items: [
-      { title: "AI Quality Inspection", desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.", icon: Settings },
-      { title: "Predictive Maintenance AI", desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.", icon: Factory },
+      { title: "Automated Quality Inspection", desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.", icon: Settings },
+      { title: "Predictive Maintenance", desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.", icon: Factory },
       { title: "Digital Twin Orchestration", desc: "Real-time virtual replicas of manufacturing lines to simulate efficiency improvements and workflow bottlenecks.", icon: MonitorPlay }
     ]
   },
@@ -59,7 +59,7 @@ const projects = [
     desc: "Smart maritime solutions for safer operations and sustainable growth.",
     items: [
       { title: "Ship Analytics & Predictive Maintenance", desc: "Comprehensive platform for ship condition assessment, predictive maintenance, lifecycle management, and operational analytics.", icon: BarChart },
-      { title: "Autonomous Naval Surveillance", desc: "AI-powered optical and sonar integration for threat detection and coastal perimeter security.", icon: Ship },
+      { title: "Automated Naval Surveillance", desc: "Advanced optical and sonar integration for threat detection and coastal perimeter security.", icon: Ship },
       { title: "Smart Port Logistics", desc: "Automated container tracking and crane optimization using computer vision for high-throughput port environments.", icon: Box }
     ]
   },
@@ -68,11 +68,11 @@ const projects = [
     color: "from-indigo-500/20",
     accent: "text-indigo-400",
     bgImage: digitalBg,
-    desc: "AI-driven platforms that transform data into intelligent decisions.",
+    desc: "Robust platforms that transform data into actionable insights.",
     items: [
-      { title: "AI Document & Report Intelligence", desc: "AI platform to extract, analyze, and summarize documents and reports, enabling intelligent search and automated reporting.", icon: FileText },
-      { title: "Cyber Threat Hunting Platform", desc: "Real-time anomaly detection and AI behavioral analysis to preemptively secure network infrastructures.", icon: ShieldCheck },
-      { title: "Enterprise Data Lake Analytics", desc: "Unifying structured and unstructured data streams for high-velocity predictive business intelligence.", icon: BarChart }
+      { title: "Document & Report Analytics", desc: "Advanced platform to extract, analyze, and summarize documents and reports, enabling structured search and automated reporting.", icon: FileText },
+      { title: "Cyber Threat Hunting Platform", desc: "Real-time anomaly detection and behavioral analysis to preemptively secure network infrastructures.", icon: ShieldCheck },
+      { title: "Enterprise Data Lake Analytics", desc: "Unifying structured and unstructured data streams for high-velocity predictive business insights.", icon: BarChart }
     ]
   }
 ];
@@ -97,7 +97,7 @@ export default function ProjectsPage() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed"
         >
-          Explore our suite of sovereign intelligence platforms engineered to redefine operations across defense, healthcare, manufacturing, and digital ecosystems.
+          Explore our suite of advanced technology platforms engineered to redefine operations across defense, healthcare, manufacturing, and digital ecosystems.
         </motion.p>
       </section>
 
