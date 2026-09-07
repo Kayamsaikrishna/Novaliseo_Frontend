@@ -177,54 +177,6 @@ export default function AboutPage() {
       </section>
 
 
-      {/* ---------------- OUR TEAM SECTION ---------------- */}
-      <section className="py-24 md:py-40 relative z-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-16">
-            <motion.h2 {...fadeInUp} className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-4">
-              Our Team
-            </motion.h2>
-            <motion.p {...fadeInUp} transition={{ delay: 0.1 }} className="text-xl text-slate-400 font-light max-w-none">
-              Building India's sovereign technology future through strategic innovation and world-class engineering.
-            </motion.p>
-          </div>
-
-          <motion.div
-            {...fadeInUp}
-            transition={{ delay: 0.2 }}
-            className="relative group rounded-[3rem] border border-white/10 overflow-hidden shadow-2xl bg-black p-4 md:p-8"
-          >
-            <div className="absolute inset-0 bg-cyan-500/5 group-hover:opacity-100 transition-opacity duration-1000 opacity-0" />
-            <img
-              src="/our team/team.jpg"
-              alt="Novaliseo Team"
-              className="w-full h-auto rounded-2xl object-contain shadow-2xl"
-            />
-          </motion.div>
-
-          {/* Business Partner Section */}
-          <div className="mt-24 text-center">
-            <motion.div {...fadeInUp} className="space-y-8">
-              <h3 className="text-xl md:text-2xl font-bold text-slate-500 uppercase tracking-[0.3em]">
-                Strategic Business Partner
-              </h3>
-              <a
-                href="https://ieto.online/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center group relative h-48 w-48 md:h-80 md:w-80 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden shadow-2xl mx-auto"
-              >
-                <div className="absolute -inset-8 bg-cyan-500/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <img
-                  src="/our team/IETO.png"
-                  alt="IETO Business Partner"
-                  className="w-[80%] h-[80%] relative z-10 brightness-110 group-hover:brightness-125 transition-all duration-500 object-contain"
-                />
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
 
       {/* FINAL STATEMENT */}
