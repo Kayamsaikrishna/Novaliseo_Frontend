@@ -5,17 +5,40 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 20);
+
+      if (isMenuOpen) {
+        setVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 60) {
+        setVisible(false);
+      } else if (currentScrollY < lastScrollY || currentScrollY <= 20) {
+        setVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Products & Solutions', path: '/projects' },
+    { name: 'Solutions', path: '/projects' },
     { name: 'Trainings', path: '/trainings' },
     { name: 'Research', path: '/collaborations' },
     { name: 'Careers', path: '/careers' },
@@ -26,29 +49,30 @@ const Navbar = () => {
     <>
       <motion.header
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'
-          }`}
+        animate={{ y: visible ? 0 : -120 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? 'py-3 sm:py-4' : 'py-5 sm:py-6'
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className={`flex items-center justify-between rounded-full transition-all duration-500 ${scrolled
-            ? 'bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
-            : 'bg-transparent border-transparent px-2 py-2'
+            ? 'bg-white/90 backdrop-blur-xl border border-slate-200 px-6 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.08)] text-slate-900'
+            : 'bg-white/50 backdrop-blur-md border border-white/60 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] text-slate-900'
             }`}>
 
             {/* Logo → Home */}
             <Link to="/" className="flex items-center gap-3">
-              <img src={logo} alt="Novaliseo" className="h-[52px] object-contain" />
+              <img src={logo} alt="Novaliseo" className="h-[46px] object-contain" />
             </Link>
 
             {/* Navigation Pills (Desktop) */}
-            <nav className="hidden md:flex items-center space-x-1 bg-white/5 rounded-full p-1 border border-white/5">
+            <nav className="hidden md:flex items-center space-x-1 bg-white/60 rounded-full p-1 border border-slate-200/60 shadow-sm">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+                  className="px-4 py-1.5 rounded-full text-sm font-medium text-slate-700 hover:text-slate-950 hover:bg-white transition-all"
                 >
                   {link.name}
                 </Link>
@@ -59,7 +83,7 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link
                 to="/partner"
-                className="hidden sm:flex items-center justify-center px-6 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                className="hidden sm:flex items-center justify-center px-5 py-2.5 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all shadow-md hover:scale-[1.02] active:scale-[0.98]"
               >
                 Partner With Us
               </Link>

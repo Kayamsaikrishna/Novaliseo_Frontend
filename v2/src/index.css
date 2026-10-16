@@ -4,26 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
-    @apply bg-background text-white antialiased overflow-x-hidden selection:bg-primary/30;
+    @apply bg-white text-slate-900 antialiased overflow-x-hidden selection:bg-sky-500/20;
   }
 }
 
-/* Custom Scrollbar for Edge/Visually pleasing theme */
+/* Custom Sleek Scrollbar for Modern Editorial Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }

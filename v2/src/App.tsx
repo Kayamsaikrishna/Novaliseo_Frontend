@@ -16,19 +16,26 @@ import ContactPage from './pages/ContactPage';
 import IndustryTrainingsPage from './pages/IndustryTrainingsPage';
 import ResearchCollaborationsPage from './pages/ResearchCollaborationsPage';
 
+import PurposeBuiltIntelligence from './components/PurposeBuiltIntelligence';
+import SovereignComputeSection from './components/SovereignComputeSection';
+import QuoteDeck from './components/QuoteDeck';
+import PartnerLogosSection from './components/PartnerLogosSection';
+
 function HomePage() {
   return (
     <>
       <Hero />
-      <IntelligenceSection />
-      <Newsletter />
+      {/* <PartnerLogosSection /> — Hidden for now until partner logos are released */}
+      <PurposeBuiltIntelligence />
+      <SovereignComputeSection />
+      {/* <QuoteDeck /> — Hidden for now until verified reviews are collected */}
     </>
   );
 }
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-background text-white selection:bg-primary/30">
+    <div className="relative min-h-screen bg-white text-slate-900 selection:bg-sky-500/20">
       <ScrollToTop />
       <Navbar />
       <main>
