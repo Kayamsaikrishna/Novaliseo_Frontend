@@ -77,26 +77,34 @@ export default function PurposeBuiltIntelligence() {
   }, []);
 
   // Compute dynamic auto-scaled folder width based on both screen width and height
-  // to ensure the entire section fits seamlessly in one full screen!
+  // Compute dynamic auto-scaled folder width based on both screen width and height
+  // to ensure the entire section fits seamlessly in one full screen with generous spacing!
   const folderWidth = React.useMemo(() => {
     const w = dims.width;
     const h = dims.height;
 
-    // Mobile (1 column)
-    if (w < 768) {
-      return Math.min(290, Math.max(220, w - 56));
+    // Mobile (< 640px, 1 column)
+    if (w < 640) {
+      return Math.min(290, Math.max(220, w - 64));
     }
-    // Tablet (2 columns)
+    // Tablet (640px - 1023px, 2 columns)
     if (w < 1024) {
-      return Math.min(280, Math.floor((w - 96) / 2));
+      const colW = (w - 64 - 24) / 2;
+      return Math.min(265, Math.floor(colW - 24));
     }
-    // Desktop (4 columns fitting in 1 full screen)
-    const maxWFromWidth = (Math.min(w * 0.92, 1750) - 96) / 4;
-    // Scale down on shorter laptop displays, scale up on 1440p / 4K displays
-    const maxWFromHeight = (h - 260) / 1.45;
+    // Desktop (1024px+, 4 columns)
+    // Usable container width
+    const maxContainerW = w >= 1536 ? Math.min(w * 0.9, 1560) : Math.min(w * 0.88, 1200);
+    // 4 columns have 3 generous gaps of 32px = 96px
+    const colW = (maxContainerW - 96) / 4;
+    // Provide generous 24px safety margin inside each column
+    const maxWFromWidth = colW - 24;
+
+    // Scale down on shorter vertical laptop displays (e.g. 768px, 800px or 900px high)
+    const maxWFromHeight = (h - 290) / 1.45;
 
     const calculated = Math.floor(Math.min(maxWFromWidth, maxWFromHeight));
-    return Math.max(215, Math.min(360, calculated));
+    return Math.max(190, Math.min(300, calculated));
   }, [dims.width, dims.height]);
 
   return (
@@ -125,9 +133,9 @@ export default function PurposeBuiltIntelligence() {
       <div className="absolute top-1/2 right-1/12 w-[600px] h-[600px] bg-indigo-200/35 rounded-full blur-[160px] pointer-events-none -z-0" />
       <div className="absolute bottom-1/6 left-1/3 w-[500px] h-[500px] bg-cyan-100/45 rounded-full blur-[130px] pointer-events-none -z-0" />
 
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1650px] 3xl:max-w-[1900px] mx-auto w-full">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto w-full">
         
-        {/* ================= SECTION HEADER (DYNAMICALLY PROPORTIONED) ================= */}
+        {/* ================= SECTION HEADER ================= */}
         <div className="max-w-3xl 2xl:max-w-4xl mb-6 lg:mb-8 2xl:mb-12 text-left">
           
           <motion.div 
@@ -148,7 +156,7 @@ export default function PurposeBuiltIntelligence() {
         </div>
 
         {/* ================= 4 DYNAMICALLY SCALED INTERACTIVE GLASS FOLDER CARDS ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-4 xl:gap-6 2xl:gap-8 justify-items-center w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 2xl:gap-10 justify-items-center w-full">
           {CAPABILITY_FOLDERS.map((folder, idx) => (
             <motion.div
               key={folder.id}
@@ -156,11 +164,11 @@ export default function PurposeBuiltIntelligence() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center w-full"
-              style={{ maxWidth: folderWidth + 24 }}
+              className="flex flex-col items-center w-full group"
+              style={{ maxWidth: folderWidth + 20 }}
             >
-              {/* Glass Folder Canvas Component with dynamic responsive width */}
-              <div className="p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl bg-white/40 backdrop-blur-sm border border-white/80 shadow-[0_10px_28px_-10px_rgba(15,23,42,0.08)] hover:shadow-[0_18px_36px_-10px_rgba(15,23,42,0.14)] transition-all duration-300">
+              {/* Glass Folder 3D Object with ample free space */}
+              <div className="relative flex justify-center items-center py-1 transition-transform duration-300 group-hover:-translate-y-1">
                 <GlassFolder
                   label={folder.label}
                   meta={folder.meta}
@@ -173,15 +181,18 @@ export default function PurposeBuiltIntelligence() {
                 />
               </div>
 
-              {/* Explanatory Context Under Folder */}
-              <div className="mt-3 lg:mt-4 text-left px-1 w-full">
-                <p className="text-[11px] lg:text-xs 2xl:text-sm text-slate-600 leading-relaxed font-normal">
+              {/* Explanatory Context Under Folder — High Contrast & Clear Visibility */}
+              <div className="mt-3.5 lg:mt-4 text-left px-1.5 w-full">
+                <p className="text-xs sm:text-[13px] 2xl:text-sm text-slate-700 font-medium leading-relaxed">
                   {folder.desc}
                 </p>
-                <div className="mt-1.5 flex items-center gap-1 text-[11px] font-mono font-semibold text-sky-600 hover:text-sky-700 transition-colors cursor-pointer">
-                  <span>Explore architectural specs</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
+                <a 
+                  href="/solutions"
+                  className="mt-2 inline-flex items-center gap-1.5 text-xs font-mono font-bold text-sky-700 hover:text-sky-900 transition-colors cursor-pointer group/link"
+                >
+                  <span className="group-hover/link:underline underline-offset-4">Explore architectural specs</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1 text-sky-700" />
+                </a>
               </div>
 
             </motion.div>
