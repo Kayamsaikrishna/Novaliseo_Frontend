@@ -285,15 +285,27 @@ function StoryDeckModal({
 }) {
   if (!system) return null;
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-2xl overflow-y-auto">
+      <div 
+        onClick={onClose}
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-2xl overflow-y-auto cursor-pointer"
+      >
         <motion.div
+          onClick={(e) => e.stopPropagation()}
           initial={{ opacity: 0, scale: 0.95, y: 25 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 25 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-5xl"
+          className="w-full max-w-5xl cursor-default"
         >
           <StoryDeck 
             stories={system.stories}
@@ -816,49 +828,7 @@ export default function ProjectsPage() {
         onOpenSpecs={(idx) => setSpecsModalSystem(projects[idx])}
       />
 
-      {/* ========================================================================= */}
-      {/* 3. SYSTEM ARCHITECTURE & CAPABILITIES CATALOG (STORY DECK)                */}
-      {/* ========================================================================= */}
-      <section id="capabilities-catalog" className="relative py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto text-left">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-8">
-          <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-semibold mb-2 block">
-              Case-Study Architecture Specifications
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F3F2EB] tracking-tight">
-              Modular System Capabilities
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl">
-              Fling the top card or use controls to cycle through authentic operational specifications, real-time telemetry pipelines, and field reports.
-            </p>
-          </div>
 
-          {/* Domain Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {projects.map((p, idx) => (
-              <button
-                key={p.id}
-                onClick={() => setSelectedSystemIndex(idx)}
-                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                  selectedSystemIndex === idx
-                    ? "bg-white text-black shadow-lg scale-105"
-                    : "bg-white/5 hover:bg-white/15 text-slate-300 border border-white/10"
-                }`}
-              >
-                {p.hugeName}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Interactive Story Deck Container */}
-        <div className="w-full max-w-5xl mx-auto">
-          <StoryDeck 
-            stories={projects[selectedSystemIndex].stories}
-            systemName={projects[selectedSystemIndex].domain}
-          />
-        </div>
-      </section>
 
       {/* Story Deck Modal when opened from the Specs button in ScrollIndexSection */}
       {specsModalSystem && (
