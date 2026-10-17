@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { 
   Leaf, ScanSearch, Navigation, Plane, Box, 
   ClipboardList, ShieldCheck, HeartPulse, 
@@ -16,18 +16,20 @@ import marineBg from "../assets/projects/marine_bg_1788369743426.jpg";
 import digitalBg from "../assets/projects/digital_bg_1788369758908.jpg";
 
 const CATEGORIES = [
-  { id: "all", label: "All Systems", targetId: "drone-intelligence" },
-  { id: "drone", label: "Drone Swarms", targetId: "drone-intelligence" },
-  { id: "healthcare", label: "Healthcare AI", targetId: "healthcare-intelligence" },
-  { id: "mfg", label: "Industrial IoT", targetId: "manufacturing-intelligence" },
-  { id: "marine", label: "Maritime & Naval", targetId: "maritime-intelligence" },
-  { id: "digital", label: "Digital Core", targetId: "digital-intelligence" },
+  { id: "all", label: "All Systems", targetIndex: 0 },
+  { id: "drone", label: "Drone Swarms", targetIndex: 0 },
+  { id: "healthcare", label: "Healthcare AI", targetIndex: 1 },
+  { id: "mfg", label: "Industrial IoT", targetIndex: 2 },
+  { id: "marine", label: "Maritime & Naval", targetIndex: 3 },
+  { id: "digital", label: "Digital Core", targetIndex: 4 },
 ];
 
 const projects = [
   {
     id: "drone-intelligence",
     domain: "DRONE INTELLIGENCE",
+    hugeName: "Swarms",
+    tagline: "Autonomous Multi-Agent Aerial Swarms",
     color: "from-blue-500/20",
     accent: "text-blue-400",
     bgImage: droneBg,
@@ -42,6 +44,8 @@ const projects = [
   {
     id: "healthcare-intelligence",
     domain: "HEALTHCARE INTELLIGENCE",
+    hugeName: "Health",
+    tagline: "Air-Gapped Medical & Diagnostic Intelligence",
     color: "from-purple-500/20",
     accent: "text-purple-400",
     bgImage: healthBg,
@@ -56,6 +60,8 @@ const projects = [
   {
     id: "manufacturing-intelligence",
     domain: "MANUFACTURING INTELLIGENCE",
+    hugeName: "Industry",
+    tagline: "Deterministic Edge Compute & Digital Twins",
     color: "from-cyan-500/20",
     accent: "text-cyan-400",
     bgImage: mfgBg,
@@ -69,6 +75,8 @@ const projects = [
   {
     id: "maritime-intelligence",
     domain: "MARITIME INTELLIGENCE",
+    hugeName: "Maritime",
+    tagline: "Naval Surveillance & Smart Port Robotics",
     color: "from-blue-400/20",
     accent: "text-blue-300",
     bgImage: marineBg,
@@ -82,6 +90,8 @@ const projects = [
   {
     id: "digital-intelligence",
     domain: "DIGITAL INTELLIGENCE",
+    hugeName: "Cyber",
+    tagline: "Sovereign Cyber Threat Hunting & Data Lakes",
     color: "from-indigo-500/20",
     accent: "text-indigo-400",
     bgImage: digitalBg,
@@ -94,11 +104,268 @@ const projects = [
   }
 ];
 
+// =========================================================================
+// 2. SCROLL INDEX SYSTEMS SHOWCASE (SCROLL-DRIVEN TRANSITION ANIMATION)
+// =========================================================================
+function ScrollIndexSection({ 
+  projectsList,
+  selectedIndex,
+  onSelectIndex
+}: { 
+  projectsList: typeof projects;
+  selectedIndex: number;
+  onSelectIndex: (idx: number) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [internalIndex, setInternalIndex] = useState(selectedIndex);
+  const [showDetails, setShowDetails] = useState(false);
+
+  // Sync internalIndex with parent prop
+  React.useEffect(() => {
+    setInternalIndex(selectedIndex);
+  }, [selectedIndex]);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Map scroll progress (0 to 1) to project index (0 to 4)
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const total = projectsList.length;
+    const nextIdx = Math.min(total - 1, Math.max(0, Math.floor(latest * total)));
+    if (nextIdx !== internalIndex) {
+      setInternalIndex(nextIdx);
+      onSelectIndex(nextIdx);
+    }
+  });
+
+  const activeProject = projectsList[internalIndex] || projectsList[0];
+
+  const selectProject = (idx: number) => {
+    setInternalIndex(idx);
+    onSelectIndex(idx);
+    if (containerRef.current) {
+      const containerTop = containerRef.current.offsetTop;
+      const totalHeight = containerRef.current.offsetHeight - window.innerHeight;
+      const targetScroll = containerTop + (idx / (projectsList.length - 1 || 1)) * totalHeight;
+      window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div 
+      id="systems-index" 
+      ref={containerRef} 
+      className="relative h-[450vh] bg-[#02040a]"
+    >
+      {/* Sticky Viewport Stage — Pins to Screen During Scroll */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between select-none">
+        
+        {/* Full-Bleed Animated Background with Smooth Crossfade */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProject.id}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 z-0"
+          >
+            <img 
+              src={activeProject.bgImage} 
+              alt={activeProject.domain} 
+              className="w-full h-full object-cover object-center" 
+            />
+            {/* Cinematic Ambient Vignettes */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/45 to-black/90" />
+            <div className="absolute inset-0 bg-black/25 backdrop-blur-[0.5px]" />
+            <div className={`absolute inset-0 bg-gradient-to-t ${activeProject.color} to-transparent opacity-40`} />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* ================= TOP STATUS BAR & INDEX COUNTER ================= */}
+        <div className="relative z-20 pt-24 sm:pt-28 px-6 sm:px-10 lg:px-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-mono font-bold tracking-widest text-amber-300/90 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full backdrop-blur-md">
+              SYSTEM 0{internalIndex + 1} / 0{projectsList.length}
+            </span>
+            <span className="hidden sm:inline text-xs font-mono tracking-wider text-slate-300 font-semibold uppercase">
+              {activeProject.domain}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="text-xs font-mono font-medium tracking-wider text-slate-300 hover:text-white bg-black/60 hover:bg-black/90 border border-white/15 px-4 py-1.5 rounded-full backdrop-blur-xl transition-all duration-300"
+            >
+              {showDetails ? "Hide Architecture Specs ▲" : "View Architecture Specs ▼"}
+            </button>
+          </div>
+        </div>
+
+        {/* ================= CENTER: HUGE TYPOGRAPHY + VERTICAL THUMBNAIL STRIP ================= */}
+        <div className="relative z-20 flex-1 flex items-center justify-center px-4 overflow-hidden">
+          
+          {/* Giant Word Across the Center (e.g. Swarms, Health, Industry, Maritime, Cyber) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={activeProject.hugeName}
+                initial={{ opacity: 0, y: 40, letterSpacing: "-0.04em" }}
+                animate={{ opacity: 0.85, y: 0, letterSpacing: "-0.02em" }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                className="text-7xl sm:text-9xl md:text-[140px] lg:text-[180px] xl:text-[220px] 2xl:text-[260px] font-black text-white/90 drop-shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center leading-none tracking-tighter"
+              >
+                {activeProject.hugeName}
+              </motion.h2>
+            </AnimatePresence>
+          </div>
+
+          {/* Centered Vertical Thumbnail Strip (Marks Your Place — Exactly like Reference) */}
+          <div className="relative z-30">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="bg-black/75 backdrop-blur-2xl border border-white/20 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 flex flex-col gap-2 sm:gap-2.5 shadow-[0_25px_60px_rgba(0,0,0,0.85)] ring-1 ring-black/40"
+            >
+              {projectsList.map((p, idx) => {
+                const isActive = internalIndex === idx;
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => selectProject(idx)}
+                    className="relative group/thumb focus:outline-none transition-transform duration-300"
+                    title={p.domain}
+                  >
+                    {/* Active Thumbnail Glowing Border Pill */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeScrollThumb"
+                        className="absolute -inset-1 rounded-xl sm:rounded-2xl border-2 border-white shadow-[0_0_18px_rgba(255,255,255,0.7)]"
+                        transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                      />
+                    )}
+
+                    <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                      <img 
+                        src={p.bgImage} 
+                        alt={p.hugeName} 
+                        className={`w-11 h-13 sm:w-13 sm:h-16 md:w-14 md:h-18 object-cover transition-all duration-300 ${
+                          isActive 
+                            ? "scale-105 brightness-110" 
+                            : "opacity-45 hover:opacity-90 grayscale-[40%] hover:grayscale-0 hover:scale-105"
+                        }`}
+                      />
+                    </div>
+                  </button>
+                );
+              })}
+            </motion.div>
+          </div>
+
+        </div>
+
+        {/* ================= BOTTOM: PROJECT NARRATIVE & SPECS CARDS ================= */}
+        <div className="relative z-20 pb-8 sm:pb-10 px-6 sm:px-10 lg:px-14">
+          
+          {/* Main Info Row */}
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+            <div className="max-w-xl text-left">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProject.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <p className="text-xs sm:text-sm font-mono tracking-wider text-amber-300 font-semibold mb-1">
+                    {activeProject.tagline}
+                  </p>
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#F3F2EB] tracking-tight">
+                    {activeProject.domain}
+                  </h3>
+                  <p className="mt-2 text-sm sm:text-base text-slate-300 font-normal leading-relaxed drop-shadow-md">
+                    {activeProject.desc}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Quick System Stepper Buttons */}
+            <div className="flex items-center gap-3">
+              <button
+                disabled={internalIndex === 0}
+                onClick={() => selectProject(internalIndex - 1)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-white backdrop-blur-md transition-all duration-200"
+                aria-label="Previous System"
+              >
+                ←
+              </button>
+              <button
+                disabled={internalIndex === projectsList.length - 1}
+                onClick={() => selectProject(internalIndex + 1)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-white backdrop-blur-md transition-all duration-200"
+                aria-label="Next System"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          {/* Expandable Architecture Module Bento Cards */}
+          <AnimatePresence>
+            {showDetails && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-6xl mx-auto overflow-hidden"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-white/10">
+                  {activeProject.items.map((item) => (
+                    <div 
+                      key={item.title}
+                      className="p-5 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 hover:border-white/25 transition-all duration-300 text-left"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center mb-3 text-white">
+                        <item.icon className="w-5 h-5 text-amber-300" />
+                      </div>
+                      <h4 className="text-sm font-bold text-white mb-1.5 leading-snug">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-slate-300 leading-relaxed font-light">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// MAIN PROJECTS PAGE
+// =========================================================================
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedSystemIndex, setSelectedSystemIndex] = useState(0);
 
-  const scrollToSection = (targetId: string) => {
-    const el = document.getElementById(targetId);
+  const selectSystem = (targetIndex: number) => {
+    setSelectedSystemIndex(targetIndex);
+    const el = document.getElementById("systems-index");
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -144,7 +411,7 @@ export default function ProjectsPage() {
                     key={cat.id}
                     onClick={() => {
                       setActiveCategory(cat.id);
-                      scrollToSection(cat.targetId);
+                      selectSystem(cat.targetIndex);
                     }}
                     className={`relative px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-300 ${
                       isActive 
@@ -165,8 +432,6 @@ export default function ProjectsPage() {
               })}
             </motion.div>
           </div>
-
-
 
           {/* ================= BOTTOM CONTENT ROW (PRISMA STYLE) ================= */}
           <div className="absolute inset-x-0 bottom-0 z-20 p-6 sm:p-10 lg:p-14 xl:p-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8 sm:gap-10">
@@ -198,7 +463,7 @@ export default function ProjectsPage() {
               </p>
 
               <button
-                onClick={() => scrollToSection("drone-intelligence")}
+                onClick={() => selectSystem(0)}
                 className="group/btn inline-flex items-center gap-3 sm:gap-4 bg-black/85 hover:bg-black text-[#F3F2EB] text-sm sm:text-base font-medium px-6 sm:px-7 py-3 sm:py-3.5 rounded-full border border-white/25 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-105 hover:border-white/40 active:scale-95"
               >
                 <span>Explore capabilities</span>
@@ -218,80 +483,14 @@ export default function ProjectsPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. REFINED SOLUTIONS DOMAIN SECTIONS                                       */}
+      {/* 2. SCROLL INDEX SYSTEMS SHOWCASE (SCROLL-DRIVEN TRANSITION ANIMATION)      */}
       {/* ========================================================================= */}
-      <div className="space-y-0 relative z-10">
-        {projects.map((project, idx) => (
-          <section 
-            id={project.id} 
-            key={project.domain} 
-            className="relative min-h-[90vh] flex items-center justify-center py-24 sm:py-32 overflow-hidden group border-t border-white/5"
-          >
-            
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0 transition-transform duration-[20s] ease-linear group-hover:scale-110">
-              <img src={project.bgImage} alt={project.domain} className="w-full h-full object-cover" />
-            </div>
-            
-            {/* Dark/Gradient Overlays */}
-            <div className="absolute inset-0 z-0 bg-[#02040a]/85" />
-            <div className={`absolute inset-0 z-0 bg-gradient-to-t ${project.color} to-transparent opacity-50`} />
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#02040a] via-transparent to-[#02040a]" />
+      <ScrollIndexSection 
+        projectsList={projects} 
+        selectedIndex={selectedSystemIndex} 
+        onSelectIndex={setSelectedSystemIndex} 
+      />
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid xl:grid-cols-12 gap-12 items-center">
-              
-              {/* Left Column: Domain Info */}
-              <div className="xl:col-span-5 space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <div className={`w-20 h-2 mb-8 bg-gradient-to-r ${project.color.replace('/20', '')} to-transparent rounded-full`} />
-                  <h2 className="text-4xl md:text-5xl xl:text-5xl font-black tracking-tight mb-6 drop-shadow-2xl leading-[1.1]">
-                    {project.domain.split(' ').map((word, i) => (
-                      <span key={i} className={i === 1 ? project.accent : "text-white"}>{word} </span>
-                    ))}
-                  </h2>
-                  <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed backdrop-blur-md bg-black/40 p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
-                    {project.desc}
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Right Column: Bento Grid of Items */}
-              <div className="xl:col-span-7">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {project.items.map((item, itemIdx) => (
-                    <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.6, delay: itemIdx * 0.15 }}
-                      className="group/card relative rounded-[2rem] bg-white/5 border border-white/10 p-7 sm:p-8 backdrop-blur-xl hover:bg-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden"
-                    >
-                      {/* Top Inner Glow on Hover */}
-                      <div className={`absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-${project.accent.split('-')[1]}-400 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500`} />
-                      
-                      <div className="relative z-10 flex flex-col h-full">
-                        <div className={`w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white group-hover/card:scale-110 group-hover/card:${project.accent} transition-all duration-500`}>
-                          <item.icon className="w-7 h-7" />
-                        </div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug">{item.title}</h3>
-                        <p className="text-slate-400 font-light leading-relaxed text-sm sm:text-base mt-auto">{item.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </section>
-        ))}
-      </div>
-      
     </div>
   );
 }
