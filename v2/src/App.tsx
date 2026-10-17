@@ -48,6 +48,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/verify" element={<CertificateVerifyPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/solutions" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/trainings" element={<IndustryTrainingsPage />} />
           <Route path="/collaborations" element={<ResearchCollaborationsPage />} />
