@@ -221,15 +221,6 @@ function BookmarkCard({
   );
 }
 
-const CATEGORIES = [
-  { id: "all", label: "All Systems", targetIndex: 0 },
-  { id: "drone", label: "Drone Swarms", targetIndex: 0 },
-  { id: "healthcare", label: "Healthcare AI", targetIndex: 1 },
-  { id: "mfg", label: "Industrial IoT", targetIndex: 2 },
-  { id: "marine", label: "Maritime & Naval", targetIndex: 3 },
-  { id: "digital", label: "Digital Core", targetIndex: 4 },
-];
-
 const projects = [
   {
     id: "drone-intelligence",
@@ -699,7 +690,6 @@ function ScrollIndexSection({
 // MAIN PROJECTS PAGE
 // =========================================================================
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [selectedSystemIndex, setSelectedSystemIndex] = useState(0);
 
   const selectSystem = (targetIndex: number) => {
@@ -733,43 +723,6 @@ export default function ProjectsPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/85" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40" />
             <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-[#02040a] via-[#02040a]/70 to-transparent" />
-          </div>
-
-          {/* ================= TOP FLOATING NAVIGATION PILL (PRISMA STYLE) ================= */}
-          <div className="absolute top-5 sm:top-7 inset-x-0 z-30 flex justify-center px-4">
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-black/80 backdrop-blur-2xl border border-white/15 rounded-full px-3 sm:px-6 py-2 sm:py-2.5 flex items-center gap-2 sm:gap-6 md:gap-7 shadow-[0_12px_36px_rgba(0,0,0,0.5)]"
-            >
-              {CATEGORIES.map((cat) => {
-                const isActive = activeCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => {
-                      setActiveCategory(cat.id);
-                      selectSystem(cat.targetIndex);
-                    }}
-                    className={`relative px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-300 ${
-                      isActive 
-                        ? "text-white font-semibold" 
-                        : "text-slate-400 hover:text-white"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeHeroPill"
-                        className="absolute inset-0 bg-white/15 rounded-full border border-white/20 shadow-inner"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                    <span className="relative z-10">{cat.label}</span>
-                  </button>
-                );
-              })}
-            </motion.div>
           </div>
 
           {/* ================= BOTTOM CONTENT ROW (PRISMA STYLE) ================= */}
