@@ -9,11 +9,11 @@ import {
 } from "lucide-react";
 
 import solutionsRobotHero from "../assets/solutions_robot_hero.jpg";
-import droneBg from "../assets/projects/drone_bg_1788369697669.jpg";
-import healthBg from "../assets/projects/health_bg_1788369710610.jpg";
-import mfgBg from "../assets/projects/mfg_bg_1788369729188.jpg";
-import marineBg from "../assets/projects/marine_bg_1788369743426.jpg";
-import digitalBg from "../assets/projects/digital_bg_1788369758908.jpg";
+import droneBg from "../assets/projects/real_drone_clean.jpg";
+import healthBg from "../assets/projects/real_health_lab.jpg";
+import mfgBg from "../assets/projects/real_industry_factory.jpg";
+import marineBg from "../assets/projects/real_maritime_vessel.jpg";
+import digitalBg from "../assets/novaliseo_servers_pure.jpg";
 
 const CATEGORIES = [
   { id: "all", label: "All Systems", targetIndex: 0 },
@@ -27,79 +27,79 @@ const CATEGORIES = [
 const projects = [
   {
     id: "drone-intelligence",
-    domain: "DRONE INTELLIGENCE",
+    domain: "Autonomous Aerial Swarms",
     hugeName: "Swarms",
-    tagline: "Autonomous Multi-Agent Aerial Swarms",
+    tagline: "High-Altitude Mapping & Tactical UAV Systems",
     color: "from-blue-500/20",
     accent: "text-blue-400",
     bgImage: droneBg,
-    desc: "Autonomous multi-agent swarms, GPS-denied navigation, and computer vision systems engineered for tactical aerial operations and precision field mapping.",
+    desc: "Heavy-duty autonomous UAV architectures, GPS-denied sensor fusion, and multi-spectral computer vision for large-scale topographical surveying and tactical intelligence.",
     items: [
-      { title: "Agri Crop Health Monitoring System", desc: "Advanced aerial monitoring for foliar health, disease detection, yield prediction, and precision agriculture.", icon: Leaf },
-      { title: "Ship Inspection Solutions", desc: "Automated aerial and onboard inspection solutions for ships using computer vision, anomaly detection, and digital reporting.", icon: ScanSearch },
-      { title: "GPS Denied Navigation", desc: "Advanced navigation systems for UAVs with sensor fusion and SLAM for reliable operations in GPS denied environments.", icon: Navigation },
-      { title: "Coordinated Aerial Operations", desc: "Coordinated multi-drone operations for vast area surveillance and search & rescue missions.", icon: Plane }
+      { title: "Topographical & Crop Health Mapping", desc: "Aerial multispectral monitoring for terrain assessment, foliar pathogen detection, and high-precision coverage.", icon: Leaf },
+      { title: "Infrastructure & Vessel Inspection", desc: "Automated aerial inspection systems utilizing edge computer vision and real-time structural anomaly reporting.", icon: ScanSearch },
+      { title: "GPS-Denied Autonomous Flight", desc: "Hardened navigation pipelines powered by visual-inertial SLAM and multi-sensor fusion in contested airspace.", icon: Navigation },
+      { title: "Coordinated Multi-Agent Operations", desc: "Distributed fleet orchestration protocols enabling synchronized aerial surveying and search operations.", icon: Plane }
     ]
   },
   {
     id: "healthcare-intelligence",
-    domain: "HEALTHCARE INTELLIGENCE",
+    domain: "Medical Diagnostic Intelligence",
     hugeName: "Health",
-    tagline: "Air-Gapped Medical & Diagnostic Intelligence",
+    tagline: "Air-Gapped Clinical Diagnostics & Telemetry",
     color: "from-purple-500/20",
     accent: "text-purple-400",
     bgImage: healthBg,
-    desc: "Air-gapped digital platforms for medical compliance, predictive supply chains, and rapid diagnostic intelligence.",
+    desc: "Air-gapped clinical intelligence consoles, high-resolution radiological analysis, and secure predictive supply chains for modern healthcare infrastructure.",
     items: [
-      { title: "Healthcare Supply Chain Management", desc: "Data-driven platform for demand forecasting, inventory optimization, supplier management, and logistics planning.", icon: Box },
-      { title: "Digital Operations Platform", desc: "End-to-end digital platform for patient management, workflows, resource allocation, and operational efficiency.", icon: ClipboardList },
-      { title: "Inspection & Compliance System", desc: "Digital solution for automated inspections, regulatory compliance, audit management, and risk assessment.", icon: ShieldCheck },
-      { title: "Medical Diagnostics Assistant", desc: "Advanced analytics and NLP integration to assist in rapid radiological analysis and patient record summarization.", icon: HeartPulse }
+      { title: "Predictive Supply Chain Management", desc: "Autonomous inventory forecasting, pharmaceutical cold-chain integrity, and emergency logistics optimization.", icon: Box },
+      { title: "Clinical Operations & Patient Flow", desc: "Telemetry platforms for hospital workflow automation, ICU bed allocation, and operational capacity planning.", icon: ClipboardList },
+      { title: "Regulatory Compliance & Audit Trails", desc: "Automated validation frameworks ensuring airtight compliance and tamper-evident health protocol audits.", icon: ShieldCheck },
+      { title: "Radiological Diagnostics Assistant", desc: "High-resolution neural computer vision assisting in rapid MRI/CT multi-planar anomaly detection.", icon: HeartPulse }
     ]
   },
   {
     id: "manufacturing-intelligence",
-    domain: "MANUFACTURING INTELLIGENCE",
+    domain: "Industrial Automation & Robotics",
     hugeName: "Industry",
-    tagline: "Deterministic Edge Compute & Digital Twins",
-    color: "from-cyan-500/20",
-    accent: "text-cyan-400",
+    tagline: "Precision Edge Compute & Digital Twin Facilities",
+    color: "from-amber-500/20",
+    accent: "text-amber-400",
     bgImage: mfgBg,
-    desc: "Deterministic edge compute and digital twin orchestration tailored for high-precision manufacturing and zero-downtime facilities.",
+    desc: "Deterministic industrial edge compute, multi-axis robotic automation, and real-time digital twin synchronization for zero-downtime manufacturing plants.",
     items: [
-      { title: "Automated Quality Inspection", desc: "Computer vision-based defect detection to reduce downtime, improve quality, and enhance machine performance.", icon: Settings },
-      { title: "Predictive Maintenance", desc: "IoT sensor data analytics to predict machinery failure before it happens, optimizing maintenance schedules.", icon: Factory },
-      { title: "Digital Twin Orchestration", desc: "Real-time virtual replicas of manufacturing lines to simulate efficiency improvements and workflow bottlenecks.", icon: MonitorPlay }
+      { title: "Automated Robotic Inspection", desc: "Micro-millimeter surface defect detection using high-speed optical vision systems on active assembly lines.", icon: Settings },
+      { title: "Predictive Machine Maintenance", desc: "Vibration and thermal telemetry analysis predicting mechanical wear weeks ahead of physical component failure.", icon: Factory },
+      { title: "Zero-Latency Digital Twin", desc: "Synchronized virtual telemetry environments simulating assembly kinematics and optimizing cycle times.", icon: MonitorPlay }
     ]
   },
   {
     id: "maritime-intelligence",
-    domain: "MARITIME INTELLIGENCE",
+    domain: "Maritime & Naval Intelligence",
     hugeName: "Maritime",
     tagline: "Naval Surveillance & Smart Port Robotics",
     color: "from-blue-400/20",
     accent: "text-blue-300",
     bgImage: marineBg,
-    desc: "Autonomous naval surveillance, coastal sonar integration, and high-throughput smart port logistics infrastructure.",
+    desc: "Autonomous naval surface surveillance, deep-water coastal acoustic perimeter monitoring, and high-throughput container terminal robotics.",
     items: [
-      { title: "Ship Analytics & Predictive Maintenance", desc: "Comprehensive platform for ship condition assessment, predictive maintenance, lifecycle management, and operational analytics.", icon: BarChart },
-      { title: "Automated Naval Surveillance", desc: "Advanced optical and sonar integration for threat detection and coastal perimeter security.", icon: Ship },
-      { title: "Smart Port Logistics", desc: "Automated container tracking and crane optimization using computer vision for high-throughput port environments.", icon: Box }
+      { title: "Vessel Health & Predictive Telemetry", desc: "Full-spectrum naval condition assessment, hull vibration monitoring, and predictive lifecycle intelligence.", icon: BarChart },
+      { title: "Autonomous Coastal Surveillance", desc: "Long-range optical and radar perimeter monitoring for maritime border defense and surface navigation safety.", icon: Ship },
+      { title: "Container Terminal Automation", desc: "Vision-guided gantry optimization and automated freight flow routing for high-density shipping hubs.", icon: Box }
     ]
   },
   {
     id: "digital-intelligence",
-    domain: "DIGITAL INTELLIGENCE",
+    domain: "Cyber Defense & Enterprise Fabric",
     hugeName: "Cyber",
-    tagline: "Sovereign Cyber Threat Hunting & Data Lakes",
+    tagline: "Sovereign Threat Hunting & Datacenter Core",
     color: "from-indigo-500/20",
     accent: "text-indigo-400",
     bgImage: digitalBg,
-    desc: "Sovereign cyber threat hunting, high-velocity data lake engines, and cryptographically verified enterprise analytics.",
+    desc: "Air-gapped server infrastructure, real-time cyber threat hunting pipelines, and high-velocity sovereign data architectures with zero external cloud dependencies.",
     items: [
-      { title: "Document & Report Analytics", desc: "Advanced platform to extract, analyze, and summarize documents and reports, enabling structured search and automated reporting.", icon: FileText },
-      { title: "Cyber Threat Hunting Platform", desc: "Real-time anomaly detection and behavioral analysis to preemptively secure network infrastructures.", icon: ShieldCheck },
-      { title: "Enterprise Data Lake Analytics", desc: "Unifying structured and unstructured data streams for high-velocity predictive business insights.", icon: BarChart }
+      { title: "Document & Signal Analytics", desc: "High-speed cryptographic parsing of unstructured intelligence streams and automated executive synthesis.", icon: FileText },
+      { title: "Autonomous Threat Hunting", desc: "Deep packet inspection and behavioral telemetry models neutralizing zero-day intrusions in real time.", icon: ShieldCheck },
+      { title: "Sovereign Datacenter Fabric", desc: "High-throughput deterministic data fabric running on air-gapped on-premise hardware clusters.", icon: BarChart }
     ]
   }
 ];
@@ -166,7 +166,7 @@ function ScrollIndexSection({
         <AnimatePresence mode="wait">
           <motion.div
             key={activeProject.id}
-            initial={{ opacity: 0, scale: 1.08 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -178,21 +178,25 @@ function ScrollIndexSection({
               className="w-full h-full object-cover object-center" 
             />
             {/* Cinematic Ambient Vignettes */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/45 to-black/90" />
-            <div className="absolute inset-0 bg-black/25 backdrop-blur-[0.5px]" />
-            <div className={`absolute inset-0 bg-gradient-to-t ${activeProject.color} to-transparent opacity-40`} />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/35 to-black/90" />
+            <div className="absolute inset-0 bg-black/20" />
+            <div className={`absolute inset-0 bg-gradient-to-t ${activeProject.color} to-transparent opacity-30`} />
           </motion.div>
         </AnimatePresence>
 
-        {/* ================= TOP STATUS BAR & INDEX COUNTER ================= */}
+        {/* ================= TOP STATUS BAR & CLEAN PROGRESS ================= */}
         <div className="relative z-20 pt-24 sm:pt-28 px-6 sm:px-10 lg:px-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-bold tracking-widest text-amber-300/90 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full backdrop-blur-md">
-              SYSTEM 0{internalIndex + 1} / 0{projectsList.length}
-            </span>
-            <span className="hidden sm:inline text-xs font-mono tracking-wider text-slate-300 font-semibold uppercase">
-              {activeProject.domain}
-            </span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-mono tracking-wider text-slate-300 uppercase">
+                {activeProject.domain}
+              </span>
+              <span className="text-white/30 text-xs">/</span>
+              <span className="text-xs font-mono font-bold text-white">
+                0{internalIndex + 1}
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -205,68 +209,68 @@ function ScrollIndexSection({
           </div>
         </div>
 
-        {/* ================= CENTER: HUGE TYPOGRAPHY + VERTICAL THUMBNAIL STRIP ================= */}
+        {/* ================= CENTER: 100% UNOBSTRUCTED GIANT TYPOGRAPHY ================= */}
         <div className="relative z-20 flex-1 flex items-center justify-center px-4 overflow-hidden">
           
-          {/* Giant Word Across the Center (e.g. Swarms, Health, Industry, Maritime, Cyber) */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Giant Word Across the Center — COMPLETELY UNOBSTRUCTED, NOTHING BLOCKING IT */}
+          <div className="w-full flex items-center justify-center pointer-events-none">
             <AnimatePresence mode="wait">
               <motion.h2
                 key={activeProject.hugeName}
-                initial={{ opacity: 0, y: 40, letterSpacing: "-0.04em" }}
-                animate={{ opacity: 0.85, y: 0, letterSpacing: "-0.02em" }}
-                exit={{ opacity: 0, y: -40 }}
+                initial={{ opacity: 0, y: 35, letterSpacing: "-0.04em" }}
+                animate={{ opacity: 0.88, y: 0, letterSpacing: "-0.02em" }}
+                exit={{ opacity: 0, y: -35 }}
                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="text-7xl sm:text-9xl md:text-[140px] lg:text-[180px] xl:text-[220px] 2xl:text-[260px] font-black text-white/90 drop-shadow-[0_25px_60px_rgba(0,0,0,0.9)] text-center leading-none tracking-tighter"
+                className="text-7xl sm:text-9xl md:text-[140px] lg:text-[180px] xl:text-[220px] 2xl:text-[260px] font-black text-white/95 drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] text-center leading-none tracking-tighter"
               >
                 {activeProject.hugeName}
               </motion.h2>
             </AnimatePresence>
           </div>
 
-          {/* Centered Vertical Thumbnail Strip (Marks Your Place — Exactly like Reference) */}
-          <div className="relative z-30">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="bg-black/75 backdrop-blur-2xl border border-white/20 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 flex flex-col gap-2 sm:gap-2.5 shadow-[0_25px_60px_rgba(0,0,0,0.85)] ring-1 ring-black/40"
-            >
-              {projectsList.map((p, idx) => {
-                const isActive = internalIndex === idx;
-                return (
-                  <button
-                    key={p.id}
-                    onClick={() => selectProject(idx)}
-                    className="relative group/thumb focus:outline-none transition-transform duration-300"
-                    title={p.domain}
-                  >
-                    {/* Active Thumbnail Glowing Border Pill */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeScrollThumb"
-                        className="absolute -inset-1 rounded-xl sm:rounded-2xl border-2 border-white shadow-[0_0_18px_rgba(255,255,255,0.7)]"
-                        transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                      />
-                    )}
+        </div>
 
-                    <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
-                      <img 
-                        src={p.bgImage} 
-                        alt={p.hugeName} 
-                        className={`w-11 h-13 sm:w-13 sm:h-16 md:w-14 md:h-18 object-cover transition-all duration-300 ${
-                          isActive 
-                            ? "scale-105 brightness-110" 
-                            : "opacity-45 hover:opacity-90 grayscale-[40%] hover:grayscale-0 hover:scale-105"
-                        }`}
-                      />
-                    </div>
-                  </button>
-                );
-              })}
-            </motion.div>
-          </div>
+        {/* ================= SLEEK RIGHT-SIDE FLOATING THUMBNAIL DOCK ================= */}
+        <div className="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-30 pointer-events-auto">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-black/65 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 flex flex-col gap-2 sm:gap-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] ring-1 ring-white/10"
+          >
+            {projectsList.map((p, idx) => {
+              const isActive = internalIndex === idx;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => selectProject(idx)}
+                  className="relative group/thumb focus:outline-none transition-transform duration-300"
+                  title={p.domain}
+                >
+                  {/* Active Thumbnail Indicator */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeScrollThumb"
+                      className="absolute -inset-1 rounded-xl sm:rounded-2xl border-2 border-white shadow-[0_0_16px_rgba(255,255,255,0.7)]"
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                    />
+                  )}
 
+                  <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                    <img 
+                      src={p.bgImage} 
+                      alt={p.hugeName} 
+                      className={`w-11 h-13 sm:w-12 sm:h-15 md:w-14 md:h-16 object-cover transition-all duration-300 ${
+                        isActive 
+                          ? "scale-105 brightness-110" 
+                          : "opacity-40 hover:opacity-85 grayscale hover:grayscale-0 hover:scale-105"
+                      }`}
+                    />
+                  </div>
+                </button>
+              );
+            })}
+          </motion.div>
         </div>
 
         {/* ================= BOTTOM: PROJECT NARRATIVE & SPECS CARDS ================= */}
