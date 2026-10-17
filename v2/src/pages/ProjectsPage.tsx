@@ -166,38 +166,7 @@ export default function ProjectsPage() {
             </motion.div>
           </div>
 
-          {/* ================= DYNAMIC ANIMATED / GIF-STYLE HOLOGRAPHIC HUD ================= */}
-          {/* Positioned right above the robot scout's console */}
-          <div className="absolute top-[32%] sm:top-[34%] left-[34%] sm:left-[36%] z-20 pointer-events-none hidden md:block">
-            <div className="relative">
-              {/* Radar pulse ripples */}
-              <div className="absolute -inset-8 rounded-full border border-cyan-400/30 animate-ping opacity-35" style={{ animationDuration: "3.5s" }} />
-              <div className="absolute -inset-16 rounded-full border border-amber-400/20 animate-ping opacity-25" style={{ animationDuration: "5s" }} />
 
-              {/* Holographic Tactical Tag */}
-              <motion.div 
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-black/60 backdrop-blur-md border border-cyan-400/40 rounded-xl px-3 py-1.5 flex items-center gap-2 shadow-[0_0_20px_rgba(34,211,238,0.25)]"
-              >
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="text-[11px] font-mono tracking-wider text-cyan-200 uppercase font-semibold">
-                  SENTINEL UNIT-7 · TELEMETRY ACTIVE
-                </span>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Top-Right Cyber Indicator Badge */}
-          <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-20 hidden lg:flex items-center gap-3 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 shadow-xl">
-            <div className="relative flex items-center justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-              <span className="absolute w-4 h-4 rounded-full bg-emerald-400/40 animate-ping" />
-            </div>
-            <span className="text-xs font-mono tracking-widest text-slate-300 font-medium">
-              SOVEREIGN SYSTEMS LIVE
-            </span>
-          </div>
 
           {/* ================= BOTTOM CONTENT ROW (PRISMA STYLE) ================= */}
           <div className="absolute inset-x-0 bottom-0 z-20 p-6 sm:p-10 lg:p-14 xl:p-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8 sm:gap-10">
