@@ -5,7 +5,8 @@ import {
   ClipboardList, ShieldCheck, HeartPulse, 
   Settings, Factory, MonitorPlay, BarChart, 
   Ship, FileText, ArrowRight, Radio, Cpu, 
-  Activity, Sparkles, Terminal, ChevronDown
+  Activity, Sparkles, Terminal, ChevronDown,
+  ChevronLeft, ChevronRight
 } from "lucide-react";
 
 import solutionsRobotHero from "../assets/solutions_robot_hero.jpg";
@@ -37,196 +38,294 @@ import novaliseoServersPure from "../assets/novaliseo_servers_pure.jpg";
 import novaliseoDatacenterServers from "../assets/novaliseo_datacenter_servers.jpg";
 
 // =========================================================================
-// SHOWCASE CARD COMPONENT (EXACT FIDELITY TO REFERENCE DESIGN)
+// STORY DECK COMPONENT (EXACT FIDELITY TO REFERENCE DESIGN)
 // =========================================================================
-function ShowcaseCard({ 
-  item, 
-  index,
-  onSelect
-}: { 
-  item: any; 
-  index: number; 
-  onSelect?: (item: any) => void;
+function StoryDeck({
+  stories,
+  systemName,
+  onClose,
+  isModal = false
+}: {
+  stories: any[];
+  systemName: string;
+  onClose?: () => void;
+  isModal?: boolean;
 }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const total = stories.length;
+  const activeStory = stories[currentIndex] || stories[0];
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % total);
+    setProgress(0);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + total) % total);
+    setProgress(0);
+  };
+
+  // Autoplay timer with progress ring (advances every 6 seconds if not hovered/dragged)
+  React.useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          handleNext();
+          return 0;
+        }
+        return prev + 1.2;
+      });
+    }, 60);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isPaused, total]);
+
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 25 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      onClick={() => onSelect && onSelect(item)}
-      className="group/sc relative flex flex-col justify-between rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#e3e7ee] via-[#d5dbe4] to-[#c4cbd6] text-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.65)] hover:shadow-[0_28px_70px_rgba(0,0,0,0.85)] border border-white/80 p-3 sm:p-3.5 transition-all duration-500 ease-out hover:-translate-y-2 select-none overflow-hidden text-left cursor-pointer"
+    <div 
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="relative w-full rounded-[32px] sm:rounded-[42px] bg-gradient-to-b from-[#f8f9fa] via-[#eff2f6] to-[#e0e4eb] text-slate-900 border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.8)] p-6 sm:p-10 lg:p-12 overflow-hidden text-left select-none"
     >
-      {/* 1. TOP MEDIA SECTION (Rounded Inner Image with Floating Bottom Glass Bar) */}
-      <div className="relative aspect-[16/11] w-full rounded-[22px] sm:rounded-[26px] overflow-hidden bg-slate-950 shadow-md">
-        <img 
-          src={item.image} 
-          alt={item.title} 
-          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/sc:scale-105"
-        />
+      {/* ================= TOP BAR ================= */}
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
+        <div className="flex items-center gap-3">
+          <span className="px-3.5 py-1 rounded-full bg-slate-900 text-white text-[10px] sm:text-[11px] font-mono font-bold tracking-widest uppercase shadow-sm">
+            CARD
+          </span>
+          <span className="text-xs sm:text-sm font-mono font-semibold text-slate-500 uppercase tracking-wider">
+            {systemName} Architecture Deck
+          </span>
+        </div>
 
-        {/* Ambient Dark Gradient on bottom of image for readability */}
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
-
-        {/* Floating Glass Pill Bar across bottom of image (matching reference screenshot) */}
-        <div className="absolute inset-x-2.5 bottom-2.5 z-10 flex items-center justify-between p-2 sm:p-2.5 rounded-2xl bg-black/45 backdrop-blur-xl border border-white/15">
-          <div className="text-left pl-1 pr-2 max-w-[65%]">
-            <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-tight truncate">
-              {item.title}
-            </h4>
-            <p className="text-[10px] sm:text-[11px] text-white/70 font-medium truncate">
-              {item.subtitle}
-            </p>
-          </div>
-
-          <button 
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onSelect) onSelect(item);
-            }}
-            className="px-3.5 py-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md text-[11px] font-semibold text-white border border-white/25 transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm whitespace-nowrap"
+        {onClose && (
+          <button
+            onClick={onClose}
+            aria-label="Close Story Deck"
+            className="w-10 h-10 rounded-full bg-slate-900 hover:bg-black text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md border border-white/20 text-sm font-bold"
           >
-            View project
+            ✕
           </button>
-        </div>
+        )}
       </div>
 
-      {/* 2. BOTTOM CONTENT SECTION (Case-study summary, chips, sharpening description) */}
-      <div className="p-3.5 sm:p-4 flex flex-col justify-between flex-1 text-left">
-        <div>
-          {/* Overview sentence */}
-          <p className="text-sm sm:text-[15px] font-bold text-slate-900 leading-snug mb-3 tracking-tight">
-            {item.overview}
-          </p>
-
-          {/* Chips Row */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-3.5">
-            {item.chips.map((chip: string) => (
-              <span 
-                key={chip}
-                className="px-2.5 sm:px-3 py-1 rounded-full bg-black/5 group-hover/sc:bg-black/10 text-slate-700 text-[10px] sm:text-[11px] font-semibold border border-black/5 transition-colors"
-              >
-                {chip}
+      {/* ================= MAIN 2-COLUMN LAYOUT ================= */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+        
+        {/* LEFT COLUMN: STORY NARRATIVE & CONTROLS (7 of 12) */}
+        <div className="lg:col-span-7 flex flex-col justify-between h-full">
+          <div>
+            {/* Step Counter Line */}
+            <div className="flex items-center gap-4 mb-5">
+              <span className="text-xs sm:text-sm font-mono font-bold text-slate-400 tracking-wider">
+                {`0${currentIndex + 1} / 0${total}`}
               </span>
-            ))}
+              <div className="h-px flex-1 bg-slate-300/80" />
+            </div>
+
+            {/* Headline with smooth crossfade */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStory.headline}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-bold text-slate-900 tracking-tight leading-[1.12] mb-4">
+                  {activeStory.headline}
+                </h3>
+                <p className="text-base sm:text-lg text-slate-700 font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl">
+                  “{activeStory.quote}”
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Author / Spec Signature Row */}
+            <div className="flex items-center gap-3.5 mb-8 sm:mb-10">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-slate-800 text-white flex items-center justify-center font-bold text-sm shadow-md ring-2 ring-white">
+                <img 
+                  src={activeStory.image} 
+                  alt={activeStory.author} 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              <div>
+                <h5 className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
+                  {activeStory.author}
+                </h5>
+                <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                  {activeStory.role}
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Description Paragraph with sharpening effect from blur as requested */}
-          <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal transition-all duration-500 opacity-90 group-hover/sc:opacity-100 group-hover/sc:text-slate-800 line-clamp-3 filter group-hover/sc:blur-0 blur-[0.3px]">
-            {item.desc}
-          </p>
+          {/* Bottom Controls Row: Arrows + Circular Progress Ring + Drag Hint */}
+          <div className="flex items-center justify-between pt-4 border-t border-slate-200/80">
+            {/* Navigation Stepper with Autoplay Ring */}
+            <div className="flex items-center gap-3">
+              {/* Prev Button */}
+              <button
+                onClick={handlePrev}
+                aria-label="Previous card"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 text-slate-800 flex items-center justify-center border border-black/10 transition-all hover:scale-105 active:scale-95 shadow-sm"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Next Button with Circular Progress Ring */}
+              <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center">
+                <svg className="absolute inset-0 w-11 h-11 sm:w-12 sm:h-12 -rotate-90 pointer-events-none" viewBox="0 0 48 48">
+                  <circle
+                    cx="24"
+                    cy="24"
+                    r="21"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    fill="none"
+                    className="text-slate-300"
+                  />
+                  <circle
+                    cx="24"
+                    cy="24"
+                    r="21"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeDasharray={132}
+                    strokeDashoffset={132 - (132 * progress) / 100}
+                    className="text-slate-900 transition-all duration-75 ease-linear"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next card"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 hover:bg-black text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md z-10"
+                >
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Drag Hint */}
+            <div className="flex items-center gap-2 text-slate-400 font-mono text-[10px] sm:text-[11px] tracking-widest uppercase font-semibold">
+              <span className="text-sm">⟷</span>
+              <span>DRAG THE CARD</span>
+            </div>
+          </div>
         </div>
 
-        {/* 3. PROGRESSIVELY BLURRED FOOT WITH INTERACTION INDICATOR */}
-        <div className="relative pt-4 mt-2 flex items-center justify-center border-t border-black/5">
-          {/* Subtle gesture / swipe hand icon as in reference */}
-          <div className="flex items-center justify-center text-slate-400 group-hover/sc:text-slate-700 transition-colors">
-            <svg 
-              className="w-5 h-5 transition-transform duration-300 group-hover/sc:-translate-y-1" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="1.6" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-            </svg>
+        {/* RIGHT COLUMN: 3D STACKED DRAGGABLE CARD DECK (5 of 12) */}
+        <div className="lg:col-span-5 flex items-center justify-center py-4">
+          <div className="relative flex items-center justify-center w-[250px] sm:w-[290px] md:w-[330px] aspect-[3/4]">
+            
+            {/* Card 3 (Bottom Layer in Stack) */}
+            {stories[(currentIndex + 2) % total] && (
+              <div 
+                className="absolute inset-0 rounded-[28px] sm:rounded-[34px] overflow-hidden border-4 border-white/70 shadow-lg pointer-events-none transition-all duration-500 ease-out translate-x-6 sm:translate-x-8 translate-y-3 sm:translate-y-4 rotate-4 sm:rotate-6 scale-[0.91] opacity-70 bg-slate-950"
+              >
+                <img 
+                  src={stories[(currentIndex + 2) % total].image} 
+                  alt="Stacked spec" 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+            )}
+
+            {/* Card 2 (Middle Layer in Stack) */}
+            {stories[(currentIndex + 1) % total] && (
+              <div 
+                className="absolute inset-0 rounded-[28px] sm:rounded-[34px] overflow-hidden border-4 border-white/85 shadow-xl pointer-events-none transition-all duration-500 ease-out translate-x-3 sm:translate-x-4 translate-y-1.5 sm:translate-y-2 rotate-2 sm:rotate-3 scale-[0.96] opacity-90 bg-slate-950"
+              >
+                <img 
+                  src={stories[(currentIndex + 1) % total].image} 
+                  alt="Stacked spec" 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+            )}
+
+            {/* Card 1 (Top Layer in Stack - Draggable / Flingable) */}
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={currentIndex}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.65}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -70 || info.velocity.x < -300) {
+                    handleNext();
+                  } else if (info.offset.x > 70 || info.velocity.x > 300) {
+                    handlePrev();
+                  }
+                }}
+                initial={{ scale: 0.95, opacity: 0, x: 40 }}
+                animate={{ scale: 1, opacity: 1, x: 0 }}
+                exit={{ scale: 0.85, opacity: 0, x: -220, rotate: -16 }}
+                transition={{ type: "spring", stiffness: 350, damping: 26 }}
+                className="relative z-30 w-full h-full rounded-[28px] sm:rounded-[34px] overflow-hidden border-4 sm:border-[5px] border-white shadow-[0_25px_60px_rgba(0,0,0,0.4)] cursor-grab active:cursor-grabbing bg-slate-950 group/deckcard"
+              >
+                <img 
+                  src={activeStory.image} 
+                  alt={activeStory.headline} 
+                  className="w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out group-hover/deckcard:scale-105" 
+                />
+                {/* Subtle Cinematic Vignette for Depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+                
+                {/* Bottom Spec Badge Overlay */}
+                <div className="absolute inset-x-3 bottom-3 z-10 p-2.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/20 text-white flex items-center justify-between">
+                  <span className="text-[11px] font-mono tracking-wider font-semibold uppercase truncate">
+                    {activeStory.headline}
+                  </span>
+                  <span className="text-[10px] font-mono text-amber-300 uppercase tracking-widest pl-2">
+                    FLING ⟷
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          {/* Subtle progressive blur glow */}
-          <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-slate-300/40 to-transparent pointer-events-none rounded-b-[32px]" />
         </div>
+
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 // =========================================================================
-// CASE STUDY MODAL FOR DETAILED SPECIFICATIONS
+// STORY DECK MODAL FOR FULLSCREEN PRESENTATION
 // =========================================================================
-function CaseStudyModal({ 
-  item, 
-  onClose 
-}: { 
-  item: any; 
-  onClose: () => void; 
+function StoryDeckModal({
+  system,
+  onClose
+}: {
+  system: any;
+  onClose: () => void;
 }) {
-  if (!item) return null;
+  if (!system) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-2xl overflow-y-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 25 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-3xl rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#e8ecf2] to-[#cfd6e0] text-slate-900 border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden p-5 sm:p-7 text-left max-h-[90vh] overflow-y-auto"
+          exit={{ opacity: 0, scale: 0.95, y: 25 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-5xl"
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-6 right-6 z-20 w-9 h-9 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md text-white flex items-center justify-center transition-all duration-200 border border-white/20 hover:scale-105 active:scale-95"
-            aria-label="Close Case Study"
-          >
-            ✕
-          </button>
-
-          {/* Media Header */}
-          <div className="relative aspect-[16/9] w-full rounded-[24px] overflow-hidden bg-slate-950 mb-5 shadow-inner">
-            <img 
-              src={item.image} 
-              alt={item.title} 
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-5 bottom-5 z-10">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-amber-300 font-semibold mb-1 block">
-                {item.subtitle}
-              </span>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                {item.title}
-              </h2>
-            </div>
-          </div>
-
-          {/* Details */}
-          <div className="px-1 sm:px-2">
-            <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-3">
-              {item.overview}
-            </p>
-
-            {/* Chips */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              {item.chips.map((chip: string) => (
-                <span 
-                  key={chip}
-                  className="px-3 py-1 rounded-full bg-black/5 text-slate-800 text-xs font-semibold border border-black/10"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-sm text-slate-700 leading-relaxed font-normal mb-6">
-              {item.desc}
-            </p>
-
-            <div className="flex items-center justify-between pt-4 border-t border-black/10">
-              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">
-                Sovereign Architecture Specification
-              </span>
-              <button
-                onClick={onClose}
-                className="px-5 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-semibold tracking-wide transition-all shadow-md"
-              >
-                Close Spec
-              </button>
-            </div>
-          </div>
+          <StoryDeck 
+            stories={system.stories}
+            systemName={system.domain}
+            onClose={onClose}
+            isModal={true}
+          />
         </motion.div>
       </div>
     </AnimatePresence>
@@ -243,38 +342,42 @@ const projects = [
     accent: "text-blue-400",
     bgImage: droneBg,
     desc: "Heavy-duty autonomous UAV architectures, GPS-denied sensor fusion, and multi-spectral computer vision for large-scale topographical surveying and tactical intelligence.",
-    items: [
-      { 
-        title: "Crop Health & Terrain Mapping", 
-        subtitle: "Multispectral SLAM",
-        image: foliarScan,
-        overview: "High-density terrain mesh and autonomous multispectral foliar pathology detection.",
-        chips: ["Multispectral", "±2cm Mesh", "Autonomous"],
-        desc: "Aerial multispectral monitoring for agricultural terrain assessment, foliar pathogen detection, and high-precision survey coverage under adverse environmental conditions."
+    stories: [
+      {
+        id: "swarm-1",
+        step: "01 / 04",
+        headline: "Foliar pathing, not guesswork",
+        quote: "Autonomous multi-spectral passes identify fungal pathogen vectors three days before visible canopy wilting, profiling twenty square kilometers with sub-centimeter mesh precision.",
+        author: "Dr. K. Vardhan",
+        role: "Principal Remote Sensing Architect",
+        image: foliarScan
       },
-      { 
-        title: "Critical Infrastructure & Vessel Inspection", 
-        subtitle: "Edge Computer Vision",
-        image: realDroneClean,
-        overview: "Real-time structural fatigue telemetry and zero-defect optical anomaly inspection.",
-        chips: ["Edge CV", "99.9% Recall", "0-Defect"],
-        desc: "Automated aerial inspection platforms executing close-proximity optical and thermal telemetry to detect structural micro-fractures across naval hulls and industrial infrastructure."
+      {
+        id: "swarm-2",
+        step: "02 / 04",
+        headline: "Micro-fractures caught at eighty knots",
+        quote: "Edge computer vision pipelines flag 0.1-millimeter structural micro-fractures along naval superstructures and turbine towers without halting daily commercial operations.",
+        author: "Marcus Vance",
+        role: "Industrial Diagnostics Lead",
+        image: realDroneClean
       },
-      { 
-        title: "GPS-Denied Autonomous Flight", 
-        subtitle: "Visual-Inertial SLAM",
-        image: realSurveyDrone,
-        overview: "Hardened sensor fusion pipelines navigating contested or shielded airspace.",
-        chips: ["Visual SLAM", "<8ms Drift", "Hardened"],
-        desc: "Deterministic navigation architecture powered by visual-inertial odometry, optical flow, and multi-spectral fusion operating with zero satellite dependencies."
+      {
+        id: "swarm-3",
+        step: "03 / 04",
+        headline: "Navigating when GPS goes silent",
+        quote: "Visual-inertial odometry fused with optical contour SLAM maintains under 8-millimeter drift per hour through heavily contested and electronic-countermeasure airspace.",
+        author: "Elena Rostova",
+        role: "Hardened Avionics Architect",
+        image: realSurveyDrone
       },
-      { 
-        title: "Coordinated Multi-Agent Operations", 
-        subtitle: "Mesh Swarm Protocol",
-        image: solutionsCliffHero,
-        overview: "Distributed multi-agent mesh protocol orchestrating synchronized sorties.",
-        chips: ["64 Nodes", "Mesh Protocol", "Zero-Latency"],
-        desc: "Decentralized peer-to-peer aerial mesh networking enabling dozens of autonomous UAVs to dynamically partition search sectors, survey perimeters, and share target telemetry."
+      {
+        id: "swarm-4",
+        step: "04 / 04",
+        headline: "Sixty-four drones, single pulse",
+        quote: "A decentralized peer-to-peer mesh protocol autonomously partitions sweeping search grids across mountainous perimeters with zero single points of network failure.",
+        author: "T. Al-Mansoor",
+        role: "Tactical Fleet Director",
+        image: solutionsCliffHero
       }
     ]
   },
@@ -287,38 +390,42 @@ const projects = [
     accent: "text-purple-400",
     bgImage: healthBg,
     desc: "Air-gapped clinical intelligence consoles, high-resolution radiological analysis, and secure predictive supply chains for modern healthcare infrastructure.",
-    items: [
-      { 
-        title: "Pharmaceutical Supply Chain Core", 
-        subtitle: "Cold-Chain Intelligence",
-        image: healthSupplyChain,
-        overview: "Autonomous cold-chain forecasting and emergency medication dispatch routing.",
-        chips: ["Cold-Chain", "99.98% SLA", "Zero-Waste"],
-        desc: "Predictive telemetry system monitoring vaccine temperature integrity, hospital pharmacy burn rates, and dynamic inventory re-routing across regional clinical networks."
+    stories: [
+      {
+        id: "health-1",
+        step: "01 / 04",
+        headline: "Zero degrees, zero loss",
+        quote: "Continuous thermodynamic sensors and predictive logistics automatically re-route temperature-sensitive pharmaceutical batches before clinical cold-chain thresholds are breached.",
+        author: "Dr. Sarah Lin",
+        role: "Biomedical Cold-Chain Director",
+        image: healthSupplyChain
       },
-      { 
-        title: "Clinical Operations & Patient Flow", 
-        subtitle: "Hospital Telemetry Hub",
-        image: digitalOpsPlatform,
-        overview: "Automated operational telemetry allocating ICU beds and surgical throughput.",
-        chips: ["Telemetry", "-42% Wait", "Real-Time"],
-        desc: "Deterministic hospital workflow orchestration predicting patient bed turnarounds, ER admission bottlenecks, and surgical equipment sterilization schedules."
+      {
+        id: "health-2",
+        step: "02 / 04",
+        headline: "Predicting bed turnarounds in seconds",
+        quote: "Hospital telemetry models anticipate emergency ward surges and ICU bed availability forty-two minutes ahead, eliminating clinical throughput bottlenecks entirely.",
+        author: "Julian Mercer",
+        role: "Clinical Operations Chief",
+        image: digitalOpsPlatform
       },
-      { 
-        title: "Regulatory Compliance & Audit Trails", 
-        subtitle: "Cryptographic Ledger",
-        image: complianceSystem,
-        overview: "Cryptographically verified audit logs adhering to international medical standards.",
-        chips: ["ISO 13485", "Air-Gapped", "Audit Mesh"],
-        desc: "Air-gapped verification frameworks ensuring tamper-evident tracking of clinical software pipelines, medical device telemetry, and patient privacy records."
+      {
+        id: "health-3",
+        step: "03 / 04",
+        headline: "Every audit logged to immutable silicon",
+        quote: "Air-gapped cryptographic logging ensures every diagnostic pipeline execution and patient telemetry query adheres strictly to ISO 13485 compliance standards.",
+        author: "Nadia Chen",
+        role: "Medical Software Validation Lead",
+        image: complianceSystem
       },
-      { 
-        title: "Radiological Diagnostics Assistant", 
-        subtitle: "Neural Micro-Imaging",
-        image: realHealthLab,
-        overview: "High-resolution neural computer vision assisting in micro-lesion detection.",
-        chips: ["0.02s Infer", "0.1mm Res", "FDA Tier"],
-        desc: "Multi-planar convolutional inference engine assisting radiologists with millisecond detection of micro-lesions, neurological anomalies, and pulmonary scans."
+      {
+        id: "health-4",
+        step: "04 / 04",
+        headline: "Micro-lesions resolved in 0.02s",
+        quote: "High-resolution convolutional neural networks assist radiologists by detecting sub-millimeter neurological anomalies with zero cloud dependency and zero latency.",
+        author: "Dr. Arvind Rao",
+        role: "Neuro-Radiology Research Lead",
+        image: realHealthLab
       }
     ]
   },
@@ -331,30 +438,33 @@ const projects = [
     accent: "text-amber-400",
     bgImage: mfgBg,
     desc: "Deterministic industrial edge compute, multi-axis robotic automation, and real-time digital twin synchronization for zero-downtime manufacturing plants.",
-    items: [
-      { 
-        title: "High-Speed Robotic Optical Inspection", 
-        subtitle: "Surface Defect Telemetry",
-        image: realIndustryFactory,
-        overview: "Micro-millimeter surface defect scanning on high-velocity production lines.",
-        chips: ["1200 PPM", "Sub-Mil", "Optical QC"],
-        desc: "High-speed multi-axis computer vision modules inspecting precision machined assemblies, welds, and composite structures at assembly-line velocity."
+    stories: [
+      {
+        id: "mfg-1",
+        step: "01 / 03",
+        headline: "Sub-millimeter defect scan at line speed",
+        quote: "Optical laser profiling monitors complex titanium geometries at twelve hundred parts per minute, eliminating assembly flaws before components enter final integration.",
+        author: "Henrik Lindqvist",
+        role: "Advanced Manufacturing Director",
+        image: realIndustryFactory
       },
-      { 
-        title: "Predictive Machine Maintenance", 
-        subtitle: "Acoustic & Vibration Matrix",
-        image: indranavIndustrial,
-        overview: "Harmonic and thermal telemetry predicting spindle failure weeks ahead of breakdown.",
-        chips: ["14 Days Adv", "Harmonics", "Zero-Downtime"],
-        desc: "Edge vibration harmonics and thermal sensor telemetry identifying bearing micro-pitting and mechanical fatigue long before catastrophic line failure occurs."
+      {
+        id: "mfg-2",
+        step: "02 / 03",
+        headline: "Fourteen days before the bearing fails",
+        quote: "Acoustic vibration harmonic analysis flags bearing micro-spalling two weeks prior to component fatigue, maintaining continuous production schedules across heavy plant facilities.",
+        author: "Vikram Sethi",
+        role: "Predictive Maintenance Engineer",
+        image: indranavIndustrial
       },
-      { 
-        title: "Deterministic Digital Twin Sim", 
-        subtitle: "Assembly Kinematics",
-        image: indranavFusion,
-        overview: "Real-time bidirectional synchronization between physical line and virtual simulation.",
-        chips: ["<3ms Sync", "Kinematics", "Twin Fabric"],
-        desc: "Bidirectional physics-accurate digital twin models orchestrating robotic arms, AGVs, and tooling kinematics to eliminate line bottlenecks and retooling delays."
+      {
+        id: "mfg-3",
+        step: "03 / 03",
+        headline: "Physical assembly mirrored in virtual twin",
+        quote: "Bidirectional kinematics synchronization between physical robotic cells and simulation models cuts retooling changeover times from days to twenty minutes.",
+        author: "Dr. Claire Moreau",
+        role: "Robotics Simulation Specialist",
+        image: indranavFusion
       }
     ]
   },
@@ -367,30 +477,33 @@ const projects = [
     accent: "text-blue-300",
     bgImage: marineBg,
     desc: "Autonomous naval surface surveillance, deep-water coastal acoustic perimeter monitoring, and high-throughput container terminal robotics.",
-    items: [
-      { 
-        title: "Naval Vessel Diagnostics & Telemetry", 
-        subtitle: "Hull Vibration Matrix",
-        image: realMaritimeVessel,
-        overview: "Full-spectrum naval condition assessment, hull vibration, and propulsion telemetry.",
-        chips: ["100% Uptime", "Propulsion", "Continuous"],
-        desc: "Real-time telemetry networks aggregating shaft torque, hull hydrodynamic stress, and fuel efficiency metrics across commercial and naval maritime fleets."
+    stories: [
+      {
+        id: "mar-1",
+        step: "01 / 03",
+        headline: "Continuous naval hull telemetry at sea",
+        quote: "Subsurface hydrodynamic telemetry continuously monitors hull vibration, shaft torque, and propulsion efficiency across thousands of nautical miles in open waters.",
+        author: "Capt. Soren Nielsen",
+        role: "Naval Architecture Systems Lead",
+        image: realMaritimeVessel
       },
-      { 
-        title: "Autonomous Coastal Radar & Surveillance", 
-        subtitle: "Long-Range Optical",
-        image: portIntelligenceMain,
-        overview: "Long-range optical and radar perimeter monitoring for coastline sovereignty.",
-        chips: ["120km Range", "24/7 Radar", "Optical Sweep"],
-        desc: "Autonomous coastal radar stations combining high-gain FMCW radar, thermal optical tracking, and AIS fusion to secure territorial waters against dark vessels."
+      {
+        id: "mar-2",
+        step: "02 / 03",
+        headline: "One hundred twenty kilometers of coastline secured",
+        quote: "Autonomous shore-based FMCW radar stations and long-range optical feeds fuse AIS data to track dark vessel incursions through dense sea fog and heavy squalls.",
+        author: "Mariana Silva",
+        role: "Coastal Defense Intelligence Lead",
+        image: portIntelligenceMain
       },
-      { 
-        title: "Container Terminal Freight Automation", 
-        subtitle: "Smart Port Freight Flow",
-        image: portInfrastructure,
-        overview: "Vision-guided gantry crane optimization and automated container yard dispatch.",
-        chips: ["+35% Moves", "Vision Gantry", "Smart Port"],
-        desc: "Deep-water port intelligence system orchestrating automated straddle carriers, STS crane cycles, and container stack sequencing for zero-congestion turnarounds."
+      {
+        id: "mar-3",
+        step: "03 / 03",
+        headline: "Zero-congestion port dispatch orchestration",
+        quote: "Vision-guided ship-to-shore gantry cranes and autonomous straddle carriers synchronize container yard moves with 35% higher container throughput per berth hour.",
+        author: "Tariq Hadad",
+        role: "Terminal Automation Director",
+        image: portInfrastructure
       }
     ]
   },
@@ -403,30 +516,33 @@ const projects = [
     accent: "text-indigo-400",
     bgImage: digitalBg,
     desc: "Air-gapped server infrastructure, real-time cyber threat hunting pipelines, and high-velocity sovereign data architectures with zero external cloud dependencies.",
-    items: [
-      { 
-        title: "Cryptographic Document & Signal Parser", 
-        subtitle: "Hardware-Accelerated NLP",
-        image: novaliseoServersPure,
-        overview: "High-velocity cryptographic parsing of unstructured classified intelligence streams.",
-        chips: ["10GB/sec", "Encrypted", "Zero-Leak"],
-        desc: "Hardware-accelerated tokenization and semantic entity extraction ingesting sovereign signals, multi-lingual transcripts, and encrypted operational feeds."
+    stories: [
+      {
+        id: "cyber-1",
+        step: "01 / 03",
+        headline: "Ten gigabytes per second, zero leakage",
+        quote: "Hardware-accelerated cryptographic tokenization ingests multi-lingual intelligence feeds, extracting actionable entities in real time with zero external network egress.",
+        author: "Dmitri Volkov",
+        role: "Cryptographic NLP Architect",
+        image: novaliseoServersPure
       },
-      { 
-        title: "Autonomous Zero-Day Threat Hunting", 
-        subtitle: "Kernel-Level Behavioral Shield",
-        image: novaliseoDatacenterServers,
-        overview: "Deep packet inspection neutralizing zero-day intrusion vectors in milliseconds.",
-        chips: ["<1ms Block", "Zero-Trust", "Deep Packet"],
-        desc: "Autonomous behavioral models monitoring kernel-level telemetry and network fabric anomalies to isolate lateral movements before privilege escalation."
+      {
+        id: "cyber-2",
+        step: "02 / 03",
+        headline: "Zero-day intrusions isolated in sub-millisecond",
+        quote: "Autonomous behavioral kernel sensors detect and terminate unauthorized memory execution and lateral movement before privilege escalation can occur.",
+        author: "Aria Thorne",
+        role: "Kernel Defense Engineer",
+        image: novaliseoDatacenterServers
       },
-      { 
-        title: "Air-Gapped Sovereign Datacenter Core", 
-        subtitle: "High-Throughput On-Prem Mesh",
-        image: novaliseoServersPure,
-        overview: "Deterministic distributed compute fabric running on isolated sovereign hardware.",
-        chips: ["Zero-Cloud", "Air-Gapped", "On-Prem Core"],
-        desc: "Low-latency containerized compute clusters engineered for defense installations and sovereign data processing with zero external Internet dependencies."
+      {
+        id: "cyber-3",
+        step: "03 / 03",
+        headline: "Air-gapped compute with zero external cloud",
+        quote: "Deterministic distributed high-throughput database clusters execute sovereign defense computations entirely on isolated on-premise hardware fabrics.",
+        author: "K. R. Ramanathan",
+        role: "Sovereign Datacenter Infrastructure Lead",
+        image: novaliseoServersPure
       }
     ]
   }
@@ -439,16 +555,15 @@ function ScrollIndexSection({
   projectsList,
   selectedIndex,
   onSelectIndex,
-  onSelectModalItem
+  onOpenSpecs
 }: { 
   projectsList: typeof projects;
   selectedIndex: number;
   onSelectIndex: (idx: number) => void;
-  onSelectModalItem?: (item: any) => void;
+  onOpenSpecs?: (idx: number) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [internalIndex, setInternalIndex] = useState(selectedIndex);
-  const [showDetails, setShowDetails] = useState(false);
 
   // Sync internalIndex with parent prop
   React.useEffect(() => {
@@ -585,7 +700,7 @@ function ScrollIndexSection({
         <div className="relative z-20 pb-8 sm:pb-10 px-6 sm:px-10 lg:px-14">
           
           {/* Main Info Row */}
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 mb-2">
             <div className="max-w-2xl text-left">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -608,43 +723,17 @@ function ScrollIndexSection({
               </AnimatePresence>
             </div>
 
-            {/* Interactive Architecture Specs Toggle Button */}
+            {/* Interactive Architecture Specs Button (Opens Story Deck) */}
             <div className="flex items-center gap-3">
               <button
-                onClick={() => setShowDetails(!showDetails)}
-                className="group/specs inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-xl text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 shadow-xl active:scale-95 whitespace-nowrap"
+                onClick={() => onOpenSpecs && onOpenSpecs(internalIndex)}
+                className="group/specs inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-xl text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 shadow-xl active:scale-95 whitespace-nowrap"
               >
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>{showDetails ? "Hide Architecture Cards ▲" : `Architecture Specs (${activeProject.items.length}) ▼`}</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+                <span>{`Architecture Specs (${activeProject.stories.length}) ↗`}</span>
               </button>
             </div>
           </div>
-
-          {/* Expandable Architecture Module Showcase Cards */}
-          <AnimatePresence>
-            {showDetails && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-6xl mx-auto overflow-hidden"
-              >
-                <div className={`grid grid-cols-1 sm:grid-cols-2 ${
-                  activeProject.items.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"
-                } gap-5 sm:gap-6 pt-6 border-t border-white/10 mx-auto max-h-[62vh] overflow-y-auto pr-2`}>
-                  {activeProject.items.map((item: any, idx: number) => (
-                    <ShowcaseCard 
-                      key={item.title}
-                      item={item}
-                      index={idx}
-                      onSelect={(it) => onSelectModalItem && onSelectModalItem(it)}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
         </div>
 
@@ -658,7 +747,7 @@ function ScrollIndexSection({
 // =========================================================================
 export default function ProjectsPage() {
   const [selectedSystemIndex, setSelectedSystemIndex] = useState(0);
-  const [selectedModalItem, setSelectedModalItem] = useState<any>(null);
+  const [specsModalSystem, setSpecsModalSystem] = useState<any>(null);
 
   const selectSystem = (targetIndex: number) => {
     setSelectedSystemIndex(targetIndex);
@@ -749,11 +838,11 @@ export default function ProjectsPage() {
         projectsList={projects} 
         selectedIndex={selectedSystemIndex} 
         onSelectIndex={setSelectedSystemIndex} 
-        onSelectModalItem={setSelectedModalItem}
+        onOpenSpecs={(idx) => setSpecsModalSystem(projects[idx])}
       />
 
       {/* ========================================================================= */}
-      {/* 3. SYSTEM ARCHITECTURE & CAPABILITIES CATALOG (SHOWCASE CARDS)            */}
+      {/* 3. SYSTEM ARCHITECTURE & CAPABILITIES CATALOG (STORY DECK)                */}
       {/* ========================================================================= */}
       <section id="capabilities-catalog" className="relative py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto text-left">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-8">
@@ -765,7 +854,7 @@ export default function ProjectsPage() {
               Modular System Capabilities
             </h2>
             <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl">
-              Explore sovereign engineering specifications across all deployment sectors. Click any case study to review telemetry and architectural parameters.
+              Fling the top card or use controls to cycle through authentic operational specifications, real-time telemetry pipelines, and field reports.
             </p>
           </div>
 
@@ -787,26 +876,22 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Showcase Cards Grid */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 ${
-          projects[selectedSystemIndex].items.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"
-        } gap-6 mx-auto`}>
-          {projects[selectedSystemIndex].items.map((item: any, idx: number) => (
-            <ShowcaseCard 
-              key={item.title} 
-              item={item} 
-              index={idx} 
-              onSelect={(it) => setSelectedModalItem(it)}
-            />
-          ))}
+        {/* Interactive Story Deck Container */}
+        <div className="w-full max-w-5xl mx-auto">
+          <StoryDeck 
+            stories={projects[selectedSystemIndex].stories}
+            systemName={projects[selectedSystemIndex].domain}
+          />
         </div>
       </section>
 
-      {/* Case Study Modal */}
-      <CaseStudyModal 
-        item={selectedModalItem} 
-        onClose={() => setSelectedModalItem(null)} 
-      />
+      {/* Story Deck Modal when opened from the Specs button in ScrollIndexSection */}
+      {specsModalSystem && (
+        <StoryDeckModal 
+          system={specsModalSystem} 
+          onClose={() => setSpecsModalSystem(null)} 
+        />
+      )}
 
     </div>
   );
