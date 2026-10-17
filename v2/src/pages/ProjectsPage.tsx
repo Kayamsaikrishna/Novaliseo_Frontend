@@ -613,7 +613,7 @@ function ScrollIndexSection({
           
           {/* Main Info Row */}
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
-            <div className="max-w-xl text-left">
+            <div className="max-w-2xl text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject.id}
@@ -633,26 +633,6 @@ function ScrollIndexSection({
                   </p>
                 </motion.div>
               </AnimatePresence>
-            </div>
-
-            {/* Quick System Stepper Buttons */}
-            <div className="flex items-center gap-3">
-              <button
-                disabled={internalIndex === 0}
-                onClick={() => selectProject(internalIndex - 1)}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-white backdrop-blur-md transition-all duration-200"
-                aria-label="Previous System"
-              >
-                ←
-              </button>
-              <button
-                disabled={internalIndex === projectsList.length - 1}
-                onClick={() => selectProject(internalIndex + 1)}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed border border-white/15 flex items-center justify-center text-white backdrop-blur-md transition-all duration-200"
-                aria-label="Next System"
-              >
-                →
-              </button>
             </div>
           </div>
 
