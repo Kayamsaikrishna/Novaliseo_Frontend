@@ -15,209 +15,221 @@ import mfgBg from "../assets/projects/real_industry_factory.jpg";
 import marineBg from "../assets/projects/real_maritime_vessel.jpg";
 import digitalBg from "../assets/novaliseo_servers_pure.jpg";
 
-// =========================================================================
-// 1. 3D FLUID RIBBON COMPONENT (FOR CARD BOOKMARK ARTWORK)
-// =========================================================================
-function FluidRibbon({ accent }: { accent: string }) {
-  const gradientId = `ribbon-grad-${accent}`;
-  const glowId = `ribbon-glow-${accent}`;
-  
-  const colors: Record<string, { start: string; mid: string; end: string }> = {
-    cyan: { start: "#38bdf8", mid: "#0284c7", end: "#0369a1" },
-    blue: { start: "#60a5fa", mid: "#2563eb", end: "#1d4ed8" },
-    amber: { start: "#fbbf24", mid: "#f59e0b", end: "#b45309" },
-    orange: { start: "#fb923c", mid: "#ea580c", end: "#9a3412" },
-    purple: { start: "#c084fc", mid: "#9333ea", end: "#6b21a8" },
-    fuchsia: { start: "#e879f9", mid: "#c026d3", end: "#86198f" },
-    violet: { start: "#a78bfa", mid: "#7c3aed", end: "#5b21b6" },
-    emerald: { start: "#34d399", mid: "#059669", end: "#047857" },
-    teal: { start: "#2dd4bf", mid: "#0d9488", end: "#0f766e" },
-    indigo: { start: "#818cf8", mid: "#4f46e5", end: "#3730a3" },
-  };
+import foliarScan from "../assets/agriculture/foliar_pathogen_scan.jpg";
+import realDroneClean from "../assets/projects/real_drone_clean.jpg";
+import realSurveyDrone from "../assets/projects/real_survey_drone.jpg";
+import solutionsCliffHero from "../assets/solutions_cliff_hero.jpg";
 
-  const c = colors[accent] || colors.blue;
+import healthSupplyChain from "../assets/healthcare/healthcare_supply_chain.jpg";
+import digitalOpsPlatform from "../assets/healthcare/digital_operations_platform.jpg";
+import complianceSystem from "../assets/healthcare/inspection_compliance_system.jpg";
+import realHealthLab from "../assets/projects/real_health_lab.jpg";
 
-  return (
-    <svg 
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-80 group-hover/bm:opacity-100 group-hover/bm:scale-105 transition-all duration-700 ease-out" 
-      viewBox="0 0 280 140" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={c.start} stopOpacity="0.95" />
-          <stop offset="50%" stopColor={c.mid} stopOpacity="0.9" />
-          <stop offset="100%" stopColor={c.end} stopOpacity="0.8" />
-        </linearGradient>
-        <filter id={glowId} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
-      
-      {/* Background Soft Glow Wave */}
-      <path 
-        d="M 15 105 C 65 40, 115 125, 175 60 C 215 15, 255 70, 275 80" 
-        stroke={`url(#${gradientId})`} 
-        strokeWidth="14" 
-        strokeLinecap="round" 
-        opacity="0.25"
-        filter={`url(#${glowId})`}
-      />
+import realIndustryFactory from "../assets/projects/real_industry_factory.jpg";
+import indranavIndustrial from "../assets/indranav_industrial_hero.png";
+import indranavFusion from "../assets/indranav_fusion.png";
 
-      {/* Main Ribbed Helical Strands */}
-      <path 
-        d="M 10 100 C 60 30, 120 120, 180 50 C 220 5, 260 65, 275 75" 
-        stroke={`url(#${gradientId})`} 
-        strokeWidth="5" 
-        strokeLinecap="round" 
-        opacity="0.9" 
-      />
-      <path 
-        d="M 12 92 C 62 25, 122 112, 182 44 C 222 2, 262 58, 273 68" 
-        stroke={`url(#${gradientId})`} 
-        strokeWidth="3.5" 
-        strokeLinecap="round" 
-        opacity="0.75" 
-      />
-      <path 
-        d="M 14 108 C 64 35, 124 128, 184 56 C 224 8, 264 72, 272 82" 
-        stroke={`url(#${gradientId})`} 
-        strokeWidth="3" 
-        strokeLinecap="round" 
-        opacity="0.6" 
-      />
-      <path 
-        d="M 20 85 C 70 20, 130 105, 190 38 C 230 -2, 268 52, 270 60" 
-        stroke="#ffffff" 
-        strokeWidth="1.2" 
-        strokeLinecap="round" 
-        opacity="0.65" 
-      />
-    </svg>
-  );
-}
+import realMaritimeVessel from "../assets/projects/real_maritime_vessel.jpg";
+import portIntelligenceMain from "../assets/maritime/maritime_port_intelligence_main.jpg";
+import portInfrastructure from "../assets/maritime/port_infrastructure_intelligence.jpg";
+
+import novaliseoServersPure from "../assets/novaliseo_servers_pure.jpg";
+import novaliseoDatacenterServers from "../assets/novaliseo_datacenter_servers.jpg";
 
 // =========================================================================
-// 2. CARD BOOKMARK COMPONENT (INTERACTIVE BOOKMARK TAB SILHOUETTE)
+// SHOWCASE CARD COMPONENT (EXACT FIDELITY TO REFERENCE DESIGN)
 // =========================================================================
-function BookmarkCard({ 
+function ShowcaseCard({ 
   item, 
-  index 
+  index,
+  onSelect
 }: { 
   item: any; 
   index: number; 
+  onSelect?: (item: any) => void;
 }) {
-  const bloomGradients: Record<string, string> = {
-    cyan: "from-cyan-500/35 via-sky-600/15 to-transparent",
-    blue: "from-blue-600/35 via-indigo-600/15 to-transparent",
-    amber: "from-amber-500/40 via-orange-600/20 to-transparent",
-    orange: "from-orange-500/40 via-rose-600/20 to-transparent",
-    purple: "from-purple-600/40 via-violet-600/20 to-transparent",
-    fuchsia: "from-fuchsia-600/40 via-pink-600/20 to-transparent",
-    violet: "from-violet-600/40 via-purple-600/20 to-transparent",
-    emerald: "from-emerald-500/35 via-teal-600/15 to-transparent",
-    teal: "from-teal-500/35 via-cyan-600/15 to-transparent",
-    indigo: "from-indigo-600/35 via-blue-600/15 to-transparent",
-  };
-
-  const borderBlooms: Record<string, string> = {
-    cyan: "group-hover/bm:border-cyan-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(6,182,212,0.35)]",
-    blue: "group-hover/bm:border-blue-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.35)]",
-    amber: "group-hover/bm:border-amber-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(245,158,11,0.35)]",
-    orange: "group-hover/bm:border-orange-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.35)]",
-    purple: "group-hover/bm:border-purple-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.35)]",
-    fuchsia: "group-hover/bm:border-fuchsia-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(217,70,239,0.35)]",
-    violet: "group-hover/bm:border-violet-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(139,92,246,0.35)]",
-    emerald: "group-hover/bm:border-emerald-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(16,185,129,0.35)]",
-    teal: "group-hover/bm:border-teal-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(20,184,166,0.35)]",
-    indigo: "group-hover/bm:border-indigo-400/50 group-hover/bm:shadow-[0_20px_50px_-10px_rgba(99,102,241,0.35)]",
-  };
-
-  const activeBloom = bloomGradients[item.accent] || bloomGradients.blue;
-  const activeBorder = borderBlooms[item.accent] || borderBlooms.blue;
-
   return (
     <motion.div 
       initial={{ opacity: 0, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.07 }}
-      className="group/bm relative cursor-pointer flex flex-col transition-transform duration-500 ease-out hover:-translate-y-2 text-left"
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      onClick={() => onSelect && onSelect(item)}
+      className="group/sc relative flex flex-col justify-between rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#e3e7ee] via-[#d5dbe4] to-[#c4cbd6] text-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.65)] hover:shadow-[0_28px_70px_rgba(0,0,0,0.85)] border border-white/80 p-3 sm:p-3.5 transition-all duration-500 ease-out hover:-translate-y-2 select-none overflow-hidden text-left cursor-pointer"
     >
-      {/* 1. Bookmark Tab Header (Asymmetrical folder tab like Reference) */}
-      <div className="flex items-end justify-between -mb-[1px] relative z-10 pl-3 pr-2">
-        {/* Tab protruding at top-left */}
-        <div className="px-4 py-1.5 rounded-t-xl bg-black/85 border-t border-x border-white/20 backdrop-blur-xl transition-all duration-300 group-hover/bm:border-white/40 shadow-lg">
-          <span className="text-[10px] font-mono font-bold tracking-widest text-slate-300 group-hover/bm:text-white uppercase">
-            — {item.subtitle || `Module 0${index + 1}`}
-          </span>
-        </div>
-        {/* Subtle right-side label */}
-        <div className="pb-1 text-[10px] font-mono tracking-wider text-slate-500 group-hover/bm:text-slate-300 transition-colors">
-          0{index + 1}
-        </div>
-      </div>
+      {/* 1. TOP MEDIA SECTION (Rounded Inner Image with Floating Bottom Glass Bar) */}
+      <div className="relative aspect-[16/11] w-full rounded-[22px] sm:rounded-[26px] overflow-hidden bg-slate-950 shadow-md">
+        <img 
+          src={item.image} 
+          alt={item.title} 
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/sc:scale-105"
+        />
 
-      {/* 2. Main Bookmark Card Body with Lower-Edge Notch */}
-      <div className={`relative rounded-b-2xl rounded-tr-2xl bg-black/85 backdrop-blur-2xl border border-white/15 p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all duration-500 ${activeBorder}`}>
-        
-        {/* Saturated Bloom on Hover ("artwork blooms into saturated colour on hover") */}
-        <div className={`absolute inset-0 opacity-0 group-hover/bm:opacity-100 transition-opacity duration-700 pointer-events-none bg-gradient-to-br ${activeBloom} mix-blend-screen`} />
+        {/* Ambient Dark Gradient on bottom of image for readability */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
 
-        {/* 3. Inner Artwork Frame with 3D Fluid Ribbon & Quote */}
-        <div className="relative h-36 sm:h-40 rounded-xl overflow-hidden bg-[#07090e] border border-white/10 group-hover/bm:border-white/25 transition-all duration-500 p-3.5 flex flex-col justify-between">
-          {/* Subtle internal vignette */}
-          <div className="absolute inset-0 bg-radial from-transparent to-black/75 pointer-events-none" />
-          
-          {/* Luminous 3D Kinetic Ribbon SVG */}
-          <FluidRibbon accent={item.accent} />
-
-          {/* Quote text inside artwork */}
-          <div className="relative z-10 pt-1">
-            <p className="text-[11px] sm:text-xs text-white/95 font-medium leading-relaxed drop-shadow-md">
-              "{item.quote}"
+        {/* Floating Glass Pill Bar across bottom of image (matching reference screenshot) */}
+        <div className="absolute inset-x-2.5 bottom-2.5 z-10 flex items-center justify-between p-2 sm:p-2.5 rounded-2xl bg-black/45 backdrop-blur-xl border border-white/15">
+          <div className="text-left pl-1 pr-2 max-w-[65%]">
+            <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-tight truncate">
+              {item.title}
+            </h4>
+            <p className="text-[10px] sm:text-[11px] text-white/70 font-medium truncate">
+              {item.subtitle}
             </p>
           </div>
 
-          {/* Inner badge */}
-          <div className="relative z-10 flex items-center justify-between">
-            <div className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-white backdrop-blur-md">
-              <item.icon className="w-3.5 h-3.5 text-amber-300" />
-            </div>
-            <span className="text-[9px] font-mono tracking-wider uppercase text-slate-400 bg-black/60 px-2 py-0.5 rounded-md border border-white/10">
-              {item.metric}
-            </span>
-          </div>
+          <button 
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onSelect) onSelect(item);
+            }}
+            className="px-3.5 py-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md text-[11px] font-semibold text-white border border-white/25 transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm whitespace-nowrap"
+          >
+            View project
+          </button>
         </div>
+      </div>
 
-        {/* 4. Large Typographic Hook & Narrative */}
-        <div className="pt-4 flex flex-col gap-1 relative z-10">
-          <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight group-hover/bm:text-amber-200 transition-colors drop-shadow-sm">
-            {item.hook}
-          </h3>
-          <h4 className="text-xs sm:text-sm font-bold text-slate-200 group-hover/bm:text-white transition-colors leading-snug">
-            {item.title}
-          </h4>
-          <p className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed mt-1 font-light">
+      {/* 2. BOTTOM CONTENT SECTION (Case-study summary, chips, sharpening description) */}
+      <div className="p-3.5 sm:p-4 flex flex-col justify-between flex-1 text-left">
+        <div>
+          {/* Overview sentence */}
+          <p className="text-sm sm:text-[15px] font-bold text-slate-900 leading-snug mb-3 tracking-tight">
+            {item.overview}
+          </p>
+
+          {/* Chips Row */}
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-3.5">
+            {item.chips.map((chip: string) => (
+              <span 
+                key={chip}
+                className="px-2.5 sm:px-3 py-1 rounded-full bg-black/5 group-hover/sc:bg-black/10 text-slate-700 text-[10px] sm:text-[11px] font-semibold border border-black/5 transition-colors"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+
+          {/* Description Paragraph with sharpening effect from blur as requested */}
+          <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal transition-all duration-500 opacity-90 group-hover/sc:opacity-100 group-hover/sc:text-slate-800 line-clamp-3 filter group-hover/sc:blur-0 blur-[0.3px]">
             {item.desc}
           </p>
         </div>
 
-        {/* 5. Bottom Bookmark Accent Dots (...) */}
-        <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/5 relative z-10">
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-white/70 group-hover/bm:bg-amber-400 group-hover/bm:scale-125 transition-all duration-300" />
-            <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover/bm:bg-white/60 transition-colors" />
-            <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover/bm:bg-white/60 transition-colors" />
+        {/* 3. PROGRESSIVELY BLURRED FOOT WITH INTERACTION INDICATOR */}
+        <div className="relative pt-4 mt-2 flex items-center justify-center border-t border-black/5">
+          {/* Subtle gesture / swipe hand icon as in reference */}
+          <div className="flex items-center justify-center text-slate-400 group-hover/sc:text-slate-700 transition-colors">
+            <svg 
+              className="w-5 h-5 transition-transform duration-300 group-hover/sc:-translate-y-1" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.6" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+            </svg>
           </div>
-          <span className="text-[10px] font-mono text-slate-500 group-hover/bm:text-slate-300 transition-colors">
-            Spec Verified
-          </span>
+          {/* Subtle progressive blur glow */}
+          <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-slate-300/40 to-transparent pointer-events-none rounded-b-[32px]" />
         </div>
-
       </div>
     </motion.div>
+  );
+}
+
+// =========================================================================
+// CASE STUDY MODAL FOR DETAILED SPECIFICATIONS
+// =========================================================================
+function CaseStudyModal({ 
+  item, 
+  onClose 
+}: { 
+  item: any; 
+  onClose: () => void; 
+}) {
+  if (!item) return null;
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-3xl rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#e8ecf2] to-[#cfd6e0] text-slate-900 border border-white/80 shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden p-5 sm:p-7 text-left max-h-[90vh] overflow-y-auto"
+        >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 z-20 w-9 h-9 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md text-white flex items-center justify-center transition-all duration-200 border border-white/20 hover:scale-105 active:scale-95"
+            aria-label="Close Case Study"
+          >
+            ✕
+          </button>
+
+          {/* Media Header */}
+          <div className="relative aspect-[16/9] w-full rounded-[24px] overflow-hidden bg-slate-950 mb-5 shadow-inner">
+            <img 
+              src={item.image} 
+              alt={item.title} 
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-5 bottom-5 z-10">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-amber-300 font-semibold mb-1 block">
+                {item.subtitle}
+              </span>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                {item.title}
+              </h2>
+            </div>
+          </div>
+
+          {/* Details */}
+          <div className="px-1 sm:px-2">
+            <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-3">
+              {item.overview}
+            </p>
+
+            {/* Chips */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {item.chips.map((chip: string) => (
+                <span 
+                  key={chip}
+                  className="px-3 py-1 rounded-full bg-black/5 text-slate-800 text-xs font-semibold border border-black/10"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-sm text-slate-700 leading-relaxed font-normal mb-6">
+              {item.desc}
+            </p>
+
+            <div className="flex items-center justify-between pt-4 border-t border-black/10">
+              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">
+                Sovereign Architecture Specification
+              </span>
+              <button
+                onClick={onClose}
+                className="px-5 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-semibold tracking-wide transition-all shadow-md"
+              >
+                Close Spec
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
   );
 }
 
@@ -233,44 +245,36 @@ const projects = [
     desc: "Heavy-duty autonomous UAV architectures, GPS-denied sensor fusion, and multi-spectral computer vision for large-scale topographical surveying and tactical intelligence.",
     items: [
       { 
-        title: "Topographical & Crop Health Mapping", 
+        title: "Crop Health & Terrain Mapping", 
         subtitle: "Multispectral SLAM",
-        hook: "Sub-Meter.",
-        quote: "High-density terrain mesh & autonomous multispectral foliar diagnostics.",
-        metric: "±2cm Mesh",
-        accent: "cyan",
-        desc: "Aerial multispectral monitoring for terrain assessment, foliar pathogen detection, and high-precision coverage.", 
-        icon: Leaf 
+        image: foliarScan,
+        overview: "High-density terrain mesh and autonomous multispectral foliar pathology detection.",
+        chips: ["Multispectral", "±2cm Mesh", "Autonomous"],
+        desc: "Aerial multispectral monitoring for agricultural terrain assessment, foliar pathogen detection, and high-precision survey coverage under adverse environmental conditions."
       },
       { 
-        title: "Infrastructure & Vessel Inspection", 
-        subtitle: "Anomaly Vision",
-        hook: "0-Defect.",
-        quote: "Real-time structural fatigue telemetry on mission-critical assets.",
-        metric: "99.9% Recall",
-        accent: "blue",
-        desc: "Automated aerial inspection systems utilizing edge computer vision and real-time structural anomaly reporting.", 
-        icon: ScanSearch 
+        title: "Critical Infrastructure & Vessel Inspection", 
+        subtitle: "Edge Computer Vision",
+        image: realDroneClean,
+        overview: "Real-time structural fatigue telemetry and zero-defect optical anomaly inspection.",
+        chips: ["Edge CV", "99.9% Recall", "0-Defect"],
+        desc: "Automated aerial inspection platforms executing close-proximity optical and thermal telemetry to detect structural micro-fractures across naval hulls and industrial infrastructure."
       },
       { 
         title: "GPS-Denied Autonomous Flight", 
-        subtitle: "Visual-Inertial",
-        hook: "SLAM Core.",
-        quote: "Hardened sensor fusion pipelines navigating contested airspace.",
-        metric: "<8ms Drift",
-        accent: "amber",
-        desc: "Hardened navigation pipelines powered by visual-inertial SLAM and multi-sensor fusion in contested airspace.", 
-        icon: Navigation 
+        subtitle: "Visual-Inertial SLAM",
+        image: realSurveyDrone,
+        overview: "Hardened sensor fusion pipelines navigating contested or shielded airspace.",
+        chips: ["Visual SLAM", "<8ms Drift", "Hardened"],
+        desc: "Deterministic navigation architecture powered by visual-inertial odometry, optical flow, and multi-spectral fusion operating with zero satellite dependencies."
       },
       { 
         title: "Coordinated Multi-Agent Operations", 
-        subtitle: "Swarm Protocol",
-        hook: "Swarm Fleet.",
-        quote: "Distributed mesh protocol orchestrating synchronized multi-UAV sorties.",
-        metric: "64 Nodes",
-        accent: "emerald",
-        desc: "Distributed fleet orchestration protocols enabling synchronized aerial surveying and search operations.", 
-        icon: Plane 
+        subtitle: "Mesh Swarm Protocol",
+        image: solutionsCliffHero,
+        overview: "Distributed multi-agent mesh protocol orchestrating synchronized sorties.",
+        chips: ["64 Nodes", "Mesh Protocol", "Zero-Latency"],
+        desc: "Decentralized peer-to-peer aerial mesh networking enabling dozens of autonomous UAVs to dynamically partition search sectors, survey perimeters, and share target telemetry."
       }
     ]
   },
@@ -285,44 +289,36 @@ const projects = [
     desc: "Air-gapped clinical intelligence consoles, high-resolution radiological analysis, and secure predictive supply chains for modern healthcare infrastructure.",
     items: [
       { 
-        title: "Predictive Supply Chain Management", 
-        subtitle: "Cold-Chain AI",
-        hook: "99.98% SLA.",
-        quote: "Autonomous pharmaceutical cold-chain forecasting & emergency inventory routing.",
-        metric: "Zero-Waste",
-        accent: "purple",
-        desc: "Autonomous inventory forecasting, pharmaceutical cold-chain integrity, and emergency logistics optimization.", 
-        icon: Box 
+        title: "Pharmaceutical Supply Chain Core", 
+        subtitle: "Cold-Chain Intelligence",
+        image: healthSupplyChain,
+        overview: "Autonomous cold-chain forecasting and emergency medication dispatch routing.",
+        chips: ["Cold-Chain", "99.98% SLA", "Zero-Waste"],
+        desc: "Predictive telemetry system monitoring vaccine temperature integrity, hospital pharmacy burn rates, and dynamic inventory re-routing across regional clinical networks."
       },
       { 
         title: "Clinical Operations & Patient Flow", 
-        subtitle: "Hospital Telemetry",
-        hook: "Real-Time.",
-        quote: "Automated telemetry allocating ICU beds and surgical theatre throughput.",
-        metric: "-42% Wait",
-        accent: "fuchsia",
-        desc: "Telemetry platforms for hospital workflow automation, ICU bed allocation, and operational capacity planning.", 
-        icon: ClipboardList 
+        subtitle: "Hospital Telemetry Hub",
+        image: digitalOpsPlatform,
+        overview: "Automated operational telemetry allocating ICU beds and surgical throughput.",
+        chips: ["Telemetry", "-42% Wait", "Real-Time"],
+        desc: "Deterministic hospital workflow orchestration predicting patient bed turnarounds, ER admission bottlenecks, and surgical equipment sterilization schedules."
       },
       { 
         title: "Regulatory Compliance & Audit Trails", 
-        subtitle: "Tamper-Proof",
-        hook: "Air-Gapped.",
-        quote: "Cryptographically verified audit logging adhering to global medical standards.",
-        metric: "ISO 13485",
-        accent: "indigo",
-        desc: "Automated validation frameworks ensuring airtight compliance and tamper-evident health protocol audits.", 
-        icon: ShieldCheck 
+        subtitle: "Cryptographic Ledger",
+        image: complianceSystem,
+        overview: "Cryptographically verified audit logs adhering to international medical standards.",
+        chips: ["ISO 13485", "Air-Gapped", "Audit Mesh"],
+        desc: "Air-gapped verification frameworks ensuring tamper-evident tracking of clinical software pipelines, medical device telemetry, and patient privacy records."
       },
       { 
         title: "Radiological Diagnostics Assistant", 
-        subtitle: "Neuro-Imaging",
-        hook: "0.02s Infer.",
-        quote: "High-resolution neural computer vision assisting in micro-lesion detection.",
-        metric: "0.1mm Res",
-        accent: "violet",
-        desc: "High-resolution neural computer vision assisting in rapid MRI/CT multi-planar anomaly detection.", 
-        icon: HeartPulse 
+        subtitle: "Neural Micro-Imaging",
+        image: realHealthLab,
+        overview: "High-resolution neural computer vision assisting in micro-lesion detection.",
+        chips: ["0.02s Infer", "0.1mm Res", "FDA Tier"],
+        desc: "Multi-planar convolutional inference engine assisting radiologists with millisecond detection of micro-lesions, neurological anomalies, and pulmonary scans."
       }
     ]
   },
@@ -337,34 +333,28 @@ const projects = [
     desc: "Deterministic industrial edge compute, multi-axis robotic automation, and real-time digital twin synchronization for zero-downtime manufacturing plants.",
     items: [
       { 
-        title: "Automated Robotic Inspection", 
-        subtitle: "Optical QC",
-        hook: "Sub-Mil.",
-        quote: "Micro-millimeter surface defect scanning on rapid automotive lines.",
-        metric: "1200 ppm",
-        accent: "amber",
-        desc: "Micro-millimeter surface defect detection using high-speed optical vision systems on active assembly lines.", 
-        icon: Settings 
+        title: "High-Speed Robotic Optical Inspection", 
+        subtitle: "Surface Defect Telemetry",
+        image: realIndustryFactory,
+        overview: "Micro-millimeter surface defect scanning on high-velocity production lines.",
+        chips: ["1200 PPM", "Sub-Mil", "Optical QC"],
+        desc: "High-speed multi-axis computer vision modules inspecting precision machined assemblies, welds, and composite structures at assembly-line velocity."
       },
       { 
         title: "Predictive Machine Maintenance", 
-        subtitle: "Vibration Acoustic",
-        hook: "Zero-Fail.",
-        quote: "Thermal and harmonic telemetry predicting spindle failure weeks ahead.",
-        metric: "14 Days Adv",
-        accent: "orange",
-        desc: "Vibration and thermal telemetry analysis predicting mechanical wear weeks ahead of physical component failure.", 
-        icon: Factory 
+        subtitle: "Acoustic & Vibration Matrix",
+        image: indranavIndustrial,
+        overview: "Harmonic and thermal telemetry predicting spindle failure weeks ahead of breakdown.",
+        chips: ["14 Days Adv", "Harmonics", "Zero-Downtime"],
+        desc: "Edge vibration harmonics and thermal sensor telemetry identifying bearing micro-pitting and mechanical fatigue long before catastrophic line failure occurs."
       },
       { 
-        title: "Zero-Latency Digital Twin", 
-        subtitle: "Kinematic Sim",
-        hook: "Twin Fabric.",
-        quote: "Real-time bidirectional synchronization between physical line and virtual twin.",
-        metric: "<3ms Sync",
-        accent: "cyan",
-        desc: "Synchronized virtual telemetry environments simulating assembly kinematics and optimizing cycle times.", 
-        icon: MonitorPlay 
+        title: "Deterministic Digital Twin Sim", 
+        subtitle: "Assembly Kinematics",
+        image: indranavFusion,
+        overview: "Real-time bidirectional synchronization between physical line and virtual simulation.",
+        chips: ["<3ms Sync", "Kinematics", "Twin Fabric"],
+        desc: "Bidirectional physics-accurate digital twin models orchestrating robotic arms, AGVs, and tooling kinematics to eliminate line bottlenecks and retooling delays."
       }
     ]
   },
@@ -379,34 +369,28 @@ const projects = [
     desc: "Autonomous naval surface surveillance, deep-water coastal acoustic perimeter monitoring, and high-throughput container terminal robotics.",
     items: [
       { 
-        title: "Vessel Health & Predictive Telemetry", 
-        subtitle: "Hull Telemetry",
-        hook: "Continuous.",
-        quote: "Full-spectrum naval condition assessment, hull vibration, and propulsion telemetry.",
-        metric: "100% Uptime",
-        accent: "blue",
-        desc: "Full-spectrum naval condition assessment, hull vibration monitoring, and predictive lifecycle intelligence.", 
-        icon: BarChart 
+        title: "Naval Vessel Diagnostics & Telemetry", 
+        subtitle: "Hull Vibration Matrix",
+        image: realMaritimeVessel,
+        overview: "Full-spectrum naval condition assessment, hull vibration, and propulsion telemetry.",
+        chips: ["100% Uptime", "Propulsion", "Continuous"],
+        desc: "Real-time telemetry networks aggregating shaft torque, hull hydrodynamic stress, and fuel efficiency metrics across commercial and naval maritime fleets."
       },
       { 
-        title: "Autonomous Coastal Surveillance", 
-        subtitle: "Perimeter Radar",
-        hook: "120km Range.",
-        quote: "Long-range optical and radar perimeter monitoring for coastline sovereignty.",
-        metric: "24/7 Radar",
-        accent: "cyan",
-        desc: "Long-range optical and radar perimeter monitoring for maritime border defense and surface navigation safety.", 
-        icon: Ship 
+        title: "Autonomous Coastal Radar & Surveillance", 
+        subtitle: "Long-Range Optical",
+        image: portIntelligenceMain,
+        overview: "Long-range optical and radar perimeter monitoring for coastline sovereignty.",
+        chips: ["120km Range", "24/7 Radar", "Optical Sweep"],
+        desc: "Autonomous coastal radar stations combining high-gain FMCW radar, thermal optical tracking, and AIS fusion to secure territorial waters against dark vessels."
       },
       { 
-        title: "Container Terminal Automation", 
-        subtitle: "Smart Port",
-        hook: "Autonomous.",
-        quote: "Vision-guided gantry optimization and automated container yard dispatch.",
-        metric: "+35% Moves",
-        accent: "teal",
-        desc: "Vision-guided gantry optimization and automated freight flow routing for high-density shipping hubs.", 
-        icon: Box 
+        title: "Container Terminal Freight Automation", 
+        subtitle: "Smart Port Freight Flow",
+        image: portInfrastructure,
+        overview: "Vision-guided gantry crane optimization and automated container yard dispatch.",
+        chips: ["+35% Moves", "Vision Gantry", "Smart Port"],
+        desc: "Deep-water port intelligence system orchestrating automated straddle carriers, STS crane cycles, and container stack sequencing for zero-congestion turnarounds."
       }
     ]
   },
@@ -421,34 +405,28 @@ const projects = [
     desc: "Air-gapped server infrastructure, real-time cyber threat hunting pipelines, and high-velocity sovereign data architectures with zero external cloud dependencies.",
     items: [
       { 
-        title: "Document & Signal Analytics", 
-        subtitle: "Crypto Parse",
-        hook: "Encrypted.",
-        quote: "High-velocity cryptographic parsing of classified intelligence documents.",
-        metric: "10GB/sec",
-        accent: "indigo",
-        desc: "High-speed cryptographic parsing of unstructured intelligence streams and automated executive synthesis.", 
-        icon: FileText 
+        title: "Cryptographic Document & Signal Parser", 
+        subtitle: "Hardware-Accelerated NLP",
+        image: novaliseoServersPure,
+        overview: "High-velocity cryptographic parsing of unstructured classified intelligence streams.",
+        chips: ["10GB/sec", "Encrypted", "Zero-Leak"],
+        desc: "Hardware-accelerated tokenization and semantic entity extraction ingesting sovereign signals, multi-lingual transcripts, and encrypted operational feeds."
       },
       { 
-        title: "Autonomous Threat Hunting", 
-        subtitle: "Zero-Day Shield",
-        hook: "Zero-Trust.",
-        quote: "Deep packet inspection neutralizing zero-day vector intrusions in milliseconds.",
-        metric: "<1ms Block",
-        accent: "violet",
-        desc: "Deep packet inspection and behavioral telemetry models neutralizing zero-day intrusions in real time.", 
-        icon: ShieldCheck 
+        title: "Autonomous Zero-Day Threat Hunting", 
+        subtitle: "Kernel-Level Behavioral Shield",
+        image: novaliseoDatacenterServers,
+        overview: "Deep packet inspection neutralizing zero-day intrusion vectors in milliseconds.",
+        chips: ["<1ms Block", "Zero-Trust", "Deep Packet"],
+        desc: "Autonomous behavioral models monitoring kernel-level telemetry and network fabric anomalies to isolate lateral movements before privilege escalation."
       },
       { 
-        title: "Sovereign Datacenter Fabric", 
-        subtitle: "Air-Gapped Mesh",
-        hook: "Air-Gapped.",
-        quote: "Deterministic distributed computing running on isolated on-premise hardware.",
-        metric: "Zero-Cloud",
-        accent: "purple",
-        desc: "High-throughput deterministic data fabric running on air-gapped on-premise hardware clusters.", 
-        icon: BarChart 
+        title: "Air-Gapped Sovereign Datacenter Core", 
+        subtitle: "High-Throughput On-Prem Mesh",
+        image: novaliseoServersPure,
+        overview: "Deterministic distributed compute fabric running on isolated sovereign hardware.",
+        chips: ["Zero-Cloud", "Air-Gapped", "On-Prem Core"],
+        desc: "Low-latency containerized compute clusters engineered for defense installations and sovereign data processing with zero external Internet dependencies."
       }
     ]
   }
@@ -460,11 +438,13 @@ const projects = [
 function ScrollIndexSection({ 
   projectsList,
   selectedIndex,
-  onSelectIndex
+  onSelectIndex,
+  onSelectModalItem
 }: { 
   projectsList: typeof projects;
   selectedIndex: number;
   onSelectIndex: (idx: number) => void;
+  onSelectModalItem?: (item: any) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [internalIndex, setInternalIndex] = useState(selectedIndex);
@@ -534,15 +514,8 @@ function ScrollIndexSection({
           </motion.div>
         </AnimatePresence>
 
-        {/* ================= TOP STATUS BAR (CLEAN, ZERO TAGS) ================= */}
-        <div className="relative z-20 pt-24 sm:pt-28 px-6 sm:px-10 lg:px-14 flex items-center justify-end">
-          <button
-            onClick={() => setShowDetails(!showDetails)}
-            className="text-xs font-mono font-medium tracking-wider text-slate-300 hover:text-white bg-black/70 hover:bg-black/95 border border-white/20 px-4 py-1.5 rounded-full backdrop-blur-xl transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
-          >
-            {showDetails ? "Hide Architecture Specs ▲" : "View Architecture Specs ▼"}
-          </button>
-        </div>
+        {/* Clean top spacing */}
+        <div className="relative z-20 pt-20" />
 
         {/* ================= CENTER: 100% UNOBSTRUCTED GIANT TYPOGRAPHY ================= */}
         <div className="relative z-20 flex-1 flex items-center justify-center px-4 overflow-hidden">
@@ -634,9 +607,20 @@ function ScrollIndexSection({
                 </motion.div>
               </AnimatePresence>
             </div>
+
+            {/* Interactive Architecture Specs Toggle Button */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowDetails(!showDetails)}
+                className="group/specs inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-xl text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 shadow-xl active:scale-95 whitespace-nowrap"
+              >
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span>{showDetails ? "Hide Architecture Cards ▲" : `Architecture Specs (${activeProject.items.length}) ▼`}</span>
+              </button>
+            </div>
           </div>
 
-          {/* Expandable Architecture Module Bookmark Cards */}
+          {/* Expandable Architecture Module Showcase Cards */}
           <AnimatePresence>
             {showDetails && (
               <motion.div
@@ -646,12 +630,15 @@ function ScrollIndexSection({
                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="max-w-6xl mx-auto overflow-hidden"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-6 border-t border-white/10">
+                <div className={`grid grid-cols-1 sm:grid-cols-2 ${
+                  activeProject.items.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"
+                } gap-5 sm:gap-6 pt-6 border-t border-white/10 mx-auto max-h-[62vh] overflow-y-auto pr-2`}>
                   {activeProject.items.map((item: any, idx: number) => (
-                    <BookmarkCard 
+                    <ShowcaseCard 
                       key={item.title}
                       item={item}
                       index={idx}
+                      onSelect={(it) => onSelectModalItem && onSelectModalItem(it)}
                     />
                   ))}
                 </div>
@@ -671,6 +658,7 @@ function ScrollIndexSection({
 // =========================================================================
 export default function ProjectsPage() {
   const [selectedSystemIndex, setSelectedSystemIndex] = useState(0);
+  const [selectedModalItem, setSelectedModalItem] = useState<any>(null);
 
   const selectSystem = (targetIndex: number) => {
     setSelectedSystemIndex(targetIndex);
@@ -761,6 +749,63 @@ export default function ProjectsPage() {
         projectsList={projects} 
         selectedIndex={selectedSystemIndex} 
         onSelectIndex={setSelectedSystemIndex} 
+        onSelectModalItem={setSelectedModalItem}
+      />
+
+      {/* ========================================================================= */}
+      {/* 3. SYSTEM ARCHITECTURE & CAPABILITIES CATALOG (SHOWCASE CARDS)            */}
+      {/* ========================================================================= */}
+      <section id="capabilities-catalog" className="relative py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto text-left">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-8">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-amber-300 font-semibold mb-2 block">
+              Case-Study Architecture Specifications
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F3F2EB] tracking-tight">
+              Modular System Capabilities
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl">
+              Explore sovereign engineering specifications across all deployment sectors. Click any case study to review telemetry and architectural parameters.
+            </p>
+          </div>
+
+          {/* Domain Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            {projects.map((p, idx) => (
+              <button
+                key={p.id}
+                onClick={() => setSelectedSystemIndex(idx)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                  selectedSystemIndex === idx
+                    ? "bg-white text-black shadow-lg scale-105"
+                    : "bg-white/5 hover:bg-white/15 text-slate-300 border border-white/10"
+                }`}
+              >
+                {p.hugeName}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Showcase Cards Grid */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${
+          projects[selectedSystemIndex].items.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"
+        } gap-6 mx-auto`}>
+          {projects[selectedSystemIndex].items.map((item: any, idx: number) => (
+            <ShowcaseCard 
+              key={item.title} 
+              item={item} 
+              index={idx} 
+              onSelect={(it) => setSelectedModalItem(it)}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Case Study Modal */}
+      <CaseStudyModal 
+        item={selectedModalItem} 
+        onClose={() => setSelectedModalItem(null)} 
       />
 
     </div>
