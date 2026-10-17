@@ -16,27 +16,27 @@ import mfgBg from "../assets/projects/real_industry_factory.jpg";
 import marineBg from "../assets/projects/real_maritime_vessel.jpg";
 import digitalBg from "../assets/novaliseo_servers_pure.jpg";
 
-import foliarScan from "../assets/agriculture/foliar_pathogen_scan.jpg";
+import realAgriCropMapping from "../assets/real_specs/real_agri_crop_mapping.jpg";
 import realDroneClean from "../assets/projects/real_drone_clean.jpg";
 import realSurveyDrone from "../assets/projects/real_survey_drone.jpg";
-import autonomousDrones from "../assets/agriculture/autonomous_drones.jpg";
+import realDroneFleet from "../assets/real_specs/real_drone_fleet.jpg";
 
-import healthSupplyChain from "../assets/healthcare/healthcare_supply_chain.jpg";
-import digitalOpsPlatform from "../assets/healthcare/digital_operations_platform.jpg";
-import complianceSystem from "../assets/healthcare/inspection_compliance_system.jpg";
-import medDiagnostics from "../assets/healthcare/medical_diagnostics_assistant.jpg";
+import realPharmaColdChain from "../assets/real_specs/real_pharma_cold_chain.jpg";
+import realHospitalTelemetry from "../assets/real_specs/real_hospital_telemetry.jpg";
+import realMedicalCleanroom from "../assets/real_specs/real_medical_cleanroom.jpg";
+import realHealthLab from "../assets/projects/real_health_lab.jpg";
 
 import realIndustryFactory from "../assets/projects/real_industry_factory.jpg";
-import indranavIndustrial from "../assets/indranav_industrial_hero.png";
-import indranavFusion from "../assets/indranav_fusion.png";
+import realCncMachining from "../assets/real_specs/real_cnc_machining.jpg";
+import realRoboticAssembly from "../assets/real_specs/real_robotic_assembly.jpg";
 
 import realMaritimeVessel from "../assets/projects/real_maritime_vessel.jpg";
-import portIntelligenceMain from "../assets/maritime/maritime_port_intelligence_main.jpg";
+import realNavalSurveillance from "../assets/real_specs/real_naval_surveillance.jpg";
 import portInfrastructure from "../assets/maritime/port_infrastructure_intelligence.jpg";
 
 import novaliseoServersPure from "../assets/novaliseo_servers_pure.jpg";
-import novaliseoDatacenterServers from "../assets/novaliseo_datacenter_servers.jpg";
-import digitalProjectBg from "../assets/projects/digital_bg_1788369758908.jpg";
+import serverRoomAisle from "../assets/real_specs/server_room_aisle.jpg";
+import realSovereignDatacenter from "../assets/real_specs/real_sovereign_datacenter.jpg";
 
 // =========================================================================
 // STORY DECK COMPONENT (AUTHENTIC ARCHITECTURE SPECS - ZERO EXTRA PERSONAS)
@@ -134,18 +134,6 @@ function StoryDeck({
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-3">
                   {activeStory.title}
                 </h3>
-
-                {/* Specification Chips Row */}
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-                  {activeStory.chips.map((chip: string) => (
-                    <span 
-                      key={chip}
-                      className="px-3 py-1 rounded-full bg-black/6 text-slate-800 text-xs font-semibold border border-black/5"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
 
                 {/* Technical Architecture Description */}
                 <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed mb-5 max-w-xl">
@@ -274,17 +262,7 @@ function StoryDeck({
                   className="w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out group-hover/deckcard:scale-105" 
                 />
                 {/* Subtle Cinematic Vignette for Depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10 pointer-events-none" />
-                
-                {/* Bottom Spec Badge Overlay */}
-                <div className="absolute inset-x-3 bottom-3 z-10 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-between">
-                  <span className="text-[11px] font-mono tracking-wider font-semibold uppercase truncate pr-2">
-                    {activeStory.title}
-                  </span>
-                  <span className="text-[10px] font-mono text-amber-300 uppercase tracking-widest whitespace-nowrap">
-                    FLING ⟷
-                  </span>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -345,17 +323,15 @@ const projects = [
         step: "01 / 04",
         title: "Crop Health & Terrain Mapping",
         subtitle: "Multispectral SLAM",
-        chips: ["Multispectral", "±2cm Mesh", "Autonomous"],
         desc: "Aerial multispectral monitoring for agricultural terrain assessment, foliar pathogen detection, and high-precision survey coverage under adverse environmental conditions.",
         quote: "Autonomous multi-spectral passes identify fungal pathogen vectors three days before visible canopy wilting, profiling twenty square kilometers with sub-centimeter mesh precision.",
-        image: foliarScan
+        image: realAgriCropMapping
       },
       {
         id: "swarm-2",
         step: "02 / 04",
         title: "Infrastructure & Vessel Inspection",
         subtitle: "Edge Computer Vision",
-        chips: ["Edge CV", "99.9% Recall", "0-Defect"],
         desc: "Automated aerial inspection platforms executing close-proximity optical and thermal telemetry to detect structural micro-fractures across naval hulls and industrial infrastructure.",
         quote: "Edge computer vision pipelines flag 0.1-millimeter structural micro-fractures along naval superstructures and turbine towers without halting daily commercial operations.",
         image: realDroneClean
@@ -365,7 +341,6 @@ const projects = [
         step: "03 / 04",
         title: "GPS-Denied Autonomous Flight",
         subtitle: "Visual-Inertial SLAM",
-        chips: ["Visual SLAM", "<8ms Drift", "Hardened"],
         desc: "Deterministic navigation architecture powered by visual-inertial odometry, optical flow, and multi-spectral fusion operating with zero satellite dependencies.",
         quote: "Visual-inertial odometry fused with optical contour SLAM maintains under 8-millimeter drift per hour through heavily contested and electronic-countermeasure airspace.",
         image: realSurveyDrone
@@ -375,10 +350,9 @@ const projects = [
         step: "04 / 04",
         title: "Coordinated Multi-Agent Operations",
         subtitle: "Distributed Mesh Protocol",
-        chips: ["64 Nodes", "Mesh Protocol", "Zero-Latency"],
         desc: "Decentralized peer-to-peer aerial mesh networking enabling dozens of autonomous UAVs to dynamically partition search sectors, survey perimeters, and share target telemetry.",
         quote: "A decentralized peer-to-peer mesh protocol autonomously partitions sweeping search grids across mountainous perimeters with zero single points of network failure.",
-        image: autonomousDrones
+        image: realDroneFleet
       }
     ]
   },
@@ -397,40 +371,36 @@ const projects = [
         step: "01 / 04",
         title: "Pharmaceutical Supply Chain Core",
         subtitle: "Cold-Chain Intelligence",
-        chips: ["Cold-Chain", "99.98% SLA", "Zero-Waste"],
         desc: "Predictive telemetry system monitoring vaccine temperature integrity, hospital pharmacy burn rates, and dynamic inventory re-routing across regional clinical networks.",
         quote: "Continuous thermodynamic sensors and predictive logistics automatically re-route temperature-sensitive pharmaceutical batches before clinical cold-chain thresholds are breached.",
-        image: healthSupplyChain
+        image: realPharmaColdChain
       },
       {
         id: "health-2",
         step: "02 / 04",
         title: "Clinical Operations & Patient Flow",
         subtitle: "Hospital Telemetry Hub",
-        chips: ["Telemetry", "-42% Wait", "Real-Time"],
         desc: "Deterministic hospital workflow orchestration predicting patient bed turnarounds, ER admission bottlenecks, and surgical equipment sterilization schedules.",
         quote: "Hospital telemetry models anticipate emergency ward surges and ICU bed availability forty-two minutes ahead, eliminating clinical throughput bottlenecks entirely.",
-        image: digitalOpsPlatform
+        image: realHospitalTelemetry
       },
       {
         id: "health-3",
         step: "03 / 04",
         title: "Regulatory Compliance & Audit Trails",
         subtitle: "Cryptographic Ledger",
-        chips: ["ISO 13485", "Air-Gapped", "Audit Mesh"],
         desc: "Air-gapped verification frameworks ensuring tamper-evident tracking of clinical software pipelines, medical device telemetry, and patient privacy records.",
         quote: "Air-gapped cryptographic logging ensures every diagnostic pipeline execution and patient telemetry query adheres strictly to ISO 13485 compliance standards.",
-        image: complianceSystem
+        image: realMedicalCleanroom
       },
       {
         id: "health-4",
         step: "04 / 04",
         title: "Radiological Diagnostics Assistant",
         subtitle: "Neural Micro-Imaging",
-        chips: ["0.02s Infer", "0.1mm Res", "FDA Tier"],
         desc: "Multi-planar convolutional inference engine assisting radiologists with millisecond detection of micro-lesions, neurological anomalies, and pulmonary scans.",
         quote: "High-resolution convolutional neural networks assist clinical staff by detecting sub-millimeter neurological anomalies with zero cloud dependency and zero latency.",
-        image: medDiagnostics
+        image: realHealthLab
       }
     ]
   },
@@ -449,7 +419,6 @@ const projects = [
         step: "01 / 03",
         title: "High-Speed Robotic Optical Inspection",
         subtitle: "Surface Defect Telemetry",
-        chips: ["1200 PPM", "Sub-Mil", "Optical QC"],
         desc: "High-speed multi-axis computer vision modules inspecting precision machined assemblies, welds, and composite structures at assembly-line velocity.",
         quote: "Optical laser profiling monitors complex titanium geometries at twelve hundred parts per minute, eliminating assembly flaws before components enter final integration.",
         image: realIndustryFactory
@@ -459,20 +428,18 @@ const projects = [
         step: "02 / 03",
         title: "Predictive Machine Maintenance",
         subtitle: "Acoustic & Vibration Matrix",
-        chips: ["14 Days Adv", "Harmonics", "Zero-Downtime"],
         desc: "Edge vibration harmonics and thermal sensor telemetry identifying bearing micro-pitting and mechanical fatigue long before catastrophic line failure occurs.",
         quote: "Acoustic vibration harmonic analysis flags bearing micro-spalling two weeks prior to component fatigue, maintaining continuous production schedules across heavy plant facilities.",
-        image: indranavIndustrial
+        image: realCncMachining
       },
       {
         id: "mfg-3",
         step: "03 / 03",
         title: "Deterministic Digital Twin Sim",
         subtitle: "Assembly Kinematics",
-        chips: ["<3ms Sync", "Kinematics", "Twin Fabric"],
         desc: "Bidirectional physics-accurate digital twin models orchestrating robotic arms, AGVs, and tooling kinematics to eliminate line bottlenecks and retooling delays.",
         quote: "Bidirectional kinematics synchronization between physical robotic cells and simulation models cuts retooling changeover times from days to twenty minutes.",
-        image: indranavFusion
+        image: realRoboticAssembly
       }
     ]
   },
@@ -491,7 +458,6 @@ const projects = [
         step: "01 / 03",
         title: "Naval Vessel Diagnostics & Telemetry",
         subtitle: "Hull Vibration Matrix",
-        chips: ["100% Uptime", "Propulsion", "Continuous"],
         desc: "Real-time telemetry networks aggregating shaft torque, hull hydrodynamic stress, and fuel efficiency metrics across commercial and naval maritime fleets.",
         quote: "Subsurface hydrodynamic telemetry continuously monitors hull vibration, shaft torque, and propulsion efficiency across thousands of nautical miles in open waters.",
         image: realMaritimeVessel
@@ -501,17 +467,15 @@ const projects = [
         step: "02 / 03",
         title: "Autonomous Coastal Radar & Surveillance",
         subtitle: "Long-Range Optical",
-        chips: ["120km Range", "24/7 Radar", "Optical Sweep"],
         desc: "Autonomous coastal radar stations combining high-gain FMCW radar, thermal optical tracking, and AIS fusion to secure territorial waters against dark vessels.",
         quote: "Autonomous shore-based FMCW radar stations and long-range optical feeds fuse AIS data to track dark vessel incursions through dense sea fog and heavy squalls.",
-        image: portIntelligenceMain
+        image: realNavalSurveillance
       },
       {
         id: "mar-3",
         step: "03 / 03",
         title: "Container Terminal Freight Automation",
         subtitle: "Smart Port Freight Flow",
-        chips: ["+35% Moves", "Vision Gantry", "Smart Port"],
         desc: "Deep-water port intelligence system orchestrating automated straddle carriers, STS crane cycles, and container stack sequencing for zero-congestion turnarounds.",
         quote: "Vision-guided ship-to-shore gantry cranes and autonomous straddle carriers synchronize container yard moves with 35% higher container throughput per berth hour.",
         image: portInfrastructure
@@ -533,7 +497,6 @@ const projects = [
         step: "01 / 03",
         title: "Cryptographic Document & Signal Parser",
         subtitle: "Hardware-Accelerated NLP",
-        chips: ["10GB/sec", "Encrypted", "Zero-Leak"],
         desc: "Hardware-accelerated tokenization and semantic entity extraction ingesting sovereign signals, multi-lingual transcripts, and encrypted operational feeds.",
         quote: "Hardware-accelerated cryptographic tokenization ingests multi-lingual intelligence feeds, extracting actionable entities in real time with zero external network egress.",
         image: novaliseoServersPure
@@ -543,20 +506,18 @@ const projects = [
         step: "02 / 03",
         title: "Autonomous Zero-Day Threat Hunting",
         subtitle: "Kernel-Level Behavioral Shield",
-        chips: ["<1ms Block", "Zero-Trust", "Deep Packet"],
         desc: "Autonomous behavioral models monitoring kernel-level telemetry and network fabric anomalies to isolate lateral movements before privilege escalation can occur.",
         quote: "Autonomous behavioral kernel sensors detect and terminate unauthorized memory execution and lateral movement before privilege escalation can occur.",
-        image: novaliseoDatacenterServers
+        image: serverRoomAisle
       },
       {
         id: "cyber-3",
         step: "03 / 03",
         title: "Air-Gapped Sovereign Datacenter Core",
         subtitle: "High-Throughput On-Prem Mesh",
-        chips: ["Zero-Cloud", "Air-Gapped", "On-Prem Core"],
         desc: "Deterministic distributed high-throughput database clusters execute sovereign defense computations entirely on isolated on-premise hardware fabrics.",
         quote: "Deterministic distributed high-throughput database clusters execute sovereign defense computations entirely on isolated on-premise hardware fabrics.",
-        image: digitalProjectBg
+        image: realSovereignDatacenter
       }
     ]
   }
