@@ -5,27 +5,26 @@ import NoiseBlobsHero from "../components/NoiseBlobsHero";
 
 export default function IndustryTrainingsPage() {
   return (
-    <div className="min-h-screen bg-[#020617] pt-28 pb-32 text-white relative selection:bg-cyan-500/30 overflow-hidden">
+    <div className="min-h-screen bg-[#020617] text-white relative selection:bg-cyan-500/30 overflow-x-hidden">
       
       {/* Background System */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <ShaderBackground />
         
-        {/* Immersive mesh gradients for the hero */}
+        {/* Immersive mesh gradients for the page */}
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-500/10 blur-[150px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" style={{ animationDuration: '12s', animationDelay: '2s' }} />
+        <div className="absolute top-[40%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" style={{ animationDuration: '12s', animationDelay: '2s' }} />
         <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-purple-600/5 blur-[150px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
         
-        <div className="absolute inset-0 bg-[#020617]/80 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[#020617]/85 backdrop-blur-[2px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
-        
-        {/* ================= 3D NOISE BLOBS HERO (MATCHING USER SCREENSHOT) ================= */}
-        <NoiseBlobsHero />
+      {/* ================= FULL-SCREEN 3D NOISE BLOBS HERO ================= */}
+      <NoiseBlobsHero />
 
-        {/* Polished Glassmorphic Cards */}
-        <div id="training-tracks" className="grid lg:grid-cols-2 gap-10 mt-16 pt-8 border-t border-white/10">
+      {/* ================= CURRICULUM TRAINING TRACKS SECTION ================= */}
+      <section id="training-tracks" className="relative z-10 max-w-7xl mx-auto px-6 py-20 sm:py-28">
+        <div className="grid lg:grid-cols-2 gap-10">
           
           {/* Student Card */}
           <motion.div 
@@ -88,7 +87,7 @@ export default function IndustryTrainingsPage() {
           </motion.div>
           
         </div>
-      </div>
+      </section>
     </div>
   );
 }

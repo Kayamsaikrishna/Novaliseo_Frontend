@@ -1,243 +1,151 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, Sparkles, Check, ArrowRight, RotateCcw, Volume2, VolumeX } from "lucide-react";
-import NoiseBlobsCanvas, { PALETTES } from "./NoiseBlobsCanvas";
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Cpu, ShieldCheck, Plane, Terminal, ChevronDown } from "lucide-react";
+import NoiseBlobsCanvas from "./NoiseBlobsCanvas";
 
 export default function NoiseBlobsHero() {
-  const [activePalette, setActivePalette] = useState("lowtide");
-  const [stirFactor, setStirFactor] = useState(1.0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [activeMode, setActiveMode] = useState<"lowtide" | "trainings">("lowtide");
-  const [audioFeedback, setAudioFeedback] = useState(false);
-
-  // Play button simulates ambient acoustic synthesizer feedback (Web Audio API synthetic tone)
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      if (AudioCtx) {
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(220, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.6);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.8);
-        setAudioFeedback(true);
-        setTimeout(() => setAudioFeedback(false), 800);
-      }
-    } catch (e) {
-      // AudioContext not allowed or unsupported
+  const scrollToTracks = () => {
+    const el = document.getElementById("training-tracks");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+    <section className="relative w-full min-h-[92vh] sm:min-h-screen flex items-center justify-center overflow-hidden select-none">
       
-      {/* ========================================================================= */}
-      {/* 1. HERO SHOWCASE CARD (EXACT AESTHETIC & STRUCTURE FROM SCREENSHOT)       */}
-      {/* ========================================================================= */}
-      <div className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] rounded-[32px] sm:rounded-[44px] bg-[#07090e] border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col justify-between p-6 sm:p-10 lg:p-14 select-none group/herocard">
+      {/* ================= 1. FULL-SCREEN 3D NOISE BLOBS CANVAS ================= */}
+      <NoiseBlobsCanvas interactive={true} />
+
+      {/* Atmospheric Cinematic Lighting Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/95 via-[#020617]/75 to-transparent pointer-events-none z-10 w-full lg:w-3/5" />
+      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#020617] via-[#020617]/70 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#020617]/80 to-transparent pointer-events-none z-10" />
+
+      {/* Ambient Luminous Color Halos */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-cyan-500/15 blur-[120px] pointer-events-none z-10 animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[150px] pointer-events-none z-10" />
+
+      {/* ================= 2. HERO CONTENT CONTAINER (AUTONOMOUS WORKFORCE) ================= */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-24 pb-16 flex flex-col justify-between min-h-[80vh]">
         
-        {/* ================= 3D NOISE BLOBS WEBGL CANVAS BACKGROUND ================= */}
-        <NoiseBlobsCanvas 
-          paletteKey={activePalette}
-          onStirFactorChange={setStirFactor}
-          interactive={true}
-        />
+        {/* Top Space / Alignment */}
+        <div />
 
-        {/* Ambient Dark Gradient Vignette for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07090e]/95 via-[#07090e]/65 to-transparent pointer-events-none z-10 w-full lg:w-3/4" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07090e]/90 via-transparent to-[#07090e]/40 pointer-events-none z-10" />
-
-        {/* ================= TOP ROW: BADGE + CONTROLS ================= */}
-        <div className="relative z-20 flex items-center justify-between w-full">
-          {/* Top Left: BACKGROUND Pill Badge */}
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] font-mono font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white/90 border border-white/15 backdrop-blur-xl transition-all shadow-md">
-              BACKGROUND
+        {/* Main Editorial Text & Action Row */}
+        <div className="max-w-2xl lg:max-w-3xl text-left my-auto">
+          
+          {/* Official Company Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl mb-6 shadow-[0_4px_20px_rgba(6,182,212,0.15)]"
+          >
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+            <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-widest text-cyan-300">
+              Novaliseo Workforce Academy
             </span>
+          </motion.div>
 
-            {/* Mode Switcher Toggle: Lowtide (Screenshot) vs Novaliseo Trainings */}
-            <div className="hidden sm:flex items-center p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <button
-                onClick={() => setActiveMode("lowtide")}
-                className={`text-[11px] font-mono px-3 py-1 rounded-full transition-all ${
-                  activeMode === "lowtide"
-                    ? "bg-white text-black font-bold shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                Lowtide View
-              </button>
-              <button
-                onClick={() => setActiveMode("trainings")}
-                className={`text-[11px] font-mono px-3 py-1 rounded-full transition-all ${
-                  activeMode === "trainings"
-                    ? "bg-cyan-400 text-black font-bold shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                Workforce Track
-              </button>
-            </div>
-          </div>
+          {/* Master Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.02] mb-6 drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+          >
+            Autonomous Systems <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
+              Industry Trainings
+            </span>
+          </motion.h1>
 
-          {/* Top Right: Close / Reset Button */}
-          <div className="flex items-center gap-3">
-            {audioFeedback && (
-              <span className="text-xs font-mono text-amber-300 animate-pulse flex items-center gap-1.5 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-                <Volume2 className="w-3.5 h-3.5" /> Tone Triggered
-              </span>
-            )}
+          {/* Genuine Novaliseo Editorial Narrative */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-8 max-w-2xl drop-shadow-md"
+          >
+            Bridging academic theory and sovereign defense execution. Intensive hands-on engineering programs in autonomous drone swarms, edge computer vision, hardware-in-the-loop SLAM, and physical robotics deployment.
+          </motion.p>
+
+          {/* Action CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-4 sm:gap-5 mb-10"
+          >
             <button
-              onClick={() => {
-                setActivePalette("lowtide");
-                setActiveMode("lowtide");
-              }}
-              title="Reset Hero View"
-              aria-label="Reset view"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center backdrop-blur-xl border border-white/15 transition-all hover:scale-105 active:scale-95 shadow-md"
+              onClick={scrollToTracks}
+              className="group inline-flex items-center gap-3 px-7 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:scale-105 shadow-[0_10px_35px_rgba(6,182,212,0.4)] active:scale-95"
             >
-              ✕
-            </button>
-          </div>
-        </div>
-
-        {/* ================= CENTER CONTENT: EDITORIAL TITLE & NARRATIVE ================= */}
-        <div className="relative z-20 max-w-xl lg:max-w-2xl py-8 my-auto text-left">
-          <AnimatePresence mode="wait">
-            {activeMode === "lowtide" ? (
-              <motion.div
-                key="lowtide-content"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-              >
-                {/* Screenshot Exact Headline: "Lowtide sessions" */}
-                <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[100px] font-bold text-white tracking-tight leading-[0.92] mb-1 drop-shadow-2xl">
-                  Lowtide
-                </h1>
-                <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-300 font-light block mb-6 tracking-normal">
-                  sessions
-                </span>
-
-                {/* Screenshot Exact Editorial Narrative */}
-                <p className="text-sm sm:text-base md:text-lg text-slate-300 font-normal leading-relaxed max-w-lg mb-8 drop-shadow-md">
-                  Recorded after midnight in a converted boathouse, with the tape left running between takes. Six long pieces for synthesizer, cello and the sound of the harbour, mixed to be played quietly and all the way through.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="trainings-content"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-              >
-                {/* Tailored Workforce Trainings Headline */}
-                <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[92px] font-black text-white tracking-tight leading-[0.92] mb-1 drop-shadow-2xl">
-                  Sovereign
-                </h1>
-                <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-cyan-400 font-light block mb-6 tracking-normal">
-                  workforce sessions
-                </span>
-
-                {/* Industry Trainings Curriculum Narrative */}
-                <p className="text-sm sm:text-base md:text-lg text-slate-300 font-normal leading-relaxed max-w-lg mb-8 drop-shadow-md">
-                  Deterministic robotics engineering, air-gapped simulation twins, and hardened edge silicon deployment. Hands-on intensive cohorts designed for aerospace engineers, defense operators, and specialized technical leaders.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Play / Interactive Trigger Button Overlay */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={togglePlay}
-              className="group/play inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-xl text-white text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 shadow-[0_15px_35px_rgba(0,0,0,0.5)] active:scale-95"
-            >
-              <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover/play:scale-110">
-                {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
+              <span>Explore Training Tracks</span>
+              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1">
+                <ArrowRight className="w-4 h-4" />
               </div>
-              <span>{isPlaying ? "Pause Session Sound" : "Listen to Harbour Take"}</span>
             </button>
 
             <a
-              href="#training-tracks"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-transparent hover:bg-white/10 text-slate-300 hover:text-white text-sm font-medium transition-all"
+              href="/partner"
+              className="inline-flex items-center gap-2.5 px-6 py-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-xl text-white font-medium text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
             >
-              <span>Explore Curriculum</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Partner With Us</span>
             </a>
-          </div>
+          </motion.div>
+
+          {/* Enterprise Capability Pillars Row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15 max-w-2xl"
+          >
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
+              <Plane className="w-4 h-4 text-cyan-400 shrink-0" />
+              <span>Drone Swarms</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
+              <Cpu className="w-4 h-4 text-blue-400 shrink-0" />
+              <span>Edge Silicon</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
+              <Terminal className="w-4 h-4 text-purple-400 shrink-0" />
+              <span>SLAM & Vision</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
+              <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>Accreditation</span>
+            </div>
+          </motion.div>
+
         </div>
 
-        {/* ================= BOTTOM BAR INSIDE HERO: HINT & LIVE STIR GAUGE ================= */}
-        <div className="relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-6 border-t border-white/10 text-xs text-slate-400 font-mono">
+        {/* Bottom Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="pt-6 flex items-center justify-between text-xs font-mono text-slate-400"
+        >
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span>Move pointer across the canvas to stir the fluid blobs</span>
+            <span>Interactive Real-Time Sensor & Simulation Fabric</span>
           </div>
 
-          <div className="flex items-center gap-2 bg-black/40 px-3 py-1 rounded-full border border-white/10">
-            <span className="text-slate-400">Stir Velocity:</span>
-            <span className={`font-bold ${stirFactor > 1.2 ? "text-amber-400" : "text-cyan-400"}`}>
-              {stirFactor}x
-            </span>
-          </div>
-        </div>
+          <button 
+            onClick={scrollToTracks}
+            className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors"
+          >
+            <span>Scroll to Tracks</span>
+            <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
+          </button>
+        </motion.div>
 
       </div>
 
-      {/* ========================================================================= */}
-      {/* 2. SPECIFICATION CAPTION BELOW HERO (EXACTLY AS IN SCREENSHOT)            */}
-      {/* ========================================================================= */}
-      <div className="mt-12 text-left">
-        
-        {/* Screenshot Exact Badge: "Personal & client use" */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-          <span className="text-xs font-mono font-bold tracking-wider text-slate-300 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10">
-            Personal & client use
-          </span>
-
-          {/* Interactive Palette Switcher Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-mono text-slate-400 mr-1">Shader Palette:</span>
-            {Object.entries(PALETTES).map(([key, pal]) => (
-              <button
-                key={key}
-                onClick={() => setActivePalette(key)}
-                className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all border ${
-                  activePalette === key
-                    ? "bg-white text-black font-semibold border-white shadow-md scale-105"
-                    : "bg-white/5 hover:bg-white/10 text-slate-300 border-white/10"
-                }`}
-              >
-                {pal.name.split(" ")[0]}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Screenshot Exact Heading: "Noise Blobs" */}
-        <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-3">
-          Noise Blobs
-        </h2>
-
-        {/* Screenshot Exact Description */}
-        <p className="text-slate-400 text-base sm:text-lg max-w-3xl leading-relaxed font-light">
-          Glossy blobs of poured paint: noise-displaced spheres banded from a palette, rippling and slowly spiralling, stirring faster under the pointer. Your content sits on top.
-        </p>
-
-      </div>
-
-    </div>
+    </section>
   );
 }
