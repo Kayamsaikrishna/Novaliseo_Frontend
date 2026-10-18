@@ -4,15 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { VolumetricStudio } from "./VolumetricStudio";
 
-import researchBg from "../assets/research_chamber_bg.jpg";
-import uavVisual from "../assets/trainings/hover_uav_assembly.jpg";
-import edgeAiVisual from "../assets/trainings/hover_edge_ai.jpg";
-import lidarVisual from "../assets/trainings/hover_lidar_slam.jpg";
+import orbitalBg from "../assets/novaliseo_earth_dawn.jpg";
+import indranavVisual from "../assets/indranav_fusion.png";
+import surveillanceVisual from "../assets/real_specs/real_naval_surveillance.jpg";
+import serversVisual from "../assets/novaliseo_servers_pure.jpg";
 
 interface ResearchDomain {
   id: string;
   num: string;
   title: string;
+  tagline: string;
   description: string;
   image: string;
 }
@@ -21,23 +22,26 @@ const domains: ResearchDomain[] = [
   {
     id: "01",
     num: "01",
-    title: "Autonomous Drone Swarms",
-    description: "Decentralized mesh networks, distributed flocking dynamics, and fail-safe formation flight stacks engineered for unconstrained atmospheric environments.",
-    image: uavVisual,
+    title: "IndraNav: GNSS-Denied Navigation",
+    tagline: "Terrain-Relative Optical Odometry & NavIC Satellite Fusion",
+    description: "Proprietary multi-sensor state estimation and visual-inertial odometry engineered to maintain sub-meter positioning in heavily jammed, spoofed, or satellite-denied operational theaters.",
+    image: indranavVisual,
   },
   {
     id: "02",
     num: "02",
-    title: "Sovereign Edge Silicon",
-    description: "Neuromorphic on-chip neural execution, TensorRT low-latency inference, and air-gapped embedded processors operating without external cloud dependency.",
-    image: edgeAiVisual,
+    title: "Stratospheric & Orbital Awareness",
+    tagline: "High-Altitude Pseudo-Satellites & Real-Time Border Telemetry",
+    description: "Autonomous persistent surveillance platforms, atmospheric telemetry payloads, and optical tracking algorithms developed for continuous maritime and border situational intelligence.",
+    image: surveillanceVisual,
   },
   {
     id: "03",
     num: "03",
-    title: "Physics Digital Twins & SLAM",
-    description: "Hardware-in-the-loop simulation testbeds, 3D LiDAR spatial mapping, and Isaac Sim synthetic sensor pipelines for safety-critical deployment.",
-    image: lidarVisual,
+    title: "Sovereign Air-Gapped Supercompute",
+    tagline: "High-Density Neural Acceleration & Zero-Cloud Hardware",
+    description: "Fault-tolerant on-premise compute architectures, hardware-enforced cryptographic boundaries, and deterministic real-time neural execution built for national defense infrastructure.",
+    image: serversVisual,
   },
 ];
 
@@ -48,17 +52,17 @@ export default function ResearchHeroSection() {
   return (
     <section className="relative w-full h-screen max-h-screen min-h-[700px] bg-[#020617] text-white overflow-hidden flex flex-col justify-between select-none">
       
-      {/* ================= 1. CINEMATIC AEROSPACE RESEARCH BACKGROUND ================= */}
+      {/* ================= 1. CINEMATIC ORBITAL RESEARCH BACKGROUND ================= */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src={researchBg} 
-          alt="Aerospace Research Laboratory" 
-          className="w-full h-full object-cover opacity-35" 
+          src={orbitalBg} 
+          alt="Earth Orbital Horizon at Dawn" 
+          className="w-full h-full object-cover opacity-40 scale-105" 
         />
-        {/* Atmospheric Gradient Overlays for Extreme Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/85 to-[#020617]/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/80" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px]" />
+        {/* Atmospheric Gradients for High Readability and Deep Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/90 to-[#020617]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/85" />
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[170px]" />
       </div>
 
       {/* Spacer to clear fixed Navbar cleanly */}
@@ -68,7 +72,7 @@ export default function ResearchHeroSection() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex-1 flex items-center my-auto">
         <div className="w-full grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Clean Editorial Statement & Interactive Domain Selectors (5 Cols) */}
+          {/* Left Column: Clean Editorial Statement & Interactive Domain Selectors (6 Cols) */}
           <div className="lg:col-span-6 text-left max-w-xl z-20">
             
             {/* Master Headline: Pure Unobstructed Editorial Typography */}
@@ -76,11 +80,11 @@ export default function ResearchHeroSection() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-bold text-white tracking-tight leading-[1.02] mb-5"
+              className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-bold text-white tracking-tight leading-[1.02] mb-5"
             >
-              Research at the <br />
-              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-cyan-400">
-                frontier of autonomy.
+              Pioneering the frontier of <br />
+              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-blue-400">
+                sovereign intelligence.
               </span>
             </motion.h1>
 
@@ -91,7 +95,7 @@ export default function ResearchHeroSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed mb-8 max-w-lg"
             >
-              We partner with university faculties, sovereign defense laboratories, and deep-tech enterprises to co-develop swarm robotics, edge microprocessors, and physics-accurate simulation testbeds.
+              Novaliseo Research collaborates with leading aerospace institutions, defense consortia, and university laboratories to co-develop sovereign GNSS-denied navigation, stratospheric intelligence, and air-gapped neural supercompute.
             </motion.p>
 
             {/* Interactive Domain List (Switch active spotlight specimen) */}
@@ -181,7 +185,7 @@ export default function ResearchHeroSection() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                       />
                       {/* Ambient Specular Highlight */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-white/10 pointer-events-none" />
                     </div>
 
                     {/* Active Specimen Narrative */}
@@ -207,8 +211,8 @@ export default function ResearchHeroSection() {
 
       {/* Bottom Subtle Status Bar */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono text-slate-500">
-        <span>● Active Laboratory Deployments &amp; Consortia</span>
-        <span>AICTE / UGC / Sovereign Defense Aligned</span>
+        <span>● Sovereign Aerospace &amp; Defense Consortia</span>
+        <span>IndraNav Proprietary Research Architecture</span>
       </div>
 
     </section>
