@@ -213,14 +213,14 @@ export default function NoiseBlobsCanvas({
     };
 
     // 4. Create Beautiful Balanced Composition (Clean Dual-Blob Sculpture without Awkward Top Overlaps)
-    // Blob 1: Large Main Blob on the right side
-    const geo1 = new THREE.IcosahedronGeometry(1.55, 48);
+    // Blob 1: Main Blob on the right side
+    const geo1 = new THREE.IcosahedronGeometry(1.25, 48);
     const mat1 = createShaderMaterial(2.2, 0.22, 1.05);
     const blob1 = new THREE.Mesh(geo1, mat1);
     scene.add(blob1);
 
     // Blob 2: Satellite Floating Blob in lower-center
-    const geo2 = new THREE.IcosahedronGeometry(0.65, 36);
+    const geo2 = new THREE.IcosahedronGeometry(0.50, 36);
     const mat2 = createShaderMaterial(2.8, 0.17, 1.35);
     mat2.uniforms.uColor1.value = new THREE.Color("#d97706");
     mat2.uniforms.uColor2.value = new THREE.Color("#fbbf24");
@@ -231,17 +231,17 @@ export default function NoiseBlobsCanvas({
     // Dynamic placement helper that fits the screen automatically
     const updatePositions = (w: number) => {
       if (w < 768) {
-        blob1.position.set(0.0, -0.3, -0.4);
-        blob1.scale.set(0.9, 0.9, 0.9);
-        blob2.position.set(-0.6, -1.6, 0.3);
+        blob1.position.set(0.0, -0.25, -0.4);
+        blob1.scale.set(0.85, 0.85, 0.85);
+        blob2.position.set(-0.5, -1.35, 0.3);
       } else if (w < 1200) {
-        blob1.position.set(1.5, 0.05, 0.0);
-        blob1.scale.set(1.0, 1.0, 1.0);
-        blob2.position.set(0.1, -1.4, 0.5);
+        blob1.position.set(1.6, 0.05, 0.0);
+        blob1.scale.set(0.95, 0.95, 0.95);
+        blob2.position.set(0.2, -1.2, 0.5);
       } else {
-        blob1.position.set(2.0, 0.05, 0.1);
-        blob1.scale.set(1.15, 1.15, 1.15);
-        blob2.position.set(0.35, -1.45, 0.6);
+        blob1.position.set(2.1, 0.05, 0.1);
+        blob1.scale.set(1.0, 1.0, 1.0);
+        blob2.position.set(0.4, -1.25, 0.6);
       }
     };
 
