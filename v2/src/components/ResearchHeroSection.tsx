@@ -1,218 +1,256 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { VolumetricStudio } from "./VolumetricStudio";
+import { ArrowRight, ArrowUpRight, Sparkles, ChevronRight, Layers, Cpu, Plane, Radio, Terminal } from "lucide-react";
 
-import orbitalBg from "../assets/novaliseo_earth_dawn.jpg";
-import indranavVisual from "../assets/indranav_fusion.png";
-import surveillanceVisual from "../assets/real_specs/real_naval_surveillance.jpg";
-import serversVisual from "../assets/novaliseo_servers_pure.jpg";
+import uavImg from "../assets/trainings/hover_uav_assembly.jpg";
+import ugvImg from "../assets/trainings/hover_ground_ugv.jpg";
+import lidarImg from "../assets/trainings/hover_lidar_slam.jpg";
+import edgeAiImg from "../assets/trainings/hover_edge_ai.jpg";
+import hilImg from "../assets/trainings/hover_faculty_industry.jpg";
 
-interface ResearchDomain {
+interface ResearchAspect {
   id: string;
   num: string;
   title: string;
-  tagline: string;
+  category: string;
   description: string;
   image: string;
+  focus: string[];
 }
 
-const domains: ResearchDomain[] = [
+const aspects: ResearchAspect[] = [
   {
     id: "01",
     num: "01",
-    title: "IndraNav: GNSS-Denied Navigation",
-    tagline: "Terrain-Relative Optical Odometry & NavIC Satellite Fusion",
-    description: "Proprietary multi-sensor state estimation and visual-inertial odometry engineered to maintain sub-meter positioning in heavily jammed, spoofed, or satellite-denied operational theaters.",
-    image: indranavVisual,
+    title: "Autonomous Aerial & Flight Dynamics",
+    category: "Aerospace Systems",
+    description: "Developing custom flight controllers, multi-rotor aerodynamics, and autonomous waypoint guidance stacks tested in real-world wind and environmental conditions.",
+    image: uavImg,
+    focus: ["PX4 & ArduPilot Autopilots", "Swarm Telemetry Protocols", "Custom Airframe Design"],
   },
   {
     id: "02",
     num: "02",
-    title: "Stratospheric & Orbital Awareness",
-    tagline: "High-Altitude Pseudo-Satellites & Real-Time Border Telemetry",
-    description: "Autonomous persistent surveillance platforms, atmospheric telemetry payloads, and optical tracking algorithms developed for continuous maritime and border situational intelligence.",
-    image: surveillanceVisual,
+    title: "Ground Robotics & Mobile Kinematics",
+    category: "Terrestrial Robotics",
+    description: "Engineering all-terrain rovers, Ackerman steering kinematics, CAN bus drive controllers, and rugged chassis built for unstructured and GPS-denied environments.",
+    image: ugvImg,
+    focus: ["CAN Bus Telemetry", "High-Torque BLDC Drives", "All-Terrain Suspension"],
   },
   {
     id: "03",
     num: "03",
-    title: "Sovereign Air-Gapped Supercompute",
-    tagline: "High-Density Neural Acceleration & Zero-Cloud Hardware",
-    description: "Fault-tolerant on-premise compute architectures, hardware-enforced cryptographic boundaries, and deterministic real-time neural execution built for national defense infrastructure.",
-    image: serversVisual,
+    title: "Embedded Edge AI & Low-Latency Vision",
+    category: "Compute & Silicon",
+    description: "Porting deep neural networks to constrained edge hardware. Accelerating real-time vision pipelines with TensorRT for high-framerate on-device inferencing.",
+    image: edgeAiImg,
+    focus: ["NVIDIA Jetson Architectures", "Sub-10ms Inference", "Thermal & Power Budgets"],
+  },
+  {
+    id: "04",
+    num: "04",
+    title: "3D Spatial Mapping, SLAM & Perception",
+    category: "Spatial Sensing",
+    description: "Integrating 3D LiDAR point clouds, stereo depth sensors, Kalman sensor fusion, and Isaac Sim physics-accurate digital twin validation for safety-critical platforms.",
+    image: lidarImg,
+    focus: ["3D LiDAR Odometry", "Isaac Sim Physics Twins", "Sensor Fusion Filters"],
+  },
+  {
+    id: "05",
+    num: "05",
+    title: "Hardware-in-the-Loop & Bench Validation",
+    category: "Laboratory R&D",
+    description: "Rapid prototyping and rigorous electrical testing using oscilloscopes, real-time waveform telemetry, and hardware-in-the-loop (HIL) automated regression testbenches.",
+    image: hilImg,
+    focus: ["HIL Simulation Racks", "Firmware Regression Testing", "Oscilloscope Diagnostics"],
   },
 ];
 
 export default function ResearchHeroSection() {
   const [activeId, setActiveId] = useState<string>("01");
-  const activeDomain = domains.find((d) => d.id === activeId) || domains[0];
+  const activeAspect = aspects.find((a) => a.id === activeId) || aspects[0];
+
+  const scrollToCollab = () => {
+    const el = document.getElementById("collaboration-models");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <section className="relative w-full h-screen max-h-screen min-h-[700px] bg-[#020617] text-white overflow-hidden flex flex-col justify-between select-none">
+    <section className="relative w-full min-h-[92vh] sm:min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-hidden flex flex-col justify-between pt-28 sm:pt-32 pb-12 sm:pb-16 select-none">
       
-      {/* ================= 1. CINEMATIC ORBITAL RESEARCH BACKGROUND ================= */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img 
-          src={orbitalBg} 
-          alt="Earth Orbital Horizon at Dawn" 
-          className="w-full h-full object-cover opacity-40 scale-105" 
-        />
-        {/* Atmospheric Gradients for High Readability and Deep Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/90 to-[#020617]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/85" />
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[170px]" />
-      </div>
+      {/* Background Soft Ambient Lighting Blobs */}
+      <div className="absolute top-20 right-10 w-[550px] h-[550px] rounded-full bg-cyan-500/10 blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] rounded-full bg-blue-600/8 blur-[160px] pointer-events-none" />
 
-      {/* Spacer to clear fixed Navbar cleanly */}
-      <div className="h-20 sm:h-24 shrink-0" />
-
-      {/* ================= 2. MAIN RESEARCH STAGE (TWO-COLUMN CINEMATIC GALLERY) ================= */}
+      {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex-1 flex items-center my-auto">
-        <div className="w-full grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="w-full grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Clean Editorial Statement & Interactive Domain Selectors (6 Cols) */}
-          <div className="lg:col-span-6 text-left max-w-xl z-20">
+          {/* Left Column: Clean Editorial Statement & Narrative (6 Cols) */}
+          <div className="lg:col-span-6 text-left max-w-xl">
             
-            {/* Master Headline: Pure Unobstructed Editorial Typography */}
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-bold text-white tracking-tight leading-[1.02] mb-5"
-            >
-              Pioneering the frontier of <br />
-              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-blue-400">
-                sovereign intelligence.
-              </span>
-            </motion.h1>
-
-            {/* Concise Mission Narrative */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed mb-8 max-w-lg"
-            >
-              Novaliseo Research collaborates with leading aerospace institutions, defense consortia, and university laboratories to co-develop sovereign GNSS-denied navigation, stratospheric intelligence, and air-gapped neural supercompute.
-            </motion.p>
-
-            {/* Interactive Domain List (Switch active spotlight specimen) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-2.5 mb-8"
-            >
-              {domains.map((domain) => {
-                const isActive = activeId === domain.id;
-                return (
-                  <div
-                    key={domain.id}
-                    onClick={() => setActiveId(domain.id)}
-                    onMouseEnter={() => setActiveId(domain.id)}
-                    className={`group px-4 sm:px-5 py-3 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
-                      isActive 
-                        ? "bg-white/10 border-cyan-400/40 shadow-[0_4px_20px_rgba(6,182,212,0.15)] backdrop-blur-md" 
-                        : "bg-white/[0.02] hover:bg-white/[0.06] border-white/10 hover:border-white/20"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <span className={`text-xs font-mono font-bold transition-colors ${
-                        isActive ? "text-cyan-400" : "text-slate-500 group-hover:text-slate-300"
-                      }`}>
-                        {domain.num}
-                      </span>
-                      <span className={`text-xs sm:text-sm font-semibold tracking-tight transition-colors ${
-                        isActive ? "text-white" : "text-slate-400 group-hover:text-white"
-                      }`}>
-                        {domain.title}
-                      </span>
-                    </div>
-
-                    <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${
-                      isActive ? "text-cyan-400 translate-x-1" : "text-slate-600 group-hover:text-slate-400"
-                    }`} />
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            {/* Primary Action Button */}
+            {/* Category Subtitle */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-2 mb-4"
+            >
+              <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
+              <span className="text-xs font-mono font-semibold tracking-[0.22em] text-slate-500 uppercase">
+                Interdisciplinary Research &amp; Co-Development
+              </span>
+            </motion.div>
+
+            {/* Master Headline: Instrument Serif Style with Contrast */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-normal font-serif text-[#1e293b] leading-[1.0] tracking-tight mb-5"
+            >
+              Multidisciplinary research, <br />
+              <span className="italic text-[#0f172a] block mt-1 font-serif">
+                built for open collaboration.
+              </span>
+            </motion.h1>
+
+            {/* Narrative Explaining our Research Team across Multiple Aspects */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs sm:text-sm md:text-[15px] lg:text-base text-slate-600 font-normal leading-relaxed mb-7 max-w-lg"
+            >
+              At Novaliseo, our dedicated research team works across multiple technical aspects—from autonomous flight mechanics and ground robotics to embedded neural hardware, edge algorithms, and sensor telemetry. We actively partner with university faculties, research scholars, and enterprise R&amp;D teams who are willing to collaborate, co-innovate, and build real-world physical technologies.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap items-center gap-4 sm:gap-5 mb-8"
             >
               <a
                 href="/partner"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
+                className="px-7 py-3.5 rounded-full bg-slate-950 hover:bg-black text-white font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 group"
               >
-                <span>Initiate Research Partnership</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Collaborate With Our Team</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
+
+              <button
+                onClick={scrollToCollab}
+                className="px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-300/80 font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-xs hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+              >
+                <span>How We Partner</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-500" />
+              </button>
+            </motion.div>
+
+            {/* Multi-Aspect Coverage Strip */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="pt-5 border-t border-slate-300/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-mono font-medium text-slate-600"
+            >
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
+                Flight Dynamics
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                Ground Robotics
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+                Edge AI &amp; Vision
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                Sensor SLAM
+              </span>
             </motion.div>
 
           </div>
 
-          {/* Right Column: 3D Volumetric Spotlight Chamber with Illuminated Specimen (6 Cols) */}
-          <div className="lg:col-span-6 relative w-full h-[380px] sm:h-[440px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
+          {/* Right Column: Interactive Multi-Aspect Visual Showcase (6 Cols) */}
+          <div className="lg:col-span-6 w-full flex flex-col justify-center">
             
-            {/* The 3D Volumetric Studio Stage */}
-            <VolumetricStudio 
-              spots={[50]} 
-              className="w-full h-full border border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.95)]"
-            >
-              {/* Illuminated Hardware Specimen Floating in the Spotlight Cone */}
-              <div className="relative w-full h-full flex flex-col items-center justify-end pb-8 sm:pb-10 px-6 sm:px-10 z-20 pointer-events-auto">
-                
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeDomain.id}
-                    initial={{ opacity: 0, scale: 0.9, y: 25 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full max-w-md flex flex-col items-center text-center"
-                  >
-                    
-                    {/* Floating Illuminated Hardware Photograph (No tags, pure physical visual) */}
-                    <div className="relative w-full aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-slate-950/80 mb-4 group">
-                      <img 
-                        src={activeDomain.image} 
-                        alt={activeDomain.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      />
-                      {/* Ambient Specular Highlight */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-white/10 pointer-events-none" />
-                    </div>
-
-                    {/* Active Specimen Narrative */}
-                    <div className="max-w-sm">
-                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight mb-1">
-                        {activeDomain.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-400 font-normal leading-relaxed line-clamp-2">
-                        {activeDomain.description}
-                      </p>
-                    </div>
-
-                  </motion.div>
-                </AnimatePresence>
-
+            {/* Interactive Showcase Card (Like Hover List & Showcase in Trainings) */}
+            <div className="relative w-full rounded-[2.5rem] bg-[#f5f4ef] border border-[#e2e0d8] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
+              
+              {/* Aspect Selector Tabs */}
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-4 mb-6 border-b border-black/[0.08] no-scrollbar">
+                {aspects.map((aspect) => {
+                  const isActive = activeId === aspect.id;
+                  return (
+                    <button
+                      key={aspect.id}
+                      onClick={() => setActiveId(aspect.id)}
+                      className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-mono font-medium whitespace-nowrap transition-all duration-300 cursor-pointer ${
+                        isActive
+                          ? "bg-slate-950 text-white shadow-xs"
+                          : "bg-black/[0.04] text-slate-600 hover:bg-black/[0.08] hover:text-slate-950"
+                      }`}
+                    >
+                      {aspect.num} {aspect.category}
+                    </button>
+                  );
+                })}
               </div>
-            </VolumetricStudio>
+
+              {/* Active Visual Aspect Presentation */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeAspect.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col text-left"
+                >
+                  
+                  {/* Aspect Hardware Photograph */}
+                  <div className="relative w-full aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/90 shadow-[0_15px_40px_rgba(0,0,0,0.12)] mb-5 bg-slate-900 group">
+                    <img 
+                      src={activeAspect.image} 
+                      alt={activeAspect.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    />
+                  </div>
+
+                  {/* Aspect Title & Narrative */}
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight mb-2">
+                    {activeAspect.title}
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4 font-normal">
+                    {activeAspect.description}
+                  </p>
+
+                  {/* Bullet Highlights */}
+                  <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-black/[0.06]">
+                    {activeAspect.focus.map((item, idx) => (
+                      <span 
+                        key={idx}
+                        className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-[11px] font-mono shadow-2xs"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                </motion.div>
+              </AnimatePresence>
+
+            </div>
 
           </div>
 
         </div>
-      </div>
-
-      {/* Bottom Subtle Status Bar */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono text-slate-500">
-        <span>● Sovereign Aerospace &amp; Defense Consortia</span>
-        <span>IndraNav Proprietary Research Architecture</span>
       </div>
 
     </section>
