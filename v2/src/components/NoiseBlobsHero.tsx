@@ -63,28 +63,27 @@ export default function NoiseBlobsHero() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/5 hover:bg-slate-900/10 border border-slate-900/10 backdrop-blur-md transition-all">
               <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
               <span className="text-xs font-mono font-semibold tracking-widest text-slate-700 uppercase">
-                Defense & Autonomous Systems Cohorts
+                Hands-On Technical Training & Skill Development
               </span>
             </div>
           </motion.div>
 
-          {/* Master Headline: Large, Commanding, Sophisticated Dual-Weight */}
+          {/* Master Headline: Clean, Sophisticated Dual-Weight without any Gemini icon */}
           <motion.div variants={itemVariants} className="mb-5 sm:mb-6">
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[94px] xl:text-[104px] font-black text-slate-950 tracking-[-0.04em] leading-[0.92]">
               Industry <br />
               <span className="font-light text-slate-400">
                 trainings
               </span>
-              <span className="text-cyan-500 font-serif font-light text-5xl sm:text-6xl lg:text-7xl ml-2">✦</span>
             </h1>
           </motion.div>
 
-          {/* Genuine Editorial Narrative */}
+          {/* Learner-Focused Training Narrative */}
           <motion.p 
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-slate-600 font-normal leading-relaxed mb-8 sm:mb-9 max-w-xl"
           >
-            Deterministic autonomous robotics, hardware-in-the-loop simulation, and sovereign silicon edge deployment. Intensive cohorts engineered for aerospace engineers, defense operators, and next-generation technical leaders.
+            Practical, industry-grade training programs designed for students, engineering graduates, and working professionals. Master real-world technologies through live project building—from Autonomous Drones & Robotics to Computer Vision, Edge AI, and Embedded Systems.
           </motion.p>
 
           {/* Primary Action Buttons */}
@@ -103,14 +102,14 @@ export default function NoiseBlobsHero() {
             </button>
 
             <a
-              href="/partner"
+              href="/contact"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/85 hover:bg-white text-slate-900 border border-slate-300/80 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm"
             >
-              <span>Partner With Us</span>
+              <span>Enroll in a Program</span>
             </a>
           </motion.div>
 
-          {/* High-Impact Curriculum Highlights Bar (No wasted space!) */}
+          {/* Training Value Highlights (Focused on Learners & Professionals) */}
           <motion.div 
             variants={itemVariants}
             className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-slate-300/60 max-w-2xl"
@@ -118,30 +117,30 @@ export default function NoiseBlobsHero() {
             <div className="p-3.5 rounded-2xl bg-white/60 hover:bg-white/90 border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
               <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-base">
                 <Plane className="w-4 h-4 text-cyan-600" />
-                <span>04 Tracks</span>
+                <span>Hands-On Labs</span>
               </div>
               <p className="text-xs text-slate-500 font-normal leading-snug">
-                UAV Swarms, Embedded Vision, SLAM & Digital Twins
+                Build real autonomous drones, robotics kits & AI software
               </p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-white/60 hover:bg-white/90 border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
               <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-base">
                 <Cpu className="w-4 h-4 text-blue-600" />
-                <span>100% Silicon</span>
+                <span>Expert Mentorship</span>
               </div>
               <p className="text-xs text-slate-500 font-normal leading-snug">
-                Hardware-in-the-Loop physical bench verification
+                Learn directly from practicing engineers & tech specialists
               </p>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-white/60 hover:bg-white/90 border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
               <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-base">
                 <ShieldCheck className="w-4 h-4 text-amber-600" />
-                <span>Defense Tier</span>
+                <span>Certification</span>
               </div>
               <p className="text-xs text-slate-500 font-normal leading-snug">
-                Air-gapped deployment & ISO compliance standards
+                Verified industry credentials & portfolio-ready capstones
               </p>
             </div>
           </motion.div>
