@@ -1,196 +1,215 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, ArrowDown, Sparkles, Cpu, Radio, Layers } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { VolumetricStudio } from "./VolumetricStudio";
 
+import researchBg from "../assets/research_chamber_bg.jpg";
 import uavVisual from "../assets/trainings/hover_uav_assembly.jpg";
 import edgeAiVisual from "../assets/trainings/hover_edge_ai.jpg";
 import lidarVisual from "../assets/trainings/hover_lidar_slam.jpg";
 
-interface ResearchThrustCard {
-  number: string;
-  tag: string;
+interface ResearchDomain {
+  id: string;
+  num: string;
   title: string;
-  subtitle: string;
-  spec: string;
-  icon: React.ElementType;
+  description: string;
   image: string;
 }
 
-const thrusts: ResearchThrustCard[] = [
+const domains: ResearchDomain[] = [
   {
-    number: "01",
-    tag: "AEROSPACE SWARMS",
-    title: "Multi-Agent Swarm Autonomy",
-    subtitle: "Decentralized mesh networks, distributed flocking dynamics, and fail-safe formation control.",
-    spec: "PX4 / ROS2 · <15ms Mesh",
-    icon: Radio,
+    id: "01",
+    num: "01",
+    title: "Autonomous Drone Swarms",
+    description: "Decentralized mesh networks, distributed flocking dynamics, and fail-safe formation flight stacks engineered for unconstrained atmospheric environments.",
     image: uavVisual,
   },
   {
-    number: "02",
-    tag: "SOVEREIGN SILICON",
-    title: "Neuromorphic Edge Intelligence",
-    subtitle: "Air-gapped on-chip neural execution, TensorRT acceleration, and zero-cloud dependency.",
-    spec: "NVIDIA SOM · Sub-10ms Inference",
-    icon: Cpu,
+    id: "02",
+    num: "02",
+    title: "Sovereign Edge Silicon",
+    description: "Neuromorphic on-chip neural execution, TensorRT low-latency inference, and air-gapped embedded processors operating without external cloud dependency.",
     image: edgeAiVisual,
   },
   {
-    number: "03",
-    tag: "PHYSICS TWINS",
-    title: "Isaac Sim & 3D Spatial SLAM",
-    subtitle: "Hardware-in-the-loop validation, photorealistic synthetic sensors, and LiDAR occupancy mapping.",
-    spec: "Isaac Sim · 64-Beam LiDAR",
-    icon: Layers,
+    id: "03",
+    num: "03",
+    title: "Physics Digital Twins & SLAM",
+    description: "Hardware-in-the-loop simulation testbeds, 3D LiDAR spatial mapping, and Isaac Sim synthetic sensor pipelines for safety-critical deployment.",
     image: lidarVisual,
   },
 ];
 
 export default function ResearchHeroSection() {
-  const scrollToForm = () => {
-    const el = document.getElementById("partnership-form");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [activeId, setActiveId] = useState<string>("01");
+  const activeDomain = domains.find((d) => d.id === activeId) || domains[0];
 
   return (
-    <section className="relative w-full min-h-[92vh] sm:min-h-screen bg-black overflow-hidden flex items-center justify-center pt-20 pb-16">
+    <section className="relative w-full h-screen max-h-screen min-h-[700px] bg-[#020617] text-white overflow-hidden flex flex-col justify-between select-none">
       
-      {/* 3D Volumetric Studio with Spotlight Projection */}
-      <VolumetricStudio className="w-full h-full min-h-[92vh] sm:min-h-screen">
-        
-        {/* Main Stage UI */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center justify-center text-center my-auto min-h-[85vh] sm:min-h-[90vh]">
+      {/* ================= 1. CINEMATIC AEROSPACE RESEARCH BACKGROUND ================= */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src={researchBg} 
+          alt="Aerospace Research Laboratory" 
+          className="w-full h-full object-cover opacity-35" 
+        />
+        {/* Atmospheric Gradient Overlays for Extreme Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-[#020617]/85 to-[#020617]/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/80" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px]" />
+      </div>
+
+      {/* Spacer to clear fixed Navbar cleanly */}
+      <div className="h-20 sm:h-24 shrink-0" />
+
+      {/* ================= 2. MAIN RESEARCH STAGE (TWO-COLUMN CINEMATIC GALLERY) ================= */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 flex-1 flex items-center my-auto">
+        <div className="w-full grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Eyebrow Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 pointer-events-auto"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="text-white/80 text-[11px] sm:text-xs font-mono font-semibold tracking-[0.22em] uppercase">
-              Novaliseo Advanced Research &amp; Labs
-            </span>
-          </motion.div>
-
-          {/* Master Headline: Volumetric Editorial Typography */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.7, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[0.98] mb-6 font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white/95 to-white/40 drop-shadow-2xl"
-          >
-            Research in a <br />
-            <span className="italic font-serif font-normal text-white">
-              new physical dimension.
-            </span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.9, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="text-sm sm:text-base md:text-lg max-w-2xl mb-8 text-white/60 font-normal leading-relaxed"
-          >
-            We partner with leading academic faculties, sovereign deep-tech labs, and enterprise engineering teams to push the physical frontier of swarm robotics, edge silicon, and physics digital twins.
-          </motion.p>
-
-          {/* Action CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.1, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center gap-4 mb-14 pointer-events-auto"
-          >
-            {/* Primary Pill Button */}
-            <button
-              onClick={scrollToForm}
-              className="px-8 py-3.5 sm:py-4 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
+          {/* Left Column: Clean Editorial Statement & Interactive Domain Selectors (5 Cols) */}
+          <div className="lg:col-span-6 text-left max-w-xl z-20">
+            
+            {/* Master Headline: Pure Unobstructed Editorial Typography */}
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-bold text-white tracking-tight leading-[1.02] mb-5"
             >
-              <span>Apply for Research Collaboration</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+              Research at the <br />
+              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-cyan-400">
+                frontier of autonomy.
+              </span>
+            </motion.h1>
 
-            {/* Secondary Glass Button */}
-            <button
-              onClick={() => {
-                const el = document.getElementById("research-thrusts");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-7 py-3.5 sm:py-4 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/15 text-xs sm:text-sm font-semibold tracking-tight transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+            {/* Concise Mission Narrative */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed mb-8 max-w-lg"
             >
-              <span>Explore Research Thrusts</span>
-              <ArrowDown className="w-4 h-4 text-white/60" />
-            </button>
-          </motion.div>
+              We partner with university faculties, sovereign defense laboratories, and deep-tech enterprises to co-develop swarm robotics, edge microprocessors, and physics-accurate simulation testbeds.
+            </motion.p>
 
-          {/* ================= THREE ILLUMINATED RESEARCH VISUAL PODS ================= */}
-          {/* Positioned directly under the 3 ceiling spotlight beams (35%, 50%, 65%) */}
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 pointer-events-auto max-w-5xl"
-          >
-            {thrusts.map((t, idx) => {
-              const Icon = t.icon;
-              return (
-                <div
-                  key={idx}
-                  className="group relative rounded-2xl sm:rounded-3xl bg-black/60 hover:bg-black/80 border border-white/10 hover:border-white/25 p-4 sm:p-5 backdrop-blur-xl transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.8)] text-left flex flex-col justify-between overflow-hidden"
-                >
-                  {/* Subtle Top Spotlight Reflection Glow */}
-                  <div className="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Tactile Hardware Photo */}
-                  <div className="relative w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden mb-4 border border-white/10 shadow-lg">
-                    <img 
-                      src={t.image} 
-                      alt={t.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                    
-                    {/* Top Spec Pill */}
-                    <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-mono text-cyan-300 font-semibold uppercase tracking-wider">
-                      {t.tag}
-                    </div>
-
-                    {/* Bottom Metric */}
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono text-white/80">
-                      <span>{t.spec}</span>
-                    </div>
-                  </div>
-
-                  {/* Title & Description */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-xs font-mono font-bold text-white/40">
-                        {t.number}
+            {/* Interactive Domain List (Switch active spotlight specimen) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-2.5 mb-8"
+            >
+              {domains.map((domain) => {
+                const isActive = activeId === domain.id;
+                return (
+                  <div
+                    key={domain.id}
+                    onClick={() => setActiveId(domain.id)}
+                    onMouseEnter={() => setActiveId(domain.id)}
+                    className={`group px-4 sm:px-5 py-3 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                      isActive 
+                        ? "bg-white/10 border-cyan-400/40 shadow-[0_4px_20px_rgba(6,182,212,0.15)] backdrop-blur-md" 
+                        : "bg-white/[0.02] hover:bg-white/[0.06] border-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className={`text-xs font-mono font-bold transition-colors ${
+                        isActive ? "text-cyan-400" : "text-slate-500 group-hover:text-slate-300"
+                      }`}>
+                        {domain.num}
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
-                        {t.title}
-                      </h3>
+                      <span className={`text-xs sm:text-sm font-semibold tracking-tight transition-colors ${
+                        isActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                      }`}>
+                        {domain.title}
+                      </span>
                     </div>
-                    <p className="text-xs sm:text-[13px] text-white/60 leading-relaxed font-normal">
-                      {t.subtitle}
-                    </p>
-                  </div>
 
-                </div>
-              );
-            })}
-          </motion.div>
+                    <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${
+                      isActive ? "text-cyan-400 translate-x-1" : "text-slate-600 group-hover:text-slate-400"
+                    }`} />
+                  </div>
+                );
+              })}
+            </motion.div>
+
+            {/* Primary Action Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <a
+                href="/partner"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
+              >
+                <span>Initiate Research Partnership</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+
+          </div>
+
+          {/* Right Column: 3D Volumetric Spotlight Chamber with Illuminated Specimen (6 Cols) */}
+          <div className="lg:col-span-6 relative w-full h-[380px] sm:h-[440px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
+            
+            {/* The 3D Volumetric Studio Stage */}
+            <VolumetricStudio 
+              spots={[50]} 
+              className="w-full h-full border border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.95)]"
+            >
+              {/* Illuminated Hardware Specimen Floating in the Spotlight Cone */}
+              <div className="relative w-full h-full flex flex-col items-center justify-end pb-8 sm:pb-10 px-6 sm:px-10 z-20 pointer-events-auto">
+                
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeDomain.id}
+                    initial={{ opacity: 0, scale: 0.9, y: 25 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full max-w-md flex flex-col items-center text-center"
+                  >
+                    
+                    {/* Floating Illuminated Hardware Photograph (No tags, pure physical visual) */}
+                    <div className="relative w-full aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-slate-950/80 mb-4 group">
+                      <img 
+                        src={activeDomain.image} 
+                        alt={activeDomain.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      />
+                      {/* Ambient Specular Highlight */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10 pointer-events-none" />
+                    </div>
+
+                    {/* Active Specimen Narrative */}
+                    <div className="max-w-sm">
+                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight mb-1">
+                        {activeDomain.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-400 font-normal leading-relaxed line-clamp-2">
+                        {activeDomain.description}
+                      </p>
+                    </div>
+
+                  </motion.div>
+                </AnimatePresence>
+
+              </div>
+            </VolumetricStudio>
+
+          </div>
 
         </div>
+      </div>
 
-      </VolumetricStudio>
+      {/* Bottom Subtle Status Bar */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono text-slate-500">
+        <span>● Active Laboratory Deployments &amp; Consortia</span>
+        <span>AICTE / UGC / Sovereign Defense Aligned</span>
+      </div>
 
     </section>
   );
