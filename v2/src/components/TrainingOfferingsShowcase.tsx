@@ -7,6 +7,7 @@ import ugvImg from "../assets/trainings/hover_ground_ugv.jpg";
 import lidarImg from "../assets/trainings/hover_lidar_slam.jpg";
 import edgeAiImg from "../assets/trainings/hover_edge_ai.jpg";
 import arenaImg from "../assets/trainings/hover_indoor_arena.jpg";
+import facultyIndustryImg from "../assets/trainings/hover_faculty_industry.jpg";
 
 interface OfferingItem {
   id: string;
@@ -69,6 +70,16 @@ const offerings: OfferingItem[] = [
     ctaText: "Explore Campus Labs",
     ctaLink: "/partner",
     rotation: -3.0,
+  },
+  {
+    id: "06",
+    num: "06",
+    title: "FACULTY & INDUSTRY PROGRAMS",
+    description: "Intensive Faculty Development Programs (FDP) and custom corporate engineering sprints. Master production toolchains, hardware-in-the-loop (HIL) validation, and rapid curriculum modernization.",
+    image: facultyIndustryImg,
+    ctaText: "Explore Faculty & Industry Track",
+    ctaLink: "/partner",
+    rotation: 3.0,
   },
 ];
 
@@ -197,7 +208,7 @@ export default function TrainingOfferingsShowcase() {
 
                             </div>
 
-                            {/* Right: Pure Swinging Picture (No overlays, no tags, clean photograph at a slight lean) */}
+                            {/* Right: Pure Swinging Picture (100% hardware-only, no humans, clean photograph at a slight lean) */}
                             <motion.div
                               initial={{ opacity: 0, scale: 0.85, rotate: -15, y: 30 }}
                               animate={{ opacity: 1, scale: 1, rotate: item.rotation, y: 0 }}
