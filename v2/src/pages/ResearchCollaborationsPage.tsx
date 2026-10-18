@@ -13,7 +13,7 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import ResearchHeroSection from "../components/ResearchHeroSection";
-import { BookmarkCard } from "../components/BookmarkCard";
+import { ShowcaseCard } from "../components/ShowcaseCard";
 
 import collabUniversitiesImg from "../assets/collab_universities_real.jpg";
 import collabLabsImg from "../assets/collab_labs_real.jpg";
@@ -44,7 +44,7 @@ export default function ResearchCollaborationsPage() {
       {/* ================= 1. MULTIDISCIPLINARY RESEARCH HERO SECTION ================= */}
       <ResearchHeroSection />
 
-      {/* ================= 2. COLLABORATIVE PATHWAYS MATRIX (CARD BOOKMARKS) ================= */}
+      {/* ================= 2. COLLABORATIVE PATHWAYS MATRIX (SHOWCASE CARDS) ================= */}
       <section 
         id="collaboration-models" 
         className="w-full max-w-7xl 2xl:max-w-[1550px] 3xl:max-w-[1750px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 2xl:py-16 relative z-10 flex flex-col justify-center"
@@ -62,70 +62,49 @@ export default function ResearchCollaborationsPage() {
           </p>
         </div>
 
-        {/* 3 Pathway Bookmark Cards: Bookmark-tab with bite taken out of lower edge; blooms on hover */}
+        {/* 3 Showcase Cards: Light-theme luxury case-study cards with chips, overview, and blurred foot */}
         <div className="grid md:grid-cols-3 gap-5 lg:gap-6 2xl:gap-8">
           
           {/* Pathway 1: For Universities & Professors */}
-          <BookmarkCard
-            tabLabel="— Academic Consortia"
-            tabPosition="left"
-            category="Path 01"
-            artworkImage={collabUniversitiesImg}
-            artworkAlt="Quantum Optics & Laser Breadboard Laboratory Bench"
-            artworkQuote="Co-Authored IP & Sovereign Grant Consortia"
-            accentColor="cyan"
-            title="For Universities & Professors"
-            description="Joint grant consortia, co-authored peer-reviewed research papers, and sabbatical research residencies embedded in physical flight test arenas."
-            highlights={[
-              "National & Defense Grant Consortia",
-              "Joint Patent & IP Co-Filings",
-              "Student Research Mentorship"
-            ]}
+          <ShowcaseCard
+            image={collabUniversitiesImg}
+            alt="Quantum Optics & Laser Breadboard Laboratory Bench"
+            title="Universities & Professors"
+            subTitle="Academic Consortia"
             buttonText="Propose Consortia"
             onAction={() => scrollToForm("grant")}
-            activeDot={1}
+            overview="Joint defense and national R&D consortia with embedded flight arena residencies."
+            chips={["Defense Grants", "Joint IP Filings", "Faculty Residencies"]}
+            description="We partner with university faculties to co-author peer-reviewed publications, sponsor doctoral candidates, and secure competitive national R&D grants with co-assigned intellectual property."
+            accentColor="cyan"
           />
 
           {/* Pathway 2: For Labs & Scholars */}
-          <BookmarkCard
-            tabLabel="— Scholar Testbeds"
-            tabPosition="left"
-            category="Path 02"
-            artworkImage={collabLabsImg}
-            artworkAlt="Optical Motion-Capture Drone Flight Arena & Telemetry Station"
-            artworkQuote="6-DoF Optical Flight Arena & HIL Bench"
-            accentColor="blue"
-            title="For Labs & Scholars"
-            description="Access calibrated hardware testbenches, optical motion-capture drone arenas, and high-framerate sensor pipelines for thesis validation."
-            highlights={[
-              "Hardware-in-the-Loop Bench Access",
-              "Motion-Capture Indoor Flight Cages",
-              "Raw Telemetry & Flight Datasets"
-            ]}
-            buttonText="Request Bench Access"
+          <ShowcaseCard
+            image={collabLabsImg}
+            alt="Optical Motion-Capture Drone Flight Arena & Telemetry Station"
+            title="Labs & Scholars"
+            subTitle="Telemetry Testbeds"
+            buttonText="Request Access"
             onAction={() => scrollToForm("slam")}
-            activeDot={2}
+            overview="Calibrated hardware testbenches, optical mocap cages, and 100Hz telemetry for thesis validation."
+            chips={["HIL Bench Access", "Mocap Flight Cages", "100Hz Datasets"]}
+            description="Scholars and visiting lab teams gain dedicated access to physical flight test arenas, hardware-in-the-loop sensor benches, and continuous raw sensor telemetry streams for validating novel autonomy algorithms."
+            accentColor="blue"
           />
 
           {/* Pathway 3: For Industry & Startups */}
-          <BookmarkCard
-            tabLabel="— Industry Autonomy"
-            tabPosition="left"
-            category="Path 03"
-            artworkImage={collabIndustryImg}
-            artworkAlt="Industrial Articulated Robotics Cell & Rapid Prototyping Facility"
-            artworkQuote="Rapid Autonomy PoC & FMEA De-Risking"
-            accentColor="amber"
-            title="For Industry & Startups"
-            description="Accelerate custom autonomy development. Co-create proof-of-concept prototypes, conduct FMEA safety analysis, and de-risk mission architectures."
-            highlights={[
-              "Rapid Proof-of-Concept Prototyping",
-              "Sensor Hardening & Firmware Reviews",
-              "Field Deployment Risk Advisory"
-            ]}
-            buttonText="Accelerate PoC"
+          <ShowcaseCard
+            image={collabIndustryImg}
+            alt="Industrial Articulated Robotics Cell & Rapid Prototyping Facility"
+            title="Industry & Startups"
+            subTitle="Commercial PoC"
+            buttonText="Initiate PoC"
             onAction={() => scrollToForm("custom")}
-            activeDot={3}
+            overview="Accelerate custom autonomy development, conduct FMEA safety reviews, and de-risk mission architectures."
+            chips={["Rapid PoC Prototyping", "FMEA Hardening", "Field Sandbox Advisory"]}
+            description="Enterprises and startups tap our accelerated hardware engineering pipeline to translate autonomy concepts into flight-tested prototypes, de-risking operational deployments before commercial scale-up."
+            accentColor="amber"
           />
 
         </div>
