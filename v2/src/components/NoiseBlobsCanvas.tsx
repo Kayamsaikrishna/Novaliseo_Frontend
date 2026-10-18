@@ -101,7 +101,7 @@ varying vec3 vPosition;
 varying vec3 vWorldPosition;
 varying float vNoise;
 
-// High-contrast, vibrant banded palette interpolation
+// High-contrast, rich liquid-marble palette interpolation
 vec3 samplePalette(float t) {
   t = fract(t);
   if (t < 0.22) return mix(uColor1, uColor3, t / 0.22);
@@ -119,27 +119,27 @@ void main() {
   vec3 N = normalize(vNormal);
   vec3 V = normalize(cameraPosition - vWorldPosition);
 
-  // Key Light (warm specular)
+  // Key Light (warm high-angle studio light)
   vec3 L1 = normalize(uLightPos1 - vWorldPosition);
   vec3 H1 = normalize(L1 + V);
   float diff1 = max(dot(N, L1), 0.0);
-  float spec1 = pow(max(dot(N, H1), 0.0), 32.0);
+  float spec1 = pow(max(dot(N, H1), 0.0), 38.0);
 
-  // Fill Light (electric rim/cyan sheen)
+  // Soft Secondary Fill Light
   vec3 L2 = normalize(uLightPos2 - vWorldPosition);
   float diff2 = max(dot(N, L2), 0.0);
 
-  // Ambient lighting for vibrant luminous depth (not muddy)
-  float ambient = 0.38;
+  // Clean luminous ambient for light gradient theme (pops without being washed out)
+  float ambient = 0.45;
 
-  // Ultra-glossy poured-paint specular sheen
-  vec3 specColor = vec3(1.0, 0.98, 0.94) * spec1 * 1.15;
+  // Ultra-glossy liquid poured-paint specular sheen
+  vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 1.25;
 
-  // Fresnel rim glow
+  // Rim Fresnel highlight for clean separation on light background
   float fresnel = pow(1.0 - max(dot(N, V), 0.0), 2.5);
-  vec3 rimColor = mix(uColor1, uColor2, 0.5) * fresnel * 0.7;
+  vec3 rimColor = vec3(1.0, 1.0, 1.0) * fresnel * 0.45;
 
-  vec3 finalColor = baseColor * (diff1 * 0.75 + diff2 * 0.25 + ambient) + specColor + rimColor;
+  vec3 finalColor = baseColor * (diff1 * 0.72 + diff2 * 0.28 + ambient) + specColor + rimColor;
 
   gl_FragColor = vec4(finalColor, 1.0);
 }
@@ -156,7 +156,7 @@ export default function NoiseBlobsCanvas({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Speed and pointer interaction refs
-  const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, speed: 0.45, targetSpeed: 0.45 });
+  const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, speed: 0.42, targetSpeed: 0.42 });
   const lastMousePos = useRef({ x: 0, y: 0, time: performance.now() });
 
   useEffect(() => {
@@ -169,8 +169,8 @@ export default function NoiseBlobsCanvas({
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 7.5);
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, 8.2);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -181,26 +181,26 @@ export default function NoiseBlobsCanvas({
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // 2. High-vibrancy Novaliseo Palette: Radiant Cobalt, Warm Gold, Deep Indigo, Sand, and Midnight Carbon
-    const c1 = new THREE.Color("#2563eb"); // Radiant Blue
-    const c2 = new THREE.Color("#f59e0b"); // Vibrant Gold/Amber
-    const c3 = new THREE.Color("#0f172a"); // Deep Slate Navy
+    // 2. High-Fashion Liquid Marble Palette (Cobalt Blue, Warm Amber Gold, Deep Charcoal Navy, Sand Cream)
+    const c1 = new THREE.Color("#1d4ed8"); // Rich Cobalt Blue
+    const c2 = new THREE.Color("#d97706"); // Warm Honey Gold
+    const c3 = new THREE.Color("#0f172a"); // Deep Slate Charcoal
     const c4 = new THREE.Color("#fed7aa"); // Warm Sand Cream
     const c5 = new THREE.Color("#1e1b4b"); // Midnight Indigo
 
     // 3. Shader Material Factory
-    const createShaderMaterial = (bandScale = 2.4, displacement = 0.23, frequency = 1.1) => {
+    const createShaderMaterial = (bandScale = 2.4, displacement = 0.22, frequency = 1.1) => {
       return new THREE.ShaderMaterial({
         vertexShader,
         fragmentShader,
         uniforms: {
           uTime: { value: 0 },
-          uSpeed: { value: 0.45 },
+          uSpeed: { value: 0.42 },
           uDisplacement: { value: displacement },
           uFrequency: { value: frequency },
           uBandScale: { value: bandScale },
-          uLightPos1: { value: new THREE.Vector3(5.0, 6.0, 6.0) },
-          uLightPos2: { value: new THREE.Vector3(-6.0, -3.0, 4.0) },
+          uLightPos1: { value: new THREE.Vector3(6.0, 8.0, 7.0) },
+          uLightPos2: { value: new THREE.Vector3(-6.0, 3.0, 5.0) },
           uColor1: { value: c1.clone() },
           uColor2: { value: c2.clone() },
           uColor3: { value: c3.clone() },
@@ -210,16 +210,16 @@ export default function NoiseBlobsCanvas({
       });
     };
 
-    // 4. Create the 3 Blobs
-    // Blob 1: Large Main Blob on the right (focal hero element)
-    const geo1 = new THREE.IcosahedronGeometry(1.85, 48);
-    const mat1 = createShaderMaterial(2.2, 0.25, 1.05);
+    // 4. Create the 3 Blobs (Proportionate, well-framed, zero awkward cutoffs)
+    // Blob 1: Large Main Blob on the right side
+    const geo1 = new THREE.IcosahedronGeometry(1.45, 48);
+    const mat1 = createShaderMaterial(2.2, 0.23, 1.05);
     const blob1 = new THREE.Mesh(geo1, mat1);
     scene.add(blob1);
 
-    // Blob 2: Medium Floating Blob in the lower-middle
-    const geo2 = new THREE.IcosahedronGeometry(0.85, 36);
-    const mat2 = createShaderMaterial(2.8, 0.20, 1.35);
+    // Blob 2: Small Floating Blob in lower-center
+    const geo2 = new THREE.IcosahedronGeometry(0.58, 36);
+    const mat2 = createShaderMaterial(2.8, 0.18, 1.35);
     mat2.uniforms.uColor1.value = new THREE.Color("#d97706");
     mat2.uniforms.uColor2.value = new THREE.Color("#fbbf24");
     mat2.uniforms.uColor4.value = new THREE.Color("#fef3c7");
@@ -227,35 +227,35 @@ export default function NoiseBlobsCanvas({
     scene.add(blob2);
 
     // Blob 3: Background Accent Blob
-    const geo3 = new THREE.IcosahedronGeometry(1.25, 36);
+    const geo3 = new THREE.IcosahedronGeometry(0.95, 36);
     const mat3 = createShaderMaterial(2.5, 0.18, 1.15);
     const blob3 = new THREE.Mesh(geo3, mat3);
     scene.add(blob3);
 
-    // Dynamic placement helper
-    const updatePositions = (w: number) => {
+    // Dynamic placement helper that fits the screen automatically
+    const updatePositions = (w: number, h: number) => {
       if (w < 768) {
-        // Mobile: central, gentle scale
-        blob1.position.set(0.2, -0.6, -0.5);
-        blob1.scale.set(0.8, 0.8, 0.8);
-        blob2.position.set(-0.8, -2.0, 0.2);
-        blob3.position.set(-1.4, 2.0, -1.0);
+        // Mobile: centered and scaled gracefully
+        blob1.position.set(0.0, -0.4, -0.5);
+        blob1.scale.set(0.85, 0.85, 0.85);
+        blob2.position.set(-0.7, -1.6, 0.3);
+        blob3.position.set(-1.2, 1.6, -1.0);
       } else if (w < 1200) {
         // Tablet / Mid-screen
-        blob1.position.set(1.8, -0.1, 0.0);
+        blob1.position.set(1.6, 0.0, 0.0);
         blob1.scale.set(1.0, 1.0, 1.0);
-        blob2.position.set(-0.2, -1.8, 0.5);
-        blob3.position.set(-2.8, 2.2, -0.6);
+        blob2.position.set(0.1, -1.5, 0.5);
+        blob3.position.set(-2.4, 1.8, -0.6);
       } else {
         // Desktop: beautifully framing the right side
-        blob1.position.set(2.4, 0.0, 0.2);
-        blob1.scale.set(1.15, 1.15, 1.15);
-        blob2.position.set(0.1, -1.9, 0.6);
-        blob3.position.set(-3.6, 2.4, -0.6);
+        blob1.position.set(2.2, 0.05, 0.2);
+        blob1.scale.set(1.12, 1.12, 1.12);
+        blob2.position.set(0.3, -1.5, 0.6);
+        blob3.position.set(-3.2, 1.9, -0.6);
       }
     };
 
-    updatePositions(width);
+    updatePositions(width, height);
 
     // 5. Animation Loop
     let animationFrameId: number;
@@ -273,8 +273,8 @@ export default function NoiseBlobsCanvas({
       m.x += (m.targetX - m.x) * 0.05;
       m.y += (m.targetY - m.y) * 0.05;
 
-      // Decay stir speed gently back to 0.45
-      m.targetSpeed = Math.max(0.45, m.targetSpeed - delta * 0.4);
+      // Decay stir speed gently back to 0.42
+      m.targetSpeed = Math.max(0.42, m.targetSpeed - delta * 0.4);
 
       // Update shader uniforms
       const activeSpeed = m.speed;
@@ -284,15 +284,15 @@ export default function NoiseBlobsCanvas({
       });
 
       // Slowly spiral and tilt blobs, stirring faster under pointer
-      blob1.rotation.y = elapsedTime * (0.24 * activeSpeed) + m.x * 0.35;
-      blob1.rotation.x = Math.sin(elapsedTime * 0.35) * 0.15 + m.y * 0.25;
+      blob1.rotation.y = elapsedTime * (0.22 * activeSpeed) + m.x * 0.32;
+      blob1.rotation.x = Math.sin(elapsedTime * 0.35) * 0.12 + m.y * 0.22;
 
-      blob2.rotation.y = -elapsedTime * (0.32 * activeSpeed) + m.x * 0.45;
-      blob2.rotation.z = Math.cos(elapsedTime * 0.45) * 0.18;
-      blob2.position.y = (width < 768 ? -2.0 : -1.9) + Math.sin(elapsedTime * 0.9) * 0.1;
+      blob2.rotation.y = -elapsedTime * (0.30 * activeSpeed) + m.x * 0.40;
+      blob2.rotation.z = Math.cos(elapsedTime * 0.45) * 0.16;
+      blob2.position.y = (width < 768 ? -1.6 : -1.5) + Math.sin(elapsedTime * 0.85) * 0.08;
 
-      blob3.rotation.y = elapsedTime * (0.18 * activeSpeed) - m.x * 0.2;
-      blob3.rotation.x = Math.cos(elapsedTime * 0.28) * 0.12;
+      blob3.rotation.y = elapsedTime * (0.16 * activeSpeed) - m.x * 0.18;
+      blob3.rotation.x = Math.cos(elapsedTime * 0.28) * 0.10;
 
       renderer.render(scene, camera);
     };
@@ -310,7 +310,7 @@ export default function NoiseBlobsCanvas({
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
-      updatePositions(w);
+      updatePositions(w, h);
     };
 
     window.addEventListener("resize", handleResize);
@@ -345,8 +345,8 @@ export default function NoiseBlobsCanvas({
 
     mouseRef.current.targetX = x;
     mouseRef.current.targetY = y;
-    // Stir factor accelerates up to 2.2x under active pointer movement
-    mouseRef.current.targetSpeed = Math.min(2.2, 0.45 + velocity * 0.18);
+    // Stir factor accelerates up to 2.0x under active pointer movement
+    mouseRef.current.targetSpeed = Math.min(2.0, 0.42 + velocity * 0.16);
 
     lastMousePos.current = { x, y, time: now };
   };
@@ -354,7 +354,7 @@ export default function NoiseBlobsCanvas({
   const handlePointerLeave = () => {
     mouseRef.current.targetX = 0;
     mouseRef.current.targetY = 0;
-    mouseRef.current.targetSpeed = 0.45;
+    mouseRef.current.targetSpeed = 0.42;
   };
 
   return (

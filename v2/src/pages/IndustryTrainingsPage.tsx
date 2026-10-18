@@ -1,56 +1,72 @@
 import { motion } from "framer-motion";
-import { ShaderBackground } from "../components/ShaderBackground";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, GraduationCap, Briefcase } from "lucide-react";
 import NoiseBlobsHero from "../components/NoiseBlobsHero";
 
 export default function IndustryTrainingsPage() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white relative selection:bg-cyan-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 relative selection:bg-cyan-500/20 overflow-x-hidden">
       
-      {/* Background System */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <ShaderBackground />
-        
-        {/* Immersive mesh gradients for the page */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-500/10 blur-[150px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute top-[40%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" style={{ animationDuration: '12s', animationDelay: '2s' }} />
-        <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-purple-600/5 blur-[150px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
-        
-        <div className="absolute inset-0 bg-[#020617]/85 backdrop-blur-[2px]" />
-      </div>
-
-      {/* ================= FULL-SCREEN 3D NOISE BLOBS HERO ================= */}
+      {/* ================= 1. FULL-SCREEN 3D NOISE BLOBS HERO (AUTOMATIC SCREEN FIT) ================= */}
       <NoiseBlobsHero />
 
-      {/* ================= CURRICULUM TRAINING TRACKS SECTION ================= */}
-      <section id="training-tracks" className="relative z-10 max-w-7xl mx-auto px-6 py-20 sm:py-28">
-        <div className="grid lg:grid-cols-2 gap-10">
+      {/* ================= 2. CURRICULUM TRAINING TRACKS (AUTOMATIC SCREEN FIT) ================= */}
+      <section 
+        id="training-tracks" 
+        className="min-h-[100dvh] w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-16 sm:py-20 flex flex-col justify-center relative z-10"
+      >
+        {/* Section Header */}
+        <div className="text-left mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 text-slate-700 text-xs font-mono font-semibold tracking-wider uppercase mb-3">
+            <span>Specialized Pathways</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Workforce Acceleration <span className="text-slate-400 font-light">Tracks</span>
+          </h2>
+          <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-xl font-normal">
+            Targeted immersive curriculums engineered to transition engineers from software simulation to real-world defense silicon and physical hardware deployment.
+          </p>
+        </div>
+
+        {/* Polished Light Glassmorphic Cards Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
           
           {/* Student Card */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative rounded-[3rem] bg-white/[0.02] border border-white/10 p-10 md:p-16 backdrop-blur-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative rounded-[2.5rem] bg-white/80 hover:bg-white border border-slate-200/90 p-8 sm:p-12 backdrop-blur-2xl overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_rgba(6,182,212,0.12)] transition-all duration-500 text-left"
           >
-            {/* Inner Glows */}
-            <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-cyan-500/20 transition-colors duration-700" />
+            {/* Top Accent Light Bar */}
+            <div className="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">For <span className="text-cyan-400">Students</span></h2>
-            <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
-              Gain hands-on experience with industry-grade tools. Our student programs are designed to fast-track your career in sovereign tech.
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                For <span className="text-cyan-600">Students</span>
+              </h3>
+              <div className="w-12 h-12 rounded-2xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 shadow-sm">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+            </div>
+
+            <p className="text-slate-600 text-sm sm:text-base mb-8 leading-relaxed font-normal">
+              Gain hands-on experience with production-grade autonomous systems. Our student programs are structured to fast-track careers into sovereign robotics, aerospace, and edge intelligence.
             </p>
             
-            <ul className="space-y-6">
-              {['Autonomous Drone Engineering', 'AI & Computer Vision Bootcamp', 'Embedded Systems & IoT', 'Industrial Robotics'].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-slate-300 font-medium text-lg group/item cursor-pointer">
-                  <div className="p-2 rounded-full bg-cyan-500/10 text-cyan-400 group-hover/item:bg-cyan-500 group-hover/item:text-white transition-all duration-300">
-                    <ChevronRight className="w-5 h-5" />
+            <ul className="space-y-4">
+              {[
+                'Autonomous Drone Engineering & Flight Control',
+                'Embedded AI & Real-Time Computer Vision',
+                'Hardened IoT, Sensor Fusion & SLAM',
+                'Industrial Robotics & Kinematics Control'
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3.5 text-slate-800 font-medium text-sm sm:text-base group/item">
+                  <div className="w-7 h-7 rounded-full bg-cyan-50 text-cyan-600 group-hover/item:bg-cyan-600 group-hover/item:text-white flex items-center justify-center transition-all duration-300 shrink-0 shadow-xs">
+                    <ChevronRight className="w-4 h-4" />
                   </div>
-                  <span className="group-hover/item:text-white transition-colors duration-300">{item}</span>
+                  <span className="group-hover/item:text-slate-950 transition-colors duration-200">{item}</span>
                 </li>
               ))}
             </ul>
@@ -58,29 +74,41 @@ export default function IndustryTrainingsPage() {
 
           {/* Industry Professional Card */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative rounded-[3rem] bg-white/[0.02] border border-white/10 p-10 md:p-16 backdrop-blur-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative rounded-[2.5rem] bg-white/80 hover:bg-white border border-slate-200/90 p-8 sm:p-12 backdrop-blur-2xl overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_rgba(37,99,235,0.12)] transition-all duration-500 text-left"
           >
-            {/* Inner Glows */}
-            <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/20 transition-colors duration-700" />
+            {/* Top Accent Light Bar */}
+            <div className="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">For <span className="text-blue-400">Professionals</span></h2>
-            <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
-              Upskill your workforce with targeted programs focusing on AI integration, digital twins, and autonomous operations.
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                For <span className="text-blue-600">Professionals</span>
+              </h3>
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                <Briefcase className="w-6 h-6" />
+              </div>
+            </div>
+
+            <p className="text-slate-600 text-sm sm:text-base mb-8 leading-relaxed font-normal">
+              Upskill technical teams with targeted enterprise programs focusing on sovereign silicon integration, physics-accurate digital twins, and autonomous operations.
             </p>
             
-            <ul className="space-y-6">
-              {['Enterprise AI Integration', 'Predictive Maintenance Implementation', 'Digital Twin & Smart Manufacturing', 'Defense & Maritime Autonomous Ops'].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-slate-300 font-medium text-lg group/item cursor-pointer">
-                  <div className="p-2 rounded-full bg-blue-500/10 text-blue-400 group-hover/item:bg-blue-500 group-hover/item:text-white transition-all duration-300">
-                    <ChevronRight className="w-5 h-5" />
+            <ul className="space-y-4">
+              {[
+                'Enterprise AI & Neural Edge Deployment',
+                'Predictive Vibration & Maintenance Implementation',
+                'Digital Twin Simulation & Smart Tooling Fabric',
+                'Air-Gapped Sovereign Hardware Architecture'
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3.5 text-slate-800 font-medium text-sm sm:text-base group/item">
+                  <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 group-hover/item:bg-blue-600 group-hover/item:text-white flex items-center justify-center transition-all duration-300 shrink-0 shadow-xs">
+                    <ChevronRight className="w-4 h-4" />
                   </div>
-                  <span className="group-hover/item:text-white transition-colors duration-300">{item}</span>
+                  <span className="group-hover/item:text-slate-950 transition-colors duration-200">{item}</span>
                 </li>
               ))}
             </ul>
@@ -88,6 +116,7 @@ export default function IndustryTrainingsPage() {
           
         </div>
       </section>
+
     </div>
   );
 }
