@@ -4,7 +4,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 import droneMountainHero from "../assets/trainings/drone_mountain_hero.jpg";
 import droneSensorMacro from "../assets/trainings/drone_sensor_macro.jpg";
-import droneRotorMacro from "../assets/trainings/drone_rotor_macro.jpg";
+import groundRobotMacro from "../assets/trainings/ground_robot_macro.jpg";
 
 export default function NoiseBlobsHero() {
   const scrollToTracks = () => {
@@ -17,11 +17,11 @@ export default function NoiseBlobsHero() {
   return (
     <section className="relative w-full h-[100dvh] max-h-screen flex items-center justify-center overflow-hidden select-none bg-[#090d16]">
       
-      {/* ================= 1. CINEMATIC HIGH-ALTITUDE MOUNTAIN HAZE BACKGROUND ================= */}
+      {/* ================= 1. CINEMATIC MULTI-DOMAIN AUTONOMOUS HORIZON BACKGROUND ================= */}
       <div className="absolute inset-0 z-0">
         <img
           src={droneMountainHero}
-          alt="Novaliseo Autonomous Drone in High Altitude Mountain Mist"
+          alt="Novaliseo Autonomous Systems in Multi-Domain Operating Environment"
           className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
         />
 
@@ -59,7 +59,7 @@ export default function NoiseBlobsHero() {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
             <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-[0.24em] text-slate-500 uppercase">
-              High-Altitude Autonomous Systems
+              Autonomous Transportation, Robotics &amp; Intelligence
             </span>
           </motion.div>
 
@@ -72,18 +72,18 @@ export default function NoiseBlobsHero() {
           >
             Mastery in <br />
             <span className="italic text-[#0f172a] block mt-1">
-              flight &amp; autonomy
+              transport &amp; autonomy
             </span>
           </motion.h1>
 
-          {/* Concise Editorial Narrative */}
+          {/* Comprehensive Editorial Narrative */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-xs sm:text-sm md:text-[15px] lg:text-base text-slate-600 font-normal leading-relaxed mb-6 sm:mb-7 max-w-md sm:max-w-lg"
           >
-            We transition engineers from theoretical simulation into physical aerospace hardware, flight control stacks, and real-time edge neural perception. Production-grade kits, real testing arenas, and zero fluff.
+            We transition engineers from theoretical simulation into physical hardware across autonomous transport vehicles, unmanned aerial robotics, industrial kinematics, and real-time edge intelligence. Production-grade kits, real deployment arenas, and zero fluff.
           </motion.p>
 
           {/* Action Button Group (Eagle Style Warm Amber Pill + Angled Text Link) */}
@@ -120,20 +120,20 @@ export default function NoiseBlobsHero() {
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-start lg:items-end w-full lg:w-auto"
         >
-          {/* Social Proof Header Pill */}
-          <div className="flex items-center gap-2.5 mb-3.5">
-            <div className="flex -space-x-2">
-              <div className="w-6 h-6 rounded-full bg-slate-950 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
+          {/* Social Proof Header Pill (High Contrast Glass Pill) */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-2xs mb-3.5">
+            <div className="flex -space-x-1.5">
+              <div className="w-5 h-5 rounded-full bg-slate-950 border border-white flex items-center justify-center text-[8px] font-bold text-white shadow-2xs">
                 AI
               </div>
-              <div className="w-6 h-6 rounded-full bg-cyan-600 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
-                PX4
+              <div className="w-5 h-5 rounded-full bg-blue-600 border border-white flex items-center justify-center text-[8px] font-bold text-white shadow-2xs">
+                AGV
               </div>
-              <div className="w-6 h-6 rounded-full bg-amber-600 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
+              <div className="w-5 h-5 rounded-full bg-cyan-600 border border-white flex items-center justify-center text-[8px] font-bold text-white shadow-2xs">
                 ROS
               </div>
             </div>
-            <span className="text-[10px] sm:text-[11px] font-mono tracking-wider font-semibold text-slate-500 uppercase">
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-wider font-bold text-slate-700 uppercase">
               Trained 500+ Engineers &amp; Defense Labs
             </span>
           </div>
@@ -146,7 +146,7 @@ export default function NoiseBlobsHero() {
               {/* Top Tab Notch Header */}
               <div className="flex items-center justify-end mb-1.5 px-1">
                 <span className="text-[9px] sm:text-[10px] font-mono font-medium text-slate-400 uppercase tracking-widest">
-                  Detection
+                  Perception
                 </span>
               </div>
 
@@ -154,12 +154,12 @@ export default function NoiseBlobsHero() {
               <div className="relative w-full aspect-square rounded-[14px] overflow-hidden mb-2 bg-slate-900 border border-white/10">
                 <img
                   src={droneSensorMacro}
-                  alt="Optical Sensor Camera Gimbal"
+                  alt="Multi-Spectral Optical Sensor"
                   className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                 <p className="absolute bottom-1.5 left-2 right-2 text-[9px] text-slate-300 font-medium leading-tight line-clamp-2">
-                  Every optical signal read, real-time edge neural inference
+                  Multi-spectral vision, SLAM &amp; real-time edge inference
                 </p>
               </div>
 
@@ -176,25 +176,25 @@ export default function NoiseBlobsHero() {
               </div>
             </div>
 
-            {/* Card 2: Physical Hardware & Flight Calibration */}
+            {/* Card 2: Autonomous Ground Mobility & Drivetrain Kinematics */}
             <div className="w-40 sm:w-48 rounded-[20px] bg-black/80 hover:bg-black/90 backdrop-blur-2xl border border-white/20 p-2.5 sm:p-3 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-[1.03] group/card">
               {/* Top Tab Notch Header */}
               <div className="flex items-center justify-end mb-1.5 px-1">
                 <span className="text-[9px] sm:text-[10px] font-mono font-medium text-slate-400 uppercase tracking-widest">
-                  Hardware
+                  Mobility
                 </span>
               </div>
 
               {/* Macro Preview Image */}
               <div className="relative w-full aspect-square rounded-[14px] overflow-hidden mb-2 bg-slate-900 border border-white/10">
                 <img
-                  src={droneRotorMacro}
-                  alt="Carbon Propeller and Brushless Motor"
+                  src={groundRobotMacro}
+                  alt="Autonomous Ground Vehicle Drivetrain & Kinematics"
                   className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                 <p className="absolute bottom-1.5 left-2 right-2 text-[9px] text-slate-300 font-medium leading-tight line-clamp-2">
-                  Physical carbon-fiber flight stack &amp; ESCs calibrated
+                  Autonomous ground rovers, flight stacks &amp; kinematics
                 </p>
               </div>
 
