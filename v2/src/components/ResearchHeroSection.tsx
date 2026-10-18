@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, ChevronRight, Layers, Cpu, Plane, Radio, Terminal } from "lucide-react";
 
-import uavImg from "../assets/trainings/hover_uav_assembly.jpg";
-import ugvImg from "../assets/trainings/hover_ground_ugv.jpg";
-import lidarImg from "../assets/trainings/hover_lidar_slam.jpg";
-import edgeAiImg from "../assets/trainings/hover_edge_ai.jpg";
-import hilImg from "../assets/trainings/hover_faculty_industry.jpg";
+import researchChamberBg from "../assets/research_chamber_bg.jpg";
+import propulsionDynoImg from "../assets/trainings/drone_rotor_macro.jpg";
+import opticalSensorImg from "../assets/trainings/drone_sensor_macro.jpg";
+import roverKinematicsImg from "../assets/trainings/ground_robot_macro.jpg";
+import alpineAutonomousImg from "../assets/trainings/drone_mountain_hero.jpg";
+import avionicsUnitImg from "../assets/indranav_dark_hero.png";
 
 interface ResearchAspect {
   id: string;
@@ -23,47 +24,47 @@ const aspects: ResearchAspect[] = [
   {
     id: "01",
     num: "01",
-    title: "Autonomous Aerial & Flight Dynamics",
-    category: "Aerospace",
-    description: "Developing custom flight controllers, multi-rotor aerodynamics, and autonomous waypoint guidance stacks tested in real-world wind and environmental conditions.",
-    image: uavImg,
-    focus: ["PX4 & ArduPilot Autopilots", "Swarm Telemetry Protocols", "Custom Airframe Design"],
+    title: "Aerodynamic Propulsion & Thrust Dyno Profiling",
+    category: "Propulsion",
+    description: "Benchmarking non-linear thrust curves, thermal dissipation across magnetic stators, and aero-elastic composite propeller deformation under simulated high-altitude stress.",
+    image: propulsionDynoImg,
+    focus: ["BLDC Stator Dyno Profiling", "Aero-Elastic Blade Dynamics", "Boundary-Layer Stress Testing"],
   },
   {
     id: "02",
     num: "02",
-    title: "Ground Robotics & Mobile Kinematics",
-    category: "Robotics",
-    description: "Engineering all-terrain rovers, Ackerman steering kinematics, CAN bus drive controllers, and rugged chassis built for unstructured and GPS-denied environments.",
-    image: ugvImg,
-    focus: ["CAN Bus Telemetry", "High-Torque BLDC Drives", "All-Terrain Suspension"],
+    title: "Multi-Axis Optoelectronic Payloads & Gyro Telemetry",
+    category: "Perception",
+    description: "Engineering custom vibration-isolated optical gimbals with real-time target tracking, low-lux telemetry, and sub-milliradian closed-loop inertial stabilization.",
+    image: opticalSensorImg,
+    focus: ["Sub-Milliradian Gyro Stability", "Micro-Vibration Isolation", "Low-Lux Optical Telemetry"],
   },
   {
     id: "03",
     num: "03",
-    title: "Embedded Edge AI & Low-Latency Vision",
-    category: "Edge AI",
-    description: "Porting deep neural networks to constrained edge hardware. Accelerating real-time vision pipelines with TensorRT for high-framerate on-device inferencing.",
-    image: edgeAiImg,
-    focus: ["NVIDIA Jetson Architectures", "Sub-10ms Inference", "Thermal & Power Budgets"],
+    title: "Heavy-Duty Kinematics & High-Torque Hub Powertrains",
+    category: "Kinematics",
+    description: "Developing rugged double-wishbone suspension geometry, CAN-FD brushless hub motor drives, and real-time traction control for unstructured obstacle traversal.",
+    image: roverKinematicsImg,
+    focus: ["CAN-FD In-Wheel Hub Drives", "Independent Double Wishbones", "Active Dynamic Slip Control"],
   },
   {
     id: "04",
     num: "04",
-    title: "3D Spatial Mapping, SLAM & Perception",
-    category: "Perception & SLAM",
-    description: "Integrating 3D LiDAR point clouds, stereo depth sensors, Kalman sensor fusion, and Isaac Sim physics-accurate digital twin validation for safety-critical platforms.",
-    image: lidarImg,
-    focus: ["3D LiDAR Odometry", "Isaac Sim Physics Twins", "Sensor Fusion Filters"],
+    title: "Extreme-Environment Autonomy & High-Altitude Flight",
+    category: "Autonomy",
+    description: "Validating autonomous guidance algorithms against severe wind shear, sub-zero battery thermal drop, and non-GPS waypoint navigation across mountainous terrain.",
+    image: alpineAutonomousImg,
+    focus: ["Wind-Shear Rejection Algorithms", "Sub-Zero Thermal Management", "Non-GPS Terrain Navigation"],
   },
   {
     id: "05",
     num: "05",
-    title: "Hardware-in-the-Loop & Bench Validation",
-    category: "HIL Testing",
-    description: "Rapid prototyping and rigorous electrical testing using oscilloscopes, real-time waveform telemetry, and hardware-in-the-loop (HIL) automated regression testbenches.",
-    image: hilImg,
-    focus: ["HIL Simulation Racks", "Firmware Regression Testing", "Oscilloscope Diagnostics"],
+    title: "Hardened Avionics Silicon & Inertial Guidance Units",
+    category: "Avionics",
+    description: "Co-designing proprietary navigation computers with triple-redundant IMUs, anti-jamming satellite front-ends, and real-time Extended Kalman Filtering (EKF).",
+    image: avionicsUnitImg,
+    focus: ["INDRANAV Inertial Computing", "Anti-Jamming GNSS Front-End", "Triple-Redundant EKF Fusion"],
   },
 ];
 
@@ -79,15 +80,36 @@ export default function ResearchHeroSection() {
   return (
     <section className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-[clamp(68px,9vh,82px)] pb-[clamp(10px,1.5vh,18px)] select-none">
       
-      {/* Background Soft Ambient Lighting Blobs */}
+      {/* Background Architectural Research Facility Visual */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <img 
+          src={researchChamberBg} 
+          alt="Novaliseo Research Facility" 
+          className="w-full h-full object-cover object-center opacity-25 saturate-[0.9] contrast-[1.1] scale-105" 
+        />
+        {/* Soft luxury editorial gradient overlays ensuring perfect readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/95 via-[#f1f5f9]/88 to-[#f8fafc]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/90 via-transparent to-[#e2e8f0]/95" />
+        
+        {/* Technical Coordinate Research Grid */}
+        <div 
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
+            backgroundSize: '48px 48px'
+          }}
+        />
+      </div>
+
+      {/* Ambient Lighting Accents */}
       <div className="absolute top-20 right-10 w-[550px] h-[550px] rounded-full bg-cyan-500/10 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[550px] h-[550px] rounded-full bg-blue-600/8 blur-[160px] pointer-events-none" />
 
-      {/* Main Content Container - Fits in available screen space */}
+      {/* Main Content Container - Fits dynamically in available screen space */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex-1 flex items-center min-h-0 my-auto">
         <div className="w-full grid lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center">
           
-          {/* Left Column: Clean Editorial Statement & Narrative (6 Cols) */}
+          {/* Left Column: Editorial Statement & Collaborative Narrative (6 Cols) */}
           <div className="lg:col-span-6 text-left max-w-xl flex flex-col justify-center">
             
             {/* Category Subtitle */}
@@ -159,19 +181,19 @@ export default function ResearchHeroSection() {
             >
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
-                Flight Dynamics
+                Propulsion Dyno
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                Ground Robotics
+                Optical Payloads
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
-                Edge AI &amp; Vision
+                Chassis Kinematics
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
-                Sensor SLAM
+                Avionics Silicon
               </span>
             </motion.div>
 
@@ -181,7 +203,7 @@ export default function ResearchHeroSection() {
           <div className="lg:col-span-6 w-full flex flex-col justify-center">
             
             {/* Interactive Showcase Card */}
-            <div className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-[#f5f4ef] border border-[#e2e0d8] p-[clamp(12px,1.8vh,22px)] shadow-[0_15px_35px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col justify-between">
+            <div className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-[#f5f4ef]/95 backdrop-blur-md border border-[#e2e0d8] p-[clamp(12px,1.8vh,22px)] shadow-[0_15px_35px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col justify-between">
               
               {/* Aspect Selector Tabs */}
               <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto pb-2 mb-2 sm:mb-2.5 border-b border-black/[0.08] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
