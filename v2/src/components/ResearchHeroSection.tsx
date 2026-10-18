@@ -79,32 +79,34 @@ export default function ResearchHeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-20 sm:pt-22 lg:pt-24 pb-6 sm:pb-8 select-none">
+    <section className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] bg-[#0b111e] text-slate-900 overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-20 sm:pt-22 lg:pt-24 pb-6 sm:pb-8 select-none">
       
-      {/* Background Architectural Research Facility Visual (Clearly Visible) */}
+      {/* Background Architectural Research Facility Visual (Vividly & Clearly Visible) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img 
           src={researchChamberBg} 
           alt="Novaliseo Research Facility" 
-          className="w-full h-full object-cover object-center opacity-45 sm:opacity-55 saturate-[1.15] contrast-[1.12] scale-105" 
+          className="w-full h-full object-cover object-[center_32%] scale-100 transition-transform duration-1000 ease-out" 
         />
-        {/* Soft luxury editorial gradient overlays ensuring perfect text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/92 via-[#f1f5f9]/75 to-[#f8fafc]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/80 via-transparent to-[#e2e8f0]/85" />
-        
-        {/* Technical Coordinate Research Grid */}
+
+        {/* Soft Radial Mist Overlay on the Left for 100% Crisp Text Contrast (Identical to Trainings Hero) */}
         <div 
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 pointer-events-none z-10"
           style={{
-            backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
-            backgroundSize: '44px 44px'
+            background: "radial-gradient(ellipse 65% 85% at 20% 50%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 38%, rgba(255, 255, 255, 0.25) 70%, transparent 100%)"
           }}
         />
+
+        {/* Top Vignette for Navbar Readability */}
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/80 via-white/35 to-transparent pointer-events-none z-10" />
+
+        {/* Bottom Soft Transition Fade into Next Section */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/60 to-transparent pointer-events-none z-10" />
       </div>
 
-      {/* Ambient Lighting Accents */}
-      <div className="absolute top-20 right-10 w-[550px] h-[550px] rounded-full bg-cyan-500/12 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] rounded-full bg-blue-600/10 blur-[160px] pointer-events-none" />
+      {/* Ambient High-Tech Lighting Accents */}
+      <div className="absolute top-20 right-10 w-[500px] h-[500px] rounded-full bg-cyan-400/15 blur-[140px] pointer-events-none z-10" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[140px] pointer-events-none z-10" />
 
       {/* Main Content Container - Spaciously fits dynamically in screen */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex-1 flex items-center min-h-0 my-auto">
@@ -207,7 +209,7 @@ export default function ResearchHeroSection() {
             <div 
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
-              className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-white/90 lg:bg-[#f5f4ef]/95 backdrop-blur-xl border border-white/90 lg:border-[#e2e0d8] p-5 sm:p-6 lg:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col justify-between"
+              className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-white/92 lg:bg-white/88 backdrop-blur-xl border border-white/80 p-5 sm:p-6 lg:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.22)] overflow-hidden flex flex-col justify-between"
             >
               
               {/* Aspect Selector Tabs with Animated Auto-Slide Progress Bar */}
