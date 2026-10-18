@@ -120,23 +120,23 @@ void main() {
   vec3 L1 = normalize(uLightPos1 - vWorldPosition);
   vec3 H1 = normalize(L1 + V);
   float diff1 = max(dot(N, L1), 0.0);
-  float spec1 = pow(max(dot(N, H1), 0.0), 38.0);
+  float spec1 = pow(max(dot(N, H1), 0.0), 46.0);
 
   // Soft Secondary Fill Light
   vec3 L2 = normalize(uLightPos2 - vWorldPosition);
   float diff2 = max(dot(N, L2), 0.0);
 
   // Clean luminous ambient for light gradient theme
-  float ambient = 0.46;
+  float ambient = 0.50;
 
-  // Ultra-glossy liquid poured-paint specular sheen
-  vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 1.30;
+  // Ultra-glossy liquid poured-paint specular sheen (softened, luxury satin-gloss)
+  vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 0.72;
 
   // Rim Fresnel highlight for clean separation on light background
   float fresnel = pow(1.0 - max(dot(N, V), 0.0), 2.5);
-  vec3 rimColor = vec3(1.0, 1.0, 1.0) * fresnel * 0.50;
+  vec3 rimColor = vec3(1.0, 1.0, 1.0) * fresnel * 0.45;
 
-  vec3 finalColor = baseColor * (diff1 * 0.72 + diff2 * 0.28 + ambient) + specColor + rimColor;
+  vec3 finalColor = baseColor * (diff1 * 0.70 + diff2 * 0.30 + ambient) + specColor + rimColor;
 
   gl_FragColor = vec4(finalColor, 1.0);
 }
@@ -219,8 +219,8 @@ export default function NoiseBlobsCanvas({
     const blob1 = new THREE.Mesh(geo1, mat1);
     scene.add(blob1);
 
-    // Blob 2: Satellite Floating Blob in lower-center
-    const geo2 = new THREE.IcosahedronGeometry(0.50, 36);
+    // Blob 2: Satellite Floating Blob in lower-right
+    const geo2 = new THREE.IcosahedronGeometry(0.40, 36);
     const mat2 = createShaderMaterial(2.8, 0.17, 1.35);
     mat2.uniforms.uColor1.value = new THREE.Color("#d97706");
     mat2.uniforms.uColor2.value = new THREE.Color("#fbbf24");
@@ -228,20 +228,20 @@ export default function NoiseBlobsCanvas({
     const blob2 = new THREE.Mesh(geo2, mat2);
     scene.add(blob2);
 
-    // Dynamic placement helper that fits the screen automatically
+    // Dynamic placement helper that fits the screen automatically without overlapping text or cards
     const updatePositions = (w: number) => {
       if (w < 768) {
         blob1.position.set(0.0, -0.25, -0.4);
-        blob1.scale.set(0.85, 0.85, 0.85);
-        blob2.position.set(-0.5, -1.35, 0.3);
+        blob1.scale.set(0.75, 0.75, 0.75);
+        blob2.position.set(-0.6, -1.4, 0.3);
       } else if (w < 1200) {
-        blob1.position.set(1.6, 0.05, 0.0);
-        blob1.scale.set(0.95, 0.95, 0.95);
-        blob2.position.set(0.2, -1.2, 0.5);
+        blob1.position.set(1.75, 0.08, 0.0);
+        blob1.scale.set(0.9, 0.9, 0.9);
+        blob2.position.set(1.15, -1.35, 0.4);
       } else {
-        blob1.position.set(2.1, 0.05, 0.1);
-        blob1.scale.set(1.0, 1.0, 1.0);
-        blob2.position.set(0.4, -1.25, 0.6);
+        blob1.position.set(2.15, 0.05, 0.1);
+        blob1.scale.set(0.95, 0.95, 0.95);
+        blob2.position.set(1.35, -1.35, 0.5);
       }
     };
 
@@ -276,7 +276,7 @@ export default function NoiseBlobsCanvas({
       blob1.rotation.x = m.currentY * 0.28;
       blob1.rotation.z = -m.currentX * 0.15;
 
-      blob2.position.y = (width < 768 ? -1.6 : -1.45) + Math.sin(accumulatedTime * 1.5) * 0.06;
+      blob2.position.y = (width < 768 ? -1.6 : -1.38) + Math.sin(accumulatedTime * 1.5) * 0.05;
 
       renderer.render(scene, camera);
     };

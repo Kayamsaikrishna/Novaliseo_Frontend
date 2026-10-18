@@ -46,24 +46,24 @@ export default function NoiseBlobsHero() {
       <div className="absolute top-1/3 right-10 w-[320px] h-[320px] rounded-full bg-amber-400/10 blur-[140px] pointer-events-none z-10" />
 
       {/* Soft Vignette Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/95 via-[#f8fafc]/65 to-transparent pointer-events-none z-10 w-full lg:w-3/5" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/95 via-[#f8fafc]/70 to-transparent pointer-events-none z-10 w-full lg:w-3/5" />
 
       {/* ================= 2. MAIN HERO CONTAINER (FITS 100% IN ONE SCREEN) ================= */}
       <div className="relative z-20 w-full max-w-7xl mx-auto my-auto flex items-center">
         
-        {/* Left Column: Clean Typography & Learner Training Value */}
+        {/* Left Column: Clean Editorial Typography & Learner Training Value */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="show"
           className="max-w-2xl lg:max-w-3xl text-left"
         >
-          {/* Master Headline: Large, Clean, Refined Dual-Weight (No Star, No Hands-on Eyebrow Tag) */}
-          <motion.div variants={itemVariants} className="mb-2.5 sm:mb-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] font-black text-slate-950 tracking-[-0.035em] leading-[0.92]">
+          {/* Master Headline: Cohesive, Balanced, Sophisticated Editorial Typography */}
+          <motion.div variants={itemVariants} className="mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[82px] font-semibold tracking-[-0.035em] text-[#0f172a] leading-[1.04]">
               Industry <br />
-              <span className="font-light text-slate-400">
-                trainings
+              <span className="font-medium text-[#1e293b]">
+                Trainings
               </span>
             </h1>
           </motion.div>
@@ -71,66 +71,70 @@ export default function NoiseBlobsHero() {
           {/* Genuine Learner Training Narrative */}
           <motion.p 
             variants={itemVariants}
-            className="text-xs sm:text-sm md:text-[15px] lg:text-base text-slate-600 font-normal leading-relaxed mb-4 sm:mb-5 max-w-xl"
+            className="text-sm sm:text-base md:text-[17px] text-[#334155] font-normal leading-relaxed mb-6 max-w-xl"
           >
-            Practical, industry-grade training programs designed for students, engineering graduates, and working professionals. Master real-world technologies through live project building—from Autonomous Drones & Robotics to Computer Vision, Edge AI, and Embedded Systems.
+            Practical, industry-grade training programs designed for students, engineering graduates, and working professionals. Master real-world technologies through live project building—from Autonomous Drones &amp; Robotics to Computer Vision, Edge AI, and Embedded Systems.
           </motion.p>
 
-          {/* Primary Action Buttons */}
+          {/* Primary Action Buttons (Styled cleanly like Home Hero) */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4 sm:mb-5"
+            className="flex flex-wrap items-center gap-4 mb-6"
           >
             <button
               onClick={scrollToTracks}
-              className="group inline-flex items-center gap-2.5 px-6 py-2.5 sm:py-3 rounded-full bg-slate-950 hover:bg-black text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 shadow-[0_10px_25px_rgba(0,0,0,0.14)] active:scale-95"
+              className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-[#0a0f1d] hover:bg-[#1e293b] text-white font-medium text-sm tracking-tight transition-all duration-200 shadow-[0_10px_25px_rgba(15,23,42,0.18)] hover:scale-[1.02] active:scale-[0.98] group"
             >
               <span>Explore Training Tracks</span>
-              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1">
-                <ArrowRight className="w-3 h-3" />
-              </div>
+              <ArrowRight className="w-4 h-4 text-slate-300 transition-transform group-hover:translate-x-1" />
             </button>
 
             <a
               href="/partner"
-              className="inline-flex items-center gap-2 px-5 py-2.5 sm:py-3 rounded-full bg-white/85 hover:bg-white text-slate-900 border border-slate-300/80 text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/90 hover:bg-white text-[#0f172a] border border-slate-200/90 font-medium text-sm tracking-tight transition-all duration-200 shadow-xs hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>Enroll in a Program</span>
             </a>
           </motion.div>
 
-          {/* Training Value Highlights Bar (Fits cleanly within viewport) */}
+          {/* Training Value Highlights (Refined, Spaced, No Overlap with 3D Blobs) */}
           <motion.div 
             variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-slate-300/60 max-w-2xl"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-5 border-t border-slate-200/90 max-w-2xl"
           >
-            <div className="p-2.5 sm:p-3 rounded-2xl bg-white/75 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
-              <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-xs sm:text-sm">
-                <Plane className="w-4 h-4 text-cyan-600 shrink-0" />
-                <span>Applied Hardware Labs</span>
+            <div className="p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-7 h-7 rounded-xl bg-cyan-50 border border-cyan-100/80 flex items-center justify-center text-cyan-600 shrink-0">
+                  <Plane className="w-4 h-4" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-[#0f172a]">Applied Hardware</span>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-tight">
-                Build real autonomous drones, robotics kits & AI software
+              <p className="text-xs text-[#64748b] font-normal leading-snug">
+                Autonomous drones, robotics kits &amp; embedded software
               </p>
             </div>
 
-            <div className="p-2.5 sm:p-3 rounded-2xl bg-white/75 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
-              <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-xs sm:text-sm">
-                <Cpu className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Expert Mentorship</span>
+            <div className="p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-7 h-7 rounded-xl bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600 shrink-0">
+                  <Cpu className="w-4 h-4" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-[#0f172a]">Expert Mentorship</span>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-tight">
-                Learn directly from practicing engineers & tech specialists
+              <p className="text-xs text-[#64748b] font-normal leading-snug">
+                Learn directly from practicing engineers &amp; tech leads
               </p>
             </div>
 
-            <div className="p-2.5 sm:p-3 rounded-2xl bg-white/75 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group/metric">
-              <div className="flex items-center gap-2 mb-1 text-slate-900 font-bold text-xs sm:text-sm">
-                <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Industry Credentials</span>
+            <div className="p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-slate-200/80 backdrop-blur-md transition-all shadow-xs group">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-7 h-7 rounded-xl bg-amber-50 border border-amber-100/80 flex items-center justify-center text-amber-600 shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <span className="text-xs sm:text-sm font-semibold text-[#0f172a]">Industry Credentials</span>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-tight">
-                Verified portfolio capstones & project completion certificates
+              <p className="text-xs text-[#64748b] font-normal leading-snug">
+                Verified project capstones &amp; completion certification
               </p>
             </div>
           </motion.div>
