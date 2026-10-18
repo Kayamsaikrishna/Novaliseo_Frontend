@@ -10,9 +10,17 @@ import {
   Send,
   Share2,
   FileText,
-  Lightbulb
+  Lightbulb,
+  Cpu,
+  Layers,
+  Activity,
+  ArrowUpRight
 } from "lucide-react";
 import ResearchHeroSection from "../components/ResearchHeroSection";
+
+import academicConsortiaImg from "../assets/academic_consortia_network.jpg";
+import hilTelemetryImg from "../assets/maritime/gnss_denied_navigation.png";
+import industrialPocImg from "../assets/maritime/maritime_port_intelligence_main.jpg";
 
 export default function ResearchCollaborationsPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -20,6 +28,17 @@ export default function ResearchCollaborationsPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+  };
+
+  const scrollToForm = (focusValue?: string) => {
+    const el = document.getElementById("collab-form");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      if (focusValue) {
+        const select = document.getElementById("interest") as HTMLSelectElement | null;
+        if (select) select.value = focusValue;
+      }
+    }
   };
 
   return (
@@ -37,7 +56,7 @@ export default function ResearchCollaborationsPage() {
         <div className="text-left max-w-3xl mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/5 border border-slate-900/10 text-slate-700 text-xs font-mono font-semibold tracking-wider uppercase mb-3.5 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
-            <span>Open Co-Innovation</span>
+            <span>Open Co-Innovation Matrix</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight leading-tight">
             How We Partner &amp; <span className="text-slate-400 font-light">Co-Develop</span>
@@ -47,27 +66,50 @@ export default function ResearchCollaborationsPage() {
           </p>
         </div>
 
-        {/* 3 Pathway Cards */}
+        {/* 3 Pathway Cards with Rich Hardware & Telemetry Visuals */}
         <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
           
           {/* Pathway 1: Universities & Faculties */}
-          <div className="p-8 sm:p-10 rounded-[2.5rem] bg-white/85 hover:bg-white border border-slate-200/90 shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(6,182,212,0.12)] transition-all duration-300 flex flex-col justify-between text-left group">
+          <div className="p-5 sm:p-6 rounded-[2.2rem] bg-white/95 hover:bg-white border border-slate-200/90 shadow-[0_15px_45px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(6,182,212,0.14)] transition-all duration-500 flex flex-col justify-between text-left group hover:-translate-y-1.5">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 shadow-2xs group-hover:scale-105 transition-transform">
-                  <GraduationCap className="w-6 h-6" />
+              {/* Rich Visual Media Frame with Floating Badges */}
+              <div className="relative w-full h-48 sm:h-52 overflow-hidden rounded-2xl mb-5 border border-slate-200/80 bg-slate-950 shadow-inner group">
+                <img 
+                  src={academicConsortiaImg} 
+                  alt="Academic Grant Consortia & Interdisciplinary Research Network"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Floating Top Left Pill Badge */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono shadow-md">
+                  <GraduationCap className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Academic Network</span>
                 </div>
-                <span className="text-xs font-mono font-semibold text-cyan-700 uppercase tracking-wider">
+
+                {/* Floating Top Right Path Identifier */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-950/80 backdrop-blur-md border border-cyan-500/40 text-cyan-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                   Path 01
-                </span>
+                </div>
+
+                {/* Bottom Overlay Label */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-slate-300">
+                  <span className="truncate">Multi-Faculty Grant Consortia</span>
+                  <span className="text-cyan-400 font-semibold shrink-0">Open IP</span>
+                </div>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight mb-3">
+
+              {/* Card Title & Narrative */}
+              <h3 className="text-xl sm:text-[22px] font-bold text-slate-950 tracking-tight mb-2.5 group-hover:text-cyan-900 transition-colors">
                 For Universities &amp; Professors
               </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-slate-600 text-xs sm:text-[13.5px] leading-relaxed mb-5 font-normal">
                 Joint grant consortia, co-authored peer-reviewed research papers, and sabbatical research residencies embedded in physical flight test arenas.
               </p>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+
+              {/* Bullet Highlights */}
+              <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 font-medium mb-6">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-cyan-600 shrink-0" />
                   <span>National &amp; Defense Grant Consortia</span>
@@ -82,26 +124,58 @@ export default function ResearchCollaborationsPage() {
                 </li>
               </ul>
             </div>
+
+            {/* Bottom Action CTA */}
+            <button
+              onClick={() => scrollToForm("grant")}
+              className="w-full py-3 px-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-200 text-slate-800 hover:text-cyan-900 text-xs font-mono font-semibold flex items-center justify-between transition-all duration-200 group/btn cursor-pointer shadow-2xs"
+            >
+              <span>Propose Academic Consortium</span>
+              <ArrowRight className="w-4 h-4 text-cyan-600 transition-transform duration-200 group-hover/btn:translate-x-1" />
+            </button>
           </div>
 
           {/* Pathway 2: Research Scholars & Labs */}
-          <div className="p-8 sm:p-10 rounded-[2.5rem] bg-white/85 hover:bg-white border border-slate-200/90 shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)] transition-all duration-300 flex flex-col justify-between text-left group">
+          <div className="p-5 sm:p-6 rounded-[2.2rem] bg-white/95 hover:bg-white border border-slate-200/90 shadow-[0_15px_45px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(37,99,235,0.14)] transition-all duration-500 flex flex-col justify-between text-left group hover:-translate-y-1.5">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-2xs group-hover:scale-105 transition-transform">
-                  <Building2 className="w-6 h-6" />
+              {/* Rich Visual Media Frame with Floating Badges */}
+              <div className="relative w-full h-48 sm:h-52 overflow-hidden rounded-2xl mb-5 border border-slate-200/80 bg-slate-950 shadow-inner group">
+                <img 
+                  src={hilTelemetryImg} 
+                  alt="LiDAR Point Cloud, IMU Telemetry & Hardware-in-the-Loop Testbed"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Floating Top Left Pill Badge */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono shadow-md">
+                  <Building2 className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Telemetry Testbeds</span>
                 </div>
-                <span className="text-xs font-mono font-semibold text-blue-700 uppercase tracking-wider">
+
+                {/* Floating Top Right Path Identifier */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-950/80 backdrop-blur-md border border-blue-500/40 text-blue-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                   Path 02
-                </span>
+                </div>
+
+                {/* Bottom Overlay Label */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-slate-300">
+                  <span className="truncate">HIL &amp; 6-DoF Sensor Pipelines</span>
+                  <span className="text-blue-400 font-semibold shrink-0">100Hz Datasets</span>
+                </div>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight mb-3">
+
+              {/* Card Title & Narrative */}
+              <h3 className="text-xl sm:text-[22px] font-bold text-slate-950 tracking-tight mb-2.5 group-hover:text-blue-900 transition-colors">
                 For Labs &amp; Scholars
               </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-slate-600 text-xs sm:text-[13.5px] leading-relaxed mb-5 font-normal">
                 Access calibrated hardware testbenches, optical motion-capture drone arenas, and high-framerate sensor pipelines for thesis validation.
               </p>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+
+              {/* Bullet Highlights */}
+              <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 font-medium mb-6">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
                   <span>Hardware-in-the-Loop Bench Access</span>
@@ -116,26 +190,58 @@ export default function ResearchCollaborationsPage() {
                 </li>
               </ul>
             </div>
+
+            {/* Bottom Action CTA */}
+            <button
+              onClick={() => scrollToForm("slam")}
+              className="w-full py-3 px-4 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 text-slate-800 hover:text-blue-900 text-xs font-mono font-semibold flex items-center justify-between transition-all duration-200 group/btn cursor-pointer shadow-2xs"
+            >
+              <span>Request Testbed Access</span>
+              <ArrowRight className="w-4 h-4 text-blue-600 transition-transform duration-200 group-hover/btn:translate-x-1" />
+            </button>
           </div>
 
           {/* Pathway 3: Enterprises & Startups */}
-          <div className="p-8 sm:p-10 rounded-[2.5rem] bg-white/85 hover:bg-white border border-slate-200/90 shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(245,158,11,0.12)] transition-all duration-300 flex flex-col justify-between text-left group">
+          <div className="p-5 sm:p-6 rounded-[2.2rem] bg-white/95 hover:bg-white border border-slate-200/90 shadow-[0_15px_45px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.14)] transition-all duration-500 flex flex-col justify-between text-left group hover:-translate-y-1.5">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 shadow-2xs group-hover:scale-105 transition-transform">
-                  <Briefcase className="w-6 h-6" />
+              {/* Rich Visual Media Frame with Floating Badges */}
+              <div className="relative w-full h-48 sm:h-52 overflow-hidden rounded-2xl mb-5 border border-slate-200/80 bg-slate-950 shadow-inner group">
+                <img 
+                  src={industrialPocImg} 
+                  alt="Autonomous Multi-Domain Robotics Prototyping & Field De-Risking"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Floating Top Left Pill Badge */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono shadow-md">
+                  <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Industry PoC</span>
                 </div>
-                <span className="text-xs font-mono font-semibold text-amber-700 uppercase tracking-wider">
+
+                {/* Floating Top Right Path Identifier */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-950/80 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                   Path 03
-                </span>
+                </div>
+
+                {/* Bottom Overlay Label */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-slate-300">
+                  <span className="truncate">Rapid Autonomy Prototyping</span>
+                  <span className="text-amber-400 font-semibold shrink-0">Field Sandbox</span>
+                </div>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight mb-3">
+
+              {/* Card Title & Narrative */}
+              <h3 className="text-xl sm:text-[22px] font-bold text-slate-950 tracking-tight mb-2.5 group-hover:text-amber-900 transition-colors">
                 For Industry &amp; Startups
               </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-slate-600 text-xs sm:text-[13.5px] leading-relaxed mb-5 font-normal">
                 Accelerate custom autonomy development. Co-create proof-of-concept prototypes, conduct FMEA safety analysis, and de-risk mission architectures.
               </p>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+
+              {/* Bullet Highlights */}
+              <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 font-medium mb-6">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>Rapid Proof-of-Concept Prototyping</span>
@@ -150,6 +256,15 @@ export default function ResearchCollaborationsPage() {
                 </li>
               </ul>
             </div>
+
+            {/* Bottom Action CTA */}
+            <button
+              onClick={() => scrollToForm("custom")}
+              className="w-full py-3 px-4 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-200 text-slate-800 hover:text-amber-900 text-xs font-mono font-semibold flex items-center justify-between transition-all duration-200 group/btn cursor-pointer shadow-2xs"
+            >
+              <span>Accelerate Commercial PoC</span>
+              <ArrowRight className="w-4 h-4 text-amber-600 transition-transform duration-200 group-hover/btn:translate-x-1" />
+            </button>
           </div>
 
         </div>
