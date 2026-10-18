@@ -1,394 +1,399 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  GraduationCap, 
-  Building2, 
-  Briefcase, 
-  Cpu, 
-  Plane, 
-  Radio, 
-  Code2, 
-  CheckCircle2, 
+  ArrowUpRight, 
   ArrowRight, 
-  Award,
-  Layers,
-  Sparkles
+  Sparkles, 
+  X,
+  ExternalLink,
+  GraduationCap,
+  Building2,
+  Briefcase,
+  CheckCircle2
 } from "lucide-react";
 
-type AudienceKey = "students" | "universities" | "industries";
+import uavImg from "../assets/trainings/hover_uav_assembly.jpg";
+import ugvImg from "../assets/trainings/hover_ground_ugv.jpg";
+import lidarImg from "../assets/trainings/hover_lidar_slam.jpg";
+import edgeAiImg from "../assets/trainings/hover_edge_ai.jpg";
+import arenaImg from "../assets/trainings/hover_indoor_arena.jpg";
 
-interface OfferingCard {
-  icon: React.ElementType;
+type AudienceFilter = "all" | "students" | "universities" | "industries";
+
+interface OfferingItem {
+  id: string;
+  num: string;
   title: string;
-  tag: string;
+  headline: string;
   description: string;
-  bullets: string[];
-}
-
-interface AudienceData {
-  id: AudienceKey;
-  label: string;
-  badge: string;
-  title: string;
-  subtitle: string;
+  audiences: AudienceFilter[];
+  audienceLabel: string;
+  tags: string[];
+  image: string;
+  photoCaption: string;
   ctaText: string;
   ctaLink: string;
-  metrics: { label: string; value: string }[];
-  offerings: OfferingCard[];
+  rotation: number;
 }
 
-const audienceData: Record<AudienceKey, AudienceData> = {
-  students: {
-    id: "students",
-    label: "For Students & Graduates",
-    badge: "Careers & Skill Acceleration",
-    title: "Master Real Autonomous Engineering & Build a Recruiter-Ready Portfolio",
-    subtitle: "Move beyond generic online courses. Build physical drones, write ROS2 packages, flash flight firmware, and deploy real-time AI models on edge hardware.",
-    ctaText: "Enroll in Student Cohort",
+const offerings: OfferingItem[] = [
+  {
+    id: "01",
+    num: "01",
+    title: "AUTONOMOUS FLIGHT & UAVs",
+    headline: "Carbon-Fiber Drone Assembly, PX4 Autopilots & Swarm Flight",
+    description: "Assemble custom quadcopters from bare frames, solder telemetry microchips, calibrate ESC motor dynamics, and program autonomous waypoint navigation with fail-safe return-to-launch in real wind conditions.",
+    audiences: ["all", "students", "universities", "industries"],
+    audienceLabel: "Students · Campus Labs · Industry Cohorts",
+    tags: ["PX4 & ArduPilot", "PID Tuning", "Swarm Telemetry", "Fail-Safe RTL"],
+    image: uavImg,
+    photoCaption: "Field Workbench · Quadcopter Avionics Stack",
+    ctaText: "View Flight Stack Syllabus",
     ctaLink: "/partner",
-    metrics: [
-      { label: "Physical Hardware", value: "100%" },
-      { label: "Hands-On Capstones", value: "20+" },
-      { label: "Direct Mentorship", value: "1-on-1" },
-      { label: "Placement Readiness", value: "Guaranteed" },
-    ],
-    offerings: [
-      {
-        icon: Plane,
-        title: "Autonomous Drone Mechanics & Flight Stack",
-        tag: "Hardware & Flight",
-        description: "Assemble custom quadcopters, solder telemetry electronics, tune PID controllers, and configure PX4/ArduPilot autopilots for autonomous missions.",
-        bullets: [
-          "Quadcopter assembly, ESC calibration & brushless motor dynamics",
-          "Autonomous waypoint navigation & fail-safe return-to-launch (RTL)",
-          "Flight testing in real wind and obstacle environments"
-        ]
-      },
-      {
-        icon: Cpu,
-        title: "Embedded Edge AI & Real-Time Computer Vision",
-        tag: "AI & Microprocessors",
-        description: "Deploy deep neural networks on low-power edge silicon like NVIDIA Jetson and Raspberry Pi for high-framerate object detection and tracking.",
-        bullets: [
-          "TensorRT optimization & custom YOLO training for aerial targets",
-          "Camera pipeline calibration & low-latency video streaming",
-          "On-device inference with thermal and memory constraints"
-        ]
-      },
-      {
-        icon: Radio,
-        title: "ROS2, SLAM & Autonomous Navigation",
-        tag: "Robotics Architecture",
-        description: "Program robots to perceive, map, and navigate unknown environments using LiDAR, stereo depth cameras, and real-time state estimation.",
-        bullets: [
-          "ROS2 nodes, custom publishers/subscribers & action servers",
-          "2D/3D LiDAR SLAM & occupancy grid mapping",
-          "Obstacle avoidance algorithms & Kalman filter sensor fusion"
-        ]
-      },
-      {
-        icon: Award,
-        title: "Portfolio Capstone & Industry Credentials",
-        tag: "Career Placement",
-        description: "Every cohort culminates in an end-to-end engineered project with documented open-source repositories and verified credentials for your resume.",
-        bullets: [
-          "Production-ready GitHub repo with schematics & CAD models",
-          "Verified certification recognized by robotics and aerospace startups",
-          "Resume reviews & direct placement referrals with industry partners"
-        ]
-      }
-    ]
+    rotation: -3.5,
   },
-  universities: {
-    id: "universities",
-    label: "For Colleges & Universities",
-    badge: "Institutional Partnerships",
-    title: "Establish World-Class Centers of Excellence & Elevate Campus Research",
-    subtitle: "Partner with Novaliseo to integrate cutting-edge robotics and drone testing infrastructure directly into your academic curriculum and campus laboratories.",
-    ctaText: "Schedule Institutional Consultation",
+  {
+    id: "02",
+    num: "02",
+    title: "GROUND AUTONOMY & UGVs",
+    headline: "All-Terrain Rovers, Ackerman Steering & CAN Bus Drive Systems",
+    description: "Build rugged unmanned ground vehicles capable of traversing unstructured terrain. Master CAN bus telemetry protocols, high-torque brushless drive controllers, RTOS firmware, and industrial kinematics.",
+    audiences: ["all", "students", "industries"],
+    audienceLabel: "Robotics Engineers · Enterprise Teams",
+    tags: ["CAN Bus Control", "Ackerman Steering", "RTOS Firmware", "Rugged UGV"],
+    image: ugvImg,
+    photoCaption: "Tactile Testing · High-Torque UGV Rover Chassis",
+    ctaText: "View Ground Robotics Track",
     ctaLink: "/partner",
-    metrics: [
-      { label: "Center of Excellence", value: "Turnkey" },
-      { label: "Curriculum Alignment", value: "AICTE / UGC" },
-      { label: "Faculty Trained", value: "200+" },
-      { label: "Joint Patent Potential", value: "High" },
-    ],
-    offerings: [
-      {
-        icon: Building2,
-        title: "Turnkey Robotics & Drone Lab Setup",
-        tag: "Campus Infrastructure",
-        description: "Complete equipment provisioning including netted indoor drone flight arenas, calibrated sensor testbenches, and workstation-grade compute nodes.",
-        bullets: [
-          "Safe indoor flight arenas with optical motion-capture tracking",
-          "Industrial drone kits, soldering stations, and oscilloscope testbenches",
-          "NVIDIA Jetson cluster workstations for student model training"
-        ]
-      },
-      {
-        icon: Layers,
-        title: "Industry-Accredited Curriculum Integration",
-        tag: "Academic Syllabi",
-        description: "Modernize mechanical, electronics, and computer science syllabi with project-based modules that satisfy national accreditation criteria.",
-        bullets: [
-          "Modular credit-ready electives in Autonomous Robotics & Edge AI",
-          "Laboratory manuals, grading rubrics, and automated code autograders",
-          "Semester-long capstone roadmaps with industry co-mentorship"
-        ]
-      },
-      {
-        icon: Award,
-        title: "Faculty Development Programs (FDP)",
-        tag: "Staff Empowerment",
-        description: "Intensive training bootcamps for professors and lab instructors to ensure campus staff stay current with state-of-the-art industry toolchains.",
-        bullets: [
-          "Mastering ROS2 Humble/Iron, Gazebo simulation & PX4 architecture",
-          "Guiding high-impact student publications & defense grant proposals",
-          "Access to continuous updates, software libraries & cloud assets"
-        ]
-      },
-      {
-        icon: Sparkles,
-        title: "Sponsored Hackathons & Incubation Support",
-        tag: "Innovation Ecosystem",
-        description: "Foster campus innovation through sponsored autonomy challenges, prototype incubation grants, and patent filing mentorship.",
-        bullets: [
-          "Annual campus-wide drone & robotics hackathons with cash prizes",
-          "Incubation pathways for student startup ideas and deeptech spin-offs",
-          "Industry jury panels and direct venture capital access"
-        ]
-      }
-    ]
+    rotation: 3.2,
   },
-  industries: {
-    id: "industries",
-    label: "For Industries & Enterprises",
-    badge: "Workforce & Corporate R&D",
-    title: "Accelerate Hardware Deployment & Upskill Technical Engineering Teams",
-    subtitle: "Customized technical training sprints that transition your existing software teams into cross-disciplinary embedded hardware and autonomous systems engineers.",
-    ctaText: "Request Enterprise Training Proposal",
+  {
+    id: "03",
+    num: "03",
+    title: "ROS2, SLAM & 3D PERCEPTION",
+    headline: "Real-Time 3D LiDAR Mapping & Stereo Depth Estimation",
+    description: "Equip mobile rovers and aerial robotics with LiDAR point clouds, stereo depth perception, Kalman filter sensor fusion, and Isaac Sim physics-accurate digital twin navigation.",
+    audiences: ["all", "students", "universities", "industries"],
+    audienceLabel: "Perception Specialists · Research Labs",
+    tags: ["3D LiDAR SLAM", "Isaac Sim Digital Twins", "Kalman Fusion", "Obstacle Avoidance"],
+    image: lidarImg,
+    photoCaption: "Sensor Testbench · LiDAR & Stereo Depth Optics",
+    ctaText: "Explore SLAM Perception Track",
     ctaLink: "/partner",
-    metrics: [
-      { label: "Upskilling Sprints", value: "2 - 6 Weeks" },
-      { label: "Time-to-Product", value: "4x Faster" },
-      { label: "Custom Syllabi", value: "Tailored" },
-      { label: "Simulation-to-Reality", value: "100%" },
-    ],
-    offerings: [
-      {
-        icon: Briefcase,
-        title: "Custom Corporate Upskilling Bootcamps",
-        tag: "Team Transformation",
-        description: "Targeted intensive programs designed around your company's proprietary tech stack, sensors, and operational environments.",
-        bullets: [
-          "Retrain web/cloud software engineers into real-time firmware developers",
-          "Hands-on embedded C++, RTOS, CAN bus, and sensor communication protocols",
-          "Structured on-site or hybrid training with flexible schedules"
-        ]
-      },
-      {
-        icon: Cpu,
-        title: "Hardware-in-the-Loop (HIL) & Simulation",
-        tag: "Digital Twins",
-        description: "Validate safety-critical autonomous algorithms in physics-accurate digital twin simulations before risking physical hardware.",
-        bullets: [
-          "Physics simulation with Isaac Sim, Unreal Engine & Gazebo",
-          "Hardware-in-the-loop bench testing with flight controller microcontrollers",
-          "Automated regression testing pipelines for drone firmware"
-        ]
-      },
-      {
-        icon: Radio,
-        title: "Edge Silicon & Sovereign Hardware Design",
-        tag: "Hardened Systems",
-        description: "Integrate specialized edge microchips, secure bootloaders, and low-power telemetry protocols for harsh or air-gapped environments.",
-        bullets: [
-          "Thermal dissipation, power budget & EMI hardening on UAVs",
-          "Air-gapped edge intelligence without external cloud dependency",
-          "Custom PCB daughterboard design & rapid 3D prototyping workflows"
-        ]
-      },
-      {
-        icon: Code2,
-        title: "R&D Prototype Validation & Consulting",
-        tag: "Pilot Deployment",
-        description: "Collaborate directly with Novaliseo research leads to de-risk complex autonomous systems from concept to pilot testing.",
-        bullets: [
-          "Architecture reviews for multi-agent swarm communication",
-          "Failure-mode and effects analysis (FMEA) for autonomous vehicles",
-          "Field flight testing protocols and regulatory compliance advisory"
-        ]
-      }
-    ]
-  }
-};
+    rotation: -4.0,
+  },
+  {
+    id: "04",
+    num: "04",
+    title: "EMBEDDED EDGE AI & VISION",
+    headline: "NVIDIA Jetson Silicon, TensorRT & Low-Latency Neural Inference",
+    description: "Deploy deep neural networks on power-constrained edge silicon. Optimize custom YOLO vision models with TensorRT for sub-10ms object detection, aerial tracking, and thermal-hardened edge compute.",
+    audiences: ["all", "students", "industries"],
+    audienceLabel: "AI Engineers · Edge Silicon Architects",
+    tags: ["NVIDIA Jetson SOM", "TensorRT Engine", "Sub-10ms Inference", "Thermal Hardening"],
+    image: edgeAiImg,
+    photoCaption: "Silicon Workbench · Jetson Compute Module & MIPI Camera",
+    ctaText: "Explore Edge AI Curriculum",
+    ctaLink: "/partner",
+    rotation: 3.5,
+  },
+  {
+    id: "05",
+    num: "05",
+    title: "TURNKEY LABS & WORKFORCE R&D",
+    headline: "Indoor Motion-Capture Flight Arenas & Institutional Centers of Excellence",
+    description: "Turnkey provisioning of optical motion-capture drone flight cages, AICTE-accredited curriculum modules for colleges, and accelerated hardware-in-the-loop (HIL) upskilling sprints for corporate engineering teams.",
+    audiences: ["all", "universities", "industries"],
+    audienceLabel: "Colleges · Universities · Corporate R&D",
+    tags: ["Netted Flight Cages", "Optical MoCap Tracking", "AICTE Syllabi", "HIL Simulation"],
+    image: arenaImg,
+    photoCaption: "Campus Facility · Optical MoCap Indoor Drone Arena",
+    ctaText: "Request Campus CoE Consultation",
+    ctaLink: "/partner",
+    rotation: -3.0,
+  },
+];
 
 export default function TrainingOfferingsShowcase() {
-  const [activeAudience, setActiveAudience] = useState<AudienceKey>("students");
-  const current = audienceData[activeAudience];
+  const [activeId, setActiveId] = useState<string>("02");
+  const [activeFilter, setActiveFilter] = useState<AudienceFilter>("all");
+
+  const filteredOfferings = offerings.filter(
+    (item) => activeFilter === "all" || item.audiences.includes(activeFilter)
+  );
 
   return (
-    <section className="relative w-full py-20 sm:py-28 px-6 sm:px-10 lg:px-16 bg-gradient-to-b from-[#e2e8f0]/40 via-[#f8fafc] to-[#f1f5f9] text-slate-900 overflow-hidden select-none">
+    <section className="relative w-full py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-hidden">
       
-      {/* Background Soft Glow Accents */}
-      <div className="absolute top-20 right-0 w-[500px] h-[500px] rounded-full bg-cyan-500/5 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-20 left-0 w-[500px] h-[500px] rounded-full bg-blue-600/5 blur-[150px] pointer-events-none" />
+      {/* Background Soft Ambient Lighting */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-cyan-500/5 blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[400px] rounded-full bg-amber-500/5 blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         
         {/* ================= SECTION HEADER ================= */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          
+          {/* Eyebrow Tag */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 border border-slate-900/10 text-slate-700 text-xs font-mono font-semibold tracking-wider uppercase mb-4 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
-            <span>Comprehensive Solutions</span>
+            <span>Interactive Program Capabilities</span>
           </div>
 
+          {/* Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight leading-[1.1]">
             What We Do &amp; <span className="font-light text-slate-400">What We Offer</span>
           </h2>
 
+          {/* Subtitle */}
           <p className="mt-4 text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
-            Tailored engineering pathways engineered for every stage of technological growth—from ambitious students to research universities and enterprise engineering teams.
+            A hands-on breakdown of what we teach and deploy across students, universities, and enterprise engineering teams. Hover over any capability to inspect the physical hardware, toolchains, and deployment arenas.
           </p>
 
-          {/* ================= INTERACTIVE AUDIENCE SELECTOR PILLS ================= */}
-          <div className="mt-8 sm:mt-10 inline-flex p-1.5 rounded-full bg-slate-200/70 border border-slate-300/80 shadow-xs max-w-full overflow-x-auto">
-            {(["students", "universities", "industries"] as AudienceKey[]).map((key) => {
-              const item = audienceData[key];
-              const isActive = activeAudience === key;
+          {/* Audience Filter Pills */}
+          <div className="mt-8 inline-flex p-1.5 rounded-full bg-slate-200/80 border border-slate-300/80 shadow-xs max-w-full overflow-x-auto">
+            {[
+              { id: "all", label: "All Capabilities" },
+              { id: "students", label: "For Students", icon: GraduationCap },
+              { id: "universities", label: "For Colleges & Universities", icon: Building2 },
+              { id: "industries", label: "For Industry Teams", icon: Briefcase },
+            ].map((tab) => {
+              const isActive = activeFilter === tab.id;
+              const Icon = tab.icon;
               return (
                 <button
-                  key={key}
-                  onClick={() => setActiveAudience(key)}
-                  className={`relative px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 whitespace-nowrap ${
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveFilter(tab.id as AudienceFilter);
+                    const matching = offerings.filter(o => tab.id === "all" || o.audiences.includes(tab.id as AudienceFilter));
+                    if (matching.length > 0 && !matching.some(m => m.id === activeId)) {
+                      setActiveId(matching[0].id);
+                    }
+                  }}
+                  className={`relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 whitespace-nowrap ${
                     isActive 
-                      ? "text-white shadow-md shadow-slate-950/20" 
+                      ? "text-white shadow-sm shadow-slate-950/25" 
                       : "text-slate-600 hover:text-slate-950 hover:bg-white/50"
                   }`}
                 >
                   {isActive && (
                     <motion.div
-                      layoutId="activeAudiencePill"
+                      layoutId="activeFilterPill"
                       className="absolute inset-0 rounded-full bg-slate-950"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    {key === "students" && <GraduationCap className="w-4 h-4" />}
-                    {key === "universities" && <Building2 className="w-4 h-4" />}
-                    {key === "industries" && <Briefcase className="w-4 h-4" />}
-                    {item.label}
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    {Icon && <Icon className="w-3.5 h-3.5" />}
+                    {tab.label}
                   </span>
                 </button>
               );
             })}
           </div>
+
         </div>
 
-        {/* ================= DYNAMIC AUDIENCE SHOWCASE CONTENT ================= */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-12"
-          >
+        {/* ================= MAIN TACTILE HOVER LIST CARD ================= */}
+        <div className="relative w-full rounded-[2.5rem] bg-[#f5f4ef] border border-[#e2e0d8] shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden transition-all duration-500">
+          
+          {/* Card Top Utility Bar */}
+          <div className="px-6 sm:px-10 py-5 border-b border-black/[0.07] flex items-center justify-between">
             
-            {/* Header Banner for Selected Audience */}
-            <div className="p-8 sm:p-10 rounded-[2.5rem] bg-white/80 border border-slate-200/90 shadow-[0_15px_40px_rgba(0,0,0,0.03)] backdrop-blur-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 text-left">
-              <div className="max-w-3xl">
-                <span className="inline-block px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-xs font-mono font-semibold tracking-wider uppercase mb-3">
-                  {current.badge}
-                </span>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 tracking-tight leading-snug">
-                  {current.title}
-                </h3>
-                <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
-                  {current.subtitle}
-                </p>
-              </div>
-
-              <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
-                <a
-                  href={current.ctaLink}
-                  className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-slate-950 hover:bg-black text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md hover:scale-105 active:scale-95 transition-all"
-                >
-                  <span>{current.ctaText}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
+            {/* Left Pill: CARD / OFFERINGS */}
+            <div className="flex items-center gap-3">
+              <span className="px-3.5 py-1 rounded-full bg-[#2a2a2a] text-white text-[10px] font-mono tracking-widest uppercase font-bold shadow-xs">
+                CARD
+              </span>
+              <span className="text-xs font-mono font-medium text-slate-500 hidden sm:inline-block">
+                NOVALISEO WORKFORCE &amp; CAPABILITY MATRIX
+              </span>
             </div>
 
-            {/* Key Metrics Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {current.metrics.map((metric, idx) => (
-                <div 
-                  key={idx}
-                  className="p-5 sm:p-6 rounded-2xl bg-white/70 hover:bg-white border border-slate-200/80 backdrop-blur-md shadow-2xs text-center transition-all hover:shadow-xs"
-                >
-                  <p className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-                    {metric.value}
-                  </p>
-                  <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                    {metric.label}
-                  </p>
-                </div>
-              ))}
+            {/* Right Status / Indicator Badge */}
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-mono font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Active Sprints
+              </span>
             </div>
 
-            {/* 4-Card Offerings Grid */}
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-              {current.offerings.map((offering, index) => {
-                const IconComponent = offering.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    whileHover={{ y: -4 }}
-                    className="p-8 sm:p-10 rounded-[2rem] bg-white/85 hover:bg-white border border-slate-200/90 hover:border-slate-300 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(6,182,212,0.10)] backdrop-blur-xl transition-all duration-300 text-left flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Card Header */}
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 shadow-2xs">
-                          <IconComponent className="w-6 h-6 text-slate-800" />
-                        </div>
-                        <span className="text-[11px] font-mono font-medium px-3 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
-                          {offering.tag}
+          </div>
+
+          {/* Numbered Rows List */}
+          <div className="divide-y divide-black/[0.07]">
+            {filteredOfferings.map((item) => {
+              const isActive = activeId === item.id;
+
+              return (
+                <div
+                  key={item.id}
+                  onMouseEnter={() => setActiveId(item.id)}
+                  onClick={() => setActiveId(item.id)}
+                  className={`group relative transition-all duration-300 cursor-pointer ${
+                    isActive 
+                      ? "bg-[#eeece6]/80" 
+                      : "hover:bg-[#eeece6]/40"
+                  }`}
+                >
+                  <div className="px-6 sm:px-10 lg:px-12 py-8 sm:py-10 transition-all duration-300">
+                    
+                    {/* Top Row: Number, Title & Action Circle */}
+                    <div className="flex items-center justify-between gap-6">
+                      
+                      {/* Left: Big Number & Title */}
+                      <div className="flex items-baseline gap-6 sm:gap-10 lg:gap-14 flex-1">
+                        
+                        {/* Number */}
+                        <span 
+                          className={`font-sans font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight transition-colors duration-300 select-none ${
+                            isActive 
+                              ? "text-slate-950" 
+                              : "text-slate-400 group-hover:text-slate-600"
+                          }`}
+                        >
+                          {item.num}
                         </span>
+
+                        {/* Title */}
+                        <h3 
+                          className={`font-black uppercase tracking-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl transition-colors duration-300 ${
+                            isActive 
+                              ? "text-slate-950" 
+                              : "text-slate-400 group-hover:text-slate-600"
+                          }`}
+                        >
+                          {item.title}
+                        </h3>
+
                       </div>
 
-                      {/* Card Title & Description */}
-                      <h4 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight mb-2.5">
-                        {offering.title}
-                      </h4>
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                        {offering.description}
-                      </p>
+                      {/* Right: Circular Arrow Button */}
+                      <div className="shrink-0">
+                        <button
+                          type="button"
+                          aria-label={`Open ${item.title}`}
+                          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
+                            isActive 
+                              ? "bg-slate-950 text-white scale-105" 
+                              : "bg-slate-900/10 text-slate-700 group-hover:bg-slate-900 group-hover:text-white"
+                          }`}
+                        >
+                          {isActive ? (
+                            <ArrowRight className="w-5 h-5 transition-transform" />
+                          ) : (
+                            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          )}
+                        </button>
+                      </div>
+
                     </div>
 
-                    {/* Bullet Highlights */}
-                    <div className="pt-5 border-t border-slate-100 space-y-2.5">
-                      {offering.bullets.map((bullet, bIdx) => (
-                        <div key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
-                          <span>{bullet}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                    {/* Expanded Detail Panel with Text & Swinging Picture */}
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: "auto", marginTop: 24 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-2 pb-3 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-10">
+                            
+                            {/* Left Text Column: Headline, Description, Tags & CTA */}
+                            <div className="max-w-xl text-left pl-0 sm:pl-16 lg:pl-24">
+                              
+                              {/* Audience Tag */}
+                              <div className="inline-block px-3 py-1 rounded-full bg-slate-950/5 border border-slate-950/10 text-slate-700 text-[11px] font-mono font-semibold tracking-wider uppercase mb-3">
+                                {item.audienceLabel}
+                              </div>
 
-          </motion.div>
-        </AnimatePresence>
+                              {/* Specific Capability Headline */}
+                              <h4 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight mb-2">
+                                {item.headline}
+                              </h4>
+
+                              {/* Concise Narrative Description */}
+                              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+                                {item.description}
+                              </p>
+
+                              {/* Technical Tags Grid */}
+                              <div className="flex flex-wrap items-center gap-2 mb-7">
+                                {item.tags.map((tag, tIdx) => (
+                                  <span 
+                                    key={tIdx}
+                                    className="px-2.5 py-1 rounded-md bg-white border border-slate-300/80 text-slate-700 text-xs font-mono font-medium shadow-2xs"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+
+                              {/* Action Link Button */}
+                              <div>
+                                <a
+                                  href={item.ctaLink}
+                                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-950 hover:bg-black text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md hover:scale-105 active:scale-95 transition-all"
+                                >
+                                  <span>{item.ctaText}</span>
+                                  <ArrowRight className="w-4 h-4" />
+                                </a>
+                              </div>
+
+                            </div>
+
+                            {/* Right: Swinging Picture (Swings in from steep angle to settle at slight lean) */}
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.85, rotate: -15, y: 30 }}
+                              animate={{ opacity: 1, scale: 1, rotate: item.rotation, y: 0 }}
+                              exit={{ opacity: 0, scale: 0.85, rotate: 6, y: -20 }}
+                              transition={{ type: "spring", stiffness: 240, damping: 20 }}
+                              className="relative w-full sm:w-80 md:w-96 lg:w-[410px] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.25)] border-2 border-white/95 shrink-0 self-center lg:self-auto"
+                            >
+                              <img 
+                                src={item.image} 
+                                alt={item.title} 
+                                className="w-full h-full object-cover select-none pointer-events-none" 
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-[11px] font-mono px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+                                <span>{item.photoCaption}</span>
+                                <span className="text-cyan-400 font-semibold uppercase text-[10px]">Physical Lab</span>
+                              </div>
+                            </motion.div>
+
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom Card Footer Strip */}
+          <div className="px-6 sm:px-10 py-5 bg-[#eeece6]/60 border-t border-black/[0.07] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-cyan-600" />
+              100% Physical Hardware &amp; Real-Flight Certification
+            </span>
+            <a 
+              href="/partner" 
+              className="inline-flex items-center gap-1.5 text-slate-800 hover:text-slate-950 font-semibold underline underline-offset-4 transition-colors"
+            >
+              <span>Download Comprehensive Academy Prospectus</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+        </div>
 
       </div>
+
     </section>
   );
 }
