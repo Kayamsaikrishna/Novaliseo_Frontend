@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, ChevronRight, Layers, Cpu, Plane, Radio, Terminal } from "lucide-react";
 
@@ -8,7 +8,6 @@ import propulsionDynoImg from "../assets/trainings/drone_rotor_macro.jpg";
 import opticalSensorImg from "../assets/trainings/drone_sensor_macro.jpg";
 import roverKinematicsImg from "../assets/trainings/ground_robot_macro.jpg";
 import alpineAutonomousImg from "../assets/trainings/drone_mountain_hero.jpg";
-import avionicsUnitImg from "../assets/indranav_dark_hero.png";
 
 interface ResearchAspect {
   id: string;
@@ -57,20 +56,22 @@ const aspects: ResearchAspect[] = [
     image: alpineAutonomousImg,
     focus: ["Wind-Shear Rejection Algorithms", "Sub-Zero Thermal Management", "Non-GPS Terrain Navigation"],
   },
-  {
-    id: "05",
-    num: "05",
-    title: "Hardened Avionics Silicon & Inertial Guidance Units",
-    category: "Avionics",
-    description: "Co-designing proprietary navigation computers with triple-redundant IMUs, anti-jamming satellite front-ends, and real-time Extended Kalman Filtering (EKF).",
-    image: avionicsUnitImg,
-    focus: ["INDRANAV Inertial Computing", "Anti-Jamming GNSS Front-End", "Triple-Redundant EKF Fusion"],
-  },
 ];
 
 export default function ResearchHeroSection() {
-  const [activeId, setActiveId] = useState<string>("01");
-  const activeAspect = aspects.find((a) => a.id === activeId) || aspects[0];
+  const [activeIdx, setActiveIdx] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+
+  // Automatically cycle through images and content slides one by one
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % aspects.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const activeAspect = aspects[activeIdx];
 
   const scrollToCollab = () => {
     const el = document.getElementById("collaboration-models");
@@ -78,36 +79,36 @@ export default function ResearchHeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-[clamp(68px,9vh,82px)] pb-[clamp(10px,1.5vh,18px)] select-none">
+    <section className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 overflow-y-auto lg:overflow-hidden flex flex-col justify-between pt-20 sm:pt-22 lg:pt-24 pb-6 sm:pb-8 select-none">
       
-      {/* Background Architectural Research Facility Visual */}
+      {/* Background Architectural Research Facility Visual (Clearly Visible) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img 
           src={researchChamberBg} 
           alt="Novaliseo Research Facility" 
-          className="w-full h-full object-cover object-center opacity-25 saturate-[0.9] contrast-[1.1] scale-105" 
+          className="w-full h-full object-cover object-center opacity-45 sm:opacity-55 saturate-[1.15] contrast-[1.12] scale-105" 
         />
-        {/* Soft luxury editorial gradient overlays ensuring perfect readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/95 via-[#f1f5f9]/88 to-[#f8fafc]/80" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/90 via-transparent to-[#e2e8f0]/95" />
+        {/* Soft luxury editorial gradient overlays ensuring perfect text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/92 via-[#f1f5f9]/75 to-[#f8fafc]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/80 via-transparent to-[#e2e8f0]/85" />
         
         {/* Technical Coordinate Research Grid */}
         <div 
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: `linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)`,
-            backgroundSize: '48px 48px'
+            backgroundSize: '44px 44px'
           }}
         />
       </div>
 
       {/* Ambient Lighting Accents */}
-      <div className="absolute top-20 right-10 w-[550px] h-[550px] rounded-full bg-cyan-500/10 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] rounded-full bg-blue-600/8 blur-[160px] pointer-events-none" />
+      <div className="absolute top-20 right-10 w-[550px] h-[550px] rounded-full bg-cyan-500/12 blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] rounded-full bg-blue-600/10 blur-[160px] pointer-events-none" />
 
-      {/* Main Content Container - Fits dynamically in available screen space */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex-1 flex items-center min-h-0 my-auto">
-        <div className="w-full grid lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center">
+      {/* Main Content Container - Spaciously fits dynamically in screen */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex-1 flex items-center min-h-0 my-auto">
+        <div className="w-full grid lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
           
           {/* Left Column: Editorial Statement & Collaborative Narrative (6 Cols) */}
           <div className="lg:col-span-6 text-left max-w-xl flex flex-col justify-center">
@@ -117,20 +118,20 @@ export default function ResearchHeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-2 mb-2 sm:mb-2.5"
+              className="flex items-center gap-2 mb-3"
             >
-              <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.2em] text-slate-500 uppercase">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-600 animate-pulse" />
+              <span className="text-xs font-mono font-semibold tracking-[0.2em] text-slate-600 uppercase">
                 Interdisciplinary Research &amp; Co-Development
               </span>
             </motion.div>
 
-            {/* Master Headline: Dynamically scales with screen width & height */}
+            {/* Master Headline: Dignified, Spacious & Commanding */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(1.75rem,2.8vw,3.25rem)] font-normal font-serif text-[#1e293b] leading-[1.08] tracking-tight mb-2.5 sm:mb-3"
+              className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[50px] font-normal font-serif text-[#1e293b] leading-[1.08] tracking-tight mb-3.5 sm:mb-4"
             >
               Multidisciplinary research, <br />
               <span className="italic text-[#0f172a] block mt-0.5 font-serif">
@@ -138,12 +139,12 @@ export default function ResearchHeroSection() {
               </span>
             </motion.h1>
 
-            {/* Narrative Explaining our Research Team across Multiple Aspects */}
+            {/* Narrative: Completely Visible (No Truncation) */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs sm:text-[13px] lg:text-[13px] xl:text-[14px] text-slate-600 font-normal leading-relaxed mb-3 sm:mb-4 max-w-lg line-clamp-3 sm:line-clamp-4"
+              className="text-xs sm:text-sm lg:text-[14.5px] text-slate-700 font-normal leading-relaxed mb-5 sm:mb-6 max-w-lg"
             >
               At Novaliseo, our dedicated research team works across multiple technical aspects—from autonomous flight mechanics and ground robotics to embedded neural hardware, edge algorithms, and sensor telemetry. We actively partner with university faculties, research scholars, and enterprise R&amp;D teams who are willing to collaborate, co-innovate, and build real-world physical technologies.
             </motion.p>
@@ -153,31 +154,31 @@ export default function ResearchHeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-3.5 sm:mb-4.5"
+              className="flex flex-wrap items-center gap-3.5 mb-5 sm:mb-6"
             >
               <a
                 href="/partner"
-                className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-slate-950 hover:bg-black text-white font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 group"
+                className="px-6 py-3 rounded-full bg-slate-950 hover:bg-black text-white font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 group"
               >
                 <span>Collaborate With Our Team</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <button
                 onClick={scrollToCollab}
-                className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-300/80 font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-xs hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-300/80 font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-xs hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
               >
                 <span>How We Partner</span>
-                <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-500" />
+                <ArrowUpRight className="w-4 h-4 text-slate-500" />
               </button>
             </motion.div>
 
-            {/* Multi-Aspect Coverage Strip */}
+            {/* Multi-Aspect Coverage Strip (Maps 1-to-1 to the 4 Slides) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="pt-2.5 sm:pt-3 border-t border-slate-300/70 flex flex-wrap items-center gap-2.5 sm:gap-4 text-[10px] sm:text-[11px] xl:text-xs font-mono font-medium text-slate-600"
+              className="pt-3.5 sm:pt-4 border-t border-slate-300/80 flex flex-wrap items-center gap-3 sm:gap-5 text-xs font-mono font-medium text-slate-700"
             >
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
@@ -193,51 +194,65 @@ export default function ResearchHeroSection() {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
-                Avionics Silicon
+                Autonomous Flight
               </span>
             </motion.div>
 
           </div>
 
-          {/* Right Column: Interactive Multi-Aspect Visual Showcase (6 Cols) */}
+          {/* Right Column: Interactive Multi-Aspect Auto-Sliding Showcase (6 Cols) */}
           <div className="lg:col-span-6 w-full flex flex-col justify-center">
             
-            {/* Interactive Showcase Card */}
-            <div className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-[#f5f4ef]/95 backdrop-blur-md border border-[#e2e0d8] p-[clamp(12px,1.8vh,22px)] shadow-[0_15px_35px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col justify-between">
+            {/* Interactive Showcase Card with Hover-to-Pause Auto-Slide */}
+            <div 
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              className="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-white/90 lg:bg-[#f5f4ef]/95 backdrop-blur-xl border border-white/90 lg:border-[#e2e0d8] p-5 sm:p-6 lg:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col justify-between"
+            >
               
-              {/* Aspect Selector Tabs */}
-              <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto pb-2 mb-2 sm:mb-2.5 border-b border-black/[0.08] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {aspects.map((aspect) => {
-                  const isActive = activeId === aspect.id;
+              {/* Aspect Selector Tabs with Animated Auto-Slide Progress Bar */}
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-3.5 sm:mb-4 pb-2.5 border-b border-black/[0.08]">
+                {aspects.map((aspect, idx) => {
+                  const isActive = activeIdx === idx;
                   return (
                     <button
                       key={aspect.id}
-                      onClick={() => setActiveId(aspect.id)}
-                      className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] xl:text-xs font-mono font-medium whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      onClick={() => setActiveIdx(idx)}
+                      className={`relative flex-1 py-1.5 sm:py-2 px-2 text-center rounded-full text-[11px] sm:text-xs font-mono font-semibold transition-all duration-300 overflow-hidden cursor-pointer ${
                         isActive
-                          ? "bg-slate-950 text-white shadow-xs"
+                          ? "bg-slate-950 text-white shadow-sm"
                           : "bg-black/[0.04] text-slate-600 hover:bg-black/[0.08] hover:text-slate-950"
                       }`}
                     >
-                      {aspect.num} {aspect.category}
+                      {/* Active Slide Progress Line */}
+                      {isActive && !isPaused && (
+                        <motion.div
+                          key={`prog-${activeAspect.id}`}
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 4.5, ease: "linear" }}
+                          className="absolute bottom-0 left-0 h-[2.5px] bg-cyan-400"
+                        />
+                      )}
+                      <span className="relative z-10">{aspect.num} {aspect.category}</span>
                     </button>
                   );
                 })}
               </div>
 
-              {/* Active Visual Aspect Presentation */}
+              {/* Active Visual Aspect Presentation (Smooth Auto-Slide Animation) */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeAspect.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col text-left"
                 >
                   
                   {/* Aspect Hardware Photograph */}
-                  <div className="relative w-full h-[clamp(130px,19vh,205px)] rounded-xl sm:rounded-2xl overflow-hidden border border-white/90 shadow-[0_10px_25px_rgba(0,0,0,0.08)] mb-2 sm:mb-2.5 bg-slate-900 group shrink-0">
+                  <div className="relative w-full h-[180px] sm:h-[210px] lg:h-[215px] xl:h-[240px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/90 shadow-md mb-3 sm:mb-3.5 bg-slate-950 group shrink-0">
                     <img 
                       src={activeAspect.image} 
                       alt={activeAspect.title} 
@@ -246,19 +261,19 @@ export default function ResearchHeroSection() {
                   </div>
 
                   {/* Aspect Title & Narrative */}
-                  <h3 className="text-sm sm:text-base lg:text-lg font-bold text-slate-950 tracking-tight mb-0.5 sm:mb-1">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-950 tracking-tight mb-1">
                     {activeAspect.title}
                   </h3>
-                  <p className="text-slate-600 text-[11px] sm:text-xs xl:text-[12.5px] leading-relaxed mb-2 font-normal line-clamp-2">
+                  <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-3 font-normal">
                     {activeAspect.description}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-black/[0.06]">
+                  <div className="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-black/[0.06]">
                     {activeAspect.focus.map((item, idx) => (
                       <span 
                         key={idx}
-                        className="px-2 py-0.5 rounded-md bg-white border border-slate-200/90 text-slate-700 text-[10px] sm:text-[11px] font-mono shadow-2xs whitespace-nowrap"
+                        className="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 text-[11px] font-mono shadow-2xs whitespace-nowrap font-medium"
                       >
                         {item}
                       </span>
