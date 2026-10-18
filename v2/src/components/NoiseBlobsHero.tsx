@@ -64,9 +64,9 @@ export default function NoiseBlobsHero() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] font-normal font-serif text-[#1e293b] leading-[0.98] tracking-tight mb-4 sm:mb-5 drop-shadow-xs"
           >
-            Mastery in <br />
+            From simulation to <br />
             <span className="italic text-[#0f172a] block mt-1">
-              transport &amp; autonomy
+              physical reality
             </span>
           </motion.h1>
 
