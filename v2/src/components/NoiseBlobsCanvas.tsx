@@ -56,7 +56,6 @@ const vertexShader = `
 ${noiseGLSL}
 
 uniform float uTime;
-uniform float uSpeed;
 uniform float uDisplacement;
 uniform float uFrequency;
 
@@ -67,11 +66,10 @@ varying float vNoise;
 
 void main() {
   vec3 norm = normalize(normal);
-  float t = uTime * uSpeed;
   
-  // Dual-octave organic noise displacement
-  float n1 = snoise(position * uFrequency + vec3(0.0, t * 0.38, 0.0));
-  float n2 = snoise(position * (uFrequency * 2.2) + vec3(t * 0.52, 0.0, t * 0.28)) * 0.35;
+  // Continuous smooth noise displacement without phase jumps
+  float n1 = snoise(position * uFrequency + vec3(0.0, uTime * 0.35, 0.0));
+  float n2 = snoise(position * (uFrequency * 2.1) + vec3(uTime * 0.45, 0.0, uTime * 0.25)) * 0.35;
   float totalNoise = n1 + n2;
   
   vec3 displacedPos = position + norm * (totalNoise * uDisplacement);
@@ -92,7 +90,6 @@ uniform vec3 uColor4;
 uniform vec3 uColor5;
 uniform float uBandScale;
 uniform float uTime;
-uniform float uSpeed;
 uniform vec3 uLightPos1;
 uniform vec3 uLightPos2;
 
@@ -112,8 +109,8 @@ vec3 samplePalette(float t) {
 }
 
 void main() {
-  // Banded horizontal contour with domain noise distortion
-  float bandCoord = (vPosition.y * uBandScale) + (vNoise * 1.5) + (vPosition.x * 0.25) + (uTime * uSpeed * 0.07);
+  // Banded horizontal contour with smooth time evolution
+  float bandCoord = (vPosition.y * uBandScale) + (vNoise * 1.5) + (vPosition.x * 0.22) + (uTime * 0.12);
   vec3 baseColor = samplePalette(bandCoord);
 
   vec3 N = normalize(vNormal);
@@ -130,7 +127,7 @@ void main() {
   float diff2 = max(dot(N, L2), 0.0);
 
   // Clean luminous ambient for light gradient theme (pops without being washed out)
-  float ambient = 0.45;
+  float ambient = 0.46;
 
   // Ultra-glossy liquid poured-paint specular sheen
   vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 1.25;
@@ -155,9 +152,15 @@ export default function NoiseBlobsCanvas({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Speed and pointer interaction refs
-  const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, speed: 0.42, targetSpeed: 0.42 });
-  const lastMousePos = useRef({ x: 0, y: 0, time: performance.now() });
+  // Smooth lerping physics refs
+  const mouseRef = useRef({
+    currentX: 0,
+    currentY: 0,
+    targetX: 0,
+    targetY: 0,
+    speed: 0.38,
+    targetSpeed: 0.38
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -195,7 +198,6 @@ export default function NoiseBlobsCanvas({
         fragmentShader,
         uniforms: {
           uTime: { value: 0 },
-          uSpeed: { value: 0.42 },
           uDisplacement: { value: displacement },
           uFrequency: { value: frequency },
           uBandScale: { value: bandScale },
@@ -213,13 +215,13 @@ export default function NoiseBlobsCanvas({
     // 4. Create the 3 Blobs (Proportionate, well-framed, zero awkward cutoffs)
     // Blob 1: Large Main Blob on the right side
     const geo1 = new THREE.IcosahedronGeometry(1.45, 48);
-    const mat1 = createShaderMaterial(2.2, 0.23, 1.05);
+    const mat1 = createShaderMaterial(2.2, 0.22, 1.05);
     const blob1 = new THREE.Mesh(geo1, mat1);
     scene.add(blob1);
 
     // Blob 2: Small Floating Blob in lower-center
     const geo2 = new THREE.IcosahedronGeometry(0.58, 36);
-    const mat2 = createShaderMaterial(2.8, 0.18, 1.35);
+    const mat2 = createShaderMaterial(2.8, 0.17, 1.35);
     mat2.uniforms.uColor1.value = new THREE.Color("#d97706");
     mat2.uniforms.uColor2.value = new THREE.Color("#fbbf24");
     mat2.uniforms.uColor4.value = new THREE.Color("#fef3c7");
@@ -228,26 +230,23 @@ export default function NoiseBlobsCanvas({
 
     // Blob 3: Background Accent Blob
     const geo3 = new THREE.IcosahedronGeometry(0.95, 36);
-    const mat3 = createShaderMaterial(2.5, 0.18, 1.15);
+    const mat3 = createShaderMaterial(2.5, 0.17, 1.15);
     const blob3 = new THREE.Mesh(geo3, mat3);
     scene.add(blob3);
 
     // Dynamic placement helper that fits the screen automatically
     const updatePositions = (w: number, h: number) => {
       if (w < 768) {
-        // Mobile: centered and scaled gracefully
         blob1.position.set(0.0, -0.4, -0.5);
         blob1.scale.set(0.85, 0.85, 0.85);
         blob2.position.set(-0.7, -1.6, 0.3);
         blob3.position.set(-1.2, 1.6, -1.0);
       } else if (w < 1200) {
-        // Tablet / Mid-screen
         blob1.position.set(1.6, 0.0, 0.0);
         blob1.scale.set(1.0, 1.0, 1.0);
         blob2.position.set(0.1, -1.5, 0.5);
         blob3.position.set(-2.4, 1.8, -0.6);
       } else {
-        // Desktop: beautifully framing the right side
         blob1.position.set(2.2, 0.05, 0.2);
         blob1.scale.set(1.12, 1.12, 1.12);
         blob2.position.set(0.3, -1.5, 0.6);
@@ -257,42 +256,40 @@ export default function NoiseBlobsCanvas({
 
     updatePositions(width, height);
 
-    // 5. Animation Loop
+    // 5. Silky Smooth Animation Loop (Incremental Time Integration to Eliminate Any Shaking or Flickering)
     let animationFrameId: number;
     let clock = new THREE.Clock();
+    let accumulatedTime = 0;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      const delta = clock.getDelta();
-      const elapsedTime = clock.getElapsedTime();
+      // Clamp delta to prevent hitches when switching tabs
+      const delta = Math.min(clock.getDelta(), 0.08);
 
-      // Smooth lerp speed and rotation based on pointer movement
+      // Smooth lerp speed without sudden spikes
       const m = mouseRef.current;
-      m.speed += (m.targetSpeed - m.speed) * 0.07;
-      m.x += (m.targetX - m.x) * 0.05;
-      m.y += (m.targetY - m.y) * 0.05;
+      m.speed += (m.targetSpeed - m.speed) * (delta * 1.8);
+      m.currentX += (m.targetX - m.currentX) * (delta * 2.5);
+      m.currentY += (m.targetY - m.currentY) * (delta * 2.5);
 
-      // Decay stir speed gently back to 0.42
-      m.targetSpeed = Math.max(0.42, m.targetSpeed - delta * 0.4);
+      // Strictly incremental continuous time integration (Zero Phase Jumping!)
+      accumulatedTime += delta * m.speed;
 
-      // Update shader uniforms
-      const activeSpeed = m.speed;
       [mat1, mat2, mat3].forEach((mat) => {
-        mat.uniforms.uTime.value = elapsedTime;
-        mat.uniforms.uSpeed.value = activeSpeed;
+        mat.uniforms.uTime.value = accumulatedTime;
       });
 
-      // Slowly spiral and tilt blobs, stirring faster under pointer
-      blob1.rotation.y = elapsedTime * (0.22 * activeSpeed) + m.x * 0.32;
-      blob1.rotation.x = Math.sin(elapsedTime * 0.35) * 0.12 + m.y * 0.22;
+      // Continuous incremental rotation (Zero Angle Snapping!)
+      blob1.rotation.y += delta * (0.22 * m.speed);
+      blob2.rotation.y -= delta * (0.28 * m.speed);
+      blob3.rotation.y += delta * (0.16 * m.speed);
 
-      blob2.rotation.y = -elapsedTime * (0.30 * activeSpeed) + m.x * 0.40;
-      blob2.rotation.z = Math.cos(elapsedTime * 0.45) * 0.16;
-      blob2.position.y = (width < 768 ? -1.6 : -1.5) + Math.sin(elapsedTime * 0.85) * 0.08;
+      // Smooth gentle parallax tilt from mouse
+      blob1.rotation.x = m.currentY * 0.3;
+      blob1.rotation.z = -m.currentX * 0.15;
 
-      blob3.rotation.y = elapsedTime * (0.16 * activeSpeed) - m.x * 0.18;
-      blob3.rotation.x = Math.cos(elapsedTime * 0.28) * 0.10;
+      blob2.position.y = (width < 768 ? -1.6 : -1.5) + Math.sin(accumulatedTime * 1.5) * 0.06;
 
       renderer.render(scene, camera);
     };
@@ -329,32 +326,24 @@ export default function NoiseBlobsCanvas({
     };
   }, []);
 
-  // Pointer movement triggers stirring faster under pointer
+  // Smooth pointer interaction: adjusts target softly without high-frequency shaking
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!interactive || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
 
-    const now = performance.now();
-    const dt = Math.max(1, now - lastMousePos.current.time);
-    const dx = x - lastMousePos.current.x;
-    const dy = y - lastMousePos.current.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const velocity = (dist / dt) * 1000;
-
     mouseRef.current.targetX = x;
     mouseRef.current.targetY = y;
-    // Stir factor accelerates up to 2.0x under active pointer movement
-    mouseRef.current.targetSpeed = Math.min(2.0, 0.42 + velocity * 0.16);
-
-    lastMousePos.current = { x, y, time: now };
+    // Gently stir faster under pointer
+    mouseRef.current.targetSpeed = 0.75;
   };
 
   const handlePointerLeave = () => {
     mouseRef.current.targetX = 0;
     mouseRef.current.targetY = 0;
-    mouseRef.current.targetSpeed = 0.42;
+    // Calm baseline cruise speed
+    mouseRef.current.targetSpeed = 0.38;
   };
 
   return (
