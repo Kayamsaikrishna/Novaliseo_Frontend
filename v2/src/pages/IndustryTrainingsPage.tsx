@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { ShaderBackground } from "../components/ShaderBackground";
 import { ChevronRight } from "lucide-react";
+import NoiseBlobsHero from "../components/NoiseBlobsHero";
 
 export default function IndustryTrainingsPage() {
   return (
-    <div className="min-h-screen bg-[#020617] pt-40 pb-32 text-white relative selection:bg-cyan-500/30 overflow-hidden">
+    <div className="min-h-screen bg-[#020617] pt-28 pb-32 text-white relative selection:bg-cyan-500/30 overflow-hidden">
       
       {/* Background System */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -18,33 +19,13 @@ export default function IndustryTrainingsPage() {
         <div className="absolute inset-0 bg-[#020617]/80 backdrop-blur-[2px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Massive Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-32 space-y-8"
-        >
-          <div className="inline-flex items-center justify-center p-[1px] mb-4 rounded-full bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-purple-500/50">
-             <div className="bg-[#020617] rounded-full px-6 py-2">
-               <span className="text-cyan-400 text-xs md:text-sm font-bold tracking-[0.2em] uppercase">Empowering the Future Workforce</span>
-             </div>
-          </div>
-          
-          <h1 className="text-6xl md:text-8xl lg:text-[9rem] font-black tracking-tighter leading-[0.9] drop-shadow-2xl">
-            INDUSTRY<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x">TRAININGS</span>
-          </h1>
-          
-          <p className="text-slate-400 max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed pt-8">
-            Bridging the gap between academia and industry. We provide cutting-edge training programs for students and professionals in Advanced Engineering, Automation, and Digital Technologies.
-          </p>
-        </motion.div>
+        {/* ================= 3D NOISE BLOBS HERO (MATCHING USER SCREENSHOT) ================= */}
+        <NoiseBlobsHero />
 
         {/* Polished Glassmorphic Cards */}
-        <div className="grid lg:grid-cols-2 gap-10">
+        <div id="training-tracks" className="grid lg:grid-cols-2 gap-10 mt-16 pt-8 border-t border-white/10">
           
           {/* Student Card */}
           <motion.div 
