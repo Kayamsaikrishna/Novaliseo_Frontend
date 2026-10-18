@@ -67,7 +67,7 @@ varying float vNoise;
 void main() {
   vec3 norm = normalize(normal);
   
-  // Continuous smooth noise displacement without phase jumps
+  // Continuous smooth dual-octave noise displacement
   float n1 = snoise(position * uFrequency + vec3(0.0, uTime * 0.35, 0.0));
   float n2 = snoise(position * (uFrequency * 2.1) + vec3(uTime * 0.45, 0.0, uTime * 0.25)) * 0.35;
   float totalNoise = n1 + n2;
@@ -109,7 +109,7 @@ vec3 samplePalette(float t) {
 }
 
 void main() {
-  // Banded horizontal contour with smooth time evolution
+  // Banded horizontal contour with smooth continuous evolution
   float bandCoord = (vPosition.y * uBandScale) + (vNoise * 1.5) + (vPosition.x * 0.22) + (uTime * 0.12);
   vec3 baseColor = samplePalette(bandCoord);
 
@@ -126,15 +126,15 @@ void main() {
   vec3 L2 = normalize(uLightPos2 - vWorldPosition);
   float diff2 = max(dot(N, L2), 0.0);
 
-  // Clean luminous ambient for light gradient theme (pops without being washed out)
+  // Clean luminous ambient for light gradient theme
   float ambient = 0.46;
 
   // Ultra-glossy liquid poured-paint specular sheen
-  vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 1.25;
+  vec3 specColor = vec3(1.0, 1.0, 1.0) * spec1 * 1.30;
 
   // Rim Fresnel highlight for clean separation on light background
   float fresnel = pow(1.0 - max(dot(N, V), 0.0), 2.5);
-  vec3 rimColor = vec3(1.0, 1.0, 1.0) * fresnel * 0.45;
+  vec3 rimColor = vec3(1.0, 1.0, 1.0) * fresnel * 0.50;
 
   vec3 finalColor = baseColor * (diff1 * 0.72 + diff2 * 0.28 + ambient) + specColor + rimColor;
 
@@ -172,8 +172,8 @@ export default function NoiseBlobsCanvas({
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-    camera.position.set(0, 0, 8.2);
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    camera.position.set(0, 0, 8.0);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -212,15 +212,15 @@ export default function NoiseBlobsCanvas({
       });
     };
 
-    // 4. Create the 3 Blobs (Proportionate, well-framed, zero awkward cutoffs)
+    // 4. Create Beautiful Balanced Composition (Clean Dual-Blob Sculpture without Awkward Top Overlaps)
     // Blob 1: Large Main Blob on the right side
-    const geo1 = new THREE.IcosahedronGeometry(1.45, 48);
+    const geo1 = new THREE.IcosahedronGeometry(1.55, 48);
     const mat1 = createShaderMaterial(2.2, 0.22, 1.05);
     const blob1 = new THREE.Mesh(geo1, mat1);
     scene.add(blob1);
 
-    // Blob 2: Small Floating Blob in lower-center
-    const geo2 = new THREE.IcosahedronGeometry(0.58, 36);
+    // Blob 2: Satellite Floating Blob in lower-center
+    const geo2 = new THREE.IcosahedronGeometry(0.65, 36);
     const mat2 = createShaderMaterial(2.8, 0.17, 1.35);
     mat2.uniforms.uColor1.value = new THREE.Color("#d97706");
     mat2.uniforms.uColor2.value = new THREE.Color("#fbbf24");
@@ -228,35 +228,26 @@ export default function NoiseBlobsCanvas({
     const blob2 = new THREE.Mesh(geo2, mat2);
     scene.add(blob2);
 
-    // Blob 3: Background Accent Blob
-    const geo3 = new THREE.IcosahedronGeometry(0.95, 36);
-    const mat3 = createShaderMaterial(2.5, 0.17, 1.15);
-    const blob3 = new THREE.Mesh(geo3, mat3);
-    scene.add(blob3);
-
     // Dynamic placement helper that fits the screen automatically
-    const updatePositions = (w: number, h: number) => {
+    const updatePositions = (w: number) => {
       if (w < 768) {
-        blob1.position.set(0.0, -0.4, -0.5);
-        blob1.scale.set(0.85, 0.85, 0.85);
-        blob2.position.set(-0.7, -1.6, 0.3);
-        blob3.position.set(-1.2, 1.6, -1.0);
+        blob1.position.set(0.0, -0.3, -0.4);
+        blob1.scale.set(0.9, 0.9, 0.9);
+        blob2.position.set(-0.6, -1.6, 0.3);
       } else if (w < 1200) {
-        blob1.position.set(1.6, 0.0, 0.0);
+        blob1.position.set(1.5, 0.05, 0.0);
         blob1.scale.set(1.0, 1.0, 1.0);
-        blob2.position.set(0.1, -1.5, 0.5);
-        blob3.position.set(-2.4, 1.8, -0.6);
+        blob2.position.set(0.1, -1.4, 0.5);
       } else {
-        blob1.position.set(2.2, 0.05, 0.2);
-        blob1.scale.set(1.12, 1.12, 1.12);
-        blob2.position.set(0.3, -1.5, 0.6);
-        blob3.position.set(-3.2, 1.9, -0.6);
+        blob1.position.set(2.0, 0.05, 0.1);
+        blob1.scale.set(1.15, 1.15, 1.15);
+        blob2.position.set(0.35, -1.45, 0.6);
       }
     };
 
-    updatePositions(width, height);
+    updatePositions(width);
 
-    // 5. Silky Smooth Animation Loop (Incremental Time Integration to Eliminate Any Shaking or Flickering)
+    // 5. Silky Smooth Animation Loop
     let animationFrameId: number;
     let clock = new THREE.Clock();
     let accumulatedTime = 0;
@@ -264,32 +255,28 @@ export default function NoiseBlobsCanvas({
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Clamp delta to prevent hitches when switching tabs
       const delta = Math.min(clock.getDelta(), 0.08);
 
-      // Smooth lerp speed without sudden spikes
       const m = mouseRef.current;
       m.speed += (m.targetSpeed - m.speed) * (delta * 1.8);
       m.currentX += (m.targetX - m.currentX) * (delta * 2.5);
       m.currentY += (m.targetY - m.currentY) * (delta * 2.5);
 
-      // Strictly incremental continuous time integration (Zero Phase Jumping!)
       accumulatedTime += delta * m.speed;
 
-      [mat1, mat2, mat3].forEach((mat) => {
+      [mat1, mat2].forEach((mat) => {
         mat.uniforms.uTime.value = accumulatedTime;
       });
 
-      // Continuous incremental rotation (Zero Angle Snapping!)
+      // Smooth incremental rotation
       blob1.rotation.y += delta * (0.22 * m.speed);
       blob2.rotation.y -= delta * (0.28 * m.speed);
-      blob3.rotation.y += delta * (0.16 * m.speed);
 
-      // Smooth gentle parallax tilt from mouse
-      blob1.rotation.x = m.currentY * 0.3;
+      // Smooth parallax tilt from mouse
+      blob1.rotation.x = m.currentY * 0.28;
       blob1.rotation.z = -m.currentX * 0.15;
 
-      blob2.position.y = (width < 768 ? -1.6 : -1.5) + Math.sin(accumulatedTime * 1.5) * 0.06;
+      blob2.position.y = (width < 768 ? -1.6 : -1.45) + Math.sin(accumulatedTime * 1.5) * 0.06;
 
       renderer.render(scene, camera);
     };
@@ -307,7 +294,7 @@ export default function NoiseBlobsCanvas({
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
-      updatePositions(w, h);
+      updatePositions(w);
     };
 
     window.addEventListener("resize", handleResize);
@@ -318,15 +305,13 @@ export default function NoiseBlobsCanvas({
       window.removeEventListener("resize", handleResize);
       geo1.dispose();
       geo2.dispose();
-      geo3.dispose();
       mat1.dispose();
       mat2.dispose();
-      mat3.dispose();
       renderer.dispose();
     };
   }, []);
 
-  // Smooth pointer interaction: adjusts target softly without high-frequency shaking
+  // Smooth pointer interaction
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!interactive || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -335,14 +320,12 @@ export default function NoiseBlobsCanvas({
 
     mouseRef.current.targetX = x;
     mouseRef.current.targetY = y;
-    // Gently stir faster under pointer
-    mouseRef.current.targetSpeed = 0.75;
+    mouseRef.current.targetSpeed = 0.70;
   };
 
   const handlePointerLeave = () => {
     mouseRef.current.targetX = 0;
     mouseRef.current.targetY = 0;
-    // Calm baseline cruise speed
     mouseRef.current.targetSpeed = 0.38;
   };
 
