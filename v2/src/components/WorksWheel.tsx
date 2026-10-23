@@ -57,24 +57,24 @@ export interface WorksWheelProps extends Omit<
    swinging on a huge drum. The three that matter are tuned together: STEP
    against DRUM sets how hard the neighbours rotate away, and DRUM against LENS
    decides whether they land inside the frame or run off it. */
-const CARD_H = 0.30; // front card height, of the stage (tuned to comfortably fit below navbar & header)
-const CARD_MAX_W = 0.26; // ... but never wider than this much of the stage
+const CARD_H = 0.28; // front card height, of the stage (tuned to comfortably fit below navbar & above fold)
+const CARD_MAX_W = 0.24; // ... but never wider than this much of the stage
 const CARD_RATIO = 1.45; // card width / height
-const STEP = 40; // degrees between cards on the drum
-const DRUM = 2.22; // drum radius, in card heights - and everything below likewise
-const LENS = 2.7; // perspective distance
+const STEP = 34; // degrees between cards on the drum
+const DRUM = 1.95; // drum radius, in card heights - and everything below likewise
+const LENS = 2.6; // perspective distance
 const RING_R = 1.14; // ring radius
 /* The drum alone hangs the work on a plumb line. It isn't one: the strip curves
    away round an arc whose centre sits off to the LEFT, so the piece at the front
    is at the arc's near point - dead centre - and its neighbours have already
    swung back left as well as up and down. BOW is that arc's radius; nothing else
    makes the difference between a stack of cards and a wheel seen side on. */
-const BOW = 1.82;
+const BOW = 1.4;
 const TITLE = 0.124; // ring label and front-card title
 const INDEX = 0.04; // the index down the right-hand side
 /** Items either side of the front still worth drawing. Past this a card is
     edge-on, and further round it would stack up on the vanishing point. */
-const CULL = 1.6;
+const CULL = 1.4;
 
 /** How much of a wheel-notch or a dragged pixel counts as one item. */
 const WHEEL_UNITS = 900;
@@ -130,10 +130,9 @@ export function WorksWheel({
   const labelRef = React.useRef<HTMLDivElement>(null);
   const titleRef = React.useRef<HTMLDivElement>(null);
 
-  // The wheel's position, and where it is heading. Only `active` is state -
-  // everything else is written to the DOM, so turning the wheel is not a render.
-  const turn = React.useRef(0);
-  const target = React.useRef(0);
+  // Start directly in Drum mode (turn = 1) so cards are always upright, perfectly framed, and never upside down or cut off
+  const turn = React.useRef(1);
+  const target = React.useRef(1);
   const [active, setActive] = React.useState(0);
   const [stage, setStage] = React.useState<Stage>({ w: 0, h: 0 });
 
@@ -242,7 +241,7 @@ export function WorksWheel({
 
   const to = React.useCallback(
     (next: number) => {
-      target.current = clamp(next, 0, last + 1);
+      target.current = clamp(next, 1, last + 1);
     },
     [last],
   );
@@ -253,7 +252,7 @@ export function WorksWheel({
     if (!el) return;
     const onWheel = (event: WheelEvent) => {
       const next = target.current + event.deltaY / WHEEL_UNITS;
-      if (next > 0 && next < last + 1) event.preventDefault();
+      if (next >= 1 && next <= last + 1) event.preventDefault();
       to(next);
       window.clearTimeout(settling.current);
       settling.current = window.setTimeout(
@@ -318,14 +317,13 @@ export function WorksWheel({
       </div>
 
       {/* ================= 2. TOP HEADER INTEGRATED IN STAGE (SAFELY BELOW NAVBAR) ================= */}
-      <div className="absolute top-20 sm:top-24 left-4 sm:left-8 lg:left-12 z-30 pointer-events-none text-left max-w-xs sm:max-w-sm">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono text-cyan-300 font-semibold mb-1 pointer-events-auto shadow-md">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span>ACTIVE DISCIPLINES // 3D DRUM</span>
-        </div>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight drop-shadow-lg">
+      <div className="absolute top-20 sm:top-24 left-6 sm:left-10 lg:left-14 z-30 pointer-events-none text-left max-w-xs sm:max-w-sm">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight drop-shadow-lg">
           Build With Us.
-        </h2>
+        </h1>
+        <p className="mt-1 text-slate-300 text-xs sm:text-sm font-normal drop-shadow-sm max-w-xs">
+          Explore active autonomous systems disciplines.
+        </p>
       </div>
 
       {/* ================= 3. WHEEL STAGE VIEWPORT ================= */}
@@ -348,7 +346,7 @@ export function WorksWheel({
         }}
         onPointerUp={() => {
           drag.current = null;
-          if (target.current > 1) to(Math.round(target.current));
+          if (target.current >= 1) to(Math.round(target.current));
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") to(Math.round(target.current) + 1);
@@ -359,7 +357,7 @@ export function WorksWheel({
       >
         <div
           ref={wheelRef}
-          className="absolute top-[52%] left-1/2 [transform-style:preserve-3d]"
+          className="absolute top-[54%] left-1/2 [transform-style:preserve-3d]"
         >
           {items.map((item, i) => {
             return (
@@ -428,10 +426,10 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* Ring title in the center when wheel is closed */}
+      {/* Center label hidden to keep background visual clean and unblocked */}
       <div
         ref={labelRef}
-        className="pointer-events-none absolute inset-0 z-20 grid place-items-center tracking-tight font-serif text-white/90 font-medium drop-shadow-lg"
+        className="pointer-events-none absolute inset-0 z-20 hidden"
         style={{ fontSize: metrics.title }}
       >
         {label}
@@ -440,7 +438,7 @@ export function WorksWheel({
       {/* ================= 4. ACTIVE ROLE DETAILS (BOTTOM-LEFT IN STAGE) ================= */}
       <div
         ref={titleRef}
-        className="pointer-events-none absolute bottom-8 sm:bottom-12 left-6 sm:left-12 lg:left-16 z-30 tracking-tight opacity-0 max-w-sm sm:max-w-md lg:max-w-lg text-left transition-opacity duration-300"
+        className="pointer-events-none absolute bottom-8 sm:bottom-12 left-6 sm:left-12 lg:left-16 z-30 tracking-tight opacity-100 max-w-sm sm:max-w-md lg:max-w-lg text-left transition-opacity duration-300"
       >
         <div className="p-5 sm:p-6 rounded-[26px] bg-black/60 backdrop-blur-md border border-white/20 text-white shadow-2xl pointer-events-auto">
           {activeItem?.domain && (
