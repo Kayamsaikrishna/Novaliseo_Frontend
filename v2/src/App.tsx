@@ -21,6 +21,8 @@ import SovereignComputeSection from './components/SovereignComputeSection';
 import QuoteDeck from './components/QuoteDeck';
 import PartnerLogosSection from './components/PartnerLogosSection';
 
+import IntroLoader from './components/IntroLoader';
+
 function HomePage() {
   return (
     <>
@@ -36,6 +38,7 @@ function HomePage() {
 function App() {
   return (
     <div className="relative min-h-screen bg-white text-slate-900 selection:bg-sky-500/20">
+      <IntroLoader />
       <ScrollToTop />
       <Navbar />
       <main>

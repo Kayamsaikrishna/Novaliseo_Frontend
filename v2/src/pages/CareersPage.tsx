@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
+import CareerApplicationModal from "../components/CareerApplicationModal";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -624,128 +625,17 @@ export default function CareersPage() {
       {/* ========================================================================= */}
       <AnimatePresence>
         {applyingRole && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-xl rounded-[2.5rem] bg-white border border-slate-200 shadow-2xl p-6 sm:p-8 text-left overflow-hidden"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setApplyingRole(null)}
-                className="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-all cursor-pointer"
-                aria-label="Close dialog"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {!formSubmitted ? (
-                <>
-                  <div className="pr-10 mb-6">
-                    <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold">
-                      {applyingRole.domain}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mt-2 tracking-tight">
-                      Apply: {applyingRole.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1">
-                      {applyingRole.location} • {applyingRole.type}
-                    </p>
-                  </div>
-
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 uppercase mb-1">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={candidateData.name}
-                        onChange={(e) => setCandidateData({ ...candidateData, name: e.target.value })}
-                        placeholder="e.g., Arjun Rao"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 uppercase mb-1">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={candidateData.email}
-                        onChange={(e) => setCandidateData({ ...candidateData, email: e.target.value })}
-                        placeholder="you@domain.com"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 uppercase mb-1">
-                        GitHub / Portfolio / CAD Link *
-                      </label>
-                      <input
-                        type="url"
-                        required
-                        value={candidateData.portfolio}
-                        onChange={(e) => setCandidateData({ ...candidateData, portfolio: e.target.value })}
-                        placeholder="https://github.com/your-username or portfolio URL"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 uppercase mb-1">
-                        What is something remarkable you have built physically?
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={candidateData.builtNote}
-                        onChange={(e) => setCandidateData({ ...candidateData, builtNote: e.target.value })}
-                        placeholder="Briefly describe a hardware or autonomy challenge you solved hands-on..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    <div className="pt-2 flex items-center justify-between gap-4">
-                      <a
-                        href={`mailto:info@novaliseo.com?subject=Application:%20${encodeURIComponent(applyingRole.title)}`}
-                        className="text-xs text-blue-600 hover:underline font-mono"
-                      >
-                        Prefer standard email? Click here
-                      </a>
-
-                      <button
-                        type="submit"
-                        className="px-6 py-2.5 rounded-full bg-slate-950 hover:bg-blue-600 text-white font-semibold text-sm transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                      >
-                        Submit Application
-                      </button>
-                    </div>
-                  </form>
-                </>
-              ) : (
-                <div className="py-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-950">Application Received!</h3>
-                  <p className="text-slate-600 text-sm mt-2 max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-semibold text-slate-900">{candidateData.name}</span>. Our engineering team reviews all applications directly. We will examine your portfolio and get back to you within 3 business days.
-                  </p>
-                  <button
-                    onClick={() => setApplyingRole(null)}
-                    className="mt-6 px-6 py-2.5 rounded-full bg-slate-950 text-white text-sm font-semibold hover:bg-slate-800 transition-all cursor-pointer"
-                  >
-                    Done
-                  </button>
-                </div>
-              )}
-            </motion.div>
-          </div>
+          <CareerApplicationModal
+            role={applyingRole}
+            onClose={() => setApplyingRole(null)}
+            bannerImage={
+              applyingRole.id === "flight-engineer" ? careersFlightCardNew :
+              applyingRole.id === "edge-ai-lead" ? careersVisionCardNew :
+              applyingRole.id === "hardware-lead" ? careersCardMechatronics :
+              applyingRole.id === "mission-control" ? careersCardTelemetry :
+              collabLabsReal
+            }
+          />
         )}
       </AnimatePresence>
 
