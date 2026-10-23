@@ -29,7 +29,24 @@ import {
   FileCheck,
   Award
 } from "lucide-react";
+
+import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
+
+// Background Hero Visual
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
+
+// Realistic Generated Card Hardware Visuals
+import careersCardFlight from "../assets/careers_card_flight.jpg";
+import careersCardVision from "../assets/careers_card_vision.jpg";
+import careersCardMechatronics from "../assets/careers_card_mechatronics.jpg";
+import careersCardTelemetry from "../assets/careers_card_telemetry.jpg";
+import collabLabsReal from "../assets/collab_labs_real.jpg";
+
+// Atmospheric Domain Backgrounds for WorksWheel Cross-Fade
+import droneMountainHero from "../assets/trainings/drone_mountain_hero.jpg";
+import researchChamberBg from "../assets/research_chamber_bg.jpg";
+import hoverUavAssembly from "../assets/trainings/hover_uav_assembly.jpg";
+import multidomainHero from "../assets/trainings/multidomain_autonomous_hero.jpg";
 
 interface JobRole {
   id: string;
@@ -47,7 +64,6 @@ interface JobRole {
 }
 
 export default function CareersPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [applyingRole, setApplyingRole] = useState<JobRole | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [candidateData, setCandidateData] = useState({
@@ -56,14 +72,6 @@ export default function CareersPage() {
     portfolio: "",
     builtNote: ""
   });
-
-  const categories = [
-    { id: "all", label: "All Openings", count: 4 },
-    { id: "flight", label: "Flight Autonomy", count: 1 },
-    { id: "ai", label: "Edge AI & Vision", count: 1 },
-    { id: "hardware", label: "Mechatronics & Lab", count: 1 },
-    { id: "research", label: "Fellowships & Interns", count: 1 },
-  ];
 
   const roles: JobRole[] = [
     {
@@ -118,7 +126,25 @@ export default function CareersPage() {
         "Perform finite element analysis (FEA) on structural load paths and dynamic vibration resonance frequencies.",
         "Oversee the optical motion-capture testing arena, propulsion dynamometer testbenches, and environmental chambers."
       ],
-      skills: ["SolidWorks / Fusion 360", "FEA Structural Analysis", "CNC / Carbon Prepreg", "Brushless Dyno Profiling", "FMEA Hardening"]
+      skills: ["SolidWorks / Fusion 360", "FEA Structural Analysis", "CNC / Carbon Prepreg", "Brushless Dyno", "FMEA Hardening"]
+    },
+    {
+      id: "mission-control",
+      title: "Mission Control & Distributed Telemetry Lead",
+      category: "flight",
+      domain: "Distributed Swarms & Ground Stations",
+      location: "Bengaluru, IN",
+      workMode: "Hybrid",
+      type: "Full-Time",
+      experience: "3-6+ Years in Distributed Systems",
+      compensation: "Lead Tier + Equity Grant",
+      summary: "Engineer high-throughput ground station software, encrypted telemetry radio links, 100Hz real-time sensor streams, and multi-agent coordination interfaces.",
+      responsibilities: [
+        "Architect low-latency C++/Rust telemetry engines supporting multi-drone swarm coordination.",
+        "Implement robust radio link fail-safe algorithms and RTK base station synchronization.",
+        "Build intuitive, ruggedized operator UI dashboards for real-time field deployments."
+      ],
+      skills: ["Rust / C++", "WebRTC / MQTT", "Encrypted Telemetry", "RTK-GPS Base Stations", "Mesh Comms"]
     },
     {
       id: "research-intern",
@@ -140,9 +166,79 @@ export default function CareersPage() {
     }
   ];
 
-  const filteredRoles = selectedCategory === "all" 
-    ? roles 
-    : roles.filter(r => r.category === selectedCategory);
+  // The 5 Rotating Disciplines on WorksWheel
+  const wheelItems: WorksWheelItem[] = [
+    {
+      title: "Autonomous Flight Systems",
+      domain: "Aerial Robotics & Guidance",
+      image: careersCardFlight,
+      bgImage: droneMountainHero,
+      location: "Bengaluru, IN • Hybrid",
+      type: "Full-Time",
+      description: "Architect and benchmark non-linear flight control loops, fail-safe RTL states, and GPS-denied state estimation using PX4, ROS2, and custom telemetry protocols in physical reality.",
+      skills: ["PX4 Autopilot", "ROS2 / C++20", "EKF2 State Estimation", "HIL Simulation", "CAN-FD Bus"],
+      onApply: () => {
+        setApplyingRole(roles[0]);
+        setFormSubmitted(false);
+      }
+    },
+    {
+      title: "Edge AI & Computer Vision",
+      domain: "Embedded Perception",
+      image: careersCardVision,
+      bgImage: researchChamberBg,
+      location: "Hyderabad, IN • Hybrid",
+      type: "Full-Time",
+      description: "Deploy and optimize low-latency object detection, optical flow, and multi-sensor fusion pipelines on power-constrained edge silicon (NVIDIA Jetson, Hailo, custom FPGA accelerators).",
+      skills: ["TensorRT / CUDA", "Stereo SLAM / VIO", "PyTorch / ONNX", "NVIDIA Jetson Orin", "Sub-10ms Inference"],
+      onApply: () => {
+        setApplyingRole(roles[1]);
+        setFormSubmitted(false);
+      }
+    },
+    {
+      title: "Mechatronics & Hardware",
+      domain: "Physical Engineering & Airframes",
+      image: careersCardMechatronics,
+      bgImage: hoverUavAssembly,
+      location: "Bengaluru, IN • Onsite Lab",
+      type: "Full-Time",
+      description: "Lead end-to-end hardware development of carbon-fiber airframes, high-torque brushless drive powertrains, double-wishbone suspension rovers, and environmental FMEA hardening.",
+      skills: ["SolidWorks / Fusion 360", "FEA Structural Analysis", "CNC / Carbon Prepreg", "Brushless Dyno", "FMEA Hardening"],
+      onApply: () => {
+        setApplyingRole(roles[2]);
+        setFormSubmitted(false);
+      }
+    },
+    {
+      title: "Mission Control & Telemetry",
+      domain: "Distributed Swarms & Ground Stations",
+      image: careersCardTelemetry,
+      bgImage: multidomainHero,
+      location: "Bengaluru, IN • Hybrid",
+      type: "Full-Time",
+      description: "Engineer high-throughput ground station software, encrypted telemetry radio links, 100Hz real-time sensor streams, and multi-agent coordination interfaces.",
+      skills: ["Rust / C++", "WebRTC / MQTT", "Encrypted Telemetry", "RTK-GPS Base Stations", "Mesh Comms"],
+      onApply: () => {
+        setApplyingRole(roles[3]);
+        setFormSubmitted(false);
+      }
+    },
+    {
+      title: "Robotics Research Residencies",
+      domain: "University Fellowships & R&D",
+      image: collabLabsReal,
+      bgImage: careersDaylightStudio,
+      location: "Bengaluru or Hyderabad",
+      type: "3-6 Month Fellowship",
+      description: "Hands-on engineering residency for ambitious university scholars and graduate students. Work directly on physical flight arena telemetry, motion capture validation, and autonomous testbeds.",
+      skills: ["Python / C++", "ROS2 Basics", "Micro-controller Firmware", "Physical Hardware Curiosity", "Data Analysis"],
+      onApply: () => {
+        setApplyingRole(roles[4]);
+        setFormSubmitted(false);
+      }
+    }
+  ];
 
   const hiringSteps = [
     {
@@ -209,7 +305,7 @@ export default function CareersPage() {
   };
 
   const scrollToRoles = () => {
-    const el = document.getElementById("open-roles-section");
+    const el = document.getElementById("build-with-us");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -319,7 +415,7 @@ export default function CareersPage() {
             >
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                4 Active Positions
+                5 Active Disciplines
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
@@ -351,8 +447,8 @@ export default function CareersPage() {
 
             <div className="space-y-3 pt-2">
               <div>
-                <div className="text-3xl font-black text-slate-950 font-mono">04</div>
-                <div className="text-xs text-slate-600 font-medium">Bespoke Engineering Openings</div>
+                <div className="text-3xl font-black text-slate-950 font-mono">05</div>
+                <div className="text-xs text-slate-600 font-medium">Bespoke Engineering Disciplines</div>
               </div>
               <div className="border-t border-slate-200/80 pt-2">
                 <div className="text-3xl font-black text-slate-950 font-mono">02</div>
@@ -374,174 +470,57 @@ export default function CareersPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. OPEN ENGINEERING ROLES BOARD (INTERACTIVE CATEGORY FILTERING)          */}
+      {/* 2. BUILD WITH US: INTERACTIVE WORKS WHEEL (DYNAMIC BACKGROUND SHIFTS)     */}
       {/* ========================================================================= */}
-      <section id="open-roles-section" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
+      <section id="build-with-us" className="relative w-full pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto border-t border-slate-200">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12 text-left">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 text-left">
           <div className="max-w-2xl">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
-              Available Engineering Positions
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold mb-3">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              <span>ACTIVE HARDWARE DISCIPLINES // 3D DRUM INDEX</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight">
               Build With Us.
             </h2>
             <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-              We look for individuals with rigorous first-principles reasoning, high autonomy, and a genuine passion for physical mechanics and low-level code.
+              Turn the wheel to explore each discipline in physical perspective. The atmospheric workspace shifts dynamically with each domain.
             </p>
           </div>
 
-          {/* Live Count Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-xs sm:text-sm font-mono font-medium text-slate-700 self-start md:self-auto shadow-xs">
-            <Briefcase className="w-4 h-4 text-blue-600" />
-            <span>Showing {filteredRoles.length} of {roles.length} roles</span>
+          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-500 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-xs">
+            <span>Scroll or drag the wheel to turn</span>
+            <span>⟷</span>
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-10 pb-2 border-b border-slate-200">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer ${
-                selectedCategory === cat.id
-                  ? "bg-slate-950 text-white shadow-md shadow-slate-950/10 scale-102"
-                  : "bg-white text-slate-600 hover:text-slate-950 hover:bg-slate-100 border border-slate-200/80"
-              }`}
-            >
-              <span>{cat.label}</span>
-              <span className={`text-[11px] px-1.5 py-0.2 rounded-full font-mono ${
-                selectedCategory === cat.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
-              }`}>
-                {cat.count}
-              </span>
-            </button>
-          ))}
+        {/* 3D WorksWheel Interactive Drum Stage */}
+        <div className="w-full h-[78vh] min-h-[38rem] max-h-[54rem] rounded-[2.5rem] overflow-hidden border border-slate-200/90 shadow-2xl relative bg-slate-900">
+          <WorksWheel 
+            items={wheelItems}
+            label="Build With Us '26"
+            action="Explore & Apply"
+          />
         </div>
 
-        {/* Roles List */}
-        <div className="space-y-6">
-          <AnimatePresence mode="popLayout">
-            {filteredRoles.map((role) => (
-              <motion.div
-                key={role.id}
-                layout
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.3 }}
-                className="group relative rounded-[2rem] bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 p-6 sm:p-8 text-left"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-                  
-                  {/* Left Column: Role Details */}
-                  <div className="flex-1">
-                    
-                    {/* Badges Row */}
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold">
-                        {role.domain}
-                      </span>
-                      <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono">
-                        <MapPin className="w-3.5 h-3.5 text-slate-500" />
-                        {role.location}
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-mono font-medium">
-                        {role.workMode}
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-xs font-mono font-medium">
-                        {role.experience}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight group-hover:text-blue-700 transition-colors duration-200">
-                      {role.title}
-                    </h3>
-
-                    {/* Summary */}
-                    <p className="mt-2 text-slate-600 text-sm leading-relaxed max-w-3xl">
-                      {role.summary}
-                    </p>
-
-                    {/* What You'll Build */}
-                    <div className="mt-4 pt-4 border-t border-slate-100">
-                      <div className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider mb-2">
-                        Key Responsibilities &amp; Impact:
-                      </div>
-                      <ul className="space-y-1.5">
-                        {role.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                            <span className="text-blue-500 font-bold shrink-0 mt-0.5">•</span>
-                            <span>{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Skills Chips */}
-                    <div className="flex flex-wrap gap-1.5 mt-5">
-                      {role.skills.map((skill, sIdx) => (
-                        <span 
-                          key={sIdx}
-                          className="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-xs font-mono font-medium"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-
-                  </div>
-
-                  {/* Right Column: Compensation & Apply CTA */}
-                  <div className="lg:w-64 shrink-0 flex flex-col justify-between items-start lg:items-end pt-4 lg:pt-0 border-t lg:border-t-0 border-slate-100">
-                    <div className="lg:text-right mb-4">
-                      <div className="text-[11px] font-mono text-slate-500 uppercase">Package &amp; Terms</div>
-                      <div className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5">
-                        {role.compensation}
-                      </div>
-                      <div className="text-[11px] text-slate-500 mt-1">
-                        {role.type}
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setApplyingRole(role);
-                        setFormSubmitted(false);
-                      }}
-                      className="w-full sm:w-auto px-6 py-3 rounded-full bg-slate-950 hover:bg-blue-600 text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <span>Apply for Position</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Open Application Card */}
+        {/* Open Application / Bespoke Positions Card */}
         <div className="mt-12 rounded-[2.2rem] bg-white border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-left">
           <div className="max-w-2xl">
             <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-wider">
-              General Intake
+              Bespoke Applications
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mt-1">
-              Don't see your exact role listed?
+              Don't see your exact role listed on the wheel?
             </h3>
             <p className="mt-2 text-slate-600 text-xs sm:text-sm leading-relaxed">
-              We frequently open bespoke positions for exceptional contributors across robotics, aerodynamics, embedded security, and deep learning. If you have built something notable, we want to hear from you.
+              We frequently open bespoke positions for exceptional contributors across autonomous systems, aerodynamic design, and embedded hardware security. If you have built something notable in physical reality, we want to see it.
             </p>
           </div>
 
           <a
             href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
-            className="shrink-0 px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs sm:text-sm border border-slate-300 transition-all hover:scale-105 active:scale-95"
+            className="shrink-0 px-6 py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 shadow-sm"
           >
             Submit General Portfolio
           </a>
