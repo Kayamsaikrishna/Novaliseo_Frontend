@@ -6,7 +6,6 @@ import logo from "../assets/logo.png";
 export default function Footer() {
   const navLinks = [
     { name: "Solutions", path: "/projects" },
-    { name: "Platforms", path: "/platforms" },
     { name: "Research", path: "/collaborations" },
     { name: "Trainings", path: "/trainings" },
     { name: "Careers", path: "/careers" },

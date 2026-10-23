@@ -391,34 +391,6 @@ export function WorksWheel({
                     draggable={false}
                     className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-
-                  {/* Gradient shadow for text legibility on the card */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-
-                  {/* Card Overlay Info */}
-                  <div className="absolute bottom-3 sm:bottom-4 left-4 right-4 flex items-end justify-between gap-2 z-10 pointer-events-none">
-                    <div className="min-w-0 pr-2 text-left">
-                      <span className="text-[10px] sm:text-xs font-mono font-semibold text-cyan-300 block truncate drop-shadow-sm">
-                        {item.domain || "Novaliseo Robotics"}
-                      </span>
-                      <h4 className="text-white font-bold text-sm sm:text-base md:text-lg tracking-tight truncate drop-shadow-md">
-                        {item.title}
-                      </h4>
-                    </div>
-
-                    {/* Action Pill */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        item.onApply?.();
-                      }}
-                      className="shrink-0 pointer-events-auto px-3.5 py-1.5 rounded-full bg-white/25 hover:bg-white text-white hover:text-slate-950 backdrop-blur-md border border-white/40 text-[11px] font-mono font-semibold shadow-md transition-all duration-200 cursor-pointer flex items-center gap-1 hover:scale-105 active:scale-95"
-                    >
-                      <span>{action}</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </button>
-                  </div>
                 </span>
               </div>
             );

@@ -32,7 +32,8 @@ import {
 
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
 
-// Realistic Hardware & Lab Assets
+// Hero Visual & Realistic Hardware Assets
+import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
 import careersFlightCardNew from "../assets/careers_flight_card_new.jpg";
 import careersFlightBgNew from "../assets/careers_flight_bg_new.jpg";
 import careersVisionCardNew from "../assets/careers_vision_card_new.jpg";
@@ -309,10 +310,167 @@ export default function CareersPage() {
     <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 relative selection:bg-blue-500/20 overflow-x-hidden">
       
       {/* ========================================================================= */}
-      {/* 1. CAREERS HERO: FULL SECTION SCREEN 3D PERSPECTIVE DRUM                  */}
+      {/* 1. CINEMATIC DAYLIGHT ENGINEERING STUDIO HERO (MATCHES TRAININGS & RESEARCH) */}
+      {/* ========================================================================= */}
+      <section className="relative w-full min-h-[92dvh] sm:min-h-[90dvh] flex items-center justify-center overflow-hidden select-none bg-[#090e1a]">
+        
+        {/* ================= 1. CINEMATIC BACKGROUND VISUAL ================= */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={careersDaylightStudio}
+            alt="Novaliseo Autonomous Systems Engineering Studio"
+            className="w-full h-full object-cover object-center scale-100 transition-transform duration-1000 ease-out"
+          />
+
+          {/* Soft Radial Mist Overlay on the Left for 100% Crisp Text Contrast */}
+          <div 
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background: "radial-gradient(ellipse 68% 88% at 20% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.84) 42%, rgba(255, 255, 255, 0.22) 76%, transparent 100%)"
+            }}
+          />
+
+          {/* Top Vignette for Navbar Readability */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/80 via-white/35 to-transparent pointer-events-none z-10" />
+
+          {/* Bottom Soft Transition Fade into Roles Section */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/60 to-transparent pointer-events-none z-10" />
+        </div>
+
+        {/* ================= 2. MAIN EDITORIAL HERO CONTENT ================= */}
+        <div className="relative z-20 w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 sm:pt-28 pb-8 flex items-center justify-between my-auto">
+          
+          {/* Left-Aligned Editorial Column */}
+          <div className="max-w-xl lg:max-w-2xl text-left">
+            
+            {/* Category Eyebrow Tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-2 mb-3.5 sm:mb-4"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-[0.24em] text-slate-500 uppercase">
+                Careers &amp; Residencies // We're Hiring
+              </span>
+            </motion.div>
+
+            {/* Master Headline: Editorial Serif with Slanting Italics */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] font-normal font-serif text-[#1e293b] leading-[0.98] tracking-tight mb-4 sm:mb-5 drop-shadow-xs"
+            >
+              Build the systems <br />
+              that define <span className="italic text-[#0f172a] block mt-1">physical reality</span>
+            </motion.h1>
+
+            {/* Narrative Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs sm:text-sm md:text-[15px] lg:text-base text-slate-600 font-normal leading-relaxed mb-6 sm:mb-7 max-w-md sm:max-w-xl"
+            >
+              Join an autonomous robotics and physical AI collective developing autonomous flight vehicles, power-efficient edge perception, and sovereign intelligence systems. We build hardware that thrives outside clean rooms.
+            </motion.p>
+
+            {/* Action Button Group */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-5 sm:gap-6 mb-7 sm:mb-9"
+            >
+              {/* Primary Pill Button */}
+              <button
+                onClick={scrollToRoles}
+                className="px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-[0_10px_25px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <span>Explore Open Roles ({roles.length})</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              {/* Inline Diagonal Link */}
+              <a
+                href="#culture"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-800 hover:text-slate-950 transition-colors group py-2"
+              >
+                <span>Our Culture &amp; Lab Principles</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-slate-950 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </motion.div>
+
+            {/* Bottom Highlights Strip */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="pt-5 border-t border-slate-300/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-mono font-medium text-slate-600"
+            >
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                5 Active Disciplines
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
+                Hardware Labs: BLR &amp; HYD
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+                100% Direct Review
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                Substantial Equity
+              </span>
+            </motion.div>
+
+          </div>
+
+          {/* Right-Aligned Floating Highlights Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden xl:flex flex-col gap-4 text-left p-6 sm:p-7 rounded-[2rem] bg-white/70 backdrop-blur-md border border-white/80 shadow-[0_20px_50px_rgba(0,0,0,0.06)] max-w-xs"
+          >
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-blue-600" />
+              <span>Active Talent Intake</span>
+            </div>
+
+            <div className="space-y-3 pt-2">
+              <div>
+                <div className="text-3xl font-black text-slate-950 font-mono">05</div>
+                <div className="text-xs text-slate-600 font-medium">Bespoke Engineering Disciplines</div>
+              </div>
+              <div className="border-t border-slate-200/80 pt-2">
+                <div className="text-3xl font-black text-slate-950 font-mono">02</div>
+                <div className="text-xs text-slate-600 font-medium">Physical Prototyping Labs</div>
+              </div>
+              <div className="border-t border-slate-200/80 pt-2">
+                <div className="text-3xl font-black text-slate-950 font-mono">0</div>
+                <div className="text-xs text-slate-600 font-medium">Bureaucratic Management Layers</div>
+              </div>
+            </div>
+
+            <div className="pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-200/80">
+              Physical Reality Over Simulations.
+            </div>
+          </motion.div>
+
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 2. BUILD WITH US: FULL SECTION SCREEN 3D PERSPECTIVE DRUM                 */}
       {/* ========================================================================= */}
       <section 
-        id="hero-wheel" 
+        id="build-with-us" 
         className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] overflow-hidden select-none bg-slate-950"
       >
         <WorksWheel 
