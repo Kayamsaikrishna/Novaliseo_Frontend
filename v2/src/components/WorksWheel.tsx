@@ -57,8 +57,8 @@ export interface WorksWheelProps extends Omit<
    swinging on a huge drum. The three that matter are tuned together: STEP
    against DRUM sets how hard the neighbours rotate away, and DRUM against LENS
    decides whether they land inside the frame or run off it. */
-const CARD_H = 0.38; // front card height, of the stage
-const CARD_MAX_W = 0.34; // ... but never wider than this much of the stage
+const CARD_H = 0.35; // front card height, of the stage (tuned to fit comfortably)
+const CARD_MAX_W = 0.30; // ... but never wider than this much of the stage
 const CARD_RATIO = 1.45; // card width / height
 const STEP = 40; // degrees between cards on the drum
 const DRUM = 2.22; // drum radius, in card heights - and everything below likewise
@@ -118,8 +118,8 @@ function place(
 
 export function WorksWheel({
   items,
-  label = "Works '26",
-  action = "Explore Role",
+  label = "Build With Us '26",
+  action = "Explore & Apply",
   className,
   onActiveChange,
   ...props
@@ -145,9 +145,7 @@ export function WorksWheel({
     onActiveChange?.(active);
   }, [active, onActiveChange]);
 
-  // Read after mount, not during render: the server has no matchMedia, and
-  // branching on it inline is a hydration mismatch. Reduced motion drops the
-  // easing, so the wheel lands where it is put instead of gliding there.
+  // Read after mount, not during render
   const [reduced, setReduced] = React.useState(false);
   React.useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -173,8 +171,7 @@ export function WorksWheel({
     const cardH = cardW / CARD_RATIO;
     const drumR = cardH * DRUM;
     const ringR = cardH * RING_R;
-    // Shrink the ring's cards until the circle reads as a closed loop rather
-    // than beads on a wire, however many pieces the wheel is given.
+    // Shrink the ring's cards until the circle reads as a closed loop
     const ringScale = count
       ? clamp((((2 * Math.PI * ringR) / count) * 0.82) / (cardW || 1), 0.16, 1)
       : 1;
@@ -208,8 +205,6 @@ export function WorksWheel({
       const pos = Math.max(0, t - 1);
 
       // The drum is pulled back so its front face lands on the picture plane.
-      // That set-back has to arrive with the drum, or the ring would sit at the
-      // far side of the perspective and render at half its size.
       if (wheelRef.current) {
         wheelRef.current.style.transform = `translateZ(${-m * drumR}px)`;
       }
@@ -227,9 +222,7 @@ export function WorksWheel({
             bow,
             m,
           );
-          // Culled by distance, not by angle: at a full turn the far side comes
-          // back round to face us, and everything past the neighbours lands on
-          // the vanishing point in a heap.
+          // Culled by distance, not by angle
           card.style.opacity = m > 0.5 && Math.abs(d) > CULL ? "0" : "1";
           card.style.zIndex = String(Math.round(100 - Math.abs(d) * 2));
         }
@@ -254,9 +247,7 @@ export function WorksWheel({
     [last],
   );
 
-  // Native listener, because the wheel has to be cancellable - and it only
-  // cancels while it still has somewhere to go, so the page scrolls on at
-  // either end instead of trapping the reader.
+  // Native listener with wheel handling
   React.useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -264,10 +255,6 @@ export function WorksWheel({
       const next = target.current + event.deltaY / WHEEL_UNITS;
       if (next > 0 && next < last + 1) event.preventDefault();
       to(next);
-      // A wheel gesture arrives as a burst of events with no end of its own, so
-      // the rest position is whatever notch it happened to stop on. Left there
-      // the drum sits between two cards - nothing at the front, and the pair
-      // either side of the gap both turned half away. Settle onto an item.
       window.clearTimeout(settling.current);
       settling.current = window.setTimeout(
         () => to(Math.round(target.current)),
@@ -290,47 +277,61 @@ export function WorksWheel({
     <section
       aria-label={label}
       className={cn(
-        "relative h-full min-h-[38rem] sm:min-h-[44rem] w-full overflow-hidden select-none bg-slate-900 text-slate-900",
+        "relative h-full w-full min-h-[100dvh] max-h-[100dvh] overflow-hidden select-none bg-slate-950 text-white",
         className,
       )}
       {...props}
     >
-      {/* ================= DYNAMIC BACKGROUND CROSS-FADE ================= */}
+      {/* ================= 1. CRISP, VIVID BACKGROUND IMAGE CROSS-FADE (NO BLUR) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {items.map((item, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-all duration-1000 ease-out ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
               active === idx 
                 ? "opacity-100 scale-100 z-1" 
                 : "opacity-0 scale-105 pointer-events-none z-0"
             }`}
           >
+            {/* 100% Crisp, Vivid Background Photo (Zero Blur!) */}
             <img
               src={item.bgImage || item.image}
               alt={item.title}
-              className="w-full h-full object-cover object-center filter brightness-[0.92] saturate-[0.9]"
+              className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.04]"
             />
-            {/* Luminous Architectural Glass Veil for High Contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-50/95 via-slate-100/85 to-slate-200/90 backdrop-blur-[3px]" />
+
+            {/* Cinematic Directional Vignettes for Text Contrast (Background remains 100% visible) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 via-transparent to-transparent pointer-events-none" />
             
-            {/* Technical Blueprint Dot Overlay */}
+            {/* Subtle Blueprint Grid Accent */}
             <div 
-              className="absolute inset-0 opacity-[0.035] pointer-events-none"
+              className="absolute inset-0 opacity-[0.04] pointer-events-none"
               style={{
-                backgroundImage: "radial-gradient(#0f172a 1px, transparent 1px)",
-                backgroundSize: "24px 24px"
+                backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+                backgroundSize: "28px 28px"
               }}
             />
           </div>
         ))}
-
-        {/* Ambient Top & Bottom Lighting Voids */}
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/60 to-transparent z-10" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/70 to-transparent z-10" />
       </div>
 
-      {/* ================= WHEEL STAGE VIEWPORT ================= */}
+      {/* ================= 2. TOP HEADER INTEGRATED IN STAGE ================= */}
+      <div className="absolute top-6 sm:top-10 left-6 sm:left-12 lg:left-16 z-30 pointer-events-none text-left max-w-xl">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono text-cyan-300 font-semibold mb-2.5 pointer-events-auto">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          <span>ACTIVE DISCIPLINES // 3D DRUM INDEX</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-lg">
+          Build With Us.
+        </h2>
+        <p className="mt-1 text-slate-200 text-xs sm:text-sm font-normal drop-shadow-sm max-w-md hidden sm:block">
+          Turn the wheel or drag to navigate our active robotics disciplines in physical reality.
+        </p>
+      </div>
+
+      {/* ================= 3. WHEEL STAGE VIEWPORT ================= */}
       <div
         ref={stageRef}
         tabIndex={0}
@@ -349,7 +350,6 @@ export function WorksWheel({
           drag.current = event.clientY;
         }}
         onPointerUp={() => {
-          // Land on an item rather than between two.
           drag.current = null;
           if (target.current > 1) to(Math.round(target.current));
         }}
@@ -389,7 +389,7 @@ export function WorksWheel({
                   marginTop: -metrics.cardH / 2,
                 }}
               >
-                <span className="relative block size-full overflow-hidden rounded-[24px] sm:rounded-[28px] border border-white/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-300 group-hover:shadow-[0_25px_65px_rgba(0,0,0,0.25)]">
+                <span className="relative block size-full overflow-hidden rounded-[24px] sm:rounded-[30px] border border-white/30 bg-slate-900 shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:shadow-[0_30px_75px_rgba(0,0,0,0.7)] group-hover:border-cyan-400/60">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -398,15 +398,15 @@ export function WorksWheel({
                   />
 
                   {/* Gradient shadow for text legibility on the card */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
                   {/* Card Overlay Info */}
                   <div className="absolute bottom-3 sm:bottom-4 left-4 right-4 flex items-end justify-between gap-2 z-10 pointer-events-none">
-                    <div className="min-w-0 pr-2">
-                      <span className="text-[10px] sm:text-xs font-mono font-semibold text-blue-300 block truncate">
+                    <div className="min-w-0 pr-2 text-left">
+                      <span className="text-[10px] sm:text-xs font-mono font-semibold text-cyan-300 block truncate drop-shadow-sm">
                         {item.domain || "Novaliseo Robotics"}
                       </span>
-                      <h4 className="text-white font-bold text-sm sm:text-base md:text-lg tracking-tight truncate drop-shadow-sm">
+                      <h4 className="text-white font-bold text-sm sm:text-base md:text-lg tracking-tight truncate drop-shadow-md">
                         {item.title}
                       </h4>
                     </div>
@@ -418,7 +418,7 @@ export function WorksWheel({
                         e.stopPropagation();
                         item.onApply?.();
                       }}
-                      className="shrink-0 pointer-events-auto px-3 py-1.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-slate-950 backdrop-blur-md border border-white/30 text-[11px] font-mono font-medium shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-1 hover:scale-105 active:scale-95"
+                      className="shrink-0 pointer-events-auto px-3.5 py-1.5 rounded-full bg-white/25 hover:bg-white text-white hover:text-slate-950 backdrop-blur-md border border-white/40 text-[11px] font-mono font-semibold shadow-md transition-all duration-200 cursor-pointer flex items-center gap-1 hover:scale-105 active:scale-95"
                     >
                       <span>{action}</span>
                       <ArrowRight className="w-3 h-3" />
@@ -431,47 +431,47 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* Ring title and front-card title trade places across the transition */}
+      {/* Ring title in the center when wheel is closed */}
       <div
         ref={labelRef}
-        className="pointer-events-none absolute inset-0 z-20 grid place-items-center tracking-tight font-serif text-slate-800 font-medium drop-shadow-sm"
+        className="pointer-events-none absolute inset-0 z-20 grid place-items-center tracking-tight font-serif text-white/90 font-medium drop-shadow-lg"
         style={{ fontSize: metrics.title }}
       >
         {label}
       </div>
 
-      {/* Front-card details panel on the left (Fades in when wheel opens) */}
+      {/* ================= 4. ACTIVE ROLE DETAILS (BOTTOM-LEFT IN STAGE) ================= */}
       <div
         ref={titleRef}
-        className="pointer-events-none absolute top-1/2 left-[5%] sm:left-[8%] -translate-y-1/2 z-20 tracking-tight opacity-0 max-w-sm sm:max-w-md text-left transition-opacity duration-300"
+        className="pointer-events-none absolute bottom-8 sm:bottom-12 left-6 sm:left-12 lg:left-16 z-30 tracking-tight opacity-0 max-w-sm sm:max-w-md lg:max-w-lg text-left transition-opacity duration-300"
       >
-        <div className="p-5 sm:p-6 rounded-[2rem] bg-white/80 backdrop-blur-md border border-white/90 shadow-xl pointer-events-auto">
+        <div className="p-5 sm:p-6 rounded-[26px] bg-black/60 backdrop-blur-md border border-white/20 text-white shadow-2xl pointer-events-auto">
           {activeItem?.domain && (
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold mb-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-semibold mb-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
               <span>{activeItem.domain}</span>
             </div>
           )}
 
           <h3 
-            className="font-serif font-normal text-slate-950 leading-tight mb-2 tracking-tight"
-            style={{ fontSize: `clamp(1.4rem, 2.4vw, 2.2rem)` }}
+            className="font-serif font-normal text-white leading-tight mb-2 tracking-tight drop-shadow-md"
+            style={{ fontSize: `clamp(1.3rem, 2.2vw, 2rem)` }}
           >
             {activeItem?.title}
           </h3>
 
           {activeItem?.description && (
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+            <p className="text-slate-200 text-xs sm:text-sm leading-relaxed mb-4 drop-shadow-xs line-clamp-3">
               {activeItem.description}
             </p>
           )}
 
           {activeItem?.skills && (
             <div className="flex flex-wrap gap-1.5 mb-5">
-              {activeItem.skills.map((skill, sIdx) => (
+              {activeItem.skills.slice(0, 4).map((skill, sIdx) => (
                 <span 
                   key={sIdx}
-                  className="px-2 py-0.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-mono font-medium"
+                  className="px-2 py-0.5 rounded-lg bg-white/10 border border-white/15 text-slate-200 text-[11px] font-mono"
                 >
                   {skill}
                 </span>
@@ -482,7 +482,7 @@ export function WorksWheel({
           {activeItem?.onApply && (
             <button
               onClick={() => activeItem.onApply?.()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold transition-all duration-200 shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-cyan-400 text-slate-950 font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>Apply for {activeItem.title}</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -491,13 +491,13 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* Right-Hand Index Selector */}
+      {/* ================= 5. RIGHT-HAND INDEX SELECTOR ================= */}
       <ol
-        className="absolute top-[8%] sm:top-[7.5%] right-[3%] sm:right-[2.5%] z-20 text-right leading-[1.8] pointer-events-auto"
-        style={{ fontSize: `clamp(11px, 1.4vw, 15px)` }}
+        className="absolute top-6 sm:top-10 right-6 sm:right-12 z-30 text-right leading-[2] pointer-events-auto"
+        style={{ fontSize: `clamp(11px, 1.3vw, 14px)` }}
       >
         <li className="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-2">
-          Index ({items.length})
+          INDEX ({items.length})
         </li>
         {items.map((item, i) => (
           <li key={item.title}>
@@ -505,10 +505,10 @@ export function WorksWheel({
               type="button"
               onClick={() => to(i + 1)}
               className={cn(
-                "focus-visible:outline-foreground cursor-pointer transition-all outline-none font-mono text-xs sm:text-sm",
+                "focus-visible:outline-foreground cursor-pointer transition-all outline-none font-mono text-xs sm:text-sm px-3.5 py-1 rounded-full my-0.5",
                 i === active 
-                  ? "text-blue-700 font-bold scale-105 underline decoration-blue-500 decoration-2 underline-offset-4" 
-                  : "text-slate-500 hover:text-slate-900 font-normal",
+                  ? "bg-white text-slate-950 font-bold shadow-lg scale-105" 
+                  : "text-slate-300 hover:text-white bg-black/40 backdrop-blur-sm border border-white/10 font-normal hover:bg-black/60",
               )}
             >
               0{i + 1} — {item.title}
@@ -517,9 +517,9 @@ export function WorksWheel({
         ))}
       </ol>
 
-      {/* Bottom Wheel Drag Hint */}
-      <div className="absolute bottom-5 inset-x-0 z-20 flex justify-center items-center pointer-events-none">
-        <div className="px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-slate-200 text-slate-500 text-[11px] font-mono tracking-widest uppercase shadow-xs flex items-center gap-2">
+      {/* Bottom Center Wheel Drag Hint */}
+      <div className="absolute bottom-5 inset-x-0 z-30 flex justify-center items-center pointer-events-none">
+        <div className="px-4 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-slate-300 text-[11px] font-mono tracking-widest uppercase shadow-sm flex items-center gap-2">
           <span>⟷</span>
           <span>Scroll or Drag Wheel to Turn</span>
           <span>⟷</span>

@@ -35,18 +35,16 @@ import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
 // Background Hero Visual
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
 
-// Realistic Generated Card Hardware Visuals
-import careersCardFlight from "../assets/careers_card_flight.jpg";
-import careersCardVision from "../assets/careers_card_vision.jpg";
+// New Realistic Generated Hardware Assets
+import careersFlightCardNew from "../assets/careers_flight_card_new.jpg";
+import careersFlightBgNew from "../assets/careers_flight_bg_new.jpg";
+import careersVisionCardNew from "../assets/careers_vision_card_new.jpg";
+import careersVisionBgNew from "../assets/careers_vision_bg_new.jpg";
 import careersCardMechatronics from "../assets/careers_card_mechatronics.jpg";
+import realCncMachining from "../assets/real_specs/real_cnc_machining.jpg";
 import careersCardTelemetry from "../assets/careers_card_telemetry.jpg";
-import collabLabsReal from "../assets/collab_labs_real.jpg";
-
-// Atmospheric Domain Backgrounds for WorksWheel Cross-Fade
-import droneMountainHero from "../assets/trainings/drone_mountain_hero.jpg";
-import researchChamberBg from "../assets/research_chamber_bg.jpg";
-import hoverUavAssembly from "../assets/trainings/hover_uav_assembly.jpg";
 import multidomainHero from "../assets/trainings/multidomain_autonomous_hero.jpg";
+import collabLabsReal from "../assets/collab_labs_real.jpg";
 
 interface JobRole {
   id: string;
@@ -166,13 +164,13 @@ export default function CareersPage() {
     }
   ];
 
-  // The 5 Rotating Disciplines on WorksWheel
+  // The 5 Rotating Disciplines on WorksWheel with All-New Hardware Images
   const wheelItems: WorksWheelItem[] = [
     {
       title: "Autonomous Flight Systems",
       domain: "Aerial Robotics & Guidance",
-      image: careersCardFlight,
-      bgImage: droneMountainHero,
+      image: careersFlightCardNew,
+      bgImage: careersFlightBgNew,
       location: "Bengaluru, IN • Hybrid",
       type: "Full-Time",
       description: "Architect and benchmark non-linear flight control loops, fail-safe RTL states, and GPS-denied state estimation using PX4, ROS2, and custom telemetry protocols in physical reality.",
@@ -185,8 +183,8 @@ export default function CareersPage() {
     {
       title: "Edge AI & Computer Vision",
       domain: "Embedded Perception",
-      image: careersCardVision,
-      bgImage: researchChamberBg,
+      image: careersVisionCardNew,
+      bgImage: careersVisionBgNew,
       location: "Hyderabad, IN • Hybrid",
       type: "Full-Time",
       description: "Deploy and optimize low-latency object detection, optical flow, and multi-sensor fusion pipelines on power-constrained edge silicon (NVIDIA Jetson, Hailo, custom FPGA accelerators).",
@@ -200,7 +198,7 @@ export default function CareersPage() {
       title: "Mechatronics & Hardware",
       domain: "Physical Engineering & Airframes",
       image: careersCardMechatronics,
-      bgImage: hoverUavAssembly,
+      bgImage: realCncMachining,
       location: "Bengaluru, IN • Onsite Lab",
       type: "Full-Time",
       description: "Lead end-to-end hardware development of carbon-fiber airframes, high-torque brushless drive powertrains, double-wishbone suspension rovers, and environmental FMEA hardening.",
@@ -470,42 +468,22 @@ export default function CareersPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. BUILD WITH US: INTERACTIVE WORKS WHEEL (DYNAMIC BACKGROUND SHIFTS)     */}
+      {/* 2. BUILD WITH US: FULL SECTION SCREEN 3D PERSPECTIVE DRUM                 */}
       {/* ========================================================================= */}
-      <section id="build-with-us" className="relative w-full pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto border-t border-slate-200">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 text-left">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold mb-3">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              <span>ACTIVE HARDWARE DISCIPLINES // 3D DRUM INDEX</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight">
-              Build With Us.
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-              Turn the wheel to explore each discipline in physical perspective. The atmospheric workspace shifts dynamically with each domain.
-            </p>
-          </div>
+      <section 
+        id="build-with-us" 
+        className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] overflow-hidden select-none bg-slate-950"
+      >
+        <WorksWheel 
+          items={wheelItems}
+          label="Build With Us '26"
+          action="Explore & Apply"
+        />
+      </section>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-500 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-xs">
-            <span>Scroll or drag the wheel to turn</span>
-            <span>⟷</span>
-          </div>
-        </div>
-
-        {/* 3D WorksWheel Interactive Drum Stage */}
-        <div className="w-full h-[78vh] min-h-[38rem] max-h-[54rem] rounded-[2.5rem] overflow-hidden border border-slate-200/90 shadow-2xl relative bg-slate-900">
-          <WorksWheel 
-            items={wheelItems}
-            label="Build With Us '26"
-            action="Explore & Apply"
-          />
-        </div>
-
-        {/* Open Application / Bespoke Positions Card */}
-        <div className="mt-12 rounded-[2.2rem] bg-white border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+      {/* Bespoke / General Intake Section directly following the 3D Stage */}
+      <div className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
+        <div className="rounded-[2.2rem] bg-white border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-left">
           <div className="max-w-2xl">
             <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-wider">
               Bespoke Applications
@@ -525,8 +503,7 @@ export default function CareersPage() {
             Submit General Portfolio
           </a>
         </div>
-
-      </section>
+      </div>
 
       {/* ========================================================================= */}
       {/* 3. HOW WE HIRE (TRANSPARENT 4-STAGE PIPELINE)                             */}
