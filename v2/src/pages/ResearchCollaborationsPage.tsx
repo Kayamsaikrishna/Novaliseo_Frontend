@@ -142,251 +142,231 @@ export default function ResearchCollaborationsPage() {
         </div>
 
         {/* Outer Research Console Container */}
-        <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] bg-white/95 border border-slate-200/90 shadow-[0_25px_80px_rgba(15,23,42,0.09),0_4px_24px_rgba(0,0,0,0.04)] backdrop-blur-2xl overflow-hidden">
+        <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] bg-white/95 border border-slate-200/90 shadow-[0_20px_60px_rgba(15,23,42,0.07),0_4px_20px_rgba(0,0,0,0.03)] backdrop-blur-2xl overflow-hidden p-6 sm:p-8 lg:p-10">
           
-          {/* Top Technical Console Header Bar */}
-          <div className="px-5 sm:px-8 py-3 bg-slate-900/[0.03] border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-600">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-semibold text-slate-800 tracking-wide">DIRECT RESEARCH INTAKE PROTOCOL</span>
-              <span className="hidden md:inline text-slate-300">|</span>
-              <span className="hidden md:inline text-slate-500">REF: NOV-R&amp;D-2026</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-500 text-[11px]">
-              <Lock className="w-3.5 h-3.5 text-cyan-600" />
-              <span>256-Bit TLS Direct Transmission</span>
-            </div>
-          </div>
-
-          {/* Main Console Body: Responsive 2-Column Architecture */}
-          <div className="p-5 sm:p-7 lg:p-9">
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="p-8 sm:p-12 rounded-2xl bg-cyan-50/70 border border-cyan-200 text-center max-w-lg mx-auto my-8"
-              >
-                <div className="w-14 h-14 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center mx-auto mb-4 shadow-xs">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mb-2">Research Inquiry Transmitted</h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                  Thank you for reaching out to Novaliseo Research. Our technical committee has received your submission and will review the domain scope within 2 business days.
-                </p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-cyan-200 text-cyan-800 text-xs font-mono">
-                  <span>Routing ID: #{Math.floor(100000 + Math.random() * 900000)}</span>
-                </div>
-              </motion.div>
-            ) : (
-              <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                
-                {/* Left Panel: Institutional Narrative & Tracks (5 Columns) */}
-                <div className="lg:col-span-5 flex flex-col justify-between text-left space-y-4 sm:space-y-5">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] font-mono font-semibold tracking-wider uppercase mb-2">
-                      <Sparkles className="w-3 h-3 text-cyan-600" />
-                      <span>Co-Development Gateway</span>
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-black text-slate-950 tracking-tight leading-tight">
-                      Start a Research{" "}
-                      <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        Dialogue
-                      </span>
-                    </h2>
-                    <p className="mt-2 text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
-                      Whether you are an academic professor with a grant proposal, a laboratory head seeking telemetry infrastructure, or an enterprise team wanting to build together—let's connect.
-                    </p>
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="p-8 sm:p-12 rounded-2xl bg-slate-50 border border-slate-200 text-center max-w-lg mx-auto my-8"
+            >
+              <div className="w-14 h-14 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center mx-auto mb-4 shadow-xs">
+                <CheckCircle2 className="w-7 h-7 text-emerald-600" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Research Inquiry Transmitted</h3>
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Thank you for reaching out to Novaliseo Research. Our technical committee has received your submission and will review the domain scope within 2 business days.
+              </p>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs">
+                <span>Confirmation ID: #{Math.floor(100000 + Math.random() * 900000)}</span>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+              
+              {/* Left Panel: Institutional Narrative & Tracks (5 Columns) */}
+              <div className="lg:col-span-5 flex flex-col justify-between text-left space-y-5">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-medium mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                    <span>Collaboration &amp; Consortia</span>
                   </div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-snug">
+                    Start a Research Dialogue
+                  </h2>
+                  <p className="mt-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                    Whether you are an academic professor with a grant proposal, a laboratory head seeking telemetry infrastructure, or an enterprise team wanting to build together—let's connect.
+                  </p>
+                </div>
 
-                  {/* 3 Interactive Pathway Quick-Picks */}
-                  <div className="space-y-2">
-                    <button 
-                      type="button" 
-                      onClick={() => {
-                        const select = document.getElementById("interest") as HTMLSelectElement | null;
-                        if (select) select.value = "grant";
-                      }}
-                      className="w-full p-2.5 rounded-xl bg-slate-50/80 hover:bg-cyan-50/60 border border-slate-200/80 hover:border-cyan-300 text-left transition-all duration-200 group cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Building2 className="w-3.5 h-3.5 text-cyan-600" />
-                          <span className="font-semibold text-xs text-slate-900 group-hover:text-cyan-950">Academic &amp; Consortia</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity">Select →</span>
+                {/* 3 Interactive Pathway Quick-Picks */}
+                <div className="space-y-2.5">
+                  <button 
+                    type="button" 
+                    onClick={() => {
+                      const select = document.getElementById("interest") as HTMLSelectElement | null;
+                      if (select) select.value = "grant";
+                    }}
+                    className="w-full p-3 rounded-xl bg-slate-50 hover:bg-slate-100/90 border border-slate-200 text-left transition-all duration-200 group cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <Building2 className="w-4 h-4 text-slate-700" />
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Academic &amp; Consortia</span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Joint grants, co-authored papers &amp; doctoral seats.</p>
-                    </button>
-
-                    <button 
-                      type="button" 
-                      onClick={() => {
-                        const select = document.getElementById("interest") as HTMLSelectElement | null;
-                        if (select) select.value = "slam";
-                      }}
-                      className="w-full p-2.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-blue-300 text-left transition-all duration-200 group cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Microscope className="w-3.5 h-3.5 text-blue-600" />
-                          <span className="font-semibold text-xs text-slate-900 group-hover:text-blue-950">Labs &amp; Testbeds</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">Select →</span>
-                      </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Mocap flight arena, HIL benches &amp; 100Hz telemetry.</p>
-                    </button>
-
-                    <button 
-                      type="button" 
-                      onClick={() => {
-                        const select = document.getElementById("interest") as HTMLSelectElement | null;
-                        if (select) select.value = "custom";
-                      }}
-                      className="w-full p-2.5 rounded-xl bg-slate-50/80 hover:bg-amber-50/60 border border-slate-200/80 hover:border-amber-300 text-left transition-all duration-200 group cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Zap className="w-3.5 h-3.5 text-amber-600" />
-                          <span className="font-semibold text-xs text-slate-900 group-hover:text-amber-950">Industry &amp; Defense PoC</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity">Select →</span>
-                      </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Accelerated hardware PoCs &amp; mission FMEA reviews.</p>
-                    </button>
-                  </div>
-
-                  {/* Institutional Assurances with Real Lucide SVG Icons */}
-                  <div className="pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-3 text-left">
-                    <div className="flex items-start gap-2">
-                      <Clock className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900">48h Fast Review</div>
-                        <div className="text-[10.5px] text-slate-500">Technical committee triage</div>
-                      </div>
+                      <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900">IP Preservation</div>
-                        <div className="text-[10.5px] text-slate-500">Mutual NDA protected</div>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Joint grants, co-authored papers &amp; doctoral fellowships.</p>
+                  </button>
+
+                  <button 
+                    type="button" 
+                    onClick={() => {
+                      const select = document.getElementById("interest") as HTMLSelectElement | null;
+                      if (select) select.value = "slam";
+                    }}
+                    className="w-full p-3 rounded-xl bg-slate-50 hover:bg-slate-100/90 border border-slate-200 text-left transition-all duration-200 group cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <Microscope className="w-4 h-4 text-slate-700" />
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Labs &amp; Testbeds</span>
                       </div>
+                      <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Mocap flight arena, HIL benches &amp; 100Hz telemetry.</p>
+                  </button>
+
+                  <button 
+                    type="button" 
+                    onClick={() => {
+                      const select = document.getElementById("interest") as HTMLSelectElement | null;
+                      if (select) select.value = "custom";
+                    }}
+                    className="w-full p-3 rounded-xl bg-slate-50 hover:bg-slate-100/90 border border-slate-200 text-left transition-all duration-200 group cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <Zap className="w-4 h-4 text-slate-700" />
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Industry &amp; Defense PoC</span>
+                      </div>
+                      <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Accelerated hardware PoCs &amp; mission FMEA reviews.</p>
+                  </button>
+                </div>
+
+                {/* Institutional Assurances with Real Lucide SVG Icons */}
+                <div className="pt-3.5 border-t border-slate-200 grid grid-cols-2 gap-4 text-left">
+                  <div className="flex items-start gap-2.5">
+                    <Clock className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-semibold text-slate-800">48h Fast Review</div>
+                      <div className="text-[11px] text-slate-500">Technical committee triage</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-semibold text-slate-800">IP Preservation</div>
+                      <div className="text-[11px] text-slate-500">Mutual NDA protected</div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Right Panel: Executive Form Console (7 Columns) */}
-                <div className="lg:col-span-7 bg-slate-50/80 p-4 sm:p-5 lg:p-6 rounded-2xl border border-slate-200/80">
-                  <form onSubmit={handleSubmit} className="space-y-3">
-                    
-                    {/* Row 1: Name & Email */}
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="text-left">
-                        <label htmlFor="name" className="block text-xs font-semibold text-slate-700 tracking-tight mb-1">
-                          Your Name / Title <span className="text-cyan-600">*</span>
-                        </label>
-                        <input 
-                          type="text" 
-                          id="name" 
-                          required 
-                          placeholder="e.g. Dr. Rajesh Kumar"
-                          className="w-full bg-white hover:bg-slate-50/60 focus:bg-white border border-slate-200/90 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 rounded-xl px-3.5 py-2 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-medium transition-all shadow-2xs outline-none"
-                        />
-                      </div>
-
-                      <div className="text-left">
-                        <label htmlFor="email" className="block text-xs font-semibold text-slate-700 tracking-tight mb-1">
-                          Institutional / Corporate Email <span className="text-cyan-600">*</span>
-                        </label>
-                        <input 
-                          type="email" 
-                          id="email" 
-                          required 
-                          placeholder="name@university.edu"
-                          className="w-full bg-white hover:bg-slate-50/60 focus:bg-white border border-slate-200/90 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 rounded-xl px-3.5 py-2 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-medium transition-all shadow-2xs outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Row 2: Organization & Interest */}
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div className="text-left">
-                        <label htmlFor="org" className="block text-xs font-semibold text-slate-700 tracking-tight mb-1">
-                          Organization / University <span className="text-cyan-600">*</span>
-                        </label>
-                        <input 
-                          type="text" 
-                          id="org" 
-                          required 
-                          placeholder="e.g. Stanford / DRDO / DeepTech Lab"
-                          className="w-full bg-white hover:bg-slate-50/60 focus:bg-white border border-slate-200/90 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 rounded-xl px-3.5 py-2 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-medium transition-all shadow-2xs outline-none"
-                        />
-                      </div>
-
-                      <div className="text-left">
-                        <label htmlFor="interest" className="block text-xs font-semibold text-slate-700 tracking-tight mb-1">
-                          Collaboration Focus <span className="text-cyan-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <select 
-                            id="interest" 
-                            required 
-                            defaultValue=""
-                            className="w-full bg-white hover:bg-slate-50/60 focus:bg-white border border-slate-200/90 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 rounded-xl px-3.5 py-2 text-slate-900 text-xs sm:text-sm font-medium transition-all shadow-2xs outline-none appearance-none cursor-pointer pr-10"
-                          >
-                            <option value="" disabled className="text-slate-400">Select Track</option>
-                            <option value="grant">Joint Grant / Co-Authored Paper (Academia)</option>
-                            <option value="slam">Hardware-in-the-Loop &amp; Flight Arena (Labs)</option>
-                            <option value="flight">Aerial Autonomy &amp; Flight Mechanics</option>
-                            <option value="ugv">Ground Robotics &amp; Terrestrial Mobility</option>
-                            <option value="edge_ai">Embedded Edge AI &amp; Vision Pipelines</option>
-                            <option value="lab">Campus CoE Laboratory Setup</option>
-                            <option value="custom">Rapid Autonomy PoC (Industry &amp; Defense)</option>
-                          </select>
-                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
-                            <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                              <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Row 3: Message Outline */}
+              {/* Right Panel: Executive Form Console (7 Columns) */}
+              <div className="lg:col-span-7 bg-slate-50/90 p-5 sm:p-6 lg:p-7 rounded-2xl border border-slate-200/90">
+                <form onSubmit={handleSubmit} className="space-y-3.5">
+                  
+                  {/* Row 1: Name & Email */}
+                  <div className="grid sm:grid-cols-2 gap-3.5">
                     <div className="text-left">
-                      <label htmlFor="message" className="block text-xs font-semibold text-slate-700 tracking-tight mb-1 flex items-center justify-between">
-                        <span>Collaboration Outline / Hardware Scope <span className="text-cyan-600">*</span></span>
-                        <span className="text-[10px] text-slate-400 font-mono">Brief Summary</span>
+                      <label htmlFor="name" className="block text-xs font-medium text-slate-700 mb-1">
+                        Your Name / Title <span className="text-slate-400">*</span>
                       </label>
-                      <textarea 
-                        id="message" 
-                        rows={2} 
+                      <input 
+                        type="text" 
+                        id="name" 
                         required 
-                        placeholder="Brief summary of your research thesis, grant proposal, or required testbed infrastructure..."
-                        className="w-full bg-white hover:bg-slate-50/60 focus:bg-white border border-slate-200/90 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/15 rounded-xl p-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-medium transition-all shadow-2xs outline-none resize-none min-h-[64px] sm:min-h-[72px]"
+                        placeholder="e.g. Dr. Rajesh Kumar"
+                        className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
                       />
                     </div>
 
-                    {/* Submit Button & Direct Note */}
-                    <div className="pt-1 space-y-2">
-                      <button 
-                        type="submit" 
-                        className="w-full py-2.5 sm:py-3 px-6 rounded-xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 hover:from-cyan-950 hover:via-blue-900 hover:to-slate-950 text-white font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 shadow-md hover:shadow-cyan-500/15 hover:scale-[1.006] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer group"
-                      >
-                        <span>Transmit Research Proposal</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                      </button>
+                    <div className="text-left">
+                      <label htmlFor="email" className="block text-xs font-medium text-slate-700 mb-1">
+                        Institutional / Corporate Email <span className="text-slate-400">*</span>
+                      </label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        required 
+                        placeholder="name@university.edu"
+                        className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
+                      />
+                    </div>
+                  </div>
 
-                      <p className="text-[11px] font-mono text-slate-400 text-center">
-                        Direct transmission to Novaliseo Research Review Committee • research@novaliseo.com
-                      </p>
+                  {/* Row 2: Organization & Interest */}
+                  <div className="grid sm:grid-cols-2 gap-3.5">
+                    <div className="text-left">
+                      <label htmlFor="org" className="block text-xs font-medium text-slate-700 mb-1">
+                        Organization / University <span className="text-slate-400">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        id="org" 
+                        required 
+                        placeholder="e.g. Stanford / DRDO / Research Lab"
+                        className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
+                      />
                     </div>
 
-                  </form>
-                </div>
+                    <div className="text-left">
+                      <label htmlFor="interest" className="block text-xs font-medium text-slate-700 mb-1">
+                        Collaboration Focus <span className="text-slate-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <select 
+                          id="interest" 
+                          required 
+                          defaultValue=""
+                          className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none appearance-none cursor-pointer pr-10"
+                        >
+                          <option value="" disabled className="text-slate-400">Select Track</option>
+                          <option value="grant">Joint Grant / Co-Authored Paper (Academia)</option>
+                          <option value="slam">Hardware-in-the-Loop &amp; Flight Arena (Labs)</option>
+                          <option value="flight">Aerial Autonomy &amp; Flight Mechanics</option>
+                          <option value="ugv">Ground Robotics &amp; Terrestrial Mobility</option>
+                          <option value="edge_ai">Embedded Edge AI &amp; Vision Pipelines</option>
+                          <option value="lab">Campus CoE Laboratory Setup</option>
+                          <option value="custom">Rapid Autonomy PoC (Industry &amp; Defense)</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
+                  {/* Row 3: Message Outline */}
+                  <div className="text-left">
+                    <label htmlFor="message" className="block text-xs font-medium text-slate-700 mb-1 flex items-center justify-between">
+                      <span>Collaboration Outline / Hardware Scope <span className="text-slate-400">*</span></span>
+                      <span className="text-[11px] text-slate-400">Brief Summary</span>
+                    </label>
+                    <textarea 
+                      id="message" 
+                      rows={2} 
+                      required 
+                      placeholder="Brief summary of your research thesis, grant proposal, or required testbed infrastructure..."
+                      className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl p-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none resize-none min-h-[64px] sm:min-h-[72px]"
+                    />
+                  </div>
+
+                  {/* Submit Button & Direct Note */}
+                  <div className="pt-1.5 space-y-2.5">
+                    <button 
+                      type="submit" 
+                      className="w-full py-3 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer group"
+                    >
+                      <span>Transmit Research Proposal</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                    </button>
+
+                    <p className="text-xs text-slate-500 text-center">
+                      Direct transmission to Novaliseo Research Committee • research@novaliseo.com
+                    </p>
+                  </div>
+
+                </form>
               </div>
-            )}
-          </div>
+
+            </div>
+          )}
 
         </div>
       </section>
