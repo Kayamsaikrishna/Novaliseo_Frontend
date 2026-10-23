@@ -7,8 +7,6 @@ import aerialUav from "../assets/loader/loader_aerial_uav.jpg";
 import edgeCompute from "../assets/loader/loader_edge_compute.jpg";
 import carbonFrame from "../assets/loader/loader_carbon_frame.jpg";
 import lidarTerrain from "../assets/loader/loader_lidar_terrain.jpg";
-import navalVessel from "../assets/loader/loader_naval_vessel.jpg";
-import groundRover from "../assets/loader/loader_ground_rover.jpg";
 
 export default function IntroLoader() {
   const [phase, setPhase] = useState<"words" | "reveal" | "split" | "done">("words");
@@ -17,31 +15,31 @@ export default function IntroLoader() {
   const introWords = ["PHYSICAL", "REALITY", "OVER", "SIMULATIONS"];
 
   useEffect(() => {
-    // Smooth progress counter over 2.6 seconds
+    // Smooth progress counter over 4.8 seconds for relaxed, cinematic readability
     const progressTimer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressTimer);
           return 100;
         }
-        return Math.min(prev + 3, 100);
+        return Math.min(prev + 2, 100);
       });
-    }, 45);
+    }, 80);
 
-    // Phase 1 -> Phase 2 (Reveal all: Full Company Title & Logo): at 1300ms
+    // Phase 1 -> Phase 2 (Reveal all: Logo, Full Title, and Visual Gallery): at 1800ms
     const tReveal = setTimeout(() => {
       setPhase("reveal");
-    }, 1300);
+    }, 1800);
 
-    // Phase 2 -> Phase 3 (Split Screen Doors): at 2600ms
+    // Phase 2 -> Phase 3 (Split Screen Doors): at 4800ms (gives a full 3 seconds to see the images!)
     const tSplit = setTimeout(() => {
       setPhase("split");
-    }, 2600);
+    }, 4800);
 
-    // Phase 3 -> Phase 4 (Unmount): at 3450ms
+    // Phase 3 -> Phase 4 (Unmount): at 5650ms
     const tDone = setTimeout(() => {
       setPhase("done");
-    }, 3450);
+    }, 5650);
 
     return () => {
       clearInterval(progressTimer);
@@ -64,7 +62,7 @@ export default function IntroLoader() {
           initial={{ x: 0 }}
           animate={{ x: phase === "split" ? "-100%" : 0 }}
           transition={{ duration: 0.85, ease: [0.77, 0, 0.175, 1] }}
-          className="w-1/2 h-full bg-gradient-to-br from-[#ffffff] via-[#f8fafc] to-[#f1f5f9] border-r border-slate-200/90 relative overflow-hidden shadow-2xl"
+          className="w-1/2 h-full bg-gradient-to-br from-[#ffffff] via-[#f8fafc] to-[#f1f5f9] border-r border-slate-200/90 relative overflow-hidden shadow-2xl flex items-center justify-end pr-8 sm:pr-14 lg:pr-20"
         >
           {/* Subtle Ambient Blueprint Grid */}
           <div 
@@ -75,29 +73,28 @@ export default function IntroLoader() {
             }}
           />
 
-          {/* Left Collage Cards */}
-          <div className="absolute inset-0 pointer-events-none">
+          {/* Left Visual Cards: Spacious, Symmetrical, Straight (No Clumsy Overlap) */}
+          <div className="flex flex-col gap-5 sm:gap-6 pointer-events-none z-10">
             
             {/* Visual Card 1: Aerial UAV in Mountain Fog */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 30, rotate: -2 }}
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ 
-                opacity: phase === "words" ? 0.45 : 1, 
+                opacity: phase === "words" ? 0.35 : 1, 
                 scale: 1, 
-                y: 0, 
-                rotate: -2 
+                y: 0 
               }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute left-6 sm:left-12 lg:left-16 top-10 sm:top-14 w-44 sm:w-56 lg:w-64 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.18)] border border-white/80 transition-all duration-700"
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="w-48 sm:w-60 lg:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.12)] border border-white/90 bg-slate-900 transition-all duration-700"
             >
               <img
                 src={aerialUav}
                 alt="Autonomous Aerial Vehicle"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 left-3 sm:bottom-3 sm:left-4">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
                   AERIAL AUTONOMY
                 </span>
               </div>
@@ -105,49 +102,24 @@ export default function IntroLoader() {
 
             {/* Visual Card 2: Embedded Edge Silicon */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 35, rotate: 2 }}
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ 
                 opacity: phase === "words" ? 0.35 : 1, 
                 scale: 1, 
-                y: 0, 
-                rotate: 2 
+                y: 0 
               }}
-              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute left-10 sm:left-20 lg:left-28 bottom-8 sm:bottom-12 w-40 sm:w-52 lg:w-60 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.18)] border border-white/80 transition-all duration-700 hidden sm:block"
+              transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="w-48 sm:w-60 lg:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.12)] border border-white/90 bg-slate-900 transition-all duration-700 hidden sm:block"
             >
               <img
                 src={edgeCompute}
                 alt="Edge AI Silicon"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 left-3 sm:bottom-3 sm:left-4">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
                   EDGE NEURAL SILICON
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Visual Card 3: Deep Maritime Unmanned Vessel (Desktop) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.88, x: -30 }}
-              animate={{ 
-                opacity: phase === "words" ? 0.3 : 0.95, 
-                scale: 1, 
-                x: 0 
-              }}
-              transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute -left-12 lg:left-4 top-1/2 -translate-y-1/2 w-36 sm:w-44 lg:w-48 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.15)] border border-white/80 transition-all duration-700 hidden xl:block"
-            >
-              <img
-                src={navalVessel}
-                alt="Naval Autonomy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
-                  MARITIME USV
                 </span>
               </div>
             </motion.div>
@@ -160,7 +132,7 @@ export default function IntroLoader() {
           initial={{ x: 0 }}
           animate={{ x: phase === "split" ? "100%" : 0 }}
           transition={{ duration: 0.85, ease: [0.77, 0, 0.175, 1] }}
-          className="w-1/2 h-full bg-gradient-to-bl from-[#ffffff] via-[#f8fafc] to-[#f1f5f9] border-l border-slate-200/90 relative overflow-hidden shadow-2xl"
+          className="w-1/2 h-full bg-gradient-to-bl from-[#ffffff] via-[#f8fafc] to-[#f1f5f9] border-l border-slate-200/90 relative overflow-hidden shadow-2xl flex items-center justify-start pl-8 sm:pl-14 lg:pl-20"
         >
           {/* Subtle Ambient Blueprint Grid */}
           <div 
@@ -171,79 +143,53 @@ export default function IntroLoader() {
             }}
           />
 
-          {/* Right Collage Cards */}
-          <div className="absolute inset-0 pointer-events-none">
+          {/* Right Visual Cards: Spacious, Symmetrical, Straight (No Clumsy Overlap) */}
+          <div className="flex flex-col gap-5 sm:gap-6 pointer-events-none z-10">
             
-            {/* Visual Card 4: 3D LiDAR Point Cloud Terrain Scan */}
+            {/* Visual Card 3: 3D LiDAR Point Cloud Terrain Scan */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 30, rotate: 2 }}
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ 
-                opacity: phase === "words" ? 0.45 : 1, 
+                opacity: phase === "words" ? 0.35 : 1, 
                 scale: 1, 
-                y: 0, 
-                rotate: 2 
+                y: 0 
               }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-6 sm:right-12 lg:right-16 top-10 sm:top-14 w-44 sm:w-56 lg:w-64 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.18)] border border-white/80 transition-all duration-700"
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="w-48 sm:w-60 lg:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.12)] border border-white/90 bg-slate-900 transition-all duration-700"
             >
               <img
                 src={lidarTerrain}
                 alt="3D LiDAR Perception"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-right">
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 right-3 sm:bottom-3 sm:right-4 text-right">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
                   3D LIDAR SLAM
                 </span>
               </div>
             </motion.div>
 
-            {/* Visual Card 5: Carbon Fiber Chassis CNC Machining */}
+            {/* Visual Card 4: Carbon Fiber Chassis CNC Machining */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 35, rotate: -2 }}
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ 
                 opacity: phase === "words" ? 0.35 : 1, 
                 scale: 1, 
-                y: 0, 
-                rotate: -2 
+                y: 0 
               }}
-              transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-10 sm:right-20 lg:right-28 bottom-8 sm:bottom-12 w-40 sm:w-52 lg:w-60 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(15,23,42,0.18)] border border-white/80 transition-all duration-700 hidden sm:block"
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="w-48 sm:w-60 lg:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.12)] border border-white/90 bg-slate-900 transition-all duration-700 hidden sm:block"
             >
               <img
                 src={carbonFrame}
                 alt="Carbon Composite Prototyping"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-right">
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 right-3 sm:bottom-3 sm:right-4 text-right">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
                   COMPOSITE HARDWARE
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Visual Card 6: All-Terrain Ground Rover (Desktop) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.88, x: 30 }}
-              animate={{ 
-                opacity: phase === "words" ? 0.3 : 0.95, 
-                scale: 1, 
-                x: 0 
-              }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute -right-12 lg:right-4 top-1/2 -translate-y-1/2 w-36 sm:w-44 lg:w-48 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.15)] border border-white/80 transition-all duration-700 hidden xl:block"
-            >
-              <img
-                src={groundRover}
-                alt="All-Terrain Rover"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 right-3 text-right">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-white/95 uppercase drop-shadow-md">
-                  PHYSICAL AUTONOMY
                 </span>
               </div>
             </motion.div>
@@ -263,7 +209,7 @@ export default function IntroLoader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-30 px-6 text-center"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 max-w-2xl">
@@ -273,11 +219,11 @@ export default function IntroLoader() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.45,
-                    delay: i * 0.22,
+                    duration: 0.5,
+                    delay: i * 0.25,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="font-mono text-xs sm:text-sm md:text-base font-semibold tracking-[0.28em] text-slate-800 uppercase drop-shadow-xs"
+                  className="font-mono text-sm sm:text-base md:text-lg font-semibold tracking-[0.28em] text-slate-800 uppercase drop-shadow-xs"
                 >
                   {word}
                 </motion.span>
@@ -288,7 +234,7 @@ export default function IntroLoader() {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 1.1, ease: "easeInOut" }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
               className="w-16 sm:w-24 h-0.5 bg-slate-300 rounded-full mt-6"
             />
           </motion.div>
@@ -301,21 +247,21 @@ export default function IntroLoader() {
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.94 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-30 px-6 text-center"
           >
             {/* Logo Mark with Soft Ambient Glow */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mb-3.5"
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mb-4"
             >
               <div className="absolute -inset-6 rounded-full bg-cyan-400/25 blur-2xl animate-pulse" />
               <img
                 src={logo}
                 alt="Novaliseo"
-                className="h-12 sm:h-14 md:h-16 object-contain relative z-10 drop-shadow-sm"
+                className="h-14 sm:h-16 md:h-20 object-contain relative z-10 drop-shadow-sm"
               />
             </motion.div>
 
@@ -323,8 +269,8 @@ export default function IntroLoader() {
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base sm:text-xl md:text-2xl font-bold text-slate-900 tracking-[0.18em] uppercase mb-1.5"
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-xl md:text-2xl font-bold text-slate-900 tracking-[0.18em] uppercase mb-2"
             >
               Novaliseo Global Tech Pvt Ltd
             </motion.h2>
@@ -333,8 +279,8 @@ export default function IntroLoader() {
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.24em] text-slate-500 uppercase mb-5"
+              transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[11px] sm:text-xs font-mono font-semibold tracking-[0.24em] text-slate-500 uppercase mb-6"
             >
               Brain Behind Intelligent Operations
             </motion.p>
@@ -343,8 +289,8 @@ export default function IntroLoader() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="w-36 sm:w-44 h-1 rounded-full bg-slate-200 overflow-hidden"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-36 sm:w-48 h-1 rounded-full bg-slate-200 overflow-hidden"
             >
               <motion.div
                 className="h-full bg-slate-950 rounded-full transition-all duration-100"

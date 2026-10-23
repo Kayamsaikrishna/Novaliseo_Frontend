@@ -334,8 +334,8 @@ export function WorksWheel({
         ))}
       </div>
 
-      {/* ================= 2. TOP HEADER INTEGRATED IN STAGE (GENEROUSLY BELOW NAVBAR) ================= */}
-      <div className="absolute top-28 sm:top-32 lg:top-36 left-6 sm:left-10 lg:left-14 z-30 pointer-events-none text-left max-w-xs sm:max-w-sm">
+      {/* ================= 2. TOP HEADER INTEGRATED IN STAGE ================= */}
+      <div className="absolute top-8 sm:top-10 lg:top-12 left-6 sm:left-10 lg:left-14 z-30 pointer-events-none text-left max-w-xs sm:max-w-sm">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight drop-shadow-lg">
           Build With Us.
         </h1>
@@ -476,9 +476,9 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* ================= 5. RIGHT-HAND INDEX SELECTOR (GENEROUSLY BELOW NAVBAR) ================= */}
+      {/* ================= 5. RIGHT-HAND INDEX SELECTOR ================= */}
       <ol
-        className="absolute top-28 sm:top-32 lg:top-36 right-4 sm:right-8 lg:right-12 z-30 text-right leading-[1.8] pointer-events-auto"
+        className="absolute top-8 sm:top-10 lg:top-12 right-4 sm:right-8 lg:right-12 z-30 text-right leading-[1.8] pointer-events-auto"
         style={{ fontSize: `clamp(11px, 1.3vw, 14px)` }}
       >
         <li className="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-2">

@@ -22,6 +22,17 @@ const Navbar = () => {
         return;
       }
 
+      // Hide navbar when viewing the full-screen 3D Build With Us stage
+      const buildSection = document.getElementById('build-with-us');
+      if (buildSection) {
+        const rect = buildSection.getBoundingClientRect();
+        if (rect.top <= 90 && rect.bottom >= window.innerHeight * 0.4) {
+          setVisible(false);
+          lastScrollY = currentScrollY;
+          return;
+        }
+      }
+
       // Hide navbar when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 60) {
         setVisible(false);

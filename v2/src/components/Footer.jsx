@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Twitter, Linkedin, Github, Youtube, Mail, CheckCircle2 } from "lucide-react";
-import footerBeanbagCoder from "../assets/footer_beanbag_coder.jpg";
+import footerRobotSeamless from "../assets/footer_robot_seamless.jpg";
 import logo from "../assets/logo.png";
 
 export default function Footer() {
@@ -22,32 +22,27 @@ export default function Footer() {
     <footer className="relative w-full bg-[#ede9e2] text-slate-800 pt-16 sm:pt-20 pb-12 px-6 sm:px-10 lg:px-16 selection:bg-sky-500/20 overflow-hidden border-t border-stone-300/60 font-sans">
       <div className="max-w-7xl mx-auto">
         
-        {/* Main 4-Column Grid: Left Brand & 3D Character, Link Columns, Newsletter */}
+        {/* Main 4-Column Grid: Left Brand & Seamless 3D Character, Link Columns, Newsletter */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 items-start">
           
-          {/* ================= COLUMN 1 & 2: LEFT BRAND & 3D ILLUSTRATION ================= */}
+          {/* ================= COLUMN 1 & 2: LEFT BRAND & SEAMLESS 3D ILLUSTRATION ================= */}
           <div className="lg:col-span-5 flex flex-col items-start text-left">
-            {/* Top Pill Badge */}
-            <div className="inline-block px-3 py-1 rounded-full bg-slate-900 text-white text-[10px] font-mono uppercase font-bold tracking-wider mb-4 shadow-xs">
-              NOVALISEO
-            </div>
-
-            {/* Wordmark Title */}
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-950 mb-2">
-              Novaliseo
-            </h2>
+            {/* Official Novaliseo Logo */}
+            <Link to="/" className="inline-block mb-3.5">
+              <img src={logo} alt="Novaliseo" className="h-9 sm:h-10 object-contain" />
+            </Link>
 
             {/* Editorial Subtitle */}
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-sm mb-6">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-sm mb-4">
               For the ones who build physical systems that thrive outside clean rooms.
             </p>
 
-            {/* 3D Clay Beanbag Character Illustration Bleeding Off Left */}
-            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.08)] border border-stone-300/70 bg-[#ede9e2]">
+            {/* 3D Clay Beanbag Character Illustration Seamlessly Combined with Background (No Box / No Border) */}
+            <div className="relative w-full max-w-xs sm:max-w-sm overflow-hidden mix-blend-multiply pointer-events-none">
               <img
-                src={footerBeanbagCoder}
+                src={footerRobotSeamless}
                 alt="Novaliseo Engineering Collective"
-                className="w-full h-auto object-cover object-center transform transition-transform duration-700 hover:scale-105"
+                className="w-full h-auto object-contain object-left transform transition-transform duration-700 hover:scale-105"
               />
             </div>
           </div>

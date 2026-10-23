@@ -305,18 +305,37 @@ export default function CareersPage() {
   const scrollToRoles = () => {
     const el = document.getElementById("build-with-us");
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top, behavior: "smooth" });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  // Auto-snap #build-with-us to 100% full screen when scrolled into view
+  React.useEffect(() => {
+    const el = document.getElementById("build-with-us");
+    if (!el) return;
+    let isSnapping = false;
+
+    const handleScroll = () => {
+      if (isSnapping) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top > 8 && rect.top < window.innerHeight * 0.6) {
+        isSnapping = true;
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => { isSnapping = false; }, 850);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 relative selection:bg-blue-500/20 overflow-x-hidden">
       
       {/* ========================================================================= */}
-      {/* 1. CINEMATIC DAYLIGHT ENGINEERING STUDIO HERO (100% FULL SCREEN SNAP FIT) */}
+      {/* 1. CINEMATIC DAYLIGHT ENGINEERING STUDIO HERO (100% FULL SCREEN FIT)       */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex items-center justify-center overflow-hidden select-none bg-[#090e1a] snap-start snap-always">
+      <section className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex items-center justify-center overflow-hidden select-none bg-[#090e1a]">
         
         {/* ================= 1. CINEMATIC BACKGROUND VISUAL ================= */}
         <div className="absolute inset-0 z-0">
@@ -338,11 +357,11 @@ export default function CareersPage() {
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/80 via-white/35 to-transparent pointer-events-none z-10" />
 
           {/* Bottom Soft Transition Fade into Roles Section */}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/60 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/60 to-transparent pointer-events-none z-10" />
         </div>
 
         {/* ================= 2. MAIN EDITORIAL HERO CONTENT ================= */}
-        <div className="relative z-20 w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 sm:pt-28 pb-8 flex items-center justify-between my-auto">
+        <div className="relative z-20 w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-14 pt-16 sm:pt-20 pb-4 flex items-center justify-between my-auto">
           
           {/* Left-Aligned Editorial Column */}
           <div className="max-w-xl lg:max-w-2xl text-left">
@@ -352,7 +371,7 @@ export default function CareersPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-2 mb-3.5 sm:mb-4"
+              className="flex items-center gap-2 mb-3"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-[0.24em] text-slate-500 uppercase">
@@ -365,7 +384,7 @@ export default function CareersPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] font-normal font-serif text-[#1e293b] leading-[0.98] tracking-tight mb-4 sm:mb-5 drop-shadow-xs"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal font-serif text-[#1e293b] leading-[0.98] tracking-tight mb-3.5 sm:mb-4 drop-shadow-xs"
             >
               Build the systems <br />
               that define <span className="italic text-[#0f172a] block mt-1">physical reality</span>
@@ -376,7 +395,7 @@ export default function CareersPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs sm:text-sm md:text-[15px] lg:text-base text-slate-600 font-normal leading-relaxed mb-6 sm:mb-7 max-w-md sm:max-w-xl"
+              className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed mb-5 sm:mb-6 max-w-md sm:max-w-xl"
             >
               Join an autonomous robotics and physical AI collective developing autonomous flight vehicles, power-efficient edge perception, and sovereign intelligence systems. We build hardware that thrives outside clean rooms.
             </motion.p>
@@ -386,7 +405,7 @@ export default function CareersPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-5 sm:gap-6 mb-7 sm:mb-9"
+              className="flex items-center gap-5 sm:gap-6 mb-5 sm:mb-6"
             >
               {/* Primary Pill Button */}
               <button
@@ -412,7 +431,7 @@ export default function CareersPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="pt-5 border-t border-slate-300/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-mono font-medium text-slate-600"
+              className="pt-3 border-t border-slate-300/70 flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-mono font-medium text-slate-600"
             >
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
