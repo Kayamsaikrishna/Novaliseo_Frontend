@@ -87,16 +87,18 @@ export default function CareerApplicationModal({
   const activeImage = bannerImage || role.image;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-slate-950/70 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-slate-950/70 backdrop-blur-md overflow-y-auto no-scrollbar">
       {/* Background Dim Dismissal */}
       <div className="fixed inset-0" onClick={onClose} />
 
       <motion.div
+        role="dialog"
+        aria-modal="true"
         initial={{ opacity: 0, scale: 0.94, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 20 }}
         transition={{ type: "spring", damping: 26, stiffness: 350 }}
-        className="relative w-full max-w-lg sm:max-w-xl max-h-[92vh] overflow-y-auto rounded-3xl border border-slate-200/80 bg-white/95 dark:bg-slate-900/95 shadow-2xl backdrop-blur-2xl text-slate-900 dark:text-white z-10 my-auto"
+        className="relative w-full max-w-lg sm:max-w-xl max-h-[92vh] overflow-y-auto no-scrollbar rounded-3xl border border-slate-200/80 bg-white/95 dark:bg-slate-900/95 shadow-2xl backdrop-blur-2xl text-slate-900 dark:text-white z-10 my-auto"
       >
         {/* ================= 1. DECORATIVE BANNER IMAGE ================= */}
         {activeImage && (

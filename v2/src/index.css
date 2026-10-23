@@ -6,28 +6,39 @@
 
 html {
   scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @layer base {
   body {
     @apply bg-white text-slate-900 antialiased overflow-x-hidden selection:bg-sky-500/20;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-/* Custom Sleek Scrollbar for Modern Editorial Theme */
+/* Completely hide all scrollbars across all browsers (Clean, Modern Aesthetics) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px !important;
+  height: 0px !important;
+  display: none !important;
 }
 
-::-webkit-scrollbar-track {
-  background: #f8fafc;
+/* Specific utilities for hiding scrollbars while preserving scrolling */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar,
+[role="dialog"]::-webkit-scrollbar,
+[role="dialog"] *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.no-scrollbar,
+.scrollbar-none,
+[role="dialog"],
+[role="dialog"] * {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }

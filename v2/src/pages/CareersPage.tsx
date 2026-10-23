@@ -95,7 +95,7 @@ export default function CareersPage() {
       title: "Edge AI & Computer Vision Lead",
       category: "ai",
       domain: "Embedded Perception",
-      location: "Hyderabad, IN",
+      location: "Bengaluru, IN",
       workMode: "Hybrid",
       type: "Full-Time",
       experience: "3-6+ Years in Deep Learning / Edge",
@@ -149,7 +149,7 @@ export default function CareersPage() {
       title: "Robotics Research Intern / Fellow",
       category: "research",
       domain: "University Residency & R&D",
-      location: "Bengaluru or Hyderabad",
+      location: "Bengaluru, IN",
       workMode: "Onsite Lab",
       type: "3-6 Month Paid Fellowship",
       experience: "Undergrad / Master / Ph.D. Scholars",
@@ -185,7 +185,7 @@ export default function CareersPage() {
       domain: "Embedded Perception",
       image: careersVisionCardNew,
       bgImage: careersVisionBgNew,
-      location: "Hyderabad, IN • Hybrid",
+      location: "Bengaluru, IN • Hybrid",
       type: "Full-Time",
       description: "Deploy and optimize low-latency object detection, optical flow, and multi-sensor fusion pipelines on power-constrained edge silicon (NVIDIA Jetson, Hailo, custom FPGA accelerators).",
       skills: ["TensorRT / CUDA", "Stereo SLAM / VIO", "PyTorch / ONNX", "NVIDIA Jetson Orin", "Sub-10ms Inference"],
@@ -227,7 +227,7 @@ export default function CareersPage() {
       domain: "University Fellowships & R&D",
       image: collabLabsReal,
       bgImage: researchIntakeFacilityBg,
-      location: "Bengaluru or Hyderabad",
+      location: "Bengaluru, IN • Onsite Lab",
       type: "3-6 Month Fellowship",
       description: "Hands-on engineering residency for ambitious university scholars and graduate students. Work directly on physical flight arena telemetry, motion capture validation, and autonomous testbeds.",
       skills: ["Python / C++", "ROS2 Basics", "Micro-controller Firmware", "Physical Hardware Curiosity", "Data Analysis"],
@@ -304,16 +304,19 @@ export default function CareersPage() {
 
   const scrollToRoles = () => {
     const el = document.getElementById("build-with-us");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 relative selection:bg-blue-500/20 overflow-x-hidden">
       
       {/* ========================================================================= */}
-      {/* 1. CINEMATIC DAYLIGHT ENGINEERING STUDIO HERO (MATCHES TRAININGS & RESEARCH) */}
+      {/* 1. CINEMATIC DAYLIGHT ENGINEERING STUDIO HERO (100% FULL SCREEN SNAP FIT) */}
       {/* ========================================================================= */}
-      <section className="relative w-full min-h-[92dvh] sm:min-h-[90dvh] flex items-center justify-center overflow-hidden select-none bg-[#090e1a]">
+      <section className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex items-center justify-center overflow-hidden select-none bg-[#090e1a] snap-start snap-always">
         
         {/* ================= 1. CINEMATIC BACKGROUND VISUAL ================= */}
         <div className="absolute inset-0 z-0">
@@ -417,7 +420,7 @@ export default function CareersPage() {
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
-                Hardware Labs: BLR &amp; HYD
+                Hardware Lab: Bengaluru (HQ)
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
@@ -472,7 +475,7 @@ export default function CareersPage() {
       {/* ========================================================================= */}
       <section 
         id="build-with-us" 
-        className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] overflow-hidden select-none bg-slate-950"
+        className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] overflow-hidden select-none bg-slate-950 scroll-mt-0 snap-start snap-always"
       >
         <WorksWheel 
           items={wheelItems}
