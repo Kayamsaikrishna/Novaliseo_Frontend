@@ -57,8 +57,8 @@ export interface WorksWheelProps extends Omit<
    swinging on a huge drum. The three that matter are tuned together: STEP
    against DRUM sets how hard the neighbours rotate away, and DRUM against LENS
    decides whether they land inside the frame or run off it. */
-const CARD_H = 0.35; // front card height, of the stage (tuned to fit comfortably)
-const CARD_MAX_W = 0.30; // ... but never wider than this much of the stage
+const CARD_H = 0.30; // front card height, of the stage (tuned to comfortably fit below navbar & header)
+const CARD_MAX_W = 0.26; // ... but never wider than this much of the stage
 const CARD_RATIO = 1.45; // card width / height
 const STEP = 40; // degrees between cards on the drum
 const DRUM = 2.22; // drum radius, in card heights - and everything below likewise
@@ -317,18 +317,15 @@ export function WorksWheel({
         ))}
       </div>
 
-      {/* ================= 2. TOP HEADER INTEGRATED IN STAGE ================= */}
-      <div className="absolute top-6 sm:top-10 left-6 sm:left-12 lg:left-16 z-30 pointer-events-none text-left max-w-xl">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono text-cyan-300 font-semibold mb-2.5 pointer-events-auto">
+      {/* ================= 2. TOP HEADER INTEGRATED IN STAGE (SAFELY BELOW NAVBAR) ================= */}
+      <div className="absolute top-20 sm:top-24 left-4 sm:left-8 lg:left-12 z-30 pointer-events-none text-left max-w-xs sm:max-w-sm">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono text-cyan-300 font-semibold mb-1 pointer-events-auto shadow-md">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span>ACTIVE DISCIPLINES // 3D DRUM INDEX</span>
+          <span>ACTIVE DISCIPLINES // 3D DRUM</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-lg">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight drop-shadow-lg">
           Build With Us.
         </h2>
-        <p className="mt-1 text-slate-200 text-xs sm:text-sm font-normal drop-shadow-sm max-w-md hidden sm:block">
-          Turn the wheel or drag to navigate our active robotics disciplines in physical reality.
-        </p>
       </div>
 
       {/* ================= 3. WHEEL STAGE VIEWPORT ================= */}
@@ -362,7 +359,7 @@ export function WorksWheel({
       >
         <div
           ref={wheelRef}
-          className="absolute top-1/2 left-1/2 [transform-style:preserve-3d]"
+          className="absolute top-[52%] left-1/2 [transform-style:preserve-3d]"
         >
           {items.map((item, i) => {
             return (
@@ -491,9 +488,9 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* ================= 5. RIGHT-HAND INDEX SELECTOR ================= */}
+      {/* ================= 5. RIGHT-HAND INDEX SELECTOR (SAFELY BELOW NAVBAR) ================= */}
       <ol
-        className="absolute top-6 sm:top-10 right-6 sm:right-12 z-30 text-right leading-[2] pointer-events-auto"
+        className="absolute top-20 sm:top-24 right-4 sm:right-8 lg:right-12 z-30 text-right leading-[1.8] pointer-events-auto"
         style={{ fontSize: `clamp(11px, 1.3vw, 14px)` }}
       >
         <li className="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-2">
@@ -511,7 +508,8 @@ export function WorksWheel({
                   : "text-slate-300 hover:text-white bg-black/40 backdrop-blur-sm border border-white/10 font-normal hover:bg-black/60",
               )}
             >
-              0{i + 1} — {item.title}
+              <span>0{i + 1}</span>
+              <span className="hidden sm:inline"> — {item.title}</span>
             </button>
           </li>
         ))}

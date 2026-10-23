@@ -43,8 +43,9 @@ import careersVisionBgNew from "../assets/careers_vision_bg_new.jpg";
 import careersCardMechatronics from "../assets/careers_card_mechatronics.jpg";
 import realCncMachining from "../assets/real_specs/real_cnc_machining.jpg";
 import careersCardTelemetry from "../assets/careers_card_telemetry.jpg";
-import multidomainHero from "../assets/trainings/multidomain_autonomous_hero.jpg";
 import collabLabsReal from "../assets/collab_labs_real.jpg";
+import realSovereignDatacenter from "../assets/real_specs/real_sovereign_datacenter.jpg";
+import hoverIndoorArena from "../assets/trainings/hover_indoor_arena.jpg";
 
 interface JobRole {
   id: string;
@@ -212,7 +213,7 @@ export default function CareersPage() {
       title: "Mission Control & Telemetry",
       domain: "Distributed Swarms & Ground Stations",
       image: careersCardTelemetry,
-      bgImage: multidomainHero,
+      bgImage: realSovereignDatacenter,
       location: "Bengaluru, IN • Hybrid",
       type: "Full-Time",
       description: "Engineer high-throughput ground station software, encrypted telemetry radio links, 100Hz real-time sensor streams, and multi-agent coordination interfaces.",
@@ -226,7 +227,7 @@ export default function CareersPage() {
       title: "Robotics Research Residencies",
       domain: "University Fellowships & R&D",
       image: collabLabsReal,
-      bgImage: careersDaylightStudio,
+      bgImage: hoverIndoorArena,
       location: "Bengaluru or Hyderabad",
       type: "3-6 Month Fellowship",
       description: "Hands-on engineering residency for ambitious university scholars and graduate students. Work directly on physical flight arena telemetry, motion capture validation, and autonomous testbeds.",
