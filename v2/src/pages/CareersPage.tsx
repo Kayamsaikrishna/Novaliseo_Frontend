@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { ShadowOverlay } from "../components/ShadowOverlay"
 import { cn } from "../lib/utils"
+import careersWorkspaceBg from "../assets/careers_workspace_real.jpg"
 
 /* ═══════════════════════════════════════════════════════════════════════════
    Glossy Card Component
@@ -89,34 +90,107 @@ const perks = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white selection:bg-cyan-500/30">
-      {/* ── BACKGROUND LAYER ── */}
-      <div className="fixed inset-0 z-0">
-        <ShadowOverlay 
-          className="opacity-60"
-          color="rgba(6, 182, 212, 0.4)"
-          animation={{ scale: 50, speed: 20 }}
-        />
-      </div>
+    <div className="min-h-screen bg-[#020617] text-white selection:bg-cyan-500/30 overflow-x-hidden">
+      
+      {/* ── HERO SECTION WITH REALISTIC 3D WORKSPACE BACKGROUND ── */}
+      <section className="relative z-10 flex min-h-[92vh] lg:min-h-screen flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-16 sm:pb-20 overflow-hidden">
+        
+        {/* Realistic High-Tech Engineering Workspace Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <img 
+            src={careersWorkspaceBg} 
+            alt="Novaliseo Engineering & Innovation Workspace" 
+            className="w-full h-full object-cover object-center scale-105 filter brightness-[0.55] contrast-[1.1]"
+          />
+          
+          {/* Deep Tech Vignette Overlays for 100% Crisp Foreground Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/90 via-[#020617]/75 to-[#020617]" />
+          
+          {/* Center Light Aura */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent pointer-events-none" />
 
-      {/* ── HERO SECTION ── */}
-      <section className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center px-6 pt-32 pb-20">
+          {/* Minimal Architectural Engineering Grid */}
+          <div 
+            className="absolute inset-0 opacity-[0.035] pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+              backgroundSize: "28px 28px"
+            }}
+          />
+        </div>
+
+        {/* Hero Content Template */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-5xl mx-auto text-center"
         >
-          <h1 className="mb-8 text-6xl font-black tracking-tighter sm:text-7xl lg:text-9xl">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">Shape the Future</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-cyan-400 animate-gradient-x">of AI in India</span>
+          {/* Eyebrow Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md text-slate-200 text-xs sm:text-sm font-medium tracking-wide mb-6 sm:mb-8 transition-colors shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Careers at Novaliseo</span>
+            <span className="text-white/30">•</span>
+            <span className="text-cyan-400 font-semibold">We're Hiring</span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.12]">
+            Build the Systems That{" "}
+            <span className="bg-gradient-to-r from-cyan-300 via-white to-blue-300 bg-clip-text text-transparent">
+              Define Tomorrow
+            </span>
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg text-slate-400 leading-relaxed md:text-xl">
-            Join a team of passionate engineers and researchers working on cutting-edge 
-            AI solutions that transform traditional industries across India. We offer full-time roles, internships, and research programs.
+          {/* Subtitle */}
+          <p className="mt-5 sm:mt-6 text-slate-300 text-base sm:text-lg md:text-xl font-normal max-w-2xl mx-auto leading-relaxed">
+            Join a high-caliber team of engineers, researchers, and builders developing autonomous robotics, physical AI, and sovereign intelligence systems.
           </p>
 
+          {/* Interactive CTAs */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#openings"
+              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm sm:text-base tracking-wide shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center gap-2 cursor-pointer group"
+            >
+              <span>Explore Opportunities</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </a>
+
+            <a
+              href="#culture"
+              className="px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white font-medium text-sm sm:text-base tracking-wide hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center gap-2 cursor-pointer"
+            >
+              <span>Our Culture &amp; Values</span>
+            </a>
+          </div>
+
+          {/* Quick Value Props Highlights Bar */}
+          <div className="mt-14 sm:mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 max-w-4xl mx-auto text-left">
+            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+              <div className="text-cyan-400 text-xs font-mono font-semibold uppercase tracking-wider mb-1">Impact</div>
+              <div className="text-white font-bold text-sm sm:text-base">Real-World Tech</div>
+              <div className="text-slate-400 text-xs mt-0.5">Physical autonomy in field</div>
+            </div>
+            
+            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+              <div className="text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider mb-1">Flexibility</div>
+              <div className="text-white font-bold text-sm sm:text-base">Hybrid Culture</div>
+              <div className="text-slate-400 text-xs mt-0.5">Focus on output, not hours</div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+              <div className="text-purple-400 text-xs font-mono font-semibold uppercase tracking-wider mb-1">Rewards</div>
+              <div className="text-white font-bold text-sm sm:text-base">Competitive Equity</div>
+              <div className="text-slate-400 text-xs mt-0.5">Grow as the company scales</div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
+              <div className="text-emerald-400 text-xs font-mono font-semibold uppercase tracking-wider mb-1">Growth</div>
+              <div className="text-white font-bold text-sm sm:text-base">Learning Budget</div>
+              <div className="text-slate-400 text-xs mt-0.5">Conferences, tools &amp; courses</div>
+            </div>
+          </div>
 
         </motion.div>
       </section>
