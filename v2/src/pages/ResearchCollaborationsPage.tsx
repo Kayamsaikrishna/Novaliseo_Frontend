@@ -153,29 +153,29 @@ export default function ResearchCollaborationsPage() {
               <div className="w-14 h-14 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center mx-auto mb-4 shadow-xs">
                 <CheckCircle2 className="w-7 h-7 text-emerald-600" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Research Inquiry Transmitted</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Message Sent Successfully!</h3>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Thank you for reaching out to Novaliseo Research. Our technical committee has received your submission and will review the domain scope within 2 business days.
+                Thank you for reaching out to us. A member of our team will review your message and get in touch with you within 2 business days.
               </p>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs">
-                <span>Confirmation ID: #{Math.floor(100000 + Math.random() * 900000)}</span>
+                <span>Confirmation #{Math.floor(100000 + Math.random() * 900000)}</span>
               </div>
             </motion.div>
           ) : (
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
               
-              {/* Left Panel: Institutional Narrative & Tracks (5 Columns) */}
+              {/* Left Panel: Narrative & Tracks (5 Columns) */}
               <div className="lg:col-span-5 flex flex-col justify-between text-left space-y-5">
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-medium mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-                    <span>Collaboration &amp; Consortia</span>
+                    <span>Get in Touch</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-snug">
-                    Start a Research Dialogue
+                    Let's Build Together
                   </h2>
                   <p className="mt-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
-                    Whether you are an academic professor with a grant proposal, a laboratory head seeking telemetry infrastructure, or an enterprise team wanting to build together—let's connect.
+                    Whether you are a university professor, student researcher, startup founder, or an enterprise team—we are here to collaborate with you.
                   </p>
                 </div>
 
@@ -192,11 +192,11 @@ export default function ResearchCollaborationsPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
                         <Building2 className="w-4 h-4 text-slate-700" />
-                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Academic &amp; Consortia</span>
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Colleges &amp; Universities</span>
                       </div>
                       <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Joint grants, co-authored papers &amp; doctoral fellowships.</p>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Joint research, student internships &amp; academic grants.</p>
                   </button>
 
                   <button 
@@ -210,11 +210,11 @@ export default function ResearchCollaborationsPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
                         <Microscope className="w-4 h-4 text-slate-700" />
-                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Labs &amp; Testbeds</span>
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Labs &amp; Researchers</span>
                       </div>
                       <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Mocap flight arena, HIL benches &amp; 100Hz telemetry.</p>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Access to drone test cages, robotics hardware &amp; sensors.</p>
                   </button>
 
                   <button 
@@ -228,34 +228,34 @@ export default function ResearchCollaborationsPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
                         <Zap className="w-4 h-4 text-slate-700" />
-                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Industry &amp; Defense PoC</span>
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800">Startups &amp; Companies</span>
                       </div>
                       <span className="text-xs text-slate-400 group-hover:text-slate-700 transition-colors">Select →</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Accelerated hardware PoCs &amp; mission FMEA reviews.</p>
+                    <p className="text-xs text-slate-500 mt-1 pl-6.5">Build custom prototypes, test hardware &amp; launch products.</p>
                   </button>
                 </div>
 
-                {/* Institutional Assurances with Real Lucide SVG Icons */}
+                {/* Assurances with Real Lucide SVG Icons */}
                 <div className="pt-3.5 border-t border-slate-200 grid grid-cols-2 gap-4 text-left">
                   <div className="flex items-start gap-2.5">
                     <Clock className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
                     <div>
-                      <div className="text-xs font-semibold text-slate-800">48h Fast Review</div>
-                      <div className="text-[11px] text-slate-500">Technical committee triage</div>
+                      <div className="text-xs font-semibold text-slate-800">Quick Response</div>
+                      <div className="text-[11px] text-slate-500">We reply within 2 business days</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
                     <div>
-                      <div className="text-xs font-semibold text-slate-800">IP Preservation</div>
-                      <div className="text-[11px] text-slate-500">Mutual NDA protected</div>
+                      <div className="text-xs font-semibold text-slate-800">Complete Privacy</div>
+                      <div className="text-[11px] text-slate-500">Your ideas stay safe with us</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Right Panel: Executive Form Console (7 Columns) */}
+              {/* Right Panel: Form Console (7 Columns) */}
               <div className="lg:col-span-7 bg-slate-50/90 p-5 sm:p-6 lg:p-7 rounded-2xl border border-slate-200/90">
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                   
@@ -263,26 +263,26 @@ export default function ResearchCollaborationsPage() {
                   <div className="grid sm:grid-cols-2 gap-3.5">
                     <div className="text-left">
                       <label htmlFor="name" className="block text-xs font-medium text-slate-700 mb-1">
-                        Your Name / Title <span className="text-slate-400">*</span>
+                        Full Name <span className="text-slate-400">*</span>
                       </label>
                       <input 
                         type="text" 
                         id="name" 
                         required 
-                        placeholder="e.g. Dr. Rajesh Kumar"
+                        placeholder="Enter your name"
                         className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
                       />
                     </div>
 
                     <div className="text-left">
                       <label htmlFor="email" className="block text-xs font-medium text-slate-700 mb-1">
-                        Institutional / Corporate Email <span className="text-slate-400">*</span>
+                        Email Address <span className="text-slate-400">*</span>
                       </label>
                       <input 
                         type="email" 
                         id="email" 
                         required 
-                        placeholder="name@university.edu"
+                        placeholder="name@example.com"
                         className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
                       />
                     </div>
@@ -292,20 +292,20 @@ export default function ResearchCollaborationsPage() {
                   <div className="grid sm:grid-cols-2 gap-3.5">
                     <div className="text-left">
                       <label htmlFor="org" className="block text-xs font-medium text-slate-700 mb-1">
-                        Organization / University <span className="text-slate-400">*</span>
+                        Company / University / College <span className="text-slate-400">*</span>
                       </label>
                       <input 
                         type="text" 
                         id="org" 
                         required 
-                        placeholder="e.g. Stanford / DRDO / Research Lab"
+                        placeholder="Where are you from?"
                         className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none"
                       />
                     </div>
 
                     <div className="text-left">
                       <label htmlFor="interest" className="block text-xs font-medium text-slate-700 mb-1">
-                        Collaboration Focus <span className="text-slate-400">*</span>
+                        What would you like to work on? <span className="text-slate-400">*</span>
                       </label>
                       <div className="relative">
                         <select 
@@ -314,14 +314,15 @@ export default function ResearchCollaborationsPage() {
                           defaultValue=""
                           className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none appearance-none cursor-pointer pr-10"
                         >
-                          <option value="" disabled className="text-slate-400">Select Track</option>
-                          <option value="grant">Joint Grant / Co-Authored Paper (Academia)</option>
-                          <option value="slam">Hardware-in-the-Loop &amp; Flight Arena (Labs)</option>
-                          <option value="flight">Aerial Autonomy &amp; Flight Mechanics</option>
-                          <option value="ugv">Ground Robotics &amp; Terrestrial Mobility</option>
-                          <option value="edge_ai">Embedded Edge AI &amp; Vision Pipelines</option>
-                          <option value="lab">Campus CoE Laboratory Setup</option>
-                          <option value="custom">Rapid Autonomy PoC (Industry &amp; Defense)</option>
+                          <option value="" disabled className="text-slate-400">Select an option</option>
+                          <option value="grant">Academic research &amp; student projects</option>
+                          <option value="slam">Drone testing &amp; flight arena access</option>
+                          <option value="flight">Drone flight systems &amp; aerodynamics</option>
+                          <option value="ugv">Autonomous ground robotics (UGVs)</option>
+                          <option value="edge_ai">AI, computer vision &amp; smart sensors</option>
+                          <option value="lab">Setting up a robotics lab on campus</option>
+                          <option value="custom">Custom prototype or company project</option>
+                          <option value="other">Other collaboration idea</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
                           <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
@@ -335,14 +336,14 @@ export default function ResearchCollaborationsPage() {
                   {/* Row 3: Message Outline */}
                   <div className="text-left">
                     <label htmlFor="message" className="block text-xs font-medium text-slate-700 mb-1 flex items-center justify-between">
-                      <span>Collaboration Outline / Hardware Scope <span className="text-slate-400">*</span></span>
+                      <span>Tell us about your project or idea <span className="text-slate-400">*</span></span>
                       <span className="text-[11px] text-slate-400">Brief Summary</span>
                     </label>
                     <textarea 
                       id="message" 
                       rows={2} 
                       required 
-                      placeholder="Brief summary of your research thesis, grant proposal, or required testbed infrastructure..."
+                      placeholder="Share a brief overview of what you are working on and how we can work together..."
                       className="w-full bg-white hover:bg-white focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-2 focus:ring-slate-300/30 rounded-xl p-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm font-normal transition-all shadow-2xs outline-none resize-none min-h-[64px] sm:min-h-[72px]"
                     />
                   </div>
@@ -353,12 +354,12 @@ export default function ResearchCollaborationsPage() {
                       type="submit" 
                       className="w-full py-3 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm tracking-wide transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer group"
                     >
-                      <span>Transmit Research Proposal</span>
+                      <span>Send Message</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </button>
 
                     <p className="text-xs text-slate-500 text-center">
-                      Direct transmission to Novaliseo Research Committee • research@novaliseo.com
+                      We review every message directly • research@novaliseo.com
                     </p>
                   </div>
 
