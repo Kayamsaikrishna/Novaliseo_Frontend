@@ -110,10 +110,11 @@ export function tearLine(seed = 11, from = -800, to = 1800, step = 9, cx = 500, 
 }
 
 /** Where each half goes as the tear opens. Both are still at open = 0. */
-export function pieceMotion(open: number) {
+export function pieceMotion(open: number, wideOpen = false) {
+  const mult = wideOpen ? 7.5 : 1
   return {
-    top: { dx: -10 * open, dy: -82 * open, rot: -2.6 * open },
-    bottom: { dx: 12 * open, dy: 78 * open, rot: 2.1 * open },
+    top: { dx: -10 * open, dy: -82 * open * mult, rot: -2.6 * open },
+    bottom: { dx: 12 * open, dy: 78 * open * mult, rot: 2.1 * open },
   }
 }
 
@@ -325,16 +326,19 @@ function Half({
   side,
   line,
   open,
+  wideOpen = false,
   children,
 }: {
   id: string
   side: "top" | "bottom"
   line: Pt[]
   open: number
+  wideOpen?: boolean
   children: React.ReactNode
 }) {
   const up = side === "top"
-  const m = pieceMotion(open)[side]
+  const m = pieceMotion(open, wideOpen)[side]
+  const opacity = wideOpen ? Math.max(0, 1 - smooth(0.32, 0.72, open)) : 1
   const shape = up
     ? [[line[0][0], -FAR] as Pt, [line[line.length - 1][0], -FAR] as Pt, ...[...line].reverse()]
     : [...line, [line[line.length - 1][0], FAR] as Pt, [line[0][0], FAR] as Pt]
@@ -353,7 +357,7 @@ function Half({
     "translate(" + m.dx.toFixed(2) + " " + m.dy.toFixed(2) + ") rotate(" + m.rot.toFixed(3) + " " + CX + " " + CY + ")"
   const clip = id + "-" + side
   return (
-    <g transform={transform}>
+    <g transform={transform} opacity={opacity}>
       {/* the half's own shadow on the tiger */}
       {open > 0 ? (
         <path
@@ -412,7 +416,9 @@ export function TigerTearReveal({
   progress,
   hint = true,
   className = "",
-}: TigerTearRevealProps) {
+  children,
+  stayOpen = Boolean(children),
+}: TigerTearRevealProps & { stayOpen?: boolean }) {
   const rootRef = React.useRef<HTMLElement | null>(null)
   const stageRef = React.useRef<HTMLDivElement | null>(null)
   const reduced = usePrefersReducedMotion()
@@ -420,12 +426,19 @@ export function TigerTearReveal({
   const fibres = React.useMemo(buildFibres, [])
   const line = React.useMemo(() => tearLine(), [])
   const [f, setF] = React.useState<Frame>({ p: progress ?? 0, look: [0, 0], blink: 0, squint: 0 })
+  const hasTorn = React.useRef(false)
 
   const controlled = progress !== undefined
-  const cfg = React.useRef({ progress, controlled, reduced })
-  cfg.current = { progress, controlled, reduced }
+  const cfg = React.useRef({ progress, controlled, reduced, stayOpen })
+  cfg.current = { progress, controlled, reduced, stayOpen }
   const pointer = React.useRef<{ x: number; y: number } | null>(null)
   const squintAt = React.useRef(-1e9)
+
+  const handleManualTear = React.useCallback(() => {
+    if (cfg.current.stayOpen && !hasTorn.current) {
+      hasTorn.current = true
+    }
+  }, [])
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -443,17 +456,35 @@ export function TigerTearReveal({
     const io = new IntersectionObserver(([e]) => {
       visible = e.isIntersecting
       if (visible && !raf) raf = requestAnimationFrame(tick)
-    })
+    }, { threshold: [0, 0.15, 0.5, 0.9] })
     io.observe(root)
 
     function tick(now: number) {
       raf = 0
       if (!visible) return
       const c = cfg.current
-      const target = c.controlled
-        ? clamp01(c.progress ?? 0)
-        : scrollProgress(root!.getBoundingClientRect().top, root!.offsetHeight, stage!.offsetHeight)
-      p = c.reduced ? (target > 0.3 ? 1 : 0) : p + (target - p) * 0.14
+      
+      let target = 0
+      if (c.controlled) {
+        target = clamp01(c.progress ?? 0)
+      } else if (c.stayOpen) {
+        const rect = root!.getBoundingClientRect()
+        const vh = window.innerHeight || 800
+        // Tear open smoothly as the section scrolls into view
+        const enterProgress = clamp01((vh * 0.78 - rect.top) / (vh * 0.55))
+        if (hasTorn.current) {
+          target = 1
+        } else if (enterProgress >= 0.92) {
+          hasTorn.current = true
+          target = 1
+        } else {
+          target = enterProgress
+        }
+      } else {
+        target = scrollProgress(root!.getBoundingClientRect().top, root!.offsetHeight, stage!.offsetHeight)
+      }
+
+      p = c.reduced ? (target > 0.25 ? 1 : 0) : p + (target - p) * 0.12
       if (Math.abs(target - p) < 0.0005) p = target
 
       // where the eyes look: the pointer if there is one, else a wandering gaze
@@ -508,7 +539,6 @@ export function TigerTearReveal({
   const pop = reduced ? s.pop : easeOutBack(s.pop)
   const eyeScale = 0.9 + 0.1 * pop
   const pupil = 1.3 - 0.5 * s.pop + 0.35 * f.squint
-  // the eyes are shut until the tiger is up, then they open
   const blink = Math.max(1 - clamp01(pop), f.blink, f.squint * 0.45)
   const rise = (1 - s.rise) * 150
   const shake = reduced ? 0 : Math.sin(f.p * 900) * 6 * s.shake
@@ -545,6 +575,158 @@ export function TigerTearReveal({
     </>
   )
 
+  // Paper Tear SVG Element
+  const svgTearOverlay = (
+    <svg
+      viewBox={FRAME}
+      preserveAspectRatio={stayOpen ? "xMidYMid slice" : children ? "xMidYMid slice" : "xMidYMid meet"}
+      role="img"
+      aria-label={
+        children
+          ? (tagline ? tagline + ". " : "") + word + ", torn to reveal evaluation architecture."
+          : (tagline ? tagline + ". " : "") + word + ", torn in two by a tiger looking through."
+      }
+      className="pointer-events-none absolute inset-0 w-full h-full z-20"
+      style={{ maxWidth: "none", display: "block" }}
+    >
+      <defs>
+        <linearGradient id={id + "-shade"} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2a1203" stopOpacity={0.45} />
+          <stop offset="0.45" stopColor="#ffd08a" stopOpacity={0.12} />
+          <stop offset="1" stopColor="#2a1203" stopOpacity={0.5} />
+        </linearGradient>
+        <radialGradient id={id + "-vignette"} cx="0.5" cy="0.5" r="0.5" gradientTransform="translate(0.5 0.5) scale(0.25 1) translate(-0.5 -0.5)">
+          <stop offset="0.5" stopColor="#1a0a02" stopOpacity={0} />
+          <stop offset="1" stopColor="#1a0a02" stopOpacity={0.55} />
+        </radialGradient>
+        <radialGradient id={id + "-iris"}>
+          <stop offset="0" stopColor="#fff0a8" />
+          <stop offset="0.35" stopColor={eyeColor} />
+          <stop offset="0.8" stopColor="#b8570f" />
+          <stop offset="1" stopColor="#4d1f03" />
+        </radialGradient>
+        <linearGradient id={id + "-lid"} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#000" stopOpacity={0.75} />
+          <stop offset="1" stopColor="#000" stopOpacity={0} />
+        </linearGradient>
+        <linearGradient id={id + "-curl-top"} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#d9d4cb" />
+        </linearGradient>
+        <linearGradient id={id + "-curl-bottom"} x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#d9d4cb" />
+        </linearGradient>
+        <filter id={id + "-soft"} x="-20%" y="-50%" width="140%" height="200%">
+          <feGaussianBlur stdDeviation="8" />
+        </filter>
+        <filter id={id + "-rough"} x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="4" />
+          <feDisplacementMap in="SourceGraphic" scale="9" />
+        </filter>
+        <filter id={id + "-glow"} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="9" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <g transform={"translate(" + shake.toFixed(2) + " " + (shake * 0.4).toFixed(2) + ")"}>
+        {/* behind the paper: the tiger, rising into the gap (only when children is not provided) */}
+        {!children && s.open > 0 ? (
+          <g transform={tiger}>
+            <Fur id={id} fur={furColor} />
+            <g filter={s.pop > 0.02 ? "url(#" + id + "-glow)" : undefined}>
+              {EYES.map(([x, y], i) => (
+                <Eye
+                  key={i}
+                  id={id}
+                  x={x}
+                  y={y}
+                  flip={i === 0}
+                  look={f.look}
+                  blink={blink}
+                  pupil={pupil}
+                  scale={eyeScale}
+                  fibres={fibres}
+                />
+              ))}
+            </g>
+          </g>
+        ) : null}
+
+        {/* the sheet: whole until it tears, then two halves parting */}
+        {s.open > 0 ? (
+          <>
+            <Half id={id} side="top" line={line} open={s.open} wideOpen={Boolean(children)}>
+              {sheet}
+            </Half>
+            <Half id={id} side="bottom" line={line} open={s.open} wideOpen={Boolean(children)}>
+              {sheet}
+            </Half>
+          </>
+        ) : (
+          sheet
+        )}
+
+        {/* the crack, running out from the middle before it gives way */}
+        {s.crack > 0 && s.open < 0.15 && crack.length > 1 ? (
+          <path d={d(crack, false)} fill="none" stroke="#1d0f07" strokeWidth={2.4} strokeLinejoin="bevel" opacity={1 - s.open / 0.15} />
+        ) : null}
+      </g>
+    </svg>
+  )
+
+  // In-place stayOpen mode (when children is provided)
+  if (stayOpen && children) {
+    return (
+      <section
+        ref={rootRef}
+        className={"relative w-full overflow-hidden select-none " + className}
+        style={{ background: paper }}
+      >
+        {/* 1. Permanent Section Content (Stays in place forever) */}
+        <div 
+          className="relative z-10 w-full transition-all duration-700 ease-out py-16 sm:py-24"
+          style={{
+            opacity: smooth(0.08, 0.45, f.p),
+            transform: `scale(${0.96 + 0.04 * smooth(0.12, 0.65, f.p)})`,
+          }}
+        >
+          {children}
+        </div>
+
+        {/* 2. Paper Tear Overlay (Dissolves completely once torn) */}
+        <div
+          ref={stageRef}
+          onClick={handleManualTear}
+          className="absolute inset-0 z-20 overflow-hidden flex items-center justify-center cursor-pointer"
+          style={{
+            pointerEvents: f.p >= 0.85 ? "none" : "auto",
+            opacity: f.p >= 0.98 ? 0 : 1,
+            transition: f.p >= 0.98 ? "opacity 0.4s ease-out" : undefined,
+          }}
+        >
+          {svgTearOverlay}
+
+          {hint && f.p < 0.15 ? (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.35em]"
+              style={{ color: taglineColor, opacity: Math.max(0, 0.7 - s.crack * 3) }}
+            >
+              scroll or click to tear
+              <span className="block h-6 w-px animate-pulse motion-reduce:animate-none" style={{ background: taglineColor }} />
+            </div>
+          ) : null}
+        </div>
+      </section>
+    )
+  }
+
+  // Classic scroll-pinned sticky mode (for tiger demo)
   return (
     <section
       ref={rootRef}
@@ -553,108 +735,29 @@ export function TigerTearReveal({
     >
       <div
         ref={stageRef}
-        className="sticky top-0 w-full overflow-hidden"
-        style={{ height, cursor: s.pop > 0.9 ? "crosshair" : undefined }}
+        className="sticky top-0 w-full overflow-hidden flex items-center justify-center"
+        style={{ height, background: paper, cursor: !children && s.pop > 0.9 ? "crosshair" : undefined }}
         onPointerMove={(e) => (pointer.current = { x: e.clientX, y: e.clientY })}
         onPointerLeave={() => (pointer.current = null)}
-        onPointerDown={() => s.pop > 0.5 && (squintAt.current = performance.now())}
+        onPointerDown={() => !children && s.pop > 0.5 && (squintAt.current = performance.now())}
       >
-        <svg
-          viewBox={FRAME}
-          preserveAspectRatio="xMidYMid meet"
-          role="img"
-          aria-label={(tagline ? tagline + ". " : "") + word + ", torn in two by a tiger looking through."}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", maxWidth: "none", display: "block" }}
-        >
-          <defs>
-            <linearGradient id={id + "-shade"} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#2a1203" stopOpacity={0.45} />
-              <stop offset="0.45" stopColor="#ffd08a" stopOpacity={0.12} />
-              <stop offset="1" stopColor="#2a1203" stopOpacity={0.5} />
-            </linearGradient>
-            <radialGradient id={id + "-vignette"} cx="0.5" cy="0.5" r="0.5" gradientTransform="translate(0.5 0.5) scale(0.25 1) translate(-0.5 -0.5)">
-              <stop offset="0.5" stopColor="#1a0a02" stopOpacity={0} />
-              <stop offset="1" stopColor="#1a0a02" stopOpacity={0.55} />
-            </radialGradient>
-            <radialGradient id={id + "-iris"}>
-              <stop offset="0" stopColor="#fff0a8" />
-              <stop offset="0.35" stopColor={eyeColor} />
-              <stop offset="0.8" stopColor="#b8570f" />
-              <stop offset="1" stopColor="#4d1f03" />
-            </radialGradient>
-            <linearGradient id={id + "-lid"} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#000" stopOpacity={0.75} />
-              <stop offset="1" stopColor="#000" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id={id + "-curl-top"} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#ffffff" />
-              <stop offset="1" stopColor="#d9d4cb" />
-            </linearGradient>
-            <linearGradient id={id + "-curl-bottom"} x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0" stopColor="#ffffff" />
-              <stop offset="1" stopColor="#d9d4cb" />
-            </linearGradient>
-            <filter id={id + "-soft"} x="-20%" y="-50%" width="140%" height="200%">
-              <feGaussianBlur stdDeviation="8" />
-            </filter>
-            <filter id={id + "-rough"} x="-10%" y="-10%" width="120%" height="120%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="4" />
-              <feDisplacementMap in="SourceGraphic" scale="9" />
-            </filter>
-            <filter id={id + "-glow"} x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="9" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+        {/* Revealed Content Layer (behind the paper SVG) */}
+        {children ? (
+          <div
+            className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8 pointer-events-none"
+            style={{
+              opacity: smooth(0.08, 0.45, f.p),
+              transform: `scale(${0.92 + 0.08 * smooth(0.15, 0.7, f.p)})`,
+              pointerEvents: f.p > 0.6 ? "auto" : "none",
+            }}
+          >
+            <div className="w-full max-h-[94svh] overflow-y-auto lg:overflow-visible">
+              {children}
+            </div>
+          </div>
+        ) : null}
 
-          <g transform={"translate(" + shake.toFixed(2) + " " + (shake * 0.4).toFixed(2) + ")"}>
-            {/* behind the paper: the tiger, rising into the gap */}
-            {s.open > 0 ? (
-              <g transform={tiger}>
-                <Fur id={id} fur={furColor} />
-                <g filter={s.pop > 0.02 ? "url(#" + id + "-glow)" : undefined}>
-                  {EYES.map(([x, y], i) => (
-                    <Eye
-                      key={i}
-                      id={id}
-                      x={x}
-                      y={y}
-                      flip={i === 0}
-                      look={f.look}
-                      blink={blink}
-                      pupil={pupil}
-                      scale={eyeScale}
-                      fibres={fibres}
-                    />
-                  ))}
-                </g>
-              </g>
-            ) : null}
-
-            {/* the sheet: whole until it tears (two clipped halves leave a hairline seam),
-                then in two halves that part along the tear */}
-            {s.open > 0 ? (
-              <>
-                <Half id={id} side="top" line={line} open={s.open}>
-                  {sheet}
-                </Half>
-                <Half id={id} side="bottom" line={line} open={s.open}>
-                  {sheet}
-                </Half>
-              </>
-            ) : (
-              sheet
-            )}
-
-            {/* the crack, running out from the middle before it gives way */}
-            {s.crack > 0 && s.open < 0.15 && crack.length > 1 ? (
-              <path d={d(crack, false)} fill="none" stroke="#1d0f07" strokeWidth={2.4} strokeLinejoin="bevel" opacity={1 - s.open / 0.15} />
-            ) : null}
-          </g>
-        </svg>
+        {svgTearOverlay}
 
         {hint && !controlled ? (
           <div

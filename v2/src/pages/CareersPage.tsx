@@ -27,7 +27,8 @@ import {
   Building,
   Target,
   FileCheck,
-  Award
+  Award,
+  RotateCcw
 } from "lucide-react";
 
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
@@ -85,6 +86,7 @@ interface JobRole {
 export default function CareersPage() {
   const [applyingRole, setApplyingRole] = useState<JobRole | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [tearCount, setTearCount] = useState(0);
   const [candidateData, setCandidateData] = useState({
     name: "",
     email: "",
@@ -589,60 +591,68 @@ export default function CareersPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. HOW WE HIRE (TIGER TEAR REVEAL & TRANSPARENT 4-STAGE PIPELINE)         */}
+      {/* 3. HOW WE HIRE: INTERACTIVE PAPER TEAR REVEAL FOR 4-STAGE EVALUATION     */}
       {/* ========================================================================= */}
-      <section className="w-full relative bg-[#f8fafc] border-t border-slate-200">
+      <section id="evaluation" className="w-full relative bg-[#f8fafc] border-t border-slate-200 scroll-mt-20">
         
-        {/* Interactive Scroll Tiger Tear Reveal Poster */}
+        {/* Interactive Scroll Paper Tear Reveal directly unveiling the 4-Stage Pipeline */}
         <TigerTearReveal
-          tagline="HIRING PHILOSOPHY // NO BOILERPLATE"
+          key={tearCount}
+          tagline="HIRING PHILOSOPHY // 4-STAGE PIPELINE"
           word="EVALUATE"
           ink="#0f172a"
           paper="#f8fafc"
           taglineColor="#2563eb"
-          eyeColor="#f59e0b"
-          furColor="#d97706"
-          height="80svh"
-          scrollDistance="100svh"
-          className="border-b border-slate-200/60"
-        />
-
-        {/* 4 Evaluation Stages Content */}
-        <div className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
-          <div className="text-left max-w-3xl mb-12 sm:mb-16">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
-              Evaluation Architecture
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
-              How We Evaluate.
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-              We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on your engineering competence and real-world creations.
-            </p>
-          </div>
-
-          {/* 4 Stages Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {hiringSteps.map((step, idx) => (
-              <div 
-                key={idx}
-                className="p-6 sm:p-7 rounded-[2rem] bg-white border border-slate-200/90 shadow-sm text-left flex flex-col justify-between hover:shadow-md transition-shadow"
-              >
-                <div>
-                  <span className="text-3xl sm:text-4xl font-black text-blue-600/80 font-mono mb-4 block">
-                    {step.step}
-                  </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+          stayOpen={true}
+        >
+          {/* Revealed Content: Evaluation Architecture & 4-Stage Cards */}
+          <div className="w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 lg:mb-12">
+              <div className="text-left max-w-3xl">
+                <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
+                  Evaluation Architecture
+                </span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
+                  How We Evaluate.
+                </h2>
+                <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+                  We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on your engineering competence and real-world creations.
+                </p>
               </div>
-            ))}
+
+              <button
+                onClick={() => setTearCount(c => c + 1)}
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-500 hover:text-blue-600 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-xs"
+                title="Re-seal poster and play paper rip reveal again"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Replay Tear</span>
+              </button>
+            </div>
+
+            {/* 4 Stages Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {hiringSteps.map((step, idx) => (
+                <div 
+                  key={idx}
+                  className="p-6 sm:p-7 rounded-[2rem] bg-white border border-slate-200/90 shadow-sm text-left flex flex-col justify-between hover:shadow-md hover:border-blue-300 transition-all duration-200"
+                >
+                  <div>
+                    <span className="text-3xl sm:text-4xl font-black text-blue-600 font-mono mb-4 block">
+                      {step.step}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </TigerTearReveal>
 
       </section>
 
