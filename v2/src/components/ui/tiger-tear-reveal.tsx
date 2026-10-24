@@ -766,7 +766,7 @@ export function TigerTearReveal({
         {children ? (
           <div
             className={
-              "absolute inset-0 flex items-center justify-center w-full h-full p-4 sm:p-6 lg:p-10 transition-all " +
+              "absolute inset-0 flex items-center justify-center w-full h-full transition-all " +
               (s.open > 0.15 ? "z-30 pointer-events-auto" : "z-10 pointer-events-none")
             }
             style={{
@@ -779,7 +779,7 @@ export function TigerTearReveal({
               pointerEvents: s.open > 0.15 ? "auto" : "none",
             }}
           >
-            <div className="w-full h-full max-h-[96svh] flex flex-col justify-center my-auto pointer-events-auto">
+            <div className="w-full h-full flex flex-col justify-center pointer-events-auto">
               {children}
             </div>
           </div>

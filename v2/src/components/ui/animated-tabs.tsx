@@ -110,7 +110,7 @@ export const AnimatedTabs = ({
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Tab Navigation Pill Bar */}
-      <div className="flex gap-1.5 sm:gap-2 flex-wrap bg-white/95 border border-slate-200/90 backdrop-blur-md p-1.5 rounded-2xl w-fit self-start sm:self-center shadow-sm pointer-events-auto z-20">
+      <div className="flex gap-1.5 sm:gap-2 flex-wrap bg-white/85 border border-white/90 backdrop-blur-xl p-1.5 rounded-2xl w-fit self-start sm:self-center shadow-lg pointer-events-auto z-20">
         {tabs.map((tab) => {
           const isActive = activeTabId === tab.id;
           return (
@@ -126,8 +126,8 @@ export const AnimatedTabs = ({
               className={cn(
                 "relative px-3.5 sm:px-5 py-2 text-xs sm:text-sm font-mono font-bold rounded-xl transition-all outline-none cursor-pointer flex items-center gap-2 select-none",
                 isActive
-                  ? "text-white shadow-sm"
-                  : "text-slate-600 hover:text-slate-950 hover:bg-slate-100/90 active:scale-95"
+                  ? "text-white shadow-md"
+                  : "text-slate-700 hover:text-slate-950 hover:bg-white/70 active:scale-95"
               )}
             >
               {isActive && (
@@ -144,7 +144,7 @@ export const AnimatedTabs = ({
                       "text-[10px] px-1.5 py-0.5 rounded-md font-mono",
                       isActive
                         ? "bg-white/20 text-white"
-                        : "bg-slate-100 text-slate-500 border border-slate-200/70"
+                        : "bg-slate-100 text-slate-600 border border-slate-200/70"
                     )}
                   >
                     {tab.badge}
@@ -157,8 +157,8 @@ export const AnimatedTabs = ({
         })}
       </div>
 
-      {/* Tab Content Display Container - Clean Daylight Frosted Glass */}
-      <div className="p-5 sm:p-7 lg:p-8 bg-white/95 shadow-[0_20px_50px_rgba(0,0,0,0.06)] text-slate-900 backdrop-blur-xl rounded-3xl border border-white/90 w-full min-h-[340px] sm:min-h-[380px] flex items-center overflow-hidden relative pointer-events-auto">
+      {/* Tab Content Display Container - Refined Frosted Glass HUD */}
+      <div className="p-5 sm:p-7 lg:p-8 bg-white/80 shadow-[0_24px_60px_-15px_rgba(15,23,42,0.14)] text-slate-900 backdrop-blur-2xl rounded-3xl border border-white/90 w-full min-h-[340px] sm:min-h-[380px] flex items-center overflow-hidden relative pointer-events-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTabObj.id}

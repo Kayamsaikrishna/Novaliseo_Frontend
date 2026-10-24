@@ -53,6 +53,10 @@ import evalStage1Portfolio from "../assets/eval_stage1_portfolio.jpg";
 import evalStage2Technical from "../assets/eval_stage2_technical.jpg";
 import evalStage3LabDay from "../assets/eval_stage3_labday.jpg";
 import evalStage4Offer from "../assets/eval_stage4_offer.jpg";
+import evalBgPortfolio from "../assets/eval_bg_portfolio.jpg";
+import evalBgDialogue from "../assets/eval_bg_dialogue.jpg";
+import evalBgLabday from "../assets/eval_bg_labday.jpg";
+import evalBgOffer from "../assets/eval_bg_offer.jpg";
 
 // Brand-New Photorealistic Autonomous Physical Systems Visuals (100% Pure Hardware, Zero People, Zero Third-Party Brands)
 import tiltedVtolHardware from "../assets/tilted/tilted_vtol_hardware.jpg";
@@ -290,10 +294,10 @@ export default function CareersPage() {
   ];
 
   const evalStageBgImages: Record<string, string> = {
-    stage1: evalStage1Portfolio,
-    stage2: evalStage2Technical,
-    stage3: evalStage3LabDay,
-    stage4: evalStage4Offer,
+    stage1: evalBgPortfolio,
+    stage2: evalBgDialogue,
+    stage3: evalBgLabday,
+    stage4: evalBgOffer,
   };
 
   const evaluationTabs: Tab[] = [
@@ -302,45 +306,82 @@ export default function CareersPage() {
       label: "01. Portfolio Review",
       badge: "48h",
       content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
-            <img
-              src={evalStage1Portfolio}
-              alt="Portfolio Review Workbench"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
-              STAGE 01 // TELEMETRY &amp; CODE REVIEW
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
+          {/* Left: Engineering Artifacts Inspector HUD */}
+          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
+                  STAGE 01 // 48-HR INTAKE
+                </span>
+                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Direct Lead Review
+                </span>
+              </div>
+
+              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
+                Technical Artifacts Inspected:
+              </div>
+
+              <div className="space-y-2">
+                {[
+                  "Flight Logs & Telemetry Blackbox (CSV/ULog)",
+                  "ROS2 / C++ Firmware Repositories",
+                  "3D CAD Assemblies (SolidWorks / Fusion)",
+                  "Custom PCB Hardware & Schematics",
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <span>Standard: Real Physical Artifacts</span>
+              <span className="text-slate-800 font-bold">No LeetCode</span>
             </div>
           </div>
 
-          <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
+          {/* Right: Ethos, Description & Criteria */}
+          <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 01
               </span>
-              <span className="text-xs font-mono text-slate-500">48-Hour Turnaround</span>
+              <span className="text-xs font-mono text-slate-500 font-medium">48-Hour Turnaround</span>
             </div>
+
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Portfolio &amp; Real Work Review
             </h3>
+
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              No boilerplate LeetCode trivia. We look at GitHub repos, physical robots built, CAD models, schematics, or flight footage that prove your intuition.
+              No boilerplate trivia. We look at GitHub repos, physical robots built, CAD models, schematics, or flight footage that prove your engineering intuition.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Physical Reality Over Quizzes: Real CAD assemblies &amp; firmware diffs</span>
+
+            <div className="space-y-2 pt-1 text-xs text-slate-700">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <FileCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Physical Reality Over Quizzes:</span>{" "}
+                  Real CAD assemblies, motor dynamometer graphs, and firmware diffs that solved real problems.
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Direct Lead Review: Evaluated by practicing autonomous robotics engineers</span>
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Direct Lead Review:</span>{" "}
+                  Evaluated only by practicing autonomous robotics engineers who design and fly our sovereign platforms.
+                </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {["CAD Models", "Git Commits", "Flight Logs", "Custom PCB"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {["CAD Assemblies", "Git Commits", "Flight Logs", "Custom PCB", "Kinematics"].map((tag, i) => (
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -354,45 +395,82 @@ export default function CareersPage() {
       label: "02. Systems Dialogue",
       badge: "45m",
       content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
-            <img
-              src={evalStage2Technical}
-              alt="Technical Systems Architecture Room"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
-              STAGE 02 // SYSTEMS &amp; ARCHITECTURE
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
+          {/* Left: Engineering Artifacts Inspector HUD */}
+          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
+                  STAGE 02 // 45-MIN ARCHITECTURE
+                </span>
+                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Systems Architect Peer
+                </span>
+              </div>
+
+              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
+                Core Domains Explored:
+              </div>
+
+              <div className="space-y-2">
+                {[
+                  "Extended Kalman Filter (EKF) State Estimation",
+                  "Quaternion Attitude Kinematics & Loops",
+                  "LiDAR SLAM & Point Cloud Odometry",
+                  "Real-World Hardware Debugging War Stories",
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <span>Format: First-Principles Dialogue</span>
+              <span className="text-slate-800 font-bold">Sub-10ms Loops</span>
             </div>
           </div>
 
-          <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
+          {/* Right: Ethos, Description & Criteria */}
+          <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 02
               </span>
-              <span className="text-xs font-mono text-slate-500">45-Minute Dialogue</span>
+              <span className="text-xs font-mono text-slate-500 font-medium">45-Minute Dialogue</span>
             </div>
+
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Technical Systems Conversation
             </h3>
+
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              A 45-minute technical dialogue with a senior engineer. We explore your past design trade-offs, debugging stories, and systems intuition.
+              A 45-minute technical dialogue with a senior engineer. We explore past design trade-offs, debugging stories, and systems intuition.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>First-Principles Dialogue: Nonlinear control loops &amp; Kalman estimation</span>
+
+            <div className="space-y-2 pt-1 text-xs text-slate-700">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Cpu className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">First-Principles Dialogue:</span>{" "}
+                  Nonlinear control loops, Kalman filter covariance tuning, and low-latency zero-copy pipelines.
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>War Stories: We want to hear what broke in the field and how you debugged it</span>
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Wrench className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Field War Stories:</span>{" "}
+                  We want to hear what broke in real wind, dynamic vibration, or telemetry dropouts, and how you fixed it.
+                </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {["ROS2 / C++", "State Estimation", "Hardware Debugging", "Sub-10ms Loops"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {["ROS2 / C++", "State Estimation", "Hardware Debugging", "Sub-10ms Loops", "Sensor Fusion"].map((tag, i) => (
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -406,45 +484,82 @@ export default function CareersPage() {
       label: "03. Lab Day Sprint",
       badge: "1 Day",
       content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
-            <img
-              src={evalStage3LabDay}
-              alt="Lab Day Collaborative Challenge"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
-              STAGE 03 // PHYSICAL TESTBED ARENA
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
+          {/* Left: Engineering Artifacts Inspector HUD */}
+          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
+                  STAGE 03 // FULL DAY SPRINT
+                </span>
+                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Fully Compensated
+                </span>
+              </div>
+
+              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
+                Live Hardware Access:
+              </div>
+
+              <div className="space-y-2">
+                {[
+                  "Live Optical Mocap Trajectory Tracking Arena",
+                  "Dynamometer Thrust Stand & Motor Testing",
+                  "Autonomous Ground Rover / UAV Co-Testing",
+                  "Hardware-in-the-Loop (HIL) Fault Injection",
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <span>Environment: Flight Net Arena</span>
+              <span className="text-slate-800 font-bold">Paid Daily Rate</span>
             </div>
           </div>
 
-          <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
+          {/* Right: Ethos, Description & Criteria */}
+          <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 03
               </span>
-              <span className="text-xs font-mono text-slate-500">Full Day Lab Sprint (Compensated)</span>
+              <span className="text-xs font-mono text-slate-500 font-medium">Full Day Lab Sprint (Compensated)</span>
             </div>
+
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Lab Day / Collaborative Challenge
             </h3>
+
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Spend a day (or virtual sprint) solving an open-ended physical problem with our team using our actual hardware testbeds and sensor arenas.
+              Spend a day solving an open-ended physical problem with our team using our actual hardware testbeds, flight net, and sensor arenas.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Real Hardware Access: Flight net mocap arena, dynamic test stands, rovers</span>
+
+            <div className="space-y-2 pt-1 text-xs text-slate-700">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Target className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Real Hardware Access:</span>{" "}
+                  Optical mocap flight net arena, dynamic test stands, rovers, and spectrum analyzers.
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Fully Compensated: Your time and contributions are respected and paid</span>
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Fully Compensated:</span>{" "}
+                  Your time, focus, and contributions are respected and paid at top market day rates.
+                </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {["Mocap Arena", "Physical Testbeds", "HIL Simulation", "Sensor Fusion"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {["Mocap Arena", "Physical Testbeds", "HIL Simulation", "Sensor Fusion", "UAV Flight Net"].map((tag, i) => (
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -458,45 +573,82 @@ export default function CareersPage() {
       label: "04. Equity & Offer",
       badge: "Direct",
       content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
-            <img
-              src={evalStage4Offer}
-              alt="Transparent Offer & Equity Alignment"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
-              STAGE 04 // TRANSPARENT EQUITY
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
+          {/* Left: Engineering Artifacts Inspector HUD */}
+          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
+                  STAGE 04 // TRANSPARENT OFFER
+                </span>
+                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Direct Alignment
+                </span>
+              </div>
+
+              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
+                Guaranteed Foundations:
+              </div>
+
+              <div className="space-y-2">
+                {[
+                  "Transparent Equity Formula & Cap Table Model",
+                  "Top-Market Compensation & Direct Bonuses",
+                  "Zero Bureaucratic Management Layers",
+                  "Full Technical Ownership on Day One",
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <span>Mission: Sovereign Autonomy</span>
+              <span className="text-slate-800 font-bold">Meaningful Pool</span>
             </div>
           </div>
 
-          <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
+          {/* Right: Ethos, Description & Criteria */}
+          <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 04
               </span>
-              <span className="text-xs font-mono text-slate-500">Direct Alignment</span>
+              <span className="text-xs font-mono text-slate-500 font-medium">Direct Alignment</span>
             </div>
+
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Transparent Offer &amp; Equity Alignment
             </h3>
+
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Direct, transparent compensation and equity packages. Clear ownership expectations from day one with zero bureaucratic layers.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Meaningful Equity: Substantial ownership in sovereign autonomy mission</span>
+
+            <div className="space-y-2 pt-1 text-xs text-slate-700">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Meaningful Equity:</span>{" "}
+                  Substantial ownership stake in our long-term sovereign autonomy mission.
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                <span>Zero Bureaucracy: Flat reporting, extreme engineering ownership from day one</span>
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-slate-900">Zero Bureaucracy:</span>{" "}
+                  Flat reporting, extreme engineering ownership, and immediate autonomy from day one.
+                </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {["Direct Equity", "Top Market Pay", "High Autonomy", "No Bureaucracy"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {["Direct Equity", "Top Market Pay", "High Autonomy", "No Bureaucracy", "Sovereign Mission"].map((tag, i) => (
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -832,56 +984,58 @@ export default function CareersPage() {
           scrollDistance="320svh"
           closeOnExit={true}
         >
-          {/* Revealed Content: Evaluation Architecture & Interactive AnimatedTabs with Changing Realistic Backgrounds */}
-          <div className="relative w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4 h-full flex flex-col justify-center pointer-events-auto">
+          {/* Revealed Content: Full-Bleed Dynamic Background & Interactive Glassmorphism HUD */}
+          <div className="relative w-full h-full flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden pointer-events-auto">
             
-            {/* Dynamic Background Visual Image: Smoothly cross-fades when each tab is selected */}
-            <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl pointer-events-none">
+            {/* FULL-BLEED DYNAMIC BACKGROUND VISUAL - Vivid, immersive, clearly visible! */}
+            <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeEvalTab}
-                  src={evalStageBgImages[activeEvalTab] || evalStage1Portfolio}
+                  src={evalStageBgImages[activeEvalTab] || evalBgPortfolio}
                   alt="Evaluation Stage Background Visual"
                   initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 0.35, scale: 1 }}
+                  animate={{ opacity: 0.90, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   className="w-full h-full object-cover object-center"
                 />
               </AnimatePresence>
-              {/* Soft Luminous Daylight Diffusion Vignette - No black overlays */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white/92 via-white/70 to-white/90 pointer-events-none" />
-              <div className="absolute inset-0 bg-radial from-transparent via-white/45 to-white/80 pointer-events-none" />
+              {/* Luminous daylight gradient scrim: keeps the rich laboratory visual vivid while guaranteeing text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/35 to-white/85 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/60 pointer-events-none" />
             </div>
 
-            {/* Header Area with High-Contrast Slate Typography */}
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <div className="text-left max-w-3xl">
-                <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase">
-                  Evaluation Architecture // 4-Stage Intake
-                </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight mt-1">
-                  How We Evaluate.
-                </h2>
-                <p className="mt-1 text-slate-600 text-xs sm:text-sm leading-relaxed">
-                  We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on physical engineering competence.
-                </p>
+            <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col justify-center items-center">
+              {/* Header Area with High-Contrast Typography & Glass Badge */}
+              <div className="w-full flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <div className="text-left max-w-3xl">
+                  <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase bg-white/90 border border-blue-200/60 px-3 py-1 rounded-full shadow-2xs backdrop-blur-md">
+                    Evaluation Architecture // 4-Stage Intake
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight mt-2 drop-shadow-[0_2px_12px_rgba(255,255,255,0.9)]">
+                    How We Evaluate.
+                  </h2>
+                  <p className="mt-1 text-slate-700 text-xs sm:text-sm leading-relaxed font-medium max-w-2xl drop-shadow-[0_1px_6px_rgba(255,255,255,0.8)]">
+                    We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on physical engineering competence.
+                  </p>
+                </div>
+
+                <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 text-slate-800 text-xs font-mono font-semibold self-start sm:self-auto shrink-0 shadow-sm backdrop-blur-md">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Direct Engineering Review</span>
+                </div>
               </div>
 
-              <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 text-slate-700 text-xs font-mono font-semibold self-start sm:self-auto shrink-0 shadow-sm backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Direct Engineering Review</span>
-              </div>
+              {/* Interactive AnimatedTabs Component with Changing Showcase Visuals & Auto-shift */}
+              <AnimatedTabs
+                tabs={evaluationTabs}
+                activeTab={activeEvalTab}
+                onTabChange={setActiveEvalTab}
+                autoShiftInterval={4500}
+                className="w-full pointer-events-auto"
+              />
             </div>
-
-            {/* Interactive AnimatedTabs Component with Changing Showcase Visuals & Auto-shift */}
-            <AnimatedTabs
-              tabs={evaluationTabs}
-              activeTab={activeEvalTab}
-              onTabChange={setActiveEvalTab}
-              autoShiftInterval={4500}
-              className="w-full pointer-events-auto"
-            />
           </div>
         </TigerTearReveal>
 
