@@ -61,13 +61,15 @@ function measure(
   gap: number,
   bend: number,
 ) {
+  // If height is 0 or unmeasured, fall back to a reasonable proportion
+  const effectiveHeight = height > 0 ? height : Math.max(width * 0.6, 600);
   const h = Math.min(
-    (tile / 100) * height,
+    (tile / 100) * effectiveHeight,
     ((MAX_WIDTH / 100) * width) / aspect,
   );
   const radius = width * arc(bend);
   if (!(h > 0) || !(radius > 0))
-    return { columns: 2, sweep: 0, unit: 0, limit: 0 };
+    return { columns: 2, sweep: 0, unit: 0, limit: 0, h: 200, radius: 1000 };
   const deg = (rad: number) => (rad * 180) / Math.PI;
   const unit = deg(h / radius);
   const pitch = (aspect + gap / 100) * unit;
@@ -81,6 +83,8 @@ function measure(
     sweep,
     unit: round(unit),
     limit: round(Math.min(sweep, limit)),
+    h: round(h),
+    radius: round(radius),
   };
 }
 
@@ -159,14 +163,17 @@ export function TiltedGridHero({
     if (!el) return;
     const ro = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      const next = measure(width, height, tileHeight, aspectRatio, gap, bend);
-      setLayout((prev) =>
-        prev?.columns === next.columns &&
-        prev.sweep === next.sweep &&
-        prev.unit === next.unit
-          ? prev
-          : next,
-      );
+      if (width > 0) {
+        const next = measure(width, height, tileHeight, aspectRatio, gap, bend);
+        setLayout((prev) =>
+          prev?.columns === next.columns &&
+          prev.sweep === next.sweep &&
+          prev.unit === next.unit &&
+          prev.h === next.h
+            ? prev
+            : next,
+        );
+      }
     });
     ro.observe(el);
     return () => ro.disconnect();
@@ -178,18 +185,13 @@ export function TiltedGridHero({
     for (const { src } of images) new Image().src = src;
   }, [images]);
 
-  const { columns, sweep, unit, limit } =
-    layout ?? measure(1200, 560, tileHeight, aspectRatio, gap, bend);
+  const fallback = measure(1200, 700, tileHeight, aspectRatio, gap, bend);
+  const activeLayout = layout ?? fallback;
+  const { columns, sweep, unit, limit, h: tileH, radius: radiusVal } = activeLayout;
 
-  // Every length is a multiple of the tile's height, which follows the
-  // hero's height until MAX_WIDTH caps it on narrow screens.
-  const u = (n: number) =>
-    `calc(${+n.toFixed(4)} * min(${tileHeight}cqh, ${+(
-      MAX_WIDTH / aspectRatio
-    ).toFixed(4)}cqw))`;
+  const u = (n: number) => `${+(n * tileH).toFixed(2)}px`;
+  const radius = `${+radiusVal.toFixed(2)}px`;
 
-  const r = 100 * arc(bend);
-  const radius = `${+r.toFixed(3)}cqw`;
   // Out to the axis, round it, back in: a box sits on the cylinder at the
   // angle rotateY gives it.
   const turn = (deg: number) =>
@@ -220,7 +222,7 @@ export function TiltedGridHero({
       ref={ref}
       className={cn("relative overflow-hidden", className)}
       {...props}
-      style={{ containerType: "size", ...props.style }}
+      style={{ ...props.style }}
     >
       <style>{css}</style>
 
@@ -228,10 +230,10 @@ export function TiltedGridHero({
         aria-hidden
         className="pointer-events-none absolute inset-0 transition-opacity duration-500"
         style={{
-          opacity: layout ? 1 : 0,
+          opacity: 1,
           // A shared vanishing point on the row's centre line, so the ends
           // grow evenly above and below it as they come toward the viewer.
-          perspective: `${+(r * CAMERA).toFixed(3)}cqw`,
+          perspective: `${+(radiusVal * CAMERA).toFixed(2)}px`,
           perspectiveOrigin: `50% ${axis}%`,
           maskImage: mask,
           WebkitMaskImage: mask,

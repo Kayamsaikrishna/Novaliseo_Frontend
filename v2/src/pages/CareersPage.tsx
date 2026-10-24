@@ -523,42 +523,66 @@ export default function CareersPage() {
         />
       </section>
 
-      {/* Bespoke / General Intake Section with 3D Cylindrical Curved TiltedGridHero */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
+      {/* ========================================================================= */}
+      {/* 2.5 BESPOKE INTAKE: FULL-SCREEN 3D CYLINDRICAL TILTED GRID HERO           */}
+      {/* ========================================================================= */}
+      <section className="relative w-full min-h-screen lg:h-screen lg:min-h-[850px] overflow-hidden bg-[#f8fafc] border-t border-slate-200/90 flex flex-col justify-between select-none">
+        
+        {/* Full-Bleed Engineering Facility Background Visual */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <img
+            src={researchIntakeFacilityBg}
+            alt="Novaliseo Autonomous Systems Facility"
+            className="w-full h-full object-cover object-center opacity-90 scale-100"
+          />
+          {/* Tuned Transparent Overlay: lets the facility visual show through richly while keeping typography crisp */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/35 to-white/70" />
+          {/* Subtle soft luminous highlight behind the top headline area */}
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[850px] h-[360px] bg-white/60 blur-3xl rounded-full pointer-events-none" />
+        </div>
+
+        {/* 3D Cylindrical Curved TiltedGridHero (Full-Width Stream) */}
         <TiltedGridHero
           images={bespokeTiltedImages}
           speed={4.5}
           tileHeight={32}
           aspectRatio={16 / 9}
           curve={75}
-          fade={14}
-          axis={52}
+          fade={10}
+          axis={72}
           gap={8}
-          className="rounded-[2.5rem] border border-slate-200/90 shadow-[0_20px_50px_rgba(15,23,42,0.06)] bg-gradient-to-b from-slate-50/90 via-white to-slate-50/90 h-[520px] sm:h-[560px] md:h-[600px] flex items-center justify-center p-6 sm:p-10"
+          className="relative z-10 w-full h-full min-h-screen lg:h-screen flex flex-col justify-between py-10 sm:py-14"
         >
-          <div className="relative z-10 max-w-3xl w-full p-8 sm:p-10 md:p-12 rounded-[2.2rem] bg-white/92 backdrop-blur-md border border-white/80 shadow-[0_20px_60px_rgba(15,23,42,0.12)] text-left flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
-            <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                <span className="text-[11px] font-mono font-bold text-amber-700 uppercase tracking-wider">
-                  Bespoke Applications
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight">
-                Don't see your exact role listed on the wheel?
-              </h3>
-              <p className="mt-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed">
-                We frequently open bespoke positions for exceptional contributors across autonomous systems, aerodynamic design, and embedded hardware security. If you have built something notable in physical reality, we want to see it.
-              </p>
+          {/* Crisp, 100% High-Contrast Front Typography & Call to Action (Floating Open Layout) */}
+          <div className="relative z-30 w-full max-w-4xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 flex flex-col items-center text-center pointer-events-auto">
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4 shadow-xs backdrop-blur-xs">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="text-xs font-mono font-bold text-amber-700 uppercase tracking-widest">
+                Bespoke Applications
+              </span>
             </div>
 
-            <a
-              href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
-              className="shrink-0 inline-flex items-center gap-2 px-7 py-4 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 shadow-md group"
-            >
-              <span>Submit General Portfolio</span>
-              <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            {/* Main Heading (100% High-Contrast Slate-950) */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.12] drop-shadow-xs">
+              Don't see your exact role listed on the wheel?
+            </h2>
+
+            {/* Supporting Description */}
+            <p className="mt-4 text-slate-700 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed font-medium drop-shadow-2xs">
+              We frequently open bespoke positions for exceptional contributors across autonomous systems, aerodynamic design, and embedded hardware security. If you have built something notable in physical reality, we want to see it.
+            </p>
+
+            {/* High-Impact CTA Button */}
+            <div className="mt-6 flex items-center justify-center">
+              <a
+                href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 active:scale-95 transition-all group cursor-pointer"
+              >
+                <span>Submit General Portfolio</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </div>
           </div>
         </TiltedGridHero>
       </section>
