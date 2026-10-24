@@ -33,6 +33,7 @@ import {
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
 import CareerApplicationModal from "../components/CareerApplicationModal";
 import TiltedGridHero, { TiltedGridImage } from "../components/ui/TiltedGridHero";
+import TigerTearReveal from "../components/ui/tiger-tear-reveal";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -588,42 +589,59 @@ export default function CareersPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. HOW WE HIRE (TRANSPARENT 4-STAGE PIPELINE)                             */}
+      {/* 3. HOW WE HIRE (TIGER TEAR REVEAL & TRANSPARENT 4-STAGE PIPELINE)         */}
       {/* ========================================================================= */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full border-t border-slate-200">
+      <section className="w-full relative bg-[#f8fafc] border-t border-slate-200">
         
-        <div className="text-left max-w-3xl mb-12 sm:mb-16">
-          <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
-            Hiring Philosophy
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
-            How We Evaluate.
-          </h2>
-          <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-            We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on your engineering competence and real-world creations.
-          </p>
-        </div>
+        {/* Interactive Scroll Tiger Tear Reveal Poster */}
+        <TigerTearReveal
+          tagline="HIRING PHILOSOPHY // NO BOILERPLATE"
+          word="EVALUATE"
+          ink="#0f172a"
+          paper="#f8fafc"
+          taglineColor="#2563eb"
+          eyeColor="#f59e0b"
+          furColor="#d97706"
+          height="80svh"
+          scrollDistance="100svh"
+          className="border-b border-slate-200/60"
+        />
 
-        {/* 4 Stages Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {hiringSteps.map((step, idx) => (
-            <div 
-              key={idx}
-              className="p-6 sm:p-7 rounded-[2rem] bg-white border border-slate-200/90 shadow-sm text-left flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-3xl sm:text-4xl font-black text-blue-600/80 font-mono mb-4 block">
-                  {step.step}
-                </span>
-                <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
-                </p>
+        {/* 4 Evaluation Stages Content */}
+        <div className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
+          <div className="text-left max-w-3xl mb-12 sm:mb-16">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
+              Evaluation Architecture
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
+              How We Evaluate.
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+              We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on your engineering competence and real-world creations.
+            </p>
+          </div>
+
+          {/* 4 Stages Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {hiringSteps.map((step, idx) => (
+              <div 
+                key={idx}
+                className="p-6 sm:p-7 rounded-[2rem] bg-white border border-slate-200/90 shadow-sm text-left flex flex-col justify-between hover:shadow-md transition-shadow"
+              >
+                <div>
+                  <span className="text-3xl sm:text-4xl font-black text-blue-600/80 font-mono mb-4 block">
+                    {step.step}
+                  </span>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </section>
