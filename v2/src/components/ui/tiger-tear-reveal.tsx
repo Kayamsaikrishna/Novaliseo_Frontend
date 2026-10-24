@@ -43,6 +43,8 @@ export interface TigerTearRevealProps {
   className?: string
   /** Optional content or children rendered inside or after */
   children?: React.ReactNode
+  /** When true, paper closes back up when scrolling past middle before transitioning out */
+  closeOnExit?: boolean
 }
 
 // #region tear
@@ -81,14 +83,38 @@ export function scrollProgress(top: number, height: number, viewport: number) {
   return clamp01(-top / range)
 }
 
-/** One scroll value drives five beats. */
-export function stages(p: number) {
+/** One scroll value drives five beats (or bidirectional tear-open -> hold -> close). */
+export function stages(p: number, closeOnExit = false) {
+  if (!closeOnExit) {
+    return {
+      crack: smooth(0.03, 0.2, p),
+      open: smooth(0.18, 0.62, p),
+      rise: smooth(0.26, 0.74, p),
+      pop: smooth(0.58, 0.88, p),
+      shake: smooth(0.16, 0.22, p) * (1 - smooth(0.26, 0.36, p)),
+    }
+  }
+
+  // Phase 1: Rapid, crisp tear open (p: 0.04 -> 0.18)
+  const openIn = smooth(0.04, 0.18, p)
+  // Phase 3: Smooth close transition at the end (p: 0.82 -> 0.96)
+  const closeOut = smooth(0.82, 0.96, p)
+  // Effective open distance: 0 at start, 1.0 throughout the extensive 64% hold (0.18 -> 0.82), 0 at end
+  const openVal = Math.max(0, openIn - closeOut)
+
+  const crackIn = smooth(0.01, 0.08, p)
+  const crackOut = 1 - smooth(0.96, 0.99, p)
+  const crackVal = p > 0.5 ? crackOut : crackIn
+
+  const shakeIn = smooth(0.04, 0.10, p) * (1 - smooth(0.12, 0.18, p))
+  const shakeOut = smooth(0.84, 0.90, p) * (1 - smooth(0.94, 0.98, p))
+
   return {
-    crack: smooth(0.03, 0.2, p), // a crack runs out from the middle of the word
-    open: smooth(0.18, 0.62, p), // the sheet tears and the halves pull apart
-    rise: smooth(0.26, 0.74, p), // the tiger comes up from behind
-    pop: smooth(0.58, 0.88, p), // and opens its eyes
-    shake: smooth(0.16, 0.22, p) * (1 - smooth(0.26, 0.36, p)), // the jolt of the rip
+    crack: crackVal,
+    open: openVal,
+    rise: openVal,
+    pop: openVal,
+    shake: shakeIn + shakeOut,
   }
 }
 
@@ -111,10 +137,10 @@ export function tearLine(seed = 11, from = -800, to = 1800, step = 9, cx = 500, 
 
 /** Where each half goes as the tear opens. Both are still at open = 0. */
 export function pieceMotion(open: number, wideOpen = false) {
-  const mult = wideOpen ? 7.5 : 1
+  const mult = wideOpen ? 8.5 : 1
   return {
-    top: { dx: -10 * open, dy: -82 * open * mult, rot: -2.6 * open },
-    bottom: { dx: 12 * open, dy: 78 * open * mult, rot: 2.1 * open },
+    top: { dx: -10 * open, dy: -85 * open * mult, rot: -2.6 * open },
+    bottom: { dx: 12 * open, dy: 80 * open * mult, rot: 2.1 * open },
   }
 }
 
@@ -338,7 +364,7 @@ function Half({
 }) {
   const up = side === "top"
   const m = pieceMotion(open, wideOpen)[side]
-  const opacity = wideOpen ? Math.max(0, 1 - smooth(0.32, 0.72, open)) : 1
+  const opacity = wideOpen ? Math.max(0, 1 - smooth(0.08, 0.40, open)) : 1
   const shape = up
     ? [[line[0][0], -FAR] as Pt, [line[line.length - 1][0], -FAR] as Pt, ...[...line].reverse()]
     : [...line, [line[line.length - 1][0], FAR] as Pt, [line[0][0], FAR] as Pt]
@@ -412,13 +438,13 @@ export function TigerTearReveal({
   furColor = "#d97706",
   fontFamily = '"Anton", Impact, "Bebas Neue", "Oswald", "Arial Black", sans-serif',
   height = "100svh",
-  scrollDistance = "140svh",
+  scrollDistance = "320svh",
   progress,
   hint = true,
   className = "",
   children,
-  stayOpen = Boolean(children),
-}: TigerTearRevealProps & { stayOpen?: boolean }) {
+  closeOnExit = Boolean(children),
+}: TigerTearRevealProps) {
   const rootRef = React.useRef<HTMLElement | null>(null)
   const stageRef = React.useRef<HTMLDivElement | null>(null)
   const reduced = usePrefersReducedMotion()
@@ -426,19 +452,12 @@ export function TigerTearReveal({
   const fibres = React.useMemo(buildFibres, [])
   const line = React.useMemo(() => tearLine(), [])
   const [f, setF] = React.useState<Frame>({ p: progress ?? 0, look: [0, 0], blink: 0, squint: 0 })
-  const hasTorn = React.useRef(false)
 
   const controlled = progress !== undefined
-  const cfg = React.useRef({ progress, controlled, reduced, stayOpen })
-  cfg.current = { progress, controlled, reduced, stayOpen }
+  const cfg = React.useRef({ progress, controlled, reduced, closeOnExit })
+  cfg.current = { progress, controlled, reduced, closeOnExit }
   const pointer = React.useRef<{ x: number; y: number } | null>(null)
   const squintAt = React.useRef(-1e9)
-
-  const handleManualTear = React.useCallback(() => {
-    if (cfg.current.stayOpen && !hasTorn.current) {
-      hasTorn.current = true
-    }
-  }, [])
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -456,35 +475,17 @@ export function TigerTearReveal({
     const io = new IntersectionObserver(([e]) => {
       visible = e.isIntersecting
       if (visible && !raf) raf = requestAnimationFrame(tick)
-    }, { threshold: [0, 0.15, 0.5, 0.9] })
+    }, { threshold: [0, 0.1, 0.5, 0.9] })
     io.observe(root)
 
     function tick(now: number) {
       raf = 0
       if (!visible) return
       const c = cfg.current
-      
-      let target = 0
-      if (c.controlled) {
-        target = clamp01(c.progress ?? 0)
-      } else if (c.stayOpen) {
-        const rect = root!.getBoundingClientRect()
-        const vh = window.innerHeight || 800
-        // Tear open smoothly as the section scrolls into view
-        const enterProgress = clamp01((vh * 0.78 - rect.top) / (vh * 0.55))
-        if (hasTorn.current) {
-          target = 1
-        } else if (enterProgress >= 0.92) {
-          hasTorn.current = true
-          target = 1
-        } else {
-          target = enterProgress
-        }
-      } else {
-        target = scrollProgress(root!.getBoundingClientRect().top, root!.offsetHeight, stage!.offsetHeight)
-      }
-
-      p = c.reduced ? (target > 0.25 ? 1 : 0) : p + (target - p) * 0.12
+      const target = c.controlled
+        ? clamp01(c.progress ?? 0)
+        : scrollProgress(root!.getBoundingClientRect().top, root!.offsetHeight, stage!.offsetHeight)
+      p = c.reduced ? (target > 0.3 ? 1 : 0) : p + (target - p) * 0.18
       if (Math.abs(target - p) < 0.0005) p = target
 
       // where the eyes look: the pointer if there is one, else a wandering gaze
@@ -535,7 +536,7 @@ export function TigerTearReveal({
     }
   }, [])
 
-  const s = stages(f.p)
+  const s = stages(f.p, closeOnExit)
   const pop = reduced ? s.pop : easeOutBack(s.pop)
   const eyeScale = 0.9 + 0.1 * pop
   const pupil = 1.3 - 0.5 * s.pop + 0.35 * f.squint
@@ -579,7 +580,7 @@ export function TigerTearReveal({
   const svgTearOverlay = (
     <svg
       viewBox={FRAME}
-      preserveAspectRatio={stayOpen ? "xMidYMid slice" : children ? "xMidYMid slice" : "xMidYMid meet"}
+      preserveAspectRatio="xMidYMid slice"
       role="img"
       aria-label={
         children
@@ -679,94 +680,74 @@ export function TigerTearReveal({
     </svg>
   )
 
-  // In-place stayOpen mode (when children is provided)
-  if (stayOpen && children) {
-    return (
-      <section
-        ref={rootRef}
-        className={"relative w-full overflow-hidden select-none " + className}
-        style={{ background: paper }}
-      >
-        {/* 1. Permanent Section Content (Stays in place forever) */}
-        <div 
-          className="relative z-10 w-full transition-all duration-700 ease-out py-16 sm:py-24"
-          style={{
-            opacity: smooth(0.08, 0.45, f.p),
-            transform: `scale(${0.96 + 0.04 * smooth(0.12, 0.65, f.p)})`,
-          }}
-        >
-          {children}
-        </div>
-
-        {/* 2. Paper Tear Overlay (Dissolves completely once torn) */}
-        <div
-          ref={stageRef}
-          onClick={handleManualTear}
-          className="absolute inset-0 z-20 overflow-hidden flex items-center justify-center cursor-pointer"
-          style={{
-            pointerEvents: f.p >= 0.85 ? "none" : "auto",
-            opacity: f.p >= 0.98 ? 0 : 1,
-            transition: f.p >= 0.98 ? "opacity 0.4s ease-out" : undefined,
-          }}
-        >
-          {svgTearOverlay}
-
-          {hint && f.p < 0.15 ? (
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.35em]"
-              style={{ color: taglineColor, opacity: Math.max(0, 0.7 - s.crack * 3) }}
-            >
-              scroll or click to tear
-              <span className="block h-6 w-px animate-pulse motion-reduce:animate-none" style={{ background: taglineColor }} />
-            </div>
-          ) : null}
-        </div>
-      </section>
-    )
-  }
-
-  // Classic scroll-pinned sticky mode (for tiger demo)
+  // Pinned full-screen stage with slow tear -> full-screen hold -> slow close transition
   return (
     <section
       ref={rootRef}
       className={"relative w-full " + className}
-      style={{ height: controlled ? height : "calc(" + height + " + " + scrollDistance + ")", background: paper, overflow: "clip" }}
+      style={{
+        height: controlled ? height : "calc(" + height + " + " + scrollDistance + ")",
+        background: paper,
+      }}
     >
       <div
         ref={stageRef}
         className="sticky top-0 w-full overflow-hidden flex items-center justify-center"
-        style={{ height, background: paper, cursor: !children && s.pop > 0.9 ? "crosshair" : undefined }}
+        style={{
+          height,
+          background: paper,
+          cursor: !children && s.pop > 0.9 ? "crosshair" : undefined,
+        }}
         onPointerMove={(e) => (pointer.current = { x: e.clientX, y: e.clientY })}
         onPointerLeave={() => (pointer.current = null)}
         onPointerDown={() => !children && s.pop > 0.5 && (squintAt.current = performance.now())}
       >
-        {/* Revealed Content Layer (behind the paper SVG) */}
+        {/* Revealed Content Layer (behind the paper SVG) covering full screen */}
         {children ? (
           <div
-            className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8 pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center z-10 w-full h-full p-4 sm:p-6 lg:p-10 pointer-events-none"
             style={{
-              opacity: smooth(0.08, 0.45, f.p),
-              transform: `scale(${0.92 + 0.08 * smooth(0.15, 0.7, f.p)})`,
-              pointerEvents: f.p > 0.6 ? "auto" : "none",
+              opacity: closeOnExit
+                ? smooth(0.03, 0.16, f.p) * (1 - smooth(0.82, 0.95, f.p))
+                : smooth(0.08, 0.45, f.p),
+              transform: closeOnExit
+                ? `scale(${0.94 + 0.06 * smooth(0.04, 0.18, f.p) * (1 - smooth(0.80, 0.96, f.p))})`
+                : `scale(${0.92 + 0.08 * smooth(0.15, 0.7, f.p)})`,
+              pointerEvents: closeOnExit
+                ? (f.p >= 0.18 && f.p <= 0.82 ? "auto" : "none")
+                : (f.p > 0.6 ? "auto" : "none"),
             }}
           >
-            <div className="w-full max-h-[94svh] overflow-y-auto lg:overflow-visible">
+            <div className="w-full h-full max-h-[96svh] flex flex-col justify-center my-auto">
               {children}
             </div>
           </div>
         ) : null}
 
+        {/* Paper Tear SVG Layer */}
         {svgTearOverlay}
 
-        {hint && !controlled ? (
+        {/* Initial Scroll Hint */}
+        {hint && !controlled && f.p < 0.12 ? (
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.35em]"
             style={{ color: taglineColor, opacity: Math.max(0, 0.7 - s.crack * 3) }}
           >
-            scroll
+            scroll slowly to tear &amp; reveal
             <span className="block h-6 w-px animate-pulse motion-reduce:animate-none" style={{ background: taglineColor }} />
+          </div>
+        ) : null}
+
+        {/* Mid-stage Scroll Hint during hold */}
+        {closeOnExit && !controlled && f.p >= 0.45 && f.p <= 0.75 ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-4 flex flex-col items-center gap-1 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-400 z-30"
+            style={{ opacity: smooth(0.48, 0.55, f.p) * (1 - smooth(0.70, 0.76, f.p)) }}
+          >
+            <span>scroll to continue</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           </div>
         ) : null}
       </div>
