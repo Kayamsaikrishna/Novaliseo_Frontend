@@ -32,6 +32,7 @@ import {
 
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
 import CareerApplicationModal from "../components/CareerApplicationModal";
+import TiltedGridHero, { TiltedGridImage } from "../components/ui/TiltedGridHero";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -45,6 +46,21 @@ import careersCardTelemetry from "../assets/careers_card_telemetry.jpg";
 import collabLabsReal from "../assets/collab_labs_real.jpg";
 import realSovereignDatacenter from "../assets/real_specs/real_sovereign_datacenter.jpg";
 import researchIntakeFacilityBg from "../assets/research_intake_facility_bg.jpg";
+
+// Brand-New Photorealistic Autonomous Physical Systems Visuals for Tilted Grid Hero
+import tiltedFlightHangar from "../assets/tilted/tilted_flight_hangar.jpg";
+import tiltedRoverLab from "../assets/tilted/tilted_rover_lab.jpg";
+import tiltedEdgeBench from "../assets/tilted/tilted_edge_bench.jpg";
+import tiltedCompositeCnc from "../assets/tilted/tilted_composite_cnc.jpg";
+import tiltedSwarmArena from "../assets/tilted/tilted_swarm_arena.jpg";
+
+const bespokeTiltedImages: TiltedGridImage[] = [
+  { src: tiltedFlightHangar, alt: "Autonomous Flight Testing Hangar" },
+  { src: tiltedRoverLab, alt: "Mechatronics Rover Dynamics Lab" },
+  { src: tiltedEdgeBench, alt: "Edge Neural Compute Workbench" },
+  { src: tiltedCompositeCnc, alt: "Aerospace Precision CFRP Layup" },
+  { src: tiltedSwarmArena, alt: "Multi-Agent Swarm Arena" },
+];
 
 interface JobRole {
   id: string;
@@ -503,29 +519,45 @@ export default function CareersPage() {
         />
       </section>
 
-      {/* Bespoke / General Intake Section directly following the 3D Stage */}
-      <div className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
-        <div className="rounded-[2.2rem] bg-white border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-left">
-          <div className="max-w-2xl">
-            <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-wider">
-              Bespoke Applications
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mt-1">
-              Don't see your exact role listed on the wheel?
-            </h3>
-            <p className="mt-2 text-slate-600 text-xs sm:text-sm leading-relaxed">
-              We frequently open bespoke positions for exceptional contributors across autonomous systems, aerodynamic design, and embedded hardware security. If you have built something notable in physical reality, we want to see it.
-            </p>
-          </div>
+      {/* Bespoke / General Intake Section with 3D Cylindrical Curved TiltedGridHero */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full">
+        <TiltedGridHero
+          images={bespokeTiltedImages}
+          speed={4.5}
+          tileHeight={32}
+          aspectRatio={16 / 9}
+          curve={75}
+          fade={14}
+          axis={52}
+          gap={8}
+          className="rounded-[2.5rem] border border-slate-200/90 shadow-[0_20px_50px_rgba(15,23,42,0.06)] bg-gradient-to-b from-slate-50/90 via-white to-slate-50/90 h-[520px] sm:h-[560px] md:h-[600px] flex items-center justify-center p-6 sm:p-10"
+        >
+          <div className="relative z-10 max-w-3xl w-full p-8 sm:p-10 md:p-12 rounded-[2.2rem] bg-white/92 backdrop-blur-md border border-white/80 shadow-[0_20px_60px_rgba(15,23,42,0.12)] text-left flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
+            <div className="max-w-xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                <span className="text-[11px] font-mono font-bold text-amber-700 uppercase tracking-wider">
+                  Bespoke Applications
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight">
+                Don't see your exact role listed on the wheel?
+              </h3>
+              <p className="mt-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed">
+                We frequently open bespoke positions for exceptional contributors across autonomous systems, aerodynamic design, and embedded hardware security. If you have built something notable in physical reality, we want to see it.
+              </p>
+            </div>
 
-          <a
-            href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
-            className="shrink-0 px-6 py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 shadow-sm"
-          >
-            Submit General Portfolio
-          </a>
-        </div>
-      </div>
+            <a
+              href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
+              className="shrink-0 inline-flex items-center gap-2 px-7 py-4 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 shadow-md group"
+            >
+              <span>Submit General Portfolio</span>
+              <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+        </TiltedGridHero>
+      </section>
 
       {/* ========================================================================= */}
       {/* 3. HOW WE HIRE (TRANSPARENT 4-STAGE PIPELINE)                             */}
