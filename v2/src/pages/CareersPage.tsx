@@ -541,15 +541,15 @@ export default function CareersPage() {
           <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[950px] h-[400px] bg-white/75 blur-3xl rounded-full pointer-events-none" />
         </div>
 
-        {/* 3D Cylindrical Curved TiltedGridHero (Full-Width Continuous Stream with Large Hardware Images) */}
+        {/* 3D Cylindrical Curved TiltedGridHero (Full-Width Continuous Stream with Long/Tall Hardware Images) */}
         <TiltedGridHero
           images={bespokeTiltedImages}
           speed={4}
-          tileHeight={40}
-          aspectRatio={16 / 9}
-          curve={45}
+          tileHeight={50}
+          aspectRatio={16 / 10}
+          curve={42}
           fade={8}
-          axis={74}
+          axis={72}
           gap={3}
           className="relative z-10 w-full h-full min-h-screen lg:h-screen flex flex-col justify-between py-10 sm:py-14"
         >
