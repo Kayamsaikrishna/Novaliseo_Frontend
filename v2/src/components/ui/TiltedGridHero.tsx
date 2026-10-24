@@ -69,13 +69,14 @@ function measure(
   );
   const radius = width * arc(bend);
   if (!(h > 0) || !(radius > 0))
-    return { columns: 2, sweep: 0, unit: 0, limit: 0, h: 200, radius: 1000 };
+    return { columns: 8, sweep: 0, unit: 0, limit: 0, h: 200, radius: 1000 };
   const deg = (rad: number) => (rad * 180) / Math.PI;
   const unit = deg(h / radius);
   const pitch = (aspect + gap / 100) * unit;
-  const limit = deg(bend) + (aspect * unit) / 2;
-  // Capped so a hero squeezed to a sliver can't mount thousands of tiles.
-  const columns = Math.min(60, Math.max(2, Math.ceil((2 * limit) / pitch)));
+  const limit = deg(bend) + aspect * unit * 0.85;
+  // Ensure enough columns for an unbroken, continuous panoramic flow with no gaps
+  const needed = Math.ceil((2 * limit) / pitch);
+  const columns = Math.min(60, Math.max(8, needed + 2));
   const round = (n: number) => +n.toFixed(4);
   const sweep = round((columns * pitch) / 2);
   return {
@@ -197,10 +198,8 @@ export function TiltedGridHero({
   const turn = (deg: number) =>
     `translateZ(${radius}) rotateY(${+deg.toFixed(4)}deg) translateZ(-${radius})`;
 
-  // Beyond `limit` a tile is wholly off-screen, so it is hidden there. The
-  // loop's ends, where it wraps, fall inside that stretch, and so do tiles
-  // swinging round behind the camera.
-  const hide = +(((sweep - limit) / (2 * sweep || 1)) * 100).toFixed(4);
+  // Only hide tiles at the very edge wrap boundary so they never pop out while visible on screen
+  const hide = Math.max(0.1, Math.min(2.5, +(((sweep - limit) / (2 * sweep || 1)) * 100)));
   const css =
     `@keyframes ${orbit}{` +
     `from{transform:${turn(-sweep)}}to{transform:${turn(sweep)}}` +
