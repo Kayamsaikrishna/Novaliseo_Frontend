@@ -47,6 +47,7 @@ import careersCardTelemetry from "../assets/careers_card_telemetry.jpg";
 import collabLabsReal from "../assets/collab_labs_real.jpg";
 import realSovereignDatacenter from "../assets/real_specs/real_sovereign_datacenter.jpg";
 import researchIntakeFacilityBg from "../assets/research_intake_facility_bg.jpg";
+import careersEvaluatePosterBg from "../assets/careers_evaluate_poster_bg.jpg";
 
 // Brand-New Photorealistic Autonomous Physical Systems Visuals (100% Pure Hardware, Zero People, Zero Third-Party Brands)
 import tiltedVtolHardware from "../assets/tilted/tilted_vtol_hardware.jpg";
@@ -597,9 +598,12 @@ export default function CareersPage() {
         <TigerTearReveal
           tagline="HIRING PHILOSOPHY // 4-STAGE PIPELINE"
           word="EVALUATE"
-          ink="#0f172a"
-          paper="#f8fafc"
-          taglineColor="#2563eb"
+          bgImage={careersEvaluatePosterBg}
+          bgOpacity={0.9}
+          wordGradient={true}
+          taglineColor="#cbd5e1"
+          ink="#ffffff"
+          paper="#090e1a"
           height="100svh"
           scrollDistance="320svh"
           closeOnExit={true}

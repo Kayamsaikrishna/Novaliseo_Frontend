@@ -45,6 +45,12 @@ export interface TigerTearRevealProps {
   children?: React.ReactNode
   /** When true, paper closes back up when scrolling past middle before transitioning out */
   closeOnExit?: boolean
+  /** Realistic background visual image on the poster sheet */
+  bgImage?: string
+  /** Background visual image opacity */
+  bgOpacity?: number
+  /** Word gradient enable or custom stop array */
+  wordGradient?: boolean | string[]
 }
 
 // #region tear
@@ -431,9 +437,9 @@ type Frame = { p: number; look: Pt; blink: number; squint: number }
 export function TigerTearReveal({
   word = "EVALUATE",
   tagline = "HIRING PHILOSOPHY",
-  ink = "#0f172a",
-  paper = "#f8fafc",
-  taglineColor = "#2563eb",
+  ink = "#ffffff",
+  paper = "#090e1a",
+  taglineColor = "#cbd5e1",
   eyeColor = "#f59e0b",
   furColor = "#d97706",
   fontFamily = '"Anton", Impact, "Bebas Neue", "Oswald", "Arial Black", sans-serif',
@@ -444,6 +450,9 @@ export function TigerTearReveal({
   className = "",
   children,
   closeOnExit = Boolean(children),
+  bgImage,
+  bgOpacity = 0.88,
+  wordGradient = true,
 }: TigerTearRevealProps) {
   const rootRef = React.useRef<HTMLElement | null>(null)
   const stageRef = React.useRef<HTMLDivElement | null>(null)
@@ -551,25 +560,46 @@ export function TigerTearReveal({
   const sheet = (
     <>
       <rect x={-FAR} y={-FAR} width={FAR * 2 + VIEW_W} height={FAR * 2} fill={paper} />
+      {bgImage ? (
+        <>
+          <image
+            href={bgImage}
+            x={-120}
+            y={-30}
+            width={1240}
+            height={580}
+            preserveAspectRatio="xMidYMid slice"
+            opacity={bgOpacity}
+          />
+          {/* Cinematic lighting gradient overlay to maximize text legibility */}
+          <rect
+            x={-FAR}
+            y={-FAR}
+            width={FAR * 2 + VIEW_W}
+            height={FAR * 2}
+            fill={"url(#" + id + "-bg-dim)"}
+          />
+        </>
+      ) : null}
       {tagline ? (
         <text
           x={CX}
-          y={150}
+          y={190}
           textAnchor="middle"
           fill={taglineColor}
-          style={{ font: '700 28px "Space Mono", monospace, sans-serif', letterSpacing: "0.32em" }}
+          style={{ font: '600 15px "Space Mono", monospace, sans-serif', letterSpacing: "0.45em" }}
         >
           {tagline}
         </text>
       ) : null}
       <text
         x={CX}
-        y={404}
+        y={352}
         textAnchor="middle"
-        textLength={880}
+        textLength={700}
         lengthAdjust="spacingAndGlyphs"
-        fill={ink}
-        style={{ fontFamily, fontSize: 250, fontWeight: 900, letterSpacing: 0 }}
+        fill={wordGradient ? "url(#" + id + "-word-grad)" : ink}
+        style={{ fontFamily, fontSize: 170, fontWeight: 900, letterSpacing: "-0.01em" }}
       >
         {word}
       </text>
@@ -591,6 +621,29 @@ export function TigerTearReveal({
       style={{ maxWidth: "none", display: "block" }}
     >
       <defs>
+        {Array.isArray(wordGradient) ? (
+          <linearGradient id={id + "-word-grad"} x1="0" y1="0" x2="0" y2="1">
+            {wordGradient.map((col, idx) => (
+              <stop
+                key={idx}
+                offset={`${(idx / (wordGradient.length - 1)) * 100}%`}
+                stopColor={col}
+              />
+            ))}
+          </linearGradient>
+        ) : (
+          <linearGradient id={id + "-word-grad"} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="32%" stopColor="#f8fafc" />
+            <stop offset="68%" stopColor="#cbd5e1" />
+            <stop offset="100%" stopColor="#94a3b8" />
+          </linearGradient>
+        )}
+        <linearGradient id={id + "-bg-dim"} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#090e1a" stopOpacity="0.88" />
+          <stop offset="46%" stopColor="#090e1a" stopOpacity="0.52" />
+          <stop offset="100%" stopColor="#090e1a" stopOpacity="0.88" />
+        </linearGradient>
         <linearGradient id={id + "-shade"} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#2a1203" stopOpacity={0.45} />
           <stop offset="0.45" stopColor="#ffd08a" stopOpacity={0.12} />
@@ -674,7 +727,14 @@ export function TigerTearReveal({
 
         {/* the crack, running out from the middle before it gives way */}
         {s.crack > 0 && s.open < 0.15 && crack.length > 1 ? (
-          <path d={d(crack, false)} fill="none" stroke="#1d0f07" strokeWidth={2.4} strokeLinejoin="bevel" opacity={1 - s.open / 0.15} />
+          <path
+            d={d(crack, false)}
+            fill="none"
+            stroke={bgImage ? "#f8fafc" : "#1d0f07"}
+            strokeWidth={2.4}
+            strokeLinejoin="bevel"
+            opacity={1 - s.open / 0.15}
+          />
         ) : null}
       </g>
     </svg>
