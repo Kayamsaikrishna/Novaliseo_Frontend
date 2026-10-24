@@ -47,19 +47,23 @@ import collabLabsReal from "../assets/collab_labs_real.jpg";
 import realSovereignDatacenter from "../assets/real_specs/real_sovereign_datacenter.jpg";
 import researchIntakeFacilityBg from "../assets/research_intake_facility_bg.jpg";
 
-// Brand-New Photorealistic Autonomous Physical Systems Visuals for Tilted Grid Hero
-import tiltedFlightHangar from "../assets/tilted/tilted_flight_hangar.jpg";
-import tiltedRoverLab from "../assets/tilted/tilted_rover_lab.jpg";
-import tiltedEdgeBench from "../assets/tilted/tilted_edge_bench.jpg";
-import tiltedCompositeCnc from "../assets/tilted/tilted_composite_cnc.jpg";
-import tiltedSwarmArena from "../assets/tilted/tilted_swarm_arena.jpg";
+// Brand-New Photorealistic Autonomous Physical Systems Visuals (100% Pure Hardware, Zero People, Zero Third-Party Brands)
+import tiltedVtolHardware from "../assets/tilted/tilted_vtol_hardware.jpg";
+import tiltedRoverHardware from "../assets/tilted/tilted_rover_hardware.jpg";
+import tiltedGimbalHardware from "../assets/tilted/tilted_gimbal_hardware.jpg";
+import tiltedPropulsionHardware from "../assets/tilted/tilted_propulsion_hardware.jpg";
+import tiltedNavalHardware from "../assets/tilted/tilted_naval_hardware.jpg";
+import loaderCarbonFrame from "../assets/loader/loader_carbon_frame.jpg";
+import loaderEdgeCompute from "../assets/loader/loader_edge_compute.jpg";
 
 const bespokeTiltedImages: TiltedGridImage[] = [
-  { src: tiltedFlightHangar, alt: "Autonomous Flight Testing Hangar" },
-  { src: tiltedRoverLab, alt: "Mechatronics Rover Dynamics Lab" },
-  { src: tiltedEdgeBench, alt: "Edge Neural Compute Workbench" },
-  { src: tiltedCompositeCnc, alt: "Aerospace Precision CFRP Layup" },
-  { src: tiltedSwarmArena, alt: "Multi-Agent Swarm Arena" },
+  { src: tiltedVtolHardware, alt: "Autonomous VTOL Aircraft System" },
+  { src: tiltedRoverHardware, alt: "Autonomous All-Terrain Rover Platform" },
+  { src: tiltedGimbalHardware, alt: "Multi-Spectral Optical Sensor Gimbal" },
+  { src: tiltedPropulsionHardware, alt: "Brushless Powertrain Dynamometer Rig" },
+  { src: tiltedNavalHardware, alt: "Autonomous Surface Naval Vessel" },
+  { src: loaderCarbonFrame, alt: "Carbon Composite Airframe CNC Machining" },
+  { src: loaderEdgeCompute, alt: "Edge Neural Compute Silicon Architecture" },
 ];
 
 interface JobRole {
