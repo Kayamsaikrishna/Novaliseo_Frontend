@@ -42,7 +42,7 @@ function arc(bend: number) {
 
 // A tile is never wider than this share of the hero, so a phone still
 // shows its neighbours instead of one tile edge to edge.
-const MAX_WIDTH = 55;
+const MAX_WIDTH = 65;
 
 /**
  * Lays the loop on the cylinder. The radius puts the frame's edge `bend`

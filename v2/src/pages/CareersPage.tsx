@@ -533,23 +533,23 @@ export default function CareersPage() {
           <img
             src={researchIntakeFacilityBg}
             alt="Novaliseo Autonomous Systems Facility"
-            className="w-full h-full object-cover object-center opacity-90 scale-100"
+            className="w-full h-full object-cover object-center opacity-85 scale-100"
           />
-          {/* Tuned Transparent Overlay: lets the facility visual show through richly while keeping typography crisp */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/35 to-white/70" />
-          {/* Subtle soft luminous highlight behind the top headline area */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[850px] h-[360px] bg-white/60 blur-3xl rounded-full pointer-events-none" />
+          {/* Reduced Transparency Overlay: softer, elegant white diffusion that keeps the lab clearly visible without competing with text */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/65 to-white/80" />
+          {/* Soft luminous highlight behind the top headline area for pristine text legibility */}
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[950px] h-[400px] bg-white/75 blur-3xl rounded-full pointer-events-none" />
         </div>
 
-        {/* 3D Cylindrical Curved TiltedGridHero (Full-Width Stream) */}
+        {/* 3D Cylindrical Curved TiltedGridHero (Full-Width Stream with Larger Image Sizing) */}
         <TiltedGridHero
           images={bespokeTiltedImages}
           speed={4.5}
-          tileHeight={32}
+          tileHeight={42}
           aspectRatio={16 / 9}
           curve={75}
           fade={10}
-          axis={72}
+          axis={74}
           gap={8}
           className="relative z-10 w-full h-full min-h-screen lg:h-screen flex flex-col justify-between py-10 sm:py-14"
         >
