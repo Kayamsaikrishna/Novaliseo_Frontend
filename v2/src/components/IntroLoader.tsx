@@ -11,20 +11,20 @@ export default function IntroLoader() {
   const [phase, setPhase] = useState<"toss" | "settle" | "open" | "done">("toss");
 
   useEffect(() => {
-    // Stage 1: Medallion 3D Toss & Cards Floating Emergence (0 -> 1800ms)
+    // Stage 1: Single Dignified 3D Coin Toss & Landing (0 -> 1500ms)
     const tSettle = setTimeout(() => {
       setPhase("settle");
-    }, 1800);
+    }, 1500);
 
-    // Stage 2: Settle & Gleam, Full Brand Presence (1800 -> 3000ms)
+    // Stage 2: Settle & Lens Gleam, Clean Brand Presence (1500 -> 2700ms)
     const tOpen = setTimeout(() => {
       setPhase("open");
-    }, 3000);
+    }, 2700);
 
-    // Stage 3: Split Curtains Glide Open & Unmount (3000 -> 3850ms)
+    // Stage 3: Split Curtains Part Open Cleanly & Unmount (2700 -> 3550ms)
     const tDone = setTimeout(() => {
       setPhase("done");
-    }, 3850);
+    }, 3550);
 
     return () => {
       clearTimeout(tSettle);
@@ -41,7 +41,7 @@ export default function IntroLoader() {
       {/* ================= LUMINOUS DAYLIGHT SPLIT CURTAINS ================= */}
       <div className="absolute inset-0 flex pointer-events-auto">
         
-        {/* ================= LEFT DOOR ================= */}
+        {/* Left Door */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: phase === "open" ? "-100%" : 0 }}
@@ -50,98 +50,15 @@ export default function IntroLoader() {
         >
           {/* Architectural Coordinate Blueprint Grid */}
           <div 
-            className="absolute inset-0 opacity-[0.24] pointer-events-none"
+            className="absolute inset-0 opacity-[0.22] pointer-events-none"
             style={{
               backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
               backgroundSize: "30px 30px"
             }}
           />
-
-          {/* Top Aerospace Telemetry Coordinate */}
-          <div className="absolute top-6 left-6 sm:top-8 sm:left-10 lg:left-14 flex items-center gap-2 pointer-events-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" />
-            <span className="text-[10px] sm:text-[11px] font-mono font-semibold tracking-[0.22em] text-slate-500 uppercase">
-              SYS // NOVALISEO GLOBAL TECH
-            </span>
-          </div>
-
-          {/* Bottom Telemetry Coordinate */}
-          <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-10 lg:left-14 hidden sm:block pointer-events-none">
-            <span className="text-[10px] font-mono font-semibold tracking-[0.24em] text-slate-400 uppercase">
-              LAT: 12.9716° N // BENGALURU AIRSPACE
-            </span>
-          </div>
-
-          {/* LEFT VISUAL CARDS: Anchored to Outer Wing (Guaranteed Zero Center Collision) */}
-          <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-6 sm:left-10 lg:left-14 xl:left-20 flex-col gap-6 lg:gap-8 pointer-events-none z-10">
-            
-            {/* Visual Card 1: Aerial Flight Autonomy */}
-            <motion.div
-              initial={{ opacity: 0, x: -40, scale: 0.94 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0, 
-                scale: 1,
-                y: [0, -6, 0]
-              }}
-              transition={{ 
-                opacity: { duration: 0.8, delay: 0.2 },
-                x: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
-                y: { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
-              }}
-              className="w-44 lg:w-56 xl:w-64 aspect-[4/3] rounded-2xl p-1 bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-[0_20px_45px_rgba(15,23,42,0.1)] transition-transform"
-            >
-              <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
-                <img
-                  src={aerialUav}
-                  alt="Autonomous Aerial Flight Systems"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3 sm:bottom-3 sm:left-3.5">
-                  <span className="text-[9px] lg:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
-                    AERIAL AUTONOMY
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Visual Card 2: Embedded Edge Silicon */}
-            <motion.div
-              initial={{ opacity: 0, x: -40, scale: 0.94 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0, 
-                scale: 1,
-                y: [0, 6, 0]
-              }}
-              transition={{ 
-                opacity: { duration: 0.8, delay: 0.35 },
-                x: { duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] },
-                y: { duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-              }}
-              className="w-44 lg:w-56 xl:w-64 aspect-[4/3] rounded-2xl p-1 bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-[0_20px_45px_rgba(15,23,42,0.1)] transition-transform"
-            >
-              <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
-                <img
-                  src={edgeCompute}
-                  alt="Edge Neural Silicon Architecture"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3 sm:bottom-3 sm:left-3.5">
-                  <span className="text-[9px] lg:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
-                    EDGE NEURAL SILICON
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-
         </motion.div>
 
-        {/* ================= RIGHT DOOR ================= */}
+        {/* Right Door */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: phase === "open" ? "100%" : 0 }}
@@ -150,45 +67,261 @@ export default function IntroLoader() {
         >
           {/* Architectural Coordinate Blueprint Grid */}
           <div 
-            className="absolute inset-0 opacity-[0.24] pointer-events-none"
+            className="absolute inset-0 opacity-[0.22] pointer-events-none"
             style={{
               backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
               backgroundSize: "30px 30px"
             }}
           />
+        </motion.div>
 
-          {/* Top Right Aerospace Status */}
-          <div className="absolute top-6 right-6 sm:top-8 sm:right-10 lg:right-14 flex items-center gap-2 pointer-events-none">
+      </div>
+
+      {/* ================= STRUCTURED RESPONSIVE STAGE (FLEX LAYOUT: ZERO TEXT BLOCKING) ================= */}
+      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col justify-between py-6 sm:py-8 lg:py-10 px-6 sm:px-10 lg:px-16 xl:px-20 max-w-[1700px] mx-auto">
+        
+        {/* --- TOP ROW: TELEMETRY STATUS (OUTER BOUNDS) --- */}
+        <div className="flex items-center justify-between w-full pointer-events-none">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" />
+            <span className="text-[10px] sm:text-[11px] font-mono font-semibold tracking-[0.22em] text-slate-500 uppercase">
+              SYS // NOVALISEO GLOBAL TECH
+            </span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-2 text-right">
             <span className="text-[10px] sm:text-[11px] font-mono font-semibold tracking-[0.22em] text-slate-500 uppercase">
               AUTONOMOUS • PERCEPTION • SILICON
             </span>
           </div>
+        </div>
 
-          {/* Bottom Right Telemetry */}
-          <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 lg:right-14 hidden sm:block pointer-events-none text-right">
-            <span className="text-[10px] font-mono font-semibold tracking-[0.24em] text-slate-400 uppercase">
-              HARDWARE-CENTRIC PHYSICAL INTELLIGENCE
-            </span>
-          </div>
-
-          {/* RIGHT VISUAL CARDS: Anchored to Outer Wing (Guaranteed Zero Center Collision) */}
-          <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-6 sm:right-10 lg:right-14 xl:right-20 flex-col gap-6 lg:gap-8 pointer-events-none z-10">
-            
-            {/* Visual Card 3: 3D Spatial LiDAR Perception */}
+        {/* --- MAIN CENTER ROW: 3-COLUMN STUDIO LAYOUT --- */}
+        <div className="flex-1 flex items-center justify-between gap-6 lg:gap-10 xl:gap-16 relative w-full my-auto">
+          
+          {/* === LEFT COLUMN: 2 VISUAL HARDWARE CARDS (SECURE LEFT WING) === */}
+          <motion.div 
+            animate={{ 
+              x: phase === "open" ? -140 : 0, 
+              opacity: phase === "open" ? 0 : 1 
+            }}
+            transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1] }}
+            className="hidden lg:flex flex-col gap-5 xl:gap-6 w-48 xl:w-56 shrink-0 pointer-events-none"
+          >
+            {/* Card 1: Aerial Flight Autonomy */}
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.94 }}
+              initial={{ opacity: 0, x: -30, scale: 0.95 }}
               animate={{ 
                 opacity: 1, 
                 x: 0, 
                 scale: 1,
-                y: [0, -6, 0]
+                y: [0, -5, 0]
               }}
               transition={{ 
-                opacity: { duration: 0.8, delay: 0.25 },
-                x: { duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.7, delay: 0.15 },
+                x: { duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] },
+                y: { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="aspect-[4/3] rounded-2xl p-1 bg-white/85 backdrop-blur-md border border-slate-200/90 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
+            >
+              <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
+                <img
+                  src={aerialUav}
+                  alt="Autonomous Aerial Flight Systems"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-2.5 left-3">
+                  <span className="text-[9px] xl:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
+                    AERIAL AUTONOMY
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Embedded Edge Silicon */}
+            <motion.div
+              initial={{ opacity: 0, x: -30, scale: 0.95 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0, 
+                scale: 1,
+                y: [0, 5, 0]
+              }}
+              transition={{ 
+                opacity: { duration: 0.7, delay: 0.3 },
+                x: { duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] },
+                y: { duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+              }}
+              className="aspect-[4/3] rounded-2xl p-1 bg-white/85 backdrop-blur-md border border-slate-200/90 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
+            >
+              <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
+                <img
+                  src={edgeCompute}
+                  alt="Edge Neural Silicon Architecture"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-2.5 left-3">
+                  <span className="text-[9px] xl:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
+                    EDGE NEURAL SILICON
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* === CENTER COLUMN: DEDICATED ARENA (COIN TOSS + BRAND TITLE) === */}
+          <div 
+            className="flex-1 flex flex-col items-center justify-center text-center max-w-lg mx-auto pointer-events-none z-20"
+            style={{ perspective: 1400 }}
+          >
+            {/* Luminous Daylight Cyan Glow Aura Behind Medallion */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ 
+                opacity: phase === "open" ? 0 : [0.35, 0.65, 0.5],
+                scale: phase === "open" ? 1.5 : 1
+              }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute w-72 sm:w-80 md:w-96 aspect-square rounded-full bg-gradient-to-tr from-cyan-400/25 via-sky-300/20 to-indigo-400/15 blur-3xl pointer-events-none"
+            />
+
+            {/* 3D Coin Toss: SINGLE MAJESTIC FLIP (0 -> 360 deg) */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 60,
+                scale: 0.75,
+                rotateY: 0,
+                rotateX: 16,
+              }}
+              animate={
+                phase === "open"
+                  ? {
+                      opacity: 0,
+                      scale: 1.3,
+                      filter: "brightness(1.15) blur(5px)",
+                      transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] }
+                    }
+                  : {
+                      opacity: [0, 1, 1],
+                      y: [60, -32, 0],
+                      scale: [0.75, 1.08, 1.0],
+                      rotateY: [0, 180, 360], // Exactly ONE single 360 flip!
+                      rotateX: [16, -10, 0],
+                    }
+              }
+              transition={{
+                duration: 1.5,
+                times: [0, 0.5, 1],
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative flex flex-col items-center justify-center"
+            >
+              
+              {/* Circular Novaliseo Ecosystem Medallion (from About Page) */}
+              <div className="relative group w-40 sm:w-52 md:w-60 lg:w-68 aspect-square rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-slate-200 to-blue-500 shadow-[0_15px_45px_rgba(6,182,212,0.32),0_20px_50px_rgba(15,23,42,0.12)] flex items-center justify-center">
+                
+                {/* Metallic Bezel Rim */}
+                <div className="w-full h-full rounded-full overflow-hidden border border-white/90 bg-slate-950 relative flex items-center justify-center">
+                  <img
+                    src="/images/about_hero.jpeg"
+                    alt="Novaliseo Ecosystem Medallion"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+
+                  {/* Lens Sheen Sweep upon Landing */}
+                  <motion.div
+                    initial={{ x: "-160%", opacity: 0 }}
+                    animate={{
+                      x: phase === "settle" || phase === "open" ? "180%" : "-160%",
+                      opacity: phase === "settle" || phase === "open" ? [0, 0.85, 0] : 0,
+                    }}
+                    transition={{ duration: 0.85, ease: "easeInOut" }}
+                    className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[-25deg] pointer-events-none"
+                  />
+                </div>
+
+                {/* Glowing Ring Halo */}
+                <div className="absolute -inset-1.5 rounded-full border border-cyan-400/35 animate-pulse pointer-events-none" />
+              </div>
+
+              {/* Dynamic Contact Floor Shadow */}
+              <motion.div
+                initial={{ scale: 0.45, opacity: 0.2 }}
+                animate={
+                  phase === "open"
+                    ? { scale: 1.3, opacity: 0, transition: { duration: 0.6 } }
+                    : {
+                        scale: [0.45, 0.7, 1.0],
+                        opacity: [0.2, 0.35, 0.6],
+                      }
+                }
+                transition={{
+                  duration: 1.5,
+                  times: [0, 0.5, 1],
+                  ease: "easeInOut",
+                }}
+                className="w-32 sm:w-44 md:w-52 h-4 rounded-[100%] bg-slate-900/20 blur-lg mt-5 pointer-events-none"
+              />
+
+            </motion.div>
+
+            {/* --- CLEAN BRAND TYPOGRAPHY (GENEROUS SPACING, ZERO BLOCKING) --- */}
+            <AnimatePresence>
+              {(phase === "settle" || phase === "open") && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={
+                    phase === "open"
+                      ? { opacity: 0, y: -8, transition: { duration: 0.4 } }
+                      : { opacity: 1, y: 0 }
+                  }
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="mt-6 flex flex-col items-center text-center pointer-events-none z-30 px-2"
+                >
+                  {/* Full Official Company Name */}
+                  <h2 className="text-sm sm:text-base md:text-lg font-bold tracking-[0.22em] text-slate-900 uppercase drop-shadow-xs whitespace-nowrap">
+                    Novaliseo Global Tech Pvt Ltd
+                  </h2>
+
+                  {/* Brand Tagline */}
+                  <p className="mt-1 text-[9px] sm:text-[10px] md:text-[11px] font-mono font-semibold tracking-[0.24em] text-cyan-600 uppercase">
+                    Brain Behind Intelligent Operations
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+          </div>
+
+          {/* === RIGHT COLUMN: 2 VISUAL HARDWARE CARDS (SECURE RIGHT WING) === */}
+          <motion.div 
+            animate={{ 
+              x: phase === "open" ? 140 : 0, 
+              opacity: phase === "open" ? 0 : 1 
+            }}
+            transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1] }}
+            className="hidden lg:flex flex-col gap-5 xl:gap-6 w-48 xl:w-56 shrink-0 pointer-events-none"
+          >
+            {/* Card 3: 3D Spatial LiDAR Perception */}
+            <motion.div
+              initial={{ opacity: 0, x: 30, scale: 0.95 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0, 
+                scale: 1,
+                y: [0, -5, 0]
+              }}
+              transition={{ 
+                opacity: { duration: 0.7, delay: 0.2 },
+                x: { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
                 y: { duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }
               }}
-              className="w-44 lg:w-56 xl:w-64 aspect-[4/3] rounded-2xl p-1 bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-[0_20px_45px_rgba(15,23,42,0.1)] transition-transform"
+              className="aspect-[4/3] rounded-2xl p-1 bg-white/85 backdrop-blur-md border border-slate-200/90 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
             >
               <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
                 <img
@@ -197,29 +330,29 @@ export default function IntroLoader() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 right-3 sm:bottom-3 sm:right-3.5 text-right">
-                  <span className="text-[9px] lg:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
+                <div className="absolute bottom-2.5 right-3 text-right">
+                  <span className="text-[9px] xl:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
                     3D LIDAR PERCEPTION
                   </span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Visual Card 4: Carbon Composite CNC Machining */}
+            {/* Card 4: Carbon Composite CNC Machining */}
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.94 }}
+              initial={{ opacity: 0, x: 30, scale: 0.95 }}
               animate={{ 
                 opacity: 1, 
                 x: 0, 
                 scale: 1,
-                y: [0, 6, 0]
+                y: [0, 5, 0]
               }}
               transition={{ 
-                opacity: { duration: 0.8, delay: 0.4 },
-                x: { duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.7, delay: 0.35 },
+                x: { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] },
                 y: { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }
               }}
-              className="w-44 lg:w-56 xl:w-64 aspect-[4/3] rounded-2xl p-1 bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-[0_20px_45px_rgba(15,23,42,0.1)] transition-transform"
+              className="aspect-[4/3] rounded-2xl p-1 bg-white/85 backdrop-blur-md border border-slate-200/90 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
             >
               <div className="w-full h-full rounded-xl overflow-hidden relative bg-slate-900">
                 <img
@@ -228,144 +361,31 @@ export default function IntroLoader() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 right-3 sm:bottom-3 sm:right-3.5 text-right">
-                  <span className="text-[9px] lg:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
+                <div className="absolute bottom-2.5 right-3 text-right">
+                  <span className="text-[9px] xl:text-[10px] font-mono font-bold tracking-widest text-white uppercase drop-shadow-md">
                     COMPOSITE HARDWARE
                   </span>
                 </div>
               </div>
             </motion.div>
+          </motion.div>
 
+        </div>
+
+        {/* --- BOTTOM ROW: TELEMETRY & AIRSPACE (OUTER BOUNDS) --- */}
+        <div className="flex items-center justify-between w-full pointer-events-none">
+          <div className="hidden sm:block">
+            <span className="text-[10px] font-mono font-semibold tracking-[0.24em] text-slate-400 uppercase">
+              LAT: 12.9716° N // BENGALURU AIRSPACE
+            </span>
           </div>
 
-        </motion.div>
-
-      </div>
-
-      {/* ================= CENTER STAGE: 3D MEDALLION FLIP & TOSS ARENA ================= */}
-      <div 
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-30 px-6"
-        style={{ perspective: 1400 }}
-      >
-        {/* Luminous Daylight Cyan/Sky Center Glow Aura */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ 
-            opacity: phase === "open" ? 0 : [0.35, 0.7, 0.5],
-            scale: phase === "open" ? 1.6 : 1
-          }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="absolute w-80 sm:w-96 md:w-[460px] aspect-square rounded-full bg-gradient-to-tr from-cyan-400/25 via-sky-300/20 to-indigo-400/15 blur-3xl pointer-events-none"
-        />
-
-        {/* 3D Coin Toss & Flip Motion Container */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 95,
-            scale: 0.52,
-            rotateY: 0,
-            rotateX: 24,
-          }}
-          animate={
-            phase === "open"
-              ? {
-                  opacity: 0,
-                  scale: 1.32,
-                  filter: "brightness(1.15) blur(5px)",
-                  transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] }
-                }
-              : {
-                  opacity: [0, 1, 1, 1],
-                  y: [95, -45, 8, 0],
-                  scale: [0.52, 1.12, 0.98, 1.0],
-                  rotateY: [0, 360, 720, 1080],
-                  rotateX: [24, -16, 6, 0],
-                }
-          }
-          transition={{
-            duration: 1.8,
-            times: [0, 0.45, 0.85, 1],
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          style={{ transformStyle: "preserve-3d" }}
-          className="relative flex flex-col items-center justify-center"
-        >
-          
-          {/* The Circular Novaliseo Medallion (from About Page) */}
-          <div className="relative group w-44 sm:w-56 md:w-64 lg:w-72 aspect-square rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-slate-200 to-blue-500 shadow-[0_15px_45px_rgba(6,182,212,0.32),0_25px_60px_rgba(15,23,42,0.12)] flex items-center justify-center">
-            
-            {/* Inner Metallic Bezel Rim */}
-            <div className="w-full h-full rounded-full overflow-hidden border border-white/90 bg-slate-950 relative flex items-center justify-center">
-              <img
-                src="/images/about_hero.jpeg"
-                alt="Novaliseo Ecosystem Medallion"
-                className="w-full h-full object-cover scale-[1.02]"
-              />
-
-              {/* Dynamic Lens Gleam / Sheen Sweep on Settle */}
-              <motion.div
-                initial={{ x: "-160%", opacity: 0 }}
-                animate={{
-                  x: phase === "settle" || phase === "open" ? "180%" : "-160%",
-                  opacity: phase === "settle" || phase === "open" ? [0, 0.85, 0] : 0,
-                }}
-                transition={{ duration: 0.9, ease: "easeInOut" }}
-                className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[-25deg] pointer-events-none"
-              />
-            </div>
-
-            {/* Glowing Ring Halo */}
-            <div className="absolute -inset-1.5 rounded-full border border-cyan-400/35 animate-pulse pointer-events-none" />
+          <div className="w-full sm:w-auto text-center sm:text-right">
+            <span className="text-[10px] font-mono font-semibold tracking-[0.24em] text-slate-400 uppercase">
+              HARDWARE-CENTRIC PHYSICAL INTELLIGENCE
+            </span>
           </div>
-
-          {/* Dynamic Floor Contact Shadow */}
-          <motion.div
-            initial={{ scale: 0.4, opacity: 0.2 }}
-            animate={
-              phase === "open"
-                ? { scale: 1.4, opacity: 0, transition: { duration: 0.6 } }
-                : {
-                    scale: [0.4, 0.65, 1.05, 1.0],
-                    opacity: [0.2, 0.3, 0.7, 0.6],
-                  }
-            }
-            transition={{
-              duration: 1.8,
-              times: [0, 0.45, 0.85, 1],
-              ease: "easeInOut",
-            }}
-            className="w-36 sm:w-48 md:w-56 h-5 rounded-[100%] bg-slate-900/20 blur-lg mt-5 pointer-events-none"
-          />
-
-        </motion.div>
-
-        {/* ================= REFINED BRAND TYPOGRAPHY (AMPLITUDE CLEARANCE) ================= */}
-        <AnimatePresence>
-          {(phase === "settle" || phase === "open") && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={
-                phase === "open"
-                  ? { opacity: 0, y: -8, transition: { duration: 0.45 } }
-                  : { opacity: 1, y: 0 }
-              }
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 flex flex-col items-center text-center pointer-events-none z-30 max-w-sm sm:max-w-md px-4"
-            >
-              {/* Full Company Name */}
-              <h2 className="text-sm sm:text-base md:text-lg font-bold tracking-[0.22em] text-slate-900 uppercase drop-shadow-xs">
-                Novaliseo Global Tech Pvt Ltd
-              </h2>
-
-              {/* Tagline */}
-              <p className="mt-1 text-[9px] sm:text-[10px] md:text-[11px] font-mono font-semibold tracking-[0.26em] text-cyan-600 uppercase">
-                Brain Behind Intelligent Operations
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
 
       </div>
 
