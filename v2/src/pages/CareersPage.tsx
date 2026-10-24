@@ -45,12 +45,12 @@ import bentoPcbOwnership from "../assets/bento_pcb_ownership.jpg";
 import bentoComputeCluster from "../assets/bento_compute_cluster.jpg";
 import careersWorkspaceReal from "../assets/careers_workspace_real.jpg";
 
-// System Benefits Generated Visual Assets
-import benefitMocapArena from "../assets/benefit_mocap_arena.jpg";
-import benefitEdgeBench from "../assets/benefit_edge_bench.jpg";
-import benefitHangarFlight from "../assets/benefit_hangar_flight.jpg";
-import benefitRoverLab from "../assets/benefit_rover_lab.jpg";
-import benefitCompositeCnc from "../assets/benefit_composite_cnc.jpg";
+// System Benefits Generated Visual Assets (100% Pure Physical Hardware, Zero Humans, Zero Brand Logos)
+import benefit1HardwareLab from "../assets/benefit_1_hardware_lab.jpg";
+import benefit2ComputeCluster from "../assets/benefit_2_compute_cluster.jpg";
+import benefit3FieldSprints from "../assets/benefit_3_field_sprints.jpg";
+import benefit4Dynamometer from "../assets/benefit_4_dynamometer.jpg";
+import benefit5RoverTestbed from "../assets/benefit_5_rover_testbed.jpg";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -682,31 +682,31 @@ export default function CareersPage() {
       step: "Benefit 01",
       title: "World-Class Prototyping & Optical Mocap Arenas",
       content: "Direct 24/7 access to optical motion-capture flight arenas, multi-axis precision CNC mills, brushless dynamometers, and carbon-composite autoclave testbeds.",
-      image: benefitMocapArena,
+      image: benefit1HardwareLab,
     },
     {
       step: "Benefit 02",
       title: "Sovereign AI Compute & Embedded Acceleration",
       content: "Dedicated local GPU clusters for perception training, low-latency edge AI silicon testbenches (NVIDIA Jetson, Hailo), and hardware-in-the-loop (HIL) simulators.",
-      image: benefitEdgeBench,
+      image: benefit2ComputeCluster,
     },
     {
       step: "Benefit 03",
       title: "Quarterly Flight Expeditions & Real Terrains",
       content: "We step away from desks regularly to test multi-domain autonomous UAVs and UGVs across open agricultural crops, maritime shores, and rugged mountain ranges.",
-      image: benefitHangarFlight,
+      image: benefit3FieldSprints,
     },
     {
       step: "Benefit 04",
-      title: "Advanced Mechatronics & Rover Testbeds",
-      content: "All-terrain rover chassis test fixtures, optical gimbal calibration benches, dynamometer load cells, and environmental stress screening chambers.",
-      image: benefitRoverLab,
+      title: "Powertrain Dyno & Wind Tunnel Testbeds",
+      content: "High-torque brushless motor dynamometer testbenches, aerodynamic thrust load cells, non-linear vibration rigs, and environmental stress screening chambers.",
+      image: benefit4Dynamometer,
     },
     {
       step: "Benefit 05",
-      title: "Top-Tier Equity, Flexibility & Full Family Care",
-      content: "Top-market compensation packages with meaningful equity ownership in our sovereign mission, output-focused circadian flexibility, and international conference grants.",
-      image: benefitCompositeCnc,
+      title: "All-Terrain Obstacle Courses & Perception Rigs",
+      content: "Dedicated physical obstacle courses for LiDAR-based ground rovers, optical sensor calibration benches, and full sovereign equity alignment with family care.",
+      image: benefit5RoverTestbed,
     },
   ];
 
@@ -722,19 +722,23 @@ export default function CareersPage() {
     }
   };
 
-  // Auto-snap #build-with-us to 100% full screen when scrolled into view
+  // Auto-snap full-screen sections (#build-with-us and #benefits) to 100% full screen when scrolled into view
   React.useEffect(() => {
-    const el = document.getElementById("build-with-us");
-    if (!el) return;
+    const snapTargets = ["build-with-us", "benefits"];
     let isSnapping = false;
 
     const handleScroll = () => {
       if (isSnapping) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.top > 8 && rect.top < window.innerHeight * 0.6) {
-        isSnapping = true;
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(() => { isSnapping = false; }, 850);
+      for (const id of snapTargets) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top > 10 && rect.top < window.innerHeight * 0.45) {
+          isSnapping = true;
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => { isSnapping = false; }, 850);
+          break;
+        }
       }
     };
 
@@ -1191,21 +1195,24 @@ export default function CareersPage() {
             className="lg:col-span-2 lg:rounded-br-[2.5rem] rounded-2xl"
           />
         </div>
+      </section>
 
-        {/* ========================================================================= */}
-        {/* SYSTEM BENEFITS & LAB INFRASTRUCTURE (FEATURE STEPS ANIMATED SHOWCASE)    */}
-        {/* ========================================================================= */}
-        <div id="benefits" className="mt-16 sm:mt-24 rounded-[2.5rem] bg-white border border-slate-200/90 shadow-md overflow-hidden">
+      {/* ========================================================================= */}
+      {/* 5. SYSTEM BENEFITS & LAB INFRASTRUCTURE (100% SINGLE SCREEN FIT)          */}
+      {/* ========================================================================= */}
+      <section 
+        id="benefits" 
+        className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:max-h-[100dvh] flex flex-col justify-center items-center py-6 sm:py-8 lg:py-10 px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 overflow-hidden select-none"
+      >
+        <div className="w-full h-full max-w-7xl 2xl:max-w-[1550px] mx-auto flex flex-col justify-center">
           <FeatureSteps
             features={benefitSteps}
             title="System Benefits & Lab Infrastructure"
             subtitle="We provide the institutional tooling, equipment, computing clusters, and comprehensive security so you can focus completely on building state-of-the-art autonomy."
             autoPlayInterval={4000}
-            imageHeight="h-[340px] sm:h-[420px] lg:h-[480px]"
-            className="p-6 sm:p-10 lg:p-12"
+            className="p-0 w-full h-full flex flex-col justify-center"
           />
         </div>
-
       </section>
 
       {/* ========================================================================= */}
