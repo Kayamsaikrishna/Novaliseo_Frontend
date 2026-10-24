@@ -36,6 +36,7 @@ import CareerApplicationModal from "../components/CareerApplicationModal";
 import TiltedGridHero, { TiltedGridImage } from "../components/ui/TiltedGridHero";
 import TigerTearReveal from "../components/ui/tiger-tear-reveal";
 import { BentoCard } from "../components/ui/bento";
+import { FeatureSteps, Feature } from "../components/ui/feature-section";
 
 // Bento Grid Realistic Generated Visual Assets
 import bentoHardwareLab from "../assets/bento_hardware_lab.jpg";
@@ -43,6 +44,13 @@ import bentoFieldSprints from "../assets/bento_field_sprints.jpg";
 import bentoPcbOwnership from "../assets/bento_pcb_ownership.jpg";
 import bentoComputeCluster from "../assets/bento_compute_cluster.jpg";
 import careersWorkspaceReal from "../assets/careers_workspace_real.jpg";
+
+// System Benefits Generated Visual Assets
+import benefitMocapArena from "../assets/benefit_mocap_arena.jpg";
+import benefitEdgeBench from "../assets/benefit_edge_bench.jpg";
+import benefitHangarFlight from "../assets/benefit_hangar_flight.jpg";
+import benefitRoverLab from "../assets/benefit_rover_lab.jpg";
+import benefitCompositeCnc from "../assets/benefit_composite_cnc.jpg";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -669,13 +677,37 @@ export default function CareersPage() {
   ];
 
 
-  const benefits = [
-    { icon: <Cpu className="w-5 h-5 text-blue-600" />, title: "World-Class Hardware Lab", description: "Direct access to optical mocap arenas, 3D printers, multi-axis CNC mills, and dynamometer testbenches." },
-    { icon: <Award className="w-5 h-5 text-blue-600" />, title: "Competitive Pay & Equity", description: "Top-market compensation packages with meaningful equity ownership in our long-term sovereign mission." },
-    { icon: <Laptop className="w-5 h-5 text-blue-600" />, title: "Output-Focused Flexibility", description: "We respect your circadian rhythm and focus. Output, reliability, and code health matter — not desk hours." },
-    { icon: <GraduationCap className="w-5 h-5 text-blue-600" />, title: "Learning & Conference Grant", description: "Annual grant for international robotics conferences (ICRA, IROS), technical books, and specialized certifications." },
-    { icon: <Heart className="w-5 h-5 text-blue-600" />, title: "Comprehensive Health", description: "Extensive health, dental, and vision insurance coverage for you and your dependents with wellness support." },
-    { icon: <Compass className="w-5 h-5 text-blue-600" />, title: "Field Test Retreats", description: "Quarterly field trials across scenic terrains to test multi-domain autonomy in extreme climates." }
+  const benefitSteps: Feature[] = [
+    {
+      step: "Benefit 01",
+      title: "World-Class Prototyping & Optical Mocap Arenas",
+      content: "Direct 24/7 access to optical motion-capture flight arenas, multi-axis precision CNC mills, brushless dynamometers, and carbon-composite autoclave testbeds.",
+      image: benefitMocapArena,
+    },
+    {
+      step: "Benefit 02",
+      title: "Sovereign AI Compute & Embedded Acceleration",
+      content: "Dedicated local GPU clusters for perception training, low-latency edge AI silicon testbenches (NVIDIA Jetson, Hailo), and hardware-in-the-loop (HIL) simulators.",
+      image: benefitEdgeBench,
+    },
+    {
+      step: "Benefit 03",
+      title: "Quarterly Flight Expeditions & Real Terrains",
+      content: "We step away from desks regularly to test multi-domain autonomous UAVs and UGVs across open agricultural crops, maritime shores, and rugged mountain ranges.",
+      image: benefitHangarFlight,
+    },
+    {
+      step: "Benefit 04",
+      title: "Advanced Mechatronics & Rover Testbeds",
+      content: "All-terrain rover chassis test fixtures, optical gimbal calibration benches, dynamometer load cells, and environmental stress screening chambers.",
+      image: benefitRoverLab,
+    },
+    {
+      step: "Benefit 05",
+      title: "Top-Tier Equity, Flexibility & Full Family Care",
+      content: "Top-market compensation packages with meaningful equity ownership in our sovereign mission, output-focused circadian flexibility, and international conference grants.",
+      image: benefitCompositeCnc,
+    },
   ];
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -1160,37 +1192,18 @@ export default function CareersPage() {
           />
         </div>
 
-        {/* Institutional Support Bar */}
-        <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
-            <div>
-              <span className="text-xs font-mono font-bold tracking-wider text-blue-600 uppercase">
-                Institutional Tooling
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mt-0.5">
-                System Benefits &amp; Lab Infrastructure
-              </h3>
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
-              We provide the institutional tooling, equipment, computing clusters, and comprehensive security so you can focus completely on building state-of-the-art autonomy.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 pt-6">
-            {benefits.map((b, idx) => (
-              <div key={idx} className="flex flex-col items-start gap-2 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
-                  {b.icon}
-                </div>
-                <div className="font-bold text-xs sm:text-sm text-slate-900 leading-tight">
-                  {b.title}
-                </div>
-                <div className="text-[11px] text-slate-500 leading-relaxed line-clamp-3">
-                  {b.description}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* ========================================================================= */}
+        {/* SYSTEM BENEFITS & LAB INFRASTRUCTURE (FEATURE STEPS ANIMATED SHOWCASE)    */}
+        {/* ========================================================================= */}
+        <div id="benefits" className="mt-16 sm:mt-24 rounded-[2.5rem] bg-white border border-slate-200/90 shadow-md overflow-hidden">
+          <FeatureSteps
+            features={benefitSteps}
+            title="System Benefits & Lab Infrastructure"
+            subtitle="We provide the institutional tooling, equipment, computing clusters, and comprehensive security so you can focus completely on building state-of-the-art autonomy."
+            autoPlayInterval={4000}
+            imageHeight="h-[340px] sm:h-[420px] lg:h-[480px]"
+            className="p-6 sm:p-10 lg:p-12"
+          />
         </div>
 
       </section>
