@@ -303,85 +303,85 @@ export default function CareersPage() {
   const evaluationTabs: Tab[] = [
     {
       id: "stage1",
-      label: "01. Portfolio Review",
+      label: "01. Application Review",
       badge: "48h",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
-          {/* Left: Engineering Artifacts Inspector HUD */}
-          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+          {/* Left: Stage Summary Card */}
+          <div className="lg:col-span-5 bg-white/75 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
-                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
-                  STAGE 01 // 48-HR INTAKE
+                <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-lg">
+                  Stage 01 of 04
                 </span>
-                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                <span className="text-xs text-emerald-600 flex items-center gap-1.5 font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Direct Lead Review
+                  48-Hour Response
                 </span>
               </div>
 
-              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
-                Technical Artifacts Inspected:
+              <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5">
+                What We Look For:
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {[
-                  "Flight Logs & Telemetry Blackbox (CSV/ULog)",
-                  "ROS2 / C++ Firmware Repositories",
-                  "3D CAD Assemblies (SolidWorks / Fusion)",
-                  "Custom PCB Hardware & Schematics",
+                  "Real-world track record and projects you have contributed to",
+                  "Craft, attention to detail, and pride in execution",
+                  "Clear communication and how you explain technical trade-offs",
+                  "Thoughtful problem-solving and eagerness to learn",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-              <span>Standard: Real Physical Artifacts</span>
-              <span className="text-slate-800 font-bold">No LeetCode</span>
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+              <span>Reviewed by team leads</span>
+              <span className="text-slate-900 font-semibold">No Automated Filters</span>
             </div>
           </div>
 
-          {/* Right: Ethos, Description & Criteria */}
+          {/* Right: Ethos & Clear Description */}
           <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
-                STAGE 01
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-md">
+                Stage 01
               </span>
-              <span className="text-xs font-mono text-slate-500 font-medium">48-Hour Turnaround</span>
+              <span className="text-xs text-slate-500 font-medium">Initial Work Review</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
-              Portfolio &amp; Real Work Review
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-950 tracking-tight">
+              Application &amp; Real Work Review
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              No boilerplate trivia. We look at GitHub repos, physical robots built, CAD models, schematics, or flight footage that prove your engineering intuition.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              We respect your time. Instead of generic quiz tests or artificial trivia, our team directly reviews what you’ve built, contributed to, and learned from in the real world.
             </p>
 
             <div className="space-y-2 pt-1 text-xs text-slate-700">
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
                 <FileCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Physical Reality Over Quizzes:</span>{" "}
-                  Real CAD assemblies, motor dynamometer graphs, and firmware diffs that solved real problems.
+                  <span className="font-bold text-slate-900">Real Contributions Over Quizzes:</span>{" "}
+                  We review your actual work — whether that’s code repositories, design portfolios, physical prototypes, or architectural case studies.
                 </div>
               </div>
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
-                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
+                <Clock className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Direct Lead Review:</span>{" "}
-                  Evaluated only by practicing autonomous robotics engineers who design and fly our sovereign platforms.
+                  <span className="font-bold text-slate-900">Guaranteed Fast Feedback:</span>{" "}
+                  Every application is directly reviewed by practicing team leads, with prompt updates and clear next steps within 48 hours.
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {["CAD Assemblies", "Git Commits", "Flight Logs", "Custom PCB", "Kinematics"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
+              {["Work Review", "Past Projects", "Fast Feedback", "Direct Human Review"].map((tag, i) => (
+                <span key={i} className="text-xs px-2.5 py-0.5 rounded-lg bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -392,85 +392,85 @@ export default function CareersPage() {
     },
     {
       id: "stage2",
-      label: "02. Systems Dialogue",
+      label: "02. Conversational Dialogue",
       badge: "45m",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
-          {/* Left: Engineering Artifacts Inspector HUD */}
-          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+          {/* Left: Stage Summary Card */}
+          <div className="lg:col-span-5 bg-white/75 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
-                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
-                  STAGE 02 // 45-MIN ARCHITECTURE
+                <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-lg">
+                  Stage 02 of 04
                 </span>
-                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Systems Architect Peer
+                <span className="text-xs text-blue-600 flex items-center gap-1.5 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  45-Minute Video Call
                 </span>
               </div>
 
-              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
-                Core Domains Explored:
+              <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5">
+                What to Expect:
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {[
-                  "Extended Kalman Filter (EKF) State Estimation",
-                  "Quaternion Attitude Kinematics & Loops",
-                  "LiDAR SLAM & Point Cloud Odometry",
-                  "Real-World Hardware Debugging War Stories",
+                  "Two-way dialogue to explore shared technical vision",
+                  "Discussion on real problems you’ve solved and trade-offs made",
+                  "How you like to collaborate and communicate in a team",
+                  "Dedicated time for you to ask us any questions",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-              <span>Format: First-Principles Dialogue</span>
-              <span className="text-slate-800 font-bold">Sub-10ms Loops</span>
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+              <span>Discussion, not an interrogation</span>
+              <span className="text-slate-900 font-semibold">Mutual Fit</span>
             </div>
           </div>
 
-          {/* Right: Ethos, Description & Criteria */}
+          {/* Right: Ethos & Clear Description */}
           <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
-                STAGE 02
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-md">
+                Stage 02
               </span>
-              <span className="text-xs font-mono text-slate-500 font-medium">45-Minute Dialogue</span>
+              <span className="text-xs text-slate-500 font-medium">Conversational Dialogue</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
-              Technical Systems Conversation
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-950 tracking-tight">
+              Technical &amp; Cultural Dialogue
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              A 45-minute technical dialogue with a senior engineer. We explore past design trade-offs, debugging stories, and systems intuition.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              A casual, in-depth conversation with your future team lead. We treat this as an open two-way dialogue to see if our work culture, mission, and technical standards align.
             </p>
 
             <div className="space-y-2 pt-1 text-xs text-slate-700">
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
-                <Cpu className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
+                <Users className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">First-Principles Dialogue:</span>{" "}
-                  Nonlinear control loops, Kalman filter covariance tuning, and low-latency zero-copy pipelines.
+                  <span className="font-bold text-slate-900">Collaborative Discussion:</span>{" "}
+                  No high-pressure riddles or trick questions. We talk through your past engineering challenges, trade-offs, and design intuition.
                 </div>
               </div>
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
-                <Wrench className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
+                <Sparkles className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Field War Stories:</span>{" "}
-                  We want to hear what broke in real wind, dynamic vibration, or telemetry dropouts, and how you fixed it.
+                  <span className="font-bold text-slate-900">Open Q&amp;A For You:</span>{" "}
+                  We believe hiring is a mutual choice. You get dedicated time to ask about our technical stack, culture, growth roadmap, and daily life.
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {["ROS2 / C++", "State Estimation", "Hardware Debugging", "Sub-10ms Loops", "Sensor Fusion"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
+              {["Team Dialogue", "Problem Solving", "Two-Way Q&A", "Culture Fit"].map((tag, i) => (
+                <span key={i} className="text-xs px-2.5 py-0.5 rounded-lg bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -481,85 +481,85 @@ export default function CareersPage() {
     },
     {
       id: "stage3",
-      label: "03. Lab Day Sprint",
+      label: "03. Practical Challenge",
       badge: "1 Day",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
-          {/* Left: Engineering Artifacts Inspector HUD */}
-          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+          {/* Left: Stage Summary Card */}
+          <div className="lg:col-span-5 bg-white/75 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
-                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
-                  STAGE 03 // FULL DAY SPRINT
+                <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-lg">
+                  Stage 03 of 04
                 </span>
-                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                <span className="text-xs text-emerald-600 flex items-center gap-1.5 font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Fully Compensated
                 </span>
               </div>
 
-              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
-                Live Hardware Access:
+              <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5">
+                How It Works:
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {[
-                  "Live Optical Mocap Trajectory Tracking Arena",
-                  "Dynamometer Thrust Stand & Motor Testing",
-                  "Autonomous Ground Rover / UAV Co-Testing",
-                  "Hardware-in-the-Loop (HIL) Fault Injection",
+                  "Work on a practical challenge relevant to your specific domain",
+                  "Collaborate directly with the team to iterate and solve problems",
+                  "Flexible format: completed as a live working sprint or take-home",
+                  "Experience what working together on daily tasks really feels like",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-              <span>Environment: Flight Net Arena</span>
-              <span className="text-slate-800 font-bold">Paid Daily Rate</span>
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+              <span>Realistic working session</span>
+              <span className="text-slate-900 font-semibold">Paid Standard Rate</span>
             </div>
           </div>
 
-          {/* Right: Ethos, Description & Criteria */}
+          {/* Right: Ethos & Clear Description */}
           <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
-                STAGE 03
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-md">
+                Stage 03
               </span>
-              <span className="text-xs font-mono text-slate-500 font-medium">Full Day Lab Sprint (Compensated)</span>
+              <span className="text-xs text-slate-500 font-medium">Hands-On Collaboration</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
-              Lab Day / Collaborative Challenge
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-950 tracking-tight">
+              Collaborative Practical Challenge
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Spend a day solving an open-ended physical problem with our team using our actual hardware testbeds, flight net, and sensor arenas.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              Experience real collaboration. We partner on a practical, open-ended challenge designed around the everyday responsibilities of your specific role.
             </p>
 
             <div className="space-y-2 pt-1 text-xs text-slate-700">
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
                 <Target className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Real Hardware Access:</span>{" "}
-                  Optical mocap flight net arena, dynamic test stands, rovers, and spectrum analyzers.
+                  <span className="font-bold text-slate-900">Real-World Problem Solving:</span>{" "}
+                  No artificial exam puzzles. You work on a realistic challenge tailored to your field where you can showcase your craft and creative thinking.
                 </div>
               </div>
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
                 <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Fully Compensated:</span>{" "}
-                  Your time, focus, and contributions are respected and paid at top market day rates.
+                  <span className="font-bold text-slate-900">Fairly Paid &amp; Respectful:</span>{" "}
+                  We value your expertise and time. Any dedicated working challenge or collaborative sprint is fully paid at standard day rates.
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {["Mocap Arena", "Physical Testbeds", "HIL Simulation", "Sensor Fusion", "UAV Flight Net"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
+              {["Practical Challenge", "Collaboration", "Fairly Compensated", "Real Workflows"].map((tag, i) => (
+                <span key={i} className="text-xs px-2.5 py-0.5 rounded-lg bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -570,85 +570,85 @@ export default function CareersPage() {
     },
     {
       id: "stage4",
-      label: "04. Equity & Offer",
+      label: "04. Offer & Welcome",
       badge: "Direct",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full">
-          {/* Left: Engineering Artifacts Inspector HUD */}
-          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+          {/* Left: Stage Summary Card */}
+          <div className="lg:col-span-5 bg-white/75 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80 mb-3">
-                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-md">
-                  STAGE 04 // TRANSPARENT OFFER
+                <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-lg">
+                  Stage 04 of 04
                 </span>
-                <span className="text-[11px] font-mono text-emerald-600 flex items-center gap-1.5 font-semibold">
+                <span className="text-xs text-emerald-600 flex items-center gap-1.5 font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Direct Alignment
+                  Transparent Agreement
                 </span>
               </div>
 
-              <div className="text-xs font-mono text-slate-500 uppercase tracking-wider mb-2 font-semibold">
-                Guaranteed Foundations:
+              <div className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5">
+                What We Offer:
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {[
-                  "Transparent Equity Formula & Cap Table Model",
-                  "Top-Market Compensation & Direct Bonuses",
-                  "Zero Bureaucratic Management Layers",
-                  "Full Technical Ownership on Day One",
+                  "Competitive, top-market compensation and direct bonuses",
+                  "Meaningful equity ownership in our long-term mission",
+                  "Flat hierarchy with high autonomy and day-one ownership",
+                  "Comprehensive health coverage, learning grants, and retreats",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-              <span>Mission: Sovereign Autonomy</span>
-              <span className="text-slate-800 font-bold">Meaningful Pool</span>
+            <div className="pt-3 mt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+              <span>Direct, clear communication</span>
+              <span className="text-slate-900 font-semibold">Ownership from Day One</span>
             </div>
           </div>
 
-          {/* Right: Ethos, Description & Criteria */}
+          {/* Right: Ethos & Clear Description */}
           <div className="lg:col-span-7 flex flex-col justify-center gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
-                STAGE 04
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-md">
+                Stage 04
               </span>
-              <span className="text-xs font-mono text-slate-500 font-medium">Direct Alignment</span>
+              <span className="text-xs text-slate-500 font-medium">Offer &amp; Onboarding</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
-              Transparent Offer &amp; Equity Alignment
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-950 tracking-tight">
+              Transparent Offer &amp; Alignment
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Direct, transparent compensation and equity packages. Clear ownership expectations from day one with zero bureaucratic layers.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              We believe in transparent, straightforward partnerships. When there is mutual alignment, we move quickly to deliver a competitive offer with meaningful ownership.
             </p>
 
             <div className="space-y-2 pt-1 text-xs text-slate-700">
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
                 <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Meaningful Equity:</span>{" "}
-                  Substantial ownership stake in our long-term sovereign autonomy mission.
+                  <span className="font-bold text-slate-900">Transparent Compensation &amp; Equity:</span>{" "}
+                  Clear terms, competitive market pay, and substantial equity with no hidden fine print or unnecessary waiting periods.
                 </div>
               </div>
-              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-2.5 rounded-xl">
-                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl">
+                <ArrowUpRight className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold text-slate-900">Zero Bureaucracy:</span>{" "}
-                  Flat reporting, extreme engineering ownership, and immediate autonomy from day one.
+                  <span className="font-bold text-slate-900">Immediate Autonomy:</span>{" "}
+                  Flat reporting with extreme engineering and domain ownership from day one. You are empowered to make key decisions immediately.
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {["Direct Equity", "Top Market Pay", "High Autonomy", "No Bureaucracy", "Sovereign Mission"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
+              {["Transparent Offer", "Top Market Pay", "Meaningful Equity", "Direct Ownership"].map((tag, i) => (
+                <span key={i} className="text-xs px-2.5 py-0.5 rounded-lg bg-white/90 border border-slate-200 text-slate-700 font-medium shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -972,7 +972,7 @@ export default function CareersPage() {
         
         {/* Interactive Scroll Paper Tear Reveal: slowly tears open, covers full screen with evaluation pipeline, and slowly closes on continued scroll */}
         <TigerTearReveal
-          tagline="HIRING PHILOSOPHY // 4-STAGE PIPELINE"
+          tagline="HIRING PROCESS · 4 TRANSPARENT STAGES"
           word="EVALUATE"
           bgImage={careersEvaluatePosterBg}
           bgOpacity={0.85}
@@ -1010,20 +1010,20 @@ export default function CareersPage() {
               {/* Header Area with High-Contrast Typography & Glass Badge */}
               <div className="w-full flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div className="text-left max-w-3xl">
-                  <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase bg-white/90 border border-blue-200/60 px-3 py-1 rounded-full shadow-2xs backdrop-blur-md">
-                    Evaluation Architecture // 4-Stage Intake
+                  <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-600 uppercase bg-white/90 border border-blue-200/60 px-3 py-1 rounded-full shadow-2xs backdrop-blur-md">
+                    Hiring Journey · 4-Stage Process
                   </span>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight mt-2 drop-shadow-[0_2px_12px_rgba(255,255,255,0.9)]">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-950 tracking-tight mt-2 drop-shadow-[0_2px_12px_rgba(255,255,255,0.9)]">
                     How We Evaluate.
                   </h2>
                   <p className="mt-1 text-slate-700 text-xs sm:text-sm leading-relaxed font-medium max-w-2xl drop-shadow-[0_1px_6px_rgba(255,255,255,0.8)]">
-                    We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on physical engineering competence.
+                    We respect your time. Our hiring process is transparent, collaborative, and designed to understand your real-world experience and craft.
                   </p>
                 </div>
 
-                <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 text-slate-800 text-xs font-mono font-semibold self-start sm:self-auto shrink-0 shadow-sm backdrop-blur-md">
+                <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 text-slate-800 text-xs font-semibold self-start sm:self-auto shrink-0 shadow-sm backdrop-blur-md">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Direct Engineering Review</span>
+                  <span>Direct Team Review</span>
                 </div>
               </div>
 

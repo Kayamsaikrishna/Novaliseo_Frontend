@@ -124,7 +124,7 @@ export const AnimatedTabs = ({
               onMouseEnter={() => handleTabClick(tab.id)}
               onTouchStart={() => handleTabClick(tab.id)}
               className={cn(
-                "relative px-3.5 sm:px-5 py-2 text-xs sm:text-sm font-mono font-bold rounded-xl transition-all outline-none cursor-pointer flex items-center gap-2 select-none",
+                "relative px-3.5 sm:px-5 py-2 text-xs sm:text-sm font-sans font-semibold rounded-xl transition-all outline-none cursor-pointer flex items-center gap-2 select-none",
                 isActive
                   ? "text-white shadow-md"
                   : "text-slate-700 hover:text-slate-950 hover:bg-white/70 active:scale-95"
@@ -141,10 +141,10 @@ export const AnimatedTabs = ({
                 {tab.badge && (
                   <span
                     className={cn(
-                      "text-[10px] px-1.5 py-0.5 rounded-md font-mono",
+                      "text-[10px] px-2 py-0.5 rounded-md font-sans font-bold tracking-wide",
                       isActive
                         ? "bg-white/20 text-white"
-                        : "bg-slate-100 text-slate-600 border border-slate-200/70"
+                        : "bg-slate-100 text-slate-700 border border-slate-200/80"
                     )}
                   >
                     {tab.badge}
