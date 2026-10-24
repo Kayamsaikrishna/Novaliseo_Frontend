@@ -27,13 +27,22 @@ import {
   Building,
   Target,
   FileCheck,
-  Award
+  Award,
+  Server
 } from "lucide-react";
 
 import WorksWheel, { WorksWheelItem } from "../components/WorksWheel";
 import CareerApplicationModal from "../components/CareerApplicationModal";
 import TiltedGridHero, { TiltedGridImage } from "../components/ui/TiltedGridHero";
 import TigerTearReveal from "../components/ui/tiger-tear-reveal";
+import { BentoCard } from "../components/ui/bento";
+
+// Bento Grid Realistic Generated Visual Assets
+import bentoHardwareLab from "../assets/bento_hardware_lab.jpg";
+import bentoFieldSprints from "../assets/bento_field_sprints.jpg";
+import bentoPcbOwnership from "../assets/bento_pcb_ownership.jpg";
+import bentoComputeCluster from "../assets/bento_compute_cluster.jpg";
+import careersWorkspaceReal from "../assets/careers_workspace_real.jpg";
 
 // Hero Visual & Realistic Hardware Assets
 import careersDaylightStudio from "../assets/careers_daylight_studio.jpg";
@@ -659,32 +668,6 @@ export default function CareersPage() {
     },
   ];
 
-  const culturePrinciples = [
-    {
-      icon: <Target className="w-5 h-5 text-blue-600" />,
-      num: "01",
-      title: "Physical Reality Over Simulations",
-      description: "Simulations are starting points, not proof. Our software flies in open wind, climbs rocky inclines, and endures real-world physical forces."
-    },
-    {
-      icon: <Users className="w-5 h-5 text-cyan-600" />,
-      num: "02",
-      title: "Extreme Engineering Ownership",
-      description: "Engineers own their systems from schematic design to field validation. No handoffs to distant departments or endless committees."
-    },
-    {
-      icon: <Wrench className="w-5 h-5 text-amber-600" />,
-      num: "03",
-      title: "Cross-Disciplinary Proximity",
-      description: "Firmware developers sit directly beside carbon-fiber fabricators, aerodynamicists, and perception researchers to co-solve bottlenecks."
-    },
-    {
-      icon: <Sparkles className="w-5 h-5 text-indigo-600" />,
-      num: "04",
-      title: "Dedicated Field Sprints",
-      description: "We step away from desks regularly to test our hardware in real agricultural fields, maritime shores, and mountain ranges."
-    }
-  ];
 
   const benefits = [
     { icon: <Cpu className="w-5 h-5 text-blue-600" />, title: "World-Class Hardware Lab", description: "Direct access to optical mocap arenas, 3D printers, multi-axis CNC mills, and dynamometer testbenches." },
@@ -1042,71 +1025,168 @@ export default function CareersPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. CULTURE ARCHITECTURE & ENGINEERING VALUES                              */}
+      {/* 4. CULTURE ARCHITECTURE & LAB INFRASTRUCTURE (BENTO GRID SHOWCASE)        */}
       {/* ========================================================================= */}
-      <section id="culture" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full border-t border-slate-200">
+      <section id="culture" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1550px] mx-auto w-full border-t border-slate-200">
         
-        <div className="text-left max-w-3xl mb-12 sm:mb-16">
-          <span className="text-xs sm:text-sm font-mono font-bold tracking-wider text-blue-600 uppercase">
-            Workplace Ethos
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mt-1">
-            Culture Architecture.
-          </h2>
-          <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-            Engineered for high autonomy, zero bureaucracy, direct feedback, and rapid physical deployment.
-          </p>
-        </div>
-
-        {/* 4 Culture Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {culturePrinciples.map((val, idx) => (
-            <div 
-              key={idx}
-              className="p-7 rounded-[2rem] bg-white border border-slate-200 shadow-sm text-left flex flex-col justify-between hover:-translate-y-1 transition-transform duration-200"
-            >
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center mb-5">
-                  {val.icon}
-                </div>
-                <h3 className="text-lg font-bold text-slate-950 mb-2">
-                  {val.title}
-                </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                  {val.description}
-                </p>
-              </div>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div className="text-left max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-3">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              <span className="text-xs font-mono font-bold tracking-wider text-blue-700 uppercase">
+                Workplace Ethos &amp; Lab Reality
+              </span>
             </div>
-          ))}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight">
+              Culture Architecture.
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+              Engineered for high autonomy, zero bureaucracy, direct feedback, rapid physical deployment, and comprehensive sovereign support.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span>05 Core Architectural Pillars</span>
+          </div>
         </div>
 
-        {/* System Benefits & Lab Infrastructure */}
-        <div className="rounded-[2.5rem] bg-white border border-slate-200 p-8 sm:p-12 lg:p-14 text-left shadow-md">
-          <div className="max-w-2xl mb-10">
-            <span className="text-xs font-mono font-bold tracking-wider text-blue-600 uppercase">
-              Total Support
-            </span>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950 mt-1">
-              System Benefits &amp; Lab Infrastructure
-            </h3>
-            <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+        {/* Dynamic Bento Grid */}
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-6 mb-12">
+          {/* Card 1: Hardware Lab & Optical Mocap (lg:col-span-3) */}
+          <BentoCard
+            eyebrow={
+              <span className="flex items-center gap-2 text-blue-400">
+                <Target className="w-4 h-4 text-blue-400" />
+                <span>01 • PHYSICAL REALITY OVER SIMULATIONS</span>
+              </span>
+            }
+            title="World-Class Prototyping & Motion-Capture Lab"
+            description="Simulations are starting points, not proof. Direct daily access to optical motion-capture test arenas, multi-axis CNC mills, brushless dynamometers, and carbon autoclave testbeds. Software that flies in open sky, not just in simulation."
+            graphic={
+              <img
+                src={bentoHardwareLab}
+                alt="Prototyping Hardware Lab with Optical Motion Capture"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            }
+            fade={["top", "bottom"]}
+            className="lg:col-span-3 lg:rounded-tl-[2.5rem] rounded-2xl"
+          />
+
+          {/* Card 2: Dedicated Field Sprints (lg:col-span-3) */}
+          <BentoCard
+            eyebrow={
+              <span className="flex items-center gap-2 text-emerald-400">
+                <Compass className="w-4 h-4 text-emerald-400" />
+                <span>02 • DEDICATED FIELD SPRINTS</span>
+              </span>
+            }
+            title="Open Skies, High Terrains & Real Trials"
+            description="We step away from desks regularly to test our hardware in real agricultural fields, maritime shores, and mountain ranges. Real physical aerodynamic and terrain forces with zero proxy lag."
+            graphic={
+              <img
+                src={bentoFieldSprints}
+                alt="Autonomous Systems Mountain Field Testing Station"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            }
+            fade={["top", "bottom"]}
+            className="lg:col-span-3 lg:rounded-tr-[2.5rem] rounded-2xl"
+          />
+
+          {/* Card 3: Extreme Engineering Ownership (lg:col-span-2) */}
+          <BentoCard
+            eyebrow={
+              <span className="flex items-center gap-2 text-cyan-400">
+                <Cpu className="w-4 h-4 text-cyan-400" />
+                <span>03 • EXTREME OWNERSHIP</span>
+              </span>
+            }
+            title="Zero Bureaucracy, End-to-End Ownership"
+            description="Engineers own their systems from schematic design to field validation. Firmware developers sit beside carbon fabricators and aerodynamicists to co-solve bottlenecks directly."
+            graphic={
+              <img
+                src={bentoPcbOwnership}
+                alt="Flight Avionics and Extreme Ownership Circuitry"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            }
+            fade={["top", "bottom"]}
+            className="lg:col-span-2 lg:rounded-bl-[2.5rem] rounded-2xl"
+          />
+
+          {/* Card 4: High-Density AI & Simulation Compute (lg:col-span-2) */}
+          <BentoCard
+            eyebrow={
+              <span className="flex items-center gap-2 text-amber-400">
+                <Server className="w-4 h-4 text-amber-400" />
+                <span>04 • SOVEREIGN COMPUTE</span>
+              </span>
+            }
+            title="High-Density GPU Clusters & HIL Rigs"
+            description="Dedicated high-throughput local GPU clusters, low-latency edge AI silicon testbeds, and hardware-in-the-loop (HIL) simulators for real-time model verification and rapid sensor fusion benchmarking."
+            graphic={
+              <img
+                src={bentoComputeCluster}
+                alt="Sovereign AI Compute Cluster Aisle"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            }
+            fade={["top", "bottom"]}
+            className="lg:col-span-2 rounded-2xl"
+          />
+
+          {/* Card 5: Total Support & Equity Alignment (lg:col-span-2) */}
+          <BentoCard
+            eyebrow={
+              <span className="flex items-center gap-2 text-purple-400">
+                <Award className="w-4 h-4 text-purple-400" />
+                <span>05 • TOTAL SUPPORT</span>
+              </span>
+            }
+            title="Top-Tier Equity, Flexibility & Full Care"
+            description="Top-market compensation packages with meaningful equity ownership in our sovereign mission, output-focused circadian flexibility, international conference travel grants (ICRA/IROS), and comprehensive family healthcare."
+            graphic={
+              <img
+                src={careersWorkspaceReal}
+                alt="Engineering Design Studio and Total Institutional Support"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            }
+            fade={["top", "bottom"]}
+            className="lg:col-span-2 lg:rounded-br-[2.5rem] rounded-2xl"
+          />
+        </div>
+
+        {/* Institutional Support Bar */}
+        <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
+            <div>
+              <span className="text-xs font-mono font-bold tracking-wider text-blue-600 uppercase">
+                Institutional Tooling
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mt-0.5">
+                System Benefits &amp; Lab Infrastructure
+              </h3>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
               We provide the institutional tooling, equipment, computing clusters, and comprehensive security so you can focus completely on building state-of-the-art autonomy.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {benefits.map((p, idx) => (
-              <div key={idx} className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
-                  {p.icon}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 pt-6">
+            {benefits.map((b, idx) => (
+              <div key={idx} className="flex flex-col items-start gap-2 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
+                  {b.icon}
                 </div>
-                <div>
-                  <h4 className="text-sm sm:text-base font-bold text-slate-950 mb-1">
-                    {p.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {p.description}
-                  </p>
+                <div className="font-bold text-xs sm:text-sm text-slate-900 leading-tight">
+                  {b.title}
+                </div>
+                <div className="text-[11px] text-slate-500 leading-relaxed line-clamp-3">
+                  {b.description}
                 </div>
               </div>
             ))}
