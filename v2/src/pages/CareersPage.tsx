@@ -303,44 +303,44 @@ export default function CareersPage() {
       badge: "48h",
       content: (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl h-48 sm:h-60 lg:h-72 w-full group">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
             <img
               src={evalStage1Portfolio}
               alt="Portfolio Review Workbench"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/85 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
               STAGE 01 // TELEMETRY &amp; CODE REVIEW
             </div>
           </div>
 
           <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2 py-0.5 rounded-md">
+              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 01
               </span>
-              <span className="text-xs font-mono text-slate-400">48-Hour Turnaround</span>
+              <span className="text-xs font-mono text-slate-500">48-Hour Turnaround</span>
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Portfolio &amp; Real Work Review
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               No boilerplate LeetCode trivia. We look at GitHub repos, physical robots built, CAD models, schematics, or flight footage that prove your intuition.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-300">
+            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Physical Reality Over Quizzes: Real CAD assemblies &amp; firmware diffs</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Direct Lead Review: Evaluated by practicing autonomous robotics engineers</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 pt-2">
               {["CAD Models", "Git Commits", "Flight Logs", "Custom PCB"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
                   {tag}
                 </span>
               ))}
@@ -355,44 +355,44 @@ export default function CareersPage() {
       badge: "45m",
       content: (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl h-48 sm:h-60 lg:h-72 w-full group">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
             <img
               src={evalStage2Technical}
               alt="Technical Systems Architecture Room"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/85 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
               STAGE 02 // SYSTEMS &amp; ARCHITECTURE
             </div>
           </div>
 
           <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2 py-0.5 rounded-md">
+              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 02
               </span>
-              <span className="text-xs font-mono text-slate-400">45-Minute Dialogue</span>
+              <span className="text-xs font-mono text-slate-500">45-Minute Dialogue</span>
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Technical Systems Conversation
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               A 45-minute technical dialogue with a senior engineer. We explore your past design trade-offs, debugging stories, and systems intuition.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-300">
+            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>First-Principles Dialogue: Nonlinear control loops &amp; Kalman estimation</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>War Stories: We want to hear what broke in the field and how you debugged it</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 pt-2">
               {["ROS2 / C++", "State Estimation", "Hardware Debugging", "Sub-10ms Loops"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
                   {tag}
                 </span>
               ))}
@@ -407,44 +407,44 @@ export default function CareersPage() {
       badge: "1 Day",
       content: (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl h-48 sm:h-60 lg:h-72 w-full group">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
             <img
               src={evalStage3LabDay}
               alt="Lab Day Collaborative Challenge"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/85 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
               STAGE 03 // PHYSICAL TESTBED ARENA
             </div>
           </div>
 
           <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2 py-0.5 rounded-md">
+              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 03
               </span>
-              <span className="text-xs font-mono text-slate-400">Full Day Lab Sprint (Compensated)</span>
+              <span className="text-xs font-mono text-slate-500">Full Day Lab Sprint (Compensated)</span>
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Lab Day / Collaborative Challenge
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Spend a day (or virtual sprint) solving an open-ended physical problem with our team using our actual hardware testbeds and sensor arenas.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-300">
+            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Real Hardware Access: Flight net mocap arena, dynamic test stands, rovers</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Fully Compensated: Your time and contributions are respected and paid</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 pt-2">
               {["Mocap Arena", "Physical Testbeds", "HIL Simulation", "Sensor Fusion"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
                   {tag}
                 </span>
               ))}
@@ -459,44 +459,44 @@ export default function CareersPage() {
       badge: "Direct",
       content: (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 items-center w-full">
-          <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl h-48 sm:h-60 lg:h-72 w-full group">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 sm:h-60 lg:h-72 w-full group">
             <img
               src={evalStage4Offer}
               alt="Transparent Offer & Equity Alignment"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/85 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-mono font-semibold text-cyan-300">
               STAGE 04 // TRANSPARENT EQUITY
             </div>
           </div>
 
           <div className="flex flex-col gap-y-2.5 sm:gap-y-3 text-left">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2 py-0.5 rounded-md">
+              <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
                 STAGE 04
               </span>
-              <span className="text-xs font-mono text-slate-400">Direct Alignment</span>
+              <span className="text-xs font-mono text-slate-500">Direct Alignment</span>
             </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-950 tracking-tight">
               Transparent Offer &amp; Equity Alignment
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Direct, transparent compensation and equity packages. Clear ownership expectations from day one with zero bureaucratic layers.
             </p>
-            <div className="space-y-1.5 pt-1 text-xs text-slate-300">
+            <div className="space-y-1.5 pt-1 text-xs text-slate-700">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Meaningful Equity: Substantial ownership in sovereign autonomy mission</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                 <span>Zero Bureaucracy: Flat reporting, extreme engineering ownership from day one</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-1.5 pt-2">
               {["Direct Equity", "Top Market Pay", "High Autonomy", "No Bureaucracy"].map((tag, i) => (
-                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">
+                <span key={i} className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
                   {tag}
                 </span>
               ))}
@@ -823,17 +823,17 @@ export default function CareersPage() {
           tagline="HIRING PHILOSOPHY // 4-STAGE PIPELINE"
           word="EVALUATE"
           bgImage={careersEvaluatePosterBg}
-          bgOpacity={0.9}
-          wordGradient={true}
-          taglineColor="#cbd5e1"
-          ink="#ffffff"
-          paper="#090e1a"
+          bgOpacity={0.85}
+          wordGradient={["#0f172a", "#1e293b", "#334155", "#0f172a"]}
+          taglineColor="#475569"
+          ink="#0f172a"
+          paper="#f8fafc"
           height="100svh"
           scrollDistance="320svh"
           closeOnExit={true}
         >
           {/* Revealed Content: Evaluation Architecture & Interactive AnimatedTabs with Changing Realistic Backgrounds */}
-          <div className="relative w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4 h-full flex flex-col justify-center">
+          <div className="relative w-full max-w-7xl 2xl:max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4 h-full flex flex-col justify-center pointer-events-auto">
             
             {/* Dynamic Background Visual Image: Smoothly cross-fades when each tab is selected */}
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl pointer-events-none">
@@ -849,37 +849,38 @@ export default function CareersPage() {
                   className="w-full h-full object-cover object-center"
                 />
               </AnimatePresence>
-              {/* Cinematic Vignette Overlay for High Legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-[#090e1a]/75 to-[#090e1a]/85" />
-              <div className="absolute inset-0 bg-radial from-transparent via-[#090e1a]/60 to-[#090e1a]" />
+              {/* Soft Luminous Daylight Diffusion Vignette - No black overlays */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white/92 via-white/70 to-white/90 pointer-events-none" />
+              <div className="absolute inset-0 bg-radial from-transparent via-white/45 to-white/80 pointer-events-none" />
             </div>
 
-            {/* Header Area with High-Contrast White and Cyan Typography */}
+            {/* Header Area with High-Contrast Slate Typography */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div className="text-left max-w-3xl">
-                <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-blue-600 uppercase">
                   Evaluation Architecture // 4-Stage Intake
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight mt-1">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight mt-1">
                   How We Evaluate.
                 </h2>
-                <p className="mt-1 text-slate-300 text-xs sm:text-sm leading-relaxed">
+                <p className="mt-1 text-slate-600 text-xs sm:text-sm leading-relaxed">
                   We respect your time. Our hiring pipeline is fast, respectful, and focused entirely on physical engineering competence.
                 </p>
               </div>
 
-              <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/15 text-slate-200 text-xs font-mono font-semibold self-start sm:self-auto shrink-0 shadow-lg backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 text-slate-700 text-xs font-mono font-semibold self-start sm:self-auto shrink-0 shadow-sm backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Direct Engineering Review</span>
               </div>
             </div>
 
-            {/* Interactive AnimatedTabs Component with Changing Showcase Visuals */}
+            {/* Interactive AnimatedTabs Component with Changing Showcase Visuals & Auto-shift */}
             <AnimatedTabs
               tabs={evaluationTabs}
               activeTab={activeEvalTab}
               onTabChange={setActiveEvalTab}
-              className="w-full"
+              autoShiftInterval={4500}
+              className="w-full pointer-events-auto"
             />
           </div>
         </TigerTearReveal>

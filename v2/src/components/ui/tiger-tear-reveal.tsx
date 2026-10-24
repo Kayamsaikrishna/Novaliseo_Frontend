@@ -437,9 +437,9 @@ type Frame = { p: number; look: Pt; blink: number; squint: number }
 export function TigerTearReveal({
   word = "EVALUATE",
   tagline = "HIRING PHILOSOPHY",
-  ink = "#ffffff",
-  paper = "#090e1a",
-  taglineColor = "#cbd5e1",
+  ink = "#0f172a",
+  paper = "#f8fafc",
+  taglineColor = "#475569",
   eyeColor = "#f59e0b",
   furColor = "#d97706",
   fontFamily = '"Anton", Impact, "Bebas Neue", "Oswald", "Arial Black", sans-serif',
@@ -633,16 +633,16 @@ export function TigerTearReveal({
           </linearGradient>
         ) : (
           <linearGradient id={id + "-word-grad"} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="32%" stopColor="#f8fafc" />
-            <stop offset="68%" stopColor="#cbd5e1" />
-            <stop offset="100%" stopColor="#94a3b8" />
+            <stop offset="0%" stopColor="#0f172a" />
+            <stop offset="38%" stopColor="#1e293b" />
+            <stop offset="72%" stopColor="#334155" />
+            <stop offset="100%" stopColor="#0f172a" />
           </linearGradient>
         )}
         <linearGradient id={id + "-bg-dim"} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#090e1a" stopOpacity="0.88" />
-          <stop offset="46%" stopColor="#090e1a" stopOpacity="0.52" />
-          <stop offset="100%" stopColor="#090e1a" stopOpacity="0.88" />
+          <stop offset="0%" stopColor={paper === "#090e1a" ? "#090e1a" : "#f8fafc"} stopOpacity={0.65} />
+          <stop offset="46%" stopColor={paper === "#090e1a" ? "#090e1a" : "#f8fafc"} stopOpacity={0.3} />
+          <stop offset="100%" stopColor={paper === "#090e1a" ? "#090e1a" : "#f8fafc"} stopOpacity={0.65} />
         </linearGradient>
         <linearGradient id={id + "-shade"} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#2a1203" stopOpacity={0.45} />
@@ -762,10 +762,13 @@ export function TigerTearReveal({
         onPointerLeave={() => (pointer.current = null)}
         onPointerDown={() => !children && s.pop > 0.5 && (squintAt.current = performance.now())}
       >
-        {/* Revealed Content Layer (behind the paper SVG) covering full screen */}
+        {/* Revealed Content Layer (behind paper when closed, elevated above paper when open) */}
         {children ? (
           <div
-            className="absolute inset-0 flex items-center justify-center z-10 w-full h-full p-4 sm:p-6 lg:p-10 pointer-events-none"
+            className={
+              "absolute inset-0 flex items-center justify-center w-full h-full p-4 sm:p-6 lg:p-10 transition-all " +
+              (s.open > 0.15 ? "z-30 pointer-events-auto" : "z-10 pointer-events-none")
+            }
             style={{
               opacity: closeOnExit
                 ? smooth(0.03, 0.16, f.p) * (1 - smooth(0.82, 0.95, f.p))
@@ -773,12 +776,10 @@ export function TigerTearReveal({
               transform: closeOnExit
                 ? `scale(${0.94 + 0.06 * smooth(0.04, 0.18, f.p) * (1 - smooth(0.80, 0.96, f.p))})`
                 : `scale(${0.92 + 0.08 * smooth(0.15, 0.7, f.p)})`,
-              pointerEvents: closeOnExit
-                ? (f.p >= 0.18 && f.p <= 0.82 ? "auto" : "none")
-                : (f.p > 0.6 ? "auto" : "none"),
+              pointerEvents: s.open > 0.15 ? "auto" : "none",
             }}
           >
-            <div className="w-full h-full max-h-[96svh] flex flex-col justify-center my-auto">
+            <div className="w-full h-full max-h-[96svh] flex flex-col justify-center my-auto pointer-events-auto">
               {children}
             </div>
           </div>
@@ -796,18 +797,6 @@ export function TigerTearReveal({
           >
             scroll slowly to tear &amp; reveal
             <span className="block h-6 w-px animate-pulse motion-reduce:animate-none" style={{ background: taglineColor }} />
-          </div>
-        ) : null}
-
-        {/* Mid-stage Scroll Hint during hold */}
-        {closeOnExit && !controlled && f.p >= 0.45 && f.p <= 0.75 ? (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-4 flex flex-col items-center gap-1 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-400 z-30"
-            style={{ opacity: smooth(0.48, 0.55, f.p) * (1 - smooth(0.70, 0.76, f.p)) }}
-          >
-            <span>scroll to continue</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           </div>
         ) : null}
       </div>

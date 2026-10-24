@@ -17,6 +17,7 @@ export interface AnimatedTabsProps {
   defaultTab?: string;
   activeTab?: string;
   onTabChange?: (tabId: string) => void;
+  autoShiftInterval?: number;
   className?: string;
 }
 
@@ -70,11 +71,13 @@ export const AnimatedTabs = ({
   defaultTab,
   activeTab: controlledActiveTab,
   onTabChange,
+  autoShiftInterval = 4500,
   className,
 }: AnimatedTabsProps) => {
   const [internalActiveTab, setInternalActiveTab] = useState<string>(
     defaultTab || tabs[0]?.id
   );
+  const [isPaused, setIsPaused] = useState(false);
 
   const activeTabId = controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
 
@@ -85,42 +88,63 @@ export const AnimatedTabs = ({
     onTabChange?.(tabId);
   };
 
+  // Smooth automatic tab rotation when not hovered
+  React.useEffect(() => {
+    if (!autoShiftInterval || autoShiftInterval <= 0 || isPaused || tabs.length <= 1) return;
+    const timer = setInterval(() => {
+      const currentIndex = tabs.findIndex((t) => t.id === activeTabId);
+      const nextIndex = (currentIndex + 1) % tabs.length;
+      handleTabClick(tabs[nextIndex].id);
+    }, autoShiftInterval);
+    return () => clearInterval(timer);
+  }, [activeTabId, isPaused, autoShiftInterval, tabs]);
+
   if (!tabs?.length) return null;
 
   const activeTabObj = tabs.find((t) => t.id === activeTabId) || tabs[0];
 
   return (
-    <div className={cn("w-full flex flex-col gap-4", className)}>
+    <div
+      className={cn("w-full flex flex-col gap-3.5 sm:gap-4 pointer-events-auto", className)}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Tab Navigation Pill Bar */}
-      <div className="flex gap-2 sm:gap-3 flex-wrap bg-slate-900/80 border border-white/10 backdrop-blur-md p-1.5 rounded-2xl w-fit self-start sm:self-center shadow-lg">
+      <div className="flex gap-1.5 sm:gap-2 flex-wrap bg-white/95 border border-slate-200/90 backdrop-blur-md p-1.5 rounded-2xl w-fit self-start sm:self-center shadow-sm pointer-events-auto z-20">
         {tabs.map((tab) => {
           const isActive = activeTabId === tab.id;
           return (
             <button
               key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleTabClick(tab.id);
+              }}
+              onMouseEnter={() => handleTabClick(tab.id)}
+              onTouchStart={() => handleTabClick(tab.id)}
               className={cn(
-                "relative px-4 sm:px-5 py-2 text-xs sm:text-sm font-mono font-bold rounded-xl transition-all outline-none cursor-pointer flex items-center gap-2",
+                "relative px-3.5 sm:px-5 py-2 text-xs sm:text-sm font-mono font-bold rounded-xl transition-all outline-none cursor-pointer flex items-center gap-2 select-none",
                 isActive
                   ? "text-white shadow-sm"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                  : "text-slate-600 hover:text-slate-950 hover:bg-slate-100/90 active:scale-95"
               )}
             >
               {isActive && (
                 <motion.div
                   layoutId="active-tab-indicator"
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  className="absolute inset-0 bg-slate-950 rounded-xl shadow-md"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-2 pointer-events-none">
                 {tab.badge && (
                   <span
                     className={cn(
                       "text-[10px] px-1.5 py-0.5 rounded-md font-mono",
                       isActive
                         ? "bg-white/20 text-white"
-                        : "bg-slate-800 text-slate-400"
+                        : "bg-slate-100 text-slate-500 border border-slate-200/70"
                     )}
                   >
                     {tab.badge}
@@ -133,16 +157,16 @@ export const AnimatedTabs = ({
         })}
       </div>
 
-      {/* Tab Content Display Container */}
-      <div className="p-6 sm:p-8 lg:p-10 bg-slate-950/75 shadow-[0_20px_60px_rgba(0,0,0,0.4)] text-white backdrop-blur-xl rounded-3xl border border-white/10 w-full min-h-[380px] sm:min-h-[420px] flex items-center overflow-hidden relative">
+      {/* Tab Content Display Container - Clean Daylight Frosted Glass */}
+      <div className="p-5 sm:p-7 lg:p-8 bg-white/95 shadow-[0_20px_50px_rgba(0,0,0,0.06)] text-slate-900 backdrop-blur-xl rounded-3xl border border-white/90 w-full min-h-[340px] sm:min-h-[380px] flex items-center overflow-hidden relative pointer-events-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTabObj.id}
             initial={{
               opacity: 0,
-              scale: 0.96,
-              y: 8,
-              filter: "blur(8px)",
+              scale: 0.98,
+              y: 6,
+              filter: "blur(4px)",
             }}
             animate={{
               opacity: 1,
@@ -152,12 +176,12 @@ export const AnimatedTabs = ({
             }}
             exit={{
               opacity: 0,
-              scale: 0.96,
-              y: -8,
-              filter: "blur(8px)",
+              scale: 0.98,
+              y: -6,
+              filter: "blur(4px)",
             }}
             transition={{
-              duration: 0.38,
+              duration: 0.28,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="w-full h-full"
