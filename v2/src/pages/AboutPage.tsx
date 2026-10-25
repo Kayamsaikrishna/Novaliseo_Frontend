@@ -2,7 +2,47 @@ import { motion, useScroll } from "framer-motion"
 import logo from "../assets/logo.png"
 import icon from "../assets/icon.png"
 import { ShaderBackground } from "../components/ShaderBackground"
-import DuotoneTeamRoster from "../components/ui/duotone-team-roster"
+import DuotoneTeamRoster, { type TeamMember } from "../components/ui/duotone-team-roster"
+
+import drShubhaImg from "../assets/team/dr_shubha_iyengar.png"
+import annaraoImg from "../assets/team/portrait_annarao.png"
+import kushanthImg from "../assets/team/portrait_kushanth.png"
+import raviImg from "../assets/team/portrait_ravi.png"
+import thejaaImg from "../assets/team/portrait_thejaa.png"
+import saiKrishnaImg from "../assets/team/sai krishna.png"
+
+const NOVALISEO_TEAM: TeamMember[] = [
+  {
+    name: "Sai Krishna",
+    photo: saiKrishnaImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Dr. Shubha Iyengar",
+    photo: drShubhaImg,
+    focus: "50% 25%",
+  },
+  {
+    name: "Annarao",
+    photo: annaraoImg,
+    focus: "50% 22%",
+  },
+  {
+    name: "Thejaa",
+    photo: thejaaImg,
+    focus: "50% 22%",
+  },
+  {
+    name: "Kushanth",
+    photo: kushanthImg,
+    focus: "50% 22%",
+  },
+  {
+    name: "Ravi",
+    photo: raviImg,
+    focus: "50% 22%",
+  },
+]
 
 const ASSETS = {
   HERO: "https://pub-940ccf6255b54fa799a9b01050e6c227.r2.dev/ruixen_hero_gradient.jpg",
@@ -185,6 +225,8 @@ export default function AboutPage() {
             className="rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl bg-slate-950/40 backdrop-blur-xl"
           >
             <DuotoneTeamRoster
+              members={NOVALISEO_TEAM}
+              openRoles={[]}
               eyebrow="The Minds Behind"
               title={"The\nCrew"}
               intro="Researchers, roboticists, firmware developers, and systems architects building next-generation sovereign intelligence and physical autonomy."
@@ -192,22 +234,6 @@ export default function AboutPage() {
               secondaryCta={{ label: "Our research", href: "/research" }}
               preset="cobalt"
               height="85vh"
-              openRoles={[
-                {
-                  title: "Autonomous Flight Lead",
-                  href: "/careers#roles",
-                  craft: "Flight",
-                  note: "PX4 / Non-linear guidance architectures",
-                  mark: "Join",
-                },
-                {
-                  title: "Edge AI Systems Engineer",
-                  href: "/careers#roles",
-                  craft: "Edge AI",
-                  note: "TensorRT / CUDA real-time pipelines",
-                  mark: "You?",
-                },
-              ]}
             />
           </motion.div>
         </div>

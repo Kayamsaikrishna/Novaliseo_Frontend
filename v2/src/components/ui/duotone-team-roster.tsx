@@ -42,8 +42,8 @@ export type RosterPalette = {
 
 export type TeamMember = {
   name: string;
-  role: string;
-  /** Short label on the chip ("Colour", "Sound"). Defaults to the role. */
+  role?: string;
+  /** Short label on the chip ("Colour", "Sound"). Defaults to the role or name. */
   craft?: string;
   /** One line shown when the chip unfolds. */
   bio?: string;
@@ -437,8 +437,8 @@ function Portrait(props: {
   const isRole = slot.kind === "role";
   const member = slot.kind === "member" ? slot.member : null;
   const role = slot.kind === "role" ? slot.role : null;
-  const craft = member ? member.craft || member.role : role ? role.craft || labels.hiring : "";
-  const label = member ? member.name + ", " + member.role : role ? labels.openRole + ": " + role.title : "";
+  const craft = member ? member.craft || member.role || member.name : role ? role.craft || labels.hiring : "";
+  const label = member ? (member.role ? member.name + ", " + member.role : member.name) : role ? labels.openRole + ": " + role.title : "";
   const photo = member && member.photo && !failed ? member.photo : "";
   const href = member ? member.href : role ? role.href : undefined;
   const linkLabel = member ? member.linkLabel || labels.memberLink : (role && role.linkLabel) || labels.roleLink;
@@ -569,7 +569,9 @@ function Portrait(props: {
         }}
       >
         <p className="dtr-name">{member ? member.name : role ? role.title : ""}</p>
-        {member || (role && role.note) ? <p className="dtr-roleline">{member ? member.role : role ? role.note : ""}</p> : null}
+        {(member && member.role) || (role && role.note) ? (
+          <p className="dtr-roleline">{member ? member.role : role ? role.note : ""}</p>
+        ) : null}
         {member && member.bio ? <p className="dtr-bio">{member.bio}</p> : null}
         {href ? (
           <a href={href} tabIndex={hidden || !on ? -1 : 0}>
