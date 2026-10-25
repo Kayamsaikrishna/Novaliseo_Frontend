@@ -2,6 +2,7 @@ import { motion, useScroll } from "framer-motion"
 import logo from "../assets/logo.png"
 import icon from "../assets/icon.png"
 import { ShaderBackground } from "../components/ShaderBackground"
+import DuotoneTeamRoster from "../components/ui/duotone-team-roster"
 
 const ASSETS = {
   HERO: "https://pub-940ccf6255b54fa799a9b01050e6c227.r2.dev/ruixen_hero_gradient.jpg",
@@ -176,8 +177,41 @@ export default function AboutPage() {
         </div>
       </section>
 
-
-
+      {/* ---------------- TEAM ROSTER SECTION ---------------- */}
+      <section className="py-16 md:py-24 relative z-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            {...fadeInUp}
+            className="rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl bg-slate-950/40 backdrop-blur-xl"
+          >
+            <DuotoneTeamRoster
+              eyebrow="The Minds Behind"
+              title={"The\nCrew"}
+              intro="Researchers, roboticists, firmware developers, and systems architects building next-generation sovereign intelligence and physical autonomy."
+              cta={{ label: "Join the mission", href: "/careers" }}
+              secondaryCta={{ label: "Our research", href: "/research" }}
+              preset="cobalt"
+              height="85vh"
+              openRoles={[
+                {
+                  title: "Autonomous Flight Lead",
+                  href: "/careers#roles",
+                  craft: "Flight",
+                  note: "PX4 / Non-linear guidance architectures",
+                  mark: "Join",
+                },
+                {
+                  title: "Edge AI Systems Engineer",
+                  href: "/careers#roles",
+                  craft: "Edge AI",
+                  note: "TensorRT / CUDA real-time pipelines",
+                  mark: "You?",
+                },
+              ]}
+            />
+          </motion.div>
+        </div>
+      </section>
 
       {/* FINAL STATEMENT */}
       <section className="py-40 relative z-10">
