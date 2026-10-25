@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { tritoneTables, mixHex, resolvePalette } from "./duotone-team-roster";
 
 export interface OrgMember {
   id: string;
@@ -18,30 +17,15 @@ export interface OrgMember {
 
 export interface DuotoneOrgHierarchyProps {
   className?: string;
-  preset?: "ember" | "cobalt" | "moss" | "mono";
   photos?: Record<string, string>;
   onSelectMember?: (member: OrgMember) => void;
 }
 
 export default function DuotoneOrgHierarchy({
   className = "",
-  preset = "cobalt",
   photos = {},
   onSelectMember,
 }: DuotoneOrgHierarchyProps) {
-  const pal = resolvePalette(preset, undefined);
-  const rawId = React.useId();
-  const uid = "org" + rawId.replace(/[^a-zA-Z0-9]/g, "");
-  const filterId = uid + "-tone";
-
-  // Build SVG tritone tables identical to DuotoneTeamRoster
-  const mid = mixHex(pal.hot, pal.highlight, 0.35);
-  const tables = tritoneTables(
-    mixHex(pal.shadow, pal.deep, 0.4),
-    mid,
-    mixHex(pal.highlight, pal.ink, 0.5)
-  );
-
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -53,7 +37,7 @@ export default function DuotoneOrgHierarchy({
     department: "executive",
     craft: "Founder & CEO",
     focus: "50% 20%",
-    bio: "Steering Novaliseo's grand strategy, global partnerships, deep-tech research roadmaps, and sovereign intelligence systems.",
+    bio: "Steering Novaliseo's vision, global strategic partnerships, research alliances, and deep-tech autonomous intelligence roadmap.",
   };
 
   // Operations & Strategic Planning Division (Left group)
@@ -65,17 +49,17 @@ export default function DuotoneOrgHierarchy({
       department: "operations",
       craft: "Operations",
       focus: "50% 20%",
-      bio: "Overseeing day-to-day manufacturing, supply-chain logistics, and multi-domain testing operations across facilities.",
+      bio: "Spearheading multi-facility manufacturing, production scheduling, supply-chain logistics, and deployment operations.",
     },
     {
       id: "saikrishna",
       name: "Sai Krishna",
-      role: "Core Engineering & Systems",
+      role: "Chief Technology Officer (CTO)",
       department: "operations",
-      craft: "Core Systems",
+      craft: "CTO",
       monogram: "SK",
       focus: "50% 20%",
-      bio: "Architecting non-linear flight guidance, physical autonomy software, and real-time edge telemetry pipelines.",
+      bio: "Chief Technology Officer driving core autonomy software, flight control systems, non-linear guidance, and real-time computing pipelines.",
     },
     {
       id: "sharanraj",
@@ -84,7 +68,7 @@ export default function DuotoneOrgHierarchy({
       department: "operations",
       craft: "Strategy & Analytics",
       focus: "50% 20%",
-      bio: "Directing strategic resource allocation, financial modeling, industry market analytics, and operational scalability.",
+      bio: "Leading strategic planning, corporate financial architecture, data analytics, and operational scalability modeling.",
     },
   ];
 
@@ -97,7 +81,7 @@ export default function DuotoneOrgHierarchy({
       department: "advisory",
       craft: "Corporate Affairs",
       focus: "50% 20%",
-      bio: "Leading regulatory compliance, legal architecture, institutional liaisons, and strategic corporate governance.",
+      bio: "Managing institutional partnerships, corporate legal frameworks, regulatory certifications, and corporate affairs.",
     },
     {
       id: "shubha",
@@ -106,7 +90,7 @@ export default function DuotoneOrgHierarchy({
       department: "advisory",
       craft: "Aerospace Advisor",
       focus: "50% 25%",
-      bio: "Senior aerospace luminary guiding aerodynamic modeling, flight propulsion advances, and high-altitude guidance validation.",
+      bio: "Senior aerospace technology authority guiding aerodynamic performance, flight stability, propulsion advances, and high-altitude validation.",
     },
     {
       id: "ravi",
@@ -115,7 +99,7 @@ export default function DuotoneOrgHierarchy({
       department: "advisory",
       craft: "Technology Delivery",
       focus: "50% 20%",
-      bio: "Directing embedded hardware production, precision assembly lines, and client deployment schedules.",
+      bio: "Directing precision embedded hardware delivery, system conforming, testing cycles, and end-to-end client integration.",
     },
     {
       id: "sampathkumaran",
@@ -124,7 +108,7 @@ export default function DuotoneOrgHierarchy({
       department: "advisory",
       craft: "Material Development",
       focus: "50% 20%",
-      bio: "Principal research authority spearheading advanced carbon composites, aerospace metallurgy, and wear-resistant materials.",
+      bio: "Principal research authority spearheading advanced polymer composites, aerospace structural metallurgy, and tribological durability.",
     },
   ];
 
@@ -135,54 +119,32 @@ export default function DuotoneOrgHierarchy({
 
   return (
     <div
-      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-gradient-to-b from-slate-950 via-[#03061f] to-[#020617] text-white p-6 sm:p-10 md:p-16 select-none ${className}`}
-      style={
-        {
-          ["--dtr-ground" as any]: pal.ground,
-          ["--dtr-deep" as any]: pal.deep,
-          ["--dtr-hot" as any]: pal.hot,
-          ["--dtr-glow" as any]: pal.glow,
-          ["--dtr-ink" as any]: pal.ink,
-        } as React.CSSProperties
-      }
+      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-slate-200/90 bg-gradient-to-b from-white via-sky-50/20 to-slate-50/80 text-slate-900 p-6 sm:p-10 md:p-16 shadow-2xl shadow-slate-200/60 select-none ${className}`}
     >
-      {/* SVG Duotone Tritone Filter Definition */}
-      <svg className="absolute w-0 h-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <filter id={filterId} colorInterpolationFilters="sRGB">
-          <feColorMatrix
-            type="matrix"
-            values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"
-          />
-          <feComponentTransfer>
-            <feFuncR type="table" tableValues="0 0.13 0.5 0.9 1" />
-            <feFuncG type="table" tableValues="0 0.13 0.5 0.9 1" />
-            <feFuncB type="table" tableValues="0 0.13 0.5 0.9 1" />
-          </feComponentTransfer>
-          <feComponentTransfer>
-            <feFuncR type="table" tableValues={tables[0]} />
-            <feFuncG type="table" tableValues={tables[1]} />
-            <feFuncB type="table" tableValues={tables[2]} />
-          </feComponentTransfer>
-        </filter>
-      </svg>
-
-      {/* Atmospheric Background Ambient Radial Lighting */}
+      {/* Background Grid & Ambient Glow (Light Theme) */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[130px] rounded-full" />
-        <div className="absolute bottom-10 left-1/4 w-[500px] h-[300px] bg-cyan-600/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-10 right-1/4 w-[500px] h-[300px] bg-indigo-600/10 blur-[120px] rounded-full" />
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage: `radial-gradient(#0284c7 1px, transparent 1px)`,
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sky-400/10 blur-[100px] rounded-full" />
+        <div className="absolute bottom-10 left-10 w-[400px] h-[250px] bg-blue-400/10 blur-[100px] rounded-full" />
+        <div className="absolute bottom-10 right-10 w-[400px] h-[250px] bg-amber-400/10 blur-[100px] rounded-full" />
       </div>
 
       {/* Header Section */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto mb-14 md:mb-18 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 backdrop-blur-md text-[11px] font-bold tracking-[0.2em] text-cyan-300 uppercase shadow-inner">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          Novaliseo Governance
+      <div className="relative z-10 text-center max-w-3xl mx-auto mb-12 md:mb-16 space-y-3">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-300 bg-sky-50 text-xs font-bold tracking-[0.2em] text-sky-800 uppercase shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-sky-600 animate-pulse" />
+          NOVALISEO GOVERNANCE
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
           Organisation Structure
         </h2>
-        <p className="text-sm sm:text-base text-slate-400 font-light leading-relaxed max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-xl mx-auto">
           Executive leadership, mission-critical operations, technology delivery, and aerospace research councils.
         </p>
       </div>
@@ -198,40 +160,35 @@ export default function DuotoneOrgHierarchy({
             onMouseEnter={() => setHoveredId(executiveLeader.id)}
             onMouseLeave={() => setHoveredId(null)}
             onClick={() => handleMemberClick(executiveLeader)}
-            className={`cursor-pointer relative z-20 w-80 sm:w-96 rounded-2xl p-6 sm:p-7 text-center transition-all duration-300 backdrop-blur-xl border ${
+            className={`cursor-pointer relative z-20 w-80 sm:w-[420px] rounded-2xl p-6 sm:p-7 text-center transition-all duration-300 border ${
               hoveredId === executiveLeader.id || selectedId === executiveLeader.id
-                ? "bg-slate-900/95 border-cyan-400 shadow-[0_0_35px_rgba(46,87,245,0.45)] ring-2 ring-cyan-400/30"
-                : "bg-slate-950/80 border-cyan-500/30 shadow-2xl"
+                ? "bg-white border-sky-500 shadow-2xl shadow-sky-200/80 ring-4 ring-sky-100"
+                : "bg-white/95 border-slate-200 shadow-lg hover:shadow-xl hover:border-sky-400"
             }`}
           >
             {/* Craft Pill */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wider uppercase text-sky-800 bg-sky-50 border border-sky-300 mb-4 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
               {executiveLeader.craft}
             </div>
 
-            {/* Portrait Frame with Duotone Transition */}
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 rounded-2xl overflow-hidden border-2 border-cyan-400/60 shadow-[0_0_20px_rgba(46,87,245,0.3)] bg-slate-900 group">
+            {/* Portrait Frame */}
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 rounded-2xl overflow-hidden border-2 border-sky-500/70 shadow-md bg-slate-100 group">
               <img
                 src={photos[executiveLeader.id] || ""}
                 alt={executiveLeader.name}
-                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 style={{
-                  filter:
-                    hoveredId === executiveLeader.id || selectedId === executiveLeader.id
-                      ? "none"
-                      : `url(#${filterId})`,
                   objectPosition: executiveLeader.focus || "50% 20%",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Name and Designation */}
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            {/* Name and Designation - Full text without truncation */}
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
               {executiveLeader.name}
             </h3>
-            <p className="mt-1.5 text-xs sm:text-sm text-cyan-200/90 font-medium leading-snug">
+            <p className="mt-2 text-xs sm:text-sm text-sky-800 font-semibold leading-relaxed px-2">
               {executiveLeader.role}
             </p>
 
@@ -242,7 +199,7 @@ export default function DuotoneOrgHierarchy({
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 pt-3 border-t border-cyan-500/20 text-xs text-slate-300 leading-relaxed text-left"
+                  className="mt-4 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-600 leading-relaxed text-left bg-slate-50/70 p-3 rounded-xl"
                 >
                   {executiveLeader.bio}
                 </motion.div>
@@ -251,8 +208,8 @@ export default function DuotoneOrgHierarchy({
           </motion.div>
 
           {/* Stem downwards from CEO */}
-          <div className="w-0.5 h-10 sm:h-12 bg-gradient-to-b from-cyan-400 to-blue-500 relative">
-            <div className="absolute bottom-0 -left-1 w-2.5 h-2.5 rounded-full bg-cyan-400 ring-4 ring-cyan-500/20 shadow-[0_0_10px_#22d3ee]" />
+          <div className="w-0.5 h-10 sm:h-12 bg-gradient-to-b from-sky-500 to-blue-600 relative">
+            <div className="absolute bottom-0 -left-1 w-2.5 h-2.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm" />
           </div>
         </div>
 
@@ -260,50 +217,50 @@ export default function DuotoneOrgHierarchy({
         <div className="hidden md:block w-full h-12 relative pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 1000 48" fill="none" preserveAspectRatio="none">
             {/* Central Vertical Feed */}
-            <path d="M 500 0 L 500 24" stroke="url(#tree-grad)" strokeWidth="2" />
+            <path d="M 500 0 L 500 24" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
             {/* Horizontal Bus Line spanning left to right division */}
-            <path d="M 235 24 L 765 24" stroke="url(#tree-grad)" strokeWidth="2" strokeDasharray="4 2" />
+            <path d="M 235 24 L 765 24" stroke="url(#tree-grad-light)" strokeWidth="2.5" strokeDasharray="5 3" />
             {/* Left drop to Operations */}
-            <path d="M 235 24 L 235 48" stroke="url(#tree-grad)" strokeWidth="2" />
+            <path d="M 235 24 L 235 48" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
             {/* Right drop to Advisory */}
-            <path d="M 765 24 L 765 48" stroke="url(#tree-grad)" strokeWidth="2" />
+            <path d="M 765 24 L 765 48" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
             
             <defs>
-              <linearGradient id="tree-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#38bdf8" />
-                <stop offset="50%" stopColor="#2e57f5" />
-                <stop offset="100%" stopColor="#38bdf8" />
+              <linearGradient id="tree-grad-light" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#0284c7" />
+                <stop offset="50%" stopColor="#2563eb" />
+                <stop offset="100%" stopColor="#0284c7" />
               </linearGradient>
             </defs>
           </svg>
           {/* Glowing Junction Dots */}
-          <div className="absolute top-[21px] left-[23.5%] -translate-x-1/2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
-          <div className="absolute top-[21px] left-[76.5%] -translate-x-1/2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
+          <div className="absolute top-[20px] left-[23.5%] -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-sky-600 shadow-sm" />
+          <div className="absolute top-[20px] left-[76.5%] -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-sky-600 shadow-sm" />
         </div>
 
         {/* Mobile vertical line connector */}
-        <div className="md:hidden w-0.5 h-6 bg-gradient-to-b from-blue-500 to-transparent" />
+        <div className="md:hidden w-0.5 h-6 bg-gradient-to-b from-sky-500 to-transparent" />
 
         {/* ================= LEVEL 2: TWO DIVISION CARDS ================= */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 mt-2">
           
-          {/* DIVISION 1: OPERATIONS & STRATEGIC PLANNING (Left Container) */}
-          <div className="lg:col-span-5 flex flex-col rounded-3xl p-6 sm:p-8 bg-slate-950/60 border border-blue-500/20 backdrop-blur-xl shadow-2xl relative group">
+          {/* DIVISION 1: OPERATIONS & STRATEGY (Left Container) */}
+          <div className="lg:col-span-5 flex flex-col rounded-3xl p-6 sm:p-7 bg-white/95 border border-sky-200/90 shadow-xl shadow-sky-100/60 relative group">
             {/* Division Top Accent */}
-            <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6]" />
-                <h4 className="text-base sm:text-lg font-bold tracking-tight text-white">
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <span className="w-3 h-3 rounded-full bg-sky-600 shadow-sm" />
+                <h4 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
                   Operations &amp; Strategy
                 </h4>
               </div>
-              <span className="text-[11px] font-semibold text-blue-400 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-blue-950/80 border border-blue-500/30">
+              <span className="text-[11px] font-bold text-sky-800 uppercase tracking-widest px-3 py-1 rounded-full bg-sky-50 border border-sky-200">
                 3 Leaders
               </span>
             </div>
 
-            {/* Member Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 flex-1">
+            {/* Member Cards - Ample width & height, NO text truncation */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-1 items-stretch">
               {operationsGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
@@ -312,48 +269,47 @@ export default function DuotoneOrgHierarchy({
                 return (
                   <motion.div
                     key={m.id}
-                    whileHover={{ y: -4, scale: 1.03 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl p-4 text-center transition-all duration-300 border flex flex-col items-center justify-between ${
+                    className={`cursor-pointer rounded-2xl p-4 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[260px] ${
                       isHovered || isSelected
-                        ? "bg-slate-900/90 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.35)]"
-                        : "bg-slate-900/40 border-white/5 hover:border-blue-500/30"
+                        ? "bg-sky-50/70 border-sky-400 shadow-xl shadow-sky-100 ring-2 ring-sky-200"
+                        : "bg-white border-slate-200 hover:border-sky-300 hover:shadow-md"
                     }`}
                   >
                     {/* Portrait or Monogram Avatar */}
-                    <div className="relative w-18 h-18 sm:w-20 sm:h-20 mb-3 rounded-xl overflow-hidden border-2 border-blue-400/50 shadow-md bg-slate-900 flex items-center justify-center">
+                    <div className="relative w-20 h-20 mb-3 rounded-xl overflow-hidden border-2 border-sky-400/80 shadow-sm bg-slate-100 flex items-center justify-center shrink-0">
                       {photoSrc ? (
                         <img
                           src={photoSrc}
                           alt={m.name}
-                          className="w-full h-full object-cover transition-all duration-300"
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                           style={{
-                            filter: isHovered || isSelected ? "none" : `url(#${filterId})`,
                             objectPosition: m.focus || "50% 20%",
                           }}
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-blue-950 via-slate-900 to-black flex items-center justify-center font-black text-xl text-blue-300">
+                        <div className="w-full h-full bg-gradient-to-br from-sky-100 via-sky-50 to-blue-100 flex items-center justify-center font-black text-xl text-sky-800">
                           {m.monogram || m.name.charAt(0)}
                         </div>
                       )}
                     </div>
 
-                    {/* Info */}
-                    <div className="space-y-1 w-full">
-                      <h5 className="text-xs sm:text-sm font-bold text-white tracking-tight line-clamp-1">
+                    {/* Info - Full text completely visible without ellipsis */}
+                    <div className="w-full my-auto flex flex-col justify-center">
+                      <h5 className="text-sm font-extrabold text-slate-900 tracking-tight leading-snug break-words">
                         {m.name}
                       </h5>
-                      <p className="text-[11px] text-blue-200/80 font-normal leading-tight line-clamp-2 min-h-[28px]">
+                      <p className="text-xs text-sky-800 font-semibold leading-relaxed mt-1.5 break-words">
                         {m.role}
                       </p>
                     </div>
 
                     {/* Chip */}
-                    <span className="mt-3 inline-block px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-blue-300 bg-blue-950/70 border border-blue-500/30 rounded">
+                    <span className="mt-3 inline-block px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 border border-sky-300 rounded-full shrink-0 shadow-sm">
                       {m.craft}
                     </span>
                   </motion.div>
@@ -363,22 +319,22 @@ export default function DuotoneOrgHierarchy({
           </div>
 
           {/* DIVISION 2: CORPORATE, ADVISORY & TECHNOLOGY (Right Container) */}
-          <div className="lg:col-span-7 flex flex-col rounded-3xl p-6 sm:p-8 bg-slate-950/60 border border-amber-500/20 backdrop-blur-xl shadow-2xl relative group">
+          <div className="lg:col-span-7 flex flex-col rounded-3xl p-6 sm:p-7 bg-white/95 border border-amber-200/90 shadow-xl shadow-amber-100/50 relative group">
             {/* Division Top Accent */}
-            <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <span className="w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_12px_#fbbf24]" />
-                <h4 className="text-base sm:text-lg font-bold tracking-tight text-white">
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <span className="w-3 h-3 rounded-full bg-amber-500 shadow-sm" />
+                <h4 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
                   Corporate, Advisory &amp; Technology
                 </h4>
               </div>
-              <span className="text-[11px] font-semibold text-amber-300 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-950/80 border border-amber-500/30">
+              <span className="text-[11px] font-bold text-amber-800 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-50 border border-amber-200">
                 4 Advisory &amp; Tech Heads
               </span>
             </div>
 
-            {/* Member Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 flex-1">
+            {/* Member Cards - Ample width & height, NO text truncation */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 flex-1 items-stretch">
               {advisoryGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
@@ -387,48 +343,47 @@ export default function DuotoneOrgHierarchy({
                 return (
                   <motion.div
                     key={m.id}
-                    whileHover={{ y: -4, scale: 1.03 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl p-4 text-center transition-all duration-300 border flex flex-col items-center justify-between ${
+                    className={`cursor-pointer rounded-2xl p-4 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[260px] ${
                       isHovered || isSelected
-                        ? "bg-slate-900/90 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.35)]"
-                        : "bg-slate-900/40 border-white/5 hover:border-amber-500/30"
+                        ? "bg-amber-50/70 border-amber-400 shadow-xl shadow-amber-100 ring-2 ring-amber-200"
+                        : "bg-white border-slate-200 hover:border-amber-300 hover:shadow-md"
                     }`}
                   >
                     {/* Portrait Frame */}
-                    <div className="relative w-18 h-18 sm:w-20 sm:h-20 mb-3 rounded-xl overflow-hidden border-2 border-amber-400/50 shadow-md bg-slate-900 flex items-center justify-center">
+                    <div className="relative w-20 h-20 mb-3 rounded-xl overflow-hidden border-2 border-amber-400/80 shadow-sm bg-slate-100 flex items-center justify-center shrink-0">
                       {photoSrc ? (
                         <img
                           src={photoSrc}
                           alt={m.name}
-                          className="w-full h-full object-cover transition-all duration-300"
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                           style={{
-                            filter: isHovered || isSelected ? "none" : `url(#${filterId})`,
                             objectPosition: m.focus || "50% 20%",
                           }}
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-amber-950 via-slate-900 to-black flex items-center justify-center font-black text-xl text-amber-300">
+                        <div className="w-full h-full bg-gradient-to-br from-amber-100 via-amber-50 to-orange-100 flex items-center justify-center font-black text-xl text-amber-800">
                           {m.monogram || m.name.charAt(0)}
                         </div>
                       )}
                     </div>
 
-                    {/* Info */}
-                    <div className="space-y-1 w-full">
-                      <h5 className="text-xs sm:text-sm font-bold text-white tracking-tight line-clamp-1">
+                    {/* Info - Full text completely visible without ellipsis */}
+                    <div className="w-full my-auto flex flex-col justify-center">
+                      <h5 className="text-sm font-extrabold text-slate-900 tracking-tight leading-snug break-words">
                         {m.name}
                       </h5>
-                      <p className="text-[11px] text-amber-200/80 font-normal leading-tight line-clamp-2 min-h-[28px]">
+                      <p className="text-xs text-amber-900 font-semibold leading-relaxed mt-1.5 break-words">
                         {m.role}
                       </p>
                     </div>
 
                     {/* Chip */}
-                    <span className="mt-3 inline-block px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-amber-300 bg-amber-950/70 border border-amber-500/30 rounded">
+                    <span className="mt-3 inline-block px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-300 rounded-full shrink-0 shadow-sm">
                       {m.craft}
                     </span>
                   </motion.div>
@@ -448,7 +403,7 @@ export default function DuotoneOrgHierarchy({
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="mt-10 max-w-2xl mx-auto rounded-2xl p-5 bg-slate-900/90 border border-cyan-500/30 text-center backdrop-blur-xl relative z-20 shadow-2xl"
+            className="mt-10 max-w-2xl mx-auto rounded-2xl p-6 bg-white border-2 border-sky-400 text-center shadow-xl shadow-sky-100 relative z-20"
           >
             {(() => {
               const all = [executiveLeader, ...operationsGroup, ...advisoryGroup];
@@ -457,15 +412,19 @@ export default function DuotoneOrgHierarchy({
               return (
                 <div className="space-y-2">
                   <div className="flex items-center justify-center gap-2">
-                    <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest">
+                    <span className="text-xs font-extrabold text-sky-800 bg-sky-50 px-3 py-0.5 rounded-full border border-sky-300 uppercase tracking-widest">
                       {mem.craft}
                     </span>
-                    <span className="text-slate-500">•</span>
-                    <span className="text-xs text-slate-400 capitalize">{mem.department} Leadership</span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-xs font-semibold text-slate-600 capitalize">{mem.department} Leadership</span>
                   </div>
-                  <h4 className="text-xl font-bold text-white">{mem.name}</h4>
-                  <p className="text-sm text-cyan-200 font-medium">{mem.role}</p>
-                  {mem.bio && <p className="text-xs sm:text-sm text-slate-300 font-light max-w-lg mx-auto pt-1">{mem.bio}</p>}
+                  <h4 className="text-2xl font-black text-slate-900">{mem.name}</h4>
+                  <p className="text-sm text-sky-800 font-bold">{mem.role}</p>
+                  {mem.bio && (
+                    <p className="text-xs sm:text-sm text-slate-700 font-normal max-w-lg mx-auto pt-2 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
+                      {mem.bio}
+                    </p>
+                  )}
                 </div>
               );
             })()}
