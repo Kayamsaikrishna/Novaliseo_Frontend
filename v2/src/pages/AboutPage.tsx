@@ -46,8 +46,8 @@ const NOVALISEO_ROSTER: TeamMember[] = [
   },
   {
     name: "Sai Krishna",
-    role: "Chief Technology Officer (CTO)",
-    craft: "CTO",
+    role: "Chief Technology Officer (CTO) | AI & Tech Lead",
+    craft: "CTO & AI Lead",
     photo: saiKrishnaImg,
     focus: "50% 20%",
   },
@@ -437,7 +437,7 @@ export default function AboutPage() {
 
       {/* ---------------- ORGANISATION STRUCTURE & THE CREW (WITH TOGGLE) ---------------- */}
       <section className="py-20 md:py-32 relative z-10 w-full">
-        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8">
+        <div className="w-full max-w-[1780px] mx-auto px-2 sm:px-4 lg:px-6 space-y-8">
           
           {/* Interactive View Switcher */}
           <div className="flex justify-center">

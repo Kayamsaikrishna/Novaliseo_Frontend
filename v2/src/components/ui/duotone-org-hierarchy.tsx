@@ -54,12 +54,12 @@ export default function DuotoneOrgHierarchy({
     {
       id: "saikrishna",
       name: "Sai Krishna",
-      role: "Chief Technology Officer (CTO)",
+      role: "Chief Technology Officer (CTO) | AI & Tech Lead",
       department: "operations",
-      craft: "CTO",
+      craft: "CTO & AI Lead",
       monogram: "SK",
       focus: "50% 20%",
-      bio: "Chief Technology Officer driving core autonomy software, flight control systems, non-linear guidance, and real-time computing pipelines.",
+      bio: "Chief Technology Officer and AI & Tech Lead driving core autonomy software, intelligent agent architectures, flight control systems, non-linear guidance, and real-time computing pipelines.",
     },
     {
       id: "sharanraj",
@@ -119,7 +119,7 @@ export default function DuotoneOrgHierarchy({
 
   return (
     <div
-      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-slate-200/90 bg-gradient-to-b from-white via-sky-50/20 to-slate-50/80 text-slate-900 p-4 sm:p-8 md:p-10 lg:p-12 shadow-2xl shadow-slate-200/60 select-none ${className}`}
+      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-slate-200/90 bg-gradient-to-b from-white via-sky-50/20 to-slate-50/80 text-slate-900 p-3 sm:p-5 md:p-6 lg:p-7 xl:p-8 shadow-2xl shadow-slate-200/60 select-none ${className}`}
     >
       {/* Background Grid & Ambient Glow (Light Theme) */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -252,12 +252,12 @@ export default function DuotoneOrgHierarchy({
         </div>
 
         {/* ================= LEVEL 2: TWO DIVISION CARDS ================= */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
           
           {/* DIVISION 1: OPERATIONS & STRATEGY (Left Container) */}
-          <div className="lg:col-span-5 flex flex-col rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 bg-white/95 border border-sky-200/90 shadow-xl shadow-sky-100/60 relative group">
+          <div className="lg:col-span-5 flex flex-col rounded-3xl p-3.5 sm:p-4 lg:p-4.5 xl:p-5 bg-white/95 border border-sky-200/90 shadow-xl shadow-sky-100/60 relative group">
             {/* Division Top Accent */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
                 <span className="w-3 h-3 rounded-full bg-sky-600 shadow-sm" />
                 <h4 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
@@ -269,12 +269,19 @@ export default function DuotoneOrgHierarchy({
               </span>
             </div>
 
-            {/* Member Cards - Big images, names on 1 line, identical aligned heights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 flex-1 items-stretch">
+            {/* Member Cards - Flex layout with auto-expanding width for Kushanthraj S. N. */}
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-3.5 flex-1 items-stretch w-full">
               {operationsGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
                 const photoSrc = photos[m.id];
+                // Automatically allocate more width to Kushanthraj S. N. so full name fits on 1 line
+                const flexClass =
+                  m.id === "kushanthraj"
+                    ? "sm:flex-[1.28] min-w-0"
+                    : m.id === "saikrishna"
+                    ? "sm:flex-[0.84] min-w-0"
+                    : "sm:flex-[0.98] min-w-0";
 
                 return (
                   <motion.div
@@ -284,7 +291,7 @@ export default function DuotoneOrgHierarchy({
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl px-3 py-5 sm:px-4 sm:py-6 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full min-w-0 ${
+                    className={`cursor-pointer rounded-2xl px-2.5 py-4 sm:px-3 sm:py-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full ${flexClass} ${
                       isHovered || isSelected
                         ? "bg-sky-50/70 border-sky-400 shadow-xl shadow-sky-100 ring-2 ring-sky-200"
                         : "bg-white border-slate-200 hover:border-sky-300 hover:shadow-md"
@@ -308,12 +315,18 @@ export default function DuotoneOrgHierarchy({
                       )}
                     </div>
 
-                    {/* Info - Name on one line, Aligned designation */}
+                    {/* Info - Name on one line without any dots */}
                     <div className="w-full my-auto flex flex-col justify-center px-1 min-w-0">
-                      <h5 className="text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base font-black text-slate-900 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis text-center">
+                      <h5
+                        className={`font-black text-slate-900 text-center leading-snug whitespace-nowrap ${
+                          m.name.length >= 16
+                            ? "text-[11.5px] sm:text-xs md:text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] tracking-tighter"
+                            : "text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base tracking-tight"
+                        }`}
+                      >
                         {m.name}
                       </h5>
-                      <div className="min-h-[46px] flex items-center justify-center mt-1.5">
+                      <div className="min-h-[46px] flex items-center justify-center mt-1.5 px-0.5">
                         <p className="text-xs text-sky-800 font-semibold leading-snug">
                           {m.role}
                         </p>
@@ -321,7 +334,7 @@ export default function DuotoneOrgHierarchy({
                     </div>
 
                     {/* Chip */}
-                    <span className="mt-3 inline-block px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 border border-sky-300 rounded-full shrink-0 shadow-sm">
+                    <span className="mt-3 inline-block px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-sky-800 bg-sky-50 border border-sky-300 rounded-full shrink-0 shadow-sm">
                       {m.craft}
                     </span>
                   </motion.div>
@@ -331,9 +344,9 @@ export default function DuotoneOrgHierarchy({
           </div>
 
           {/* DIVISION 2: CORPORATE, ADVISORY & TECHNOLOGY (Right Container) */}
-          <div className="lg:col-span-7 flex flex-col rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 bg-white/95 border border-amber-200/90 shadow-xl shadow-amber-100/50 relative group">
+          <div className="lg:col-span-7 flex flex-col rounded-3xl p-3.5 sm:p-4 lg:p-4.5 xl:p-5 bg-white/95 border border-amber-200/90 shadow-xl shadow-amber-100/50 relative group">
             {/* Division Top Accent */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
                 <span className="w-3 h-3 rounded-full bg-amber-500 shadow-sm" />
                 <h4 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
@@ -345,12 +358,21 @@ export default function DuotoneOrgHierarchy({
               </span>
             </div>
 
-            {/* Member Cards - Big images, names on 1 line, identical aligned heights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5 flex-1 items-stretch">
+            {/* Member Cards - Flex layout with auto-expanding width for Dr. P Sampathkumaran */}
+            <div className="flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap gap-3 lg:gap-3.5 flex-1 items-stretch w-full">
               {advisoryGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
                 const photoSrc = photos[m.id];
+                // Automatically allocate more width to Dr. P Sampathkumaran so full name fits on 1 line
+                const flexClass =
+                  m.id === "sampathkumaran"
+                    ? "sm:w-[calc(50%-0.5rem)] xl:w-auto xl:flex-[1.38] min-w-0"
+                    : m.id === "ravi"
+                    ? "sm:w-[calc(50%-0.5rem)] xl:w-auto xl:flex-[0.78] min-w-0"
+                    : m.id === "shubha"
+                    ? "sm:w-[calc(50%-0.5rem)] xl:w-auto xl:flex-[0.88] min-w-0"
+                    : "sm:w-[calc(50%-0.5rem)] xl:w-auto xl:flex-[0.96] min-w-0";
 
                 return (
                   <motion.div
@@ -360,7 +382,7 @@ export default function DuotoneOrgHierarchy({
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl px-3 py-5 sm:px-4 sm:py-6 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full min-w-0 ${
+                    className={`cursor-pointer rounded-2xl px-2.5 py-4 sm:px-3 sm:py-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full ${flexClass} ${
                       isHovered || isSelected
                         ? "bg-amber-50/70 border-amber-400 shadow-xl shadow-amber-100 ring-2 ring-amber-200"
                         : "bg-white border-slate-200 hover:border-amber-300 hover:shadow-md"
@@ -384,12 +406,18 @@ export default function DuotoneOrgHierarchy({
                       )}
                     </div>
 
-                    {/* Info - Name on one line, Aligned designation */}
+                    {/* Info - Name on one line without any dots */}
                     <div className="w-full my-auto flex flex-col justify-center px-1 min-w-0">
-                      <h5 className="text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base font-black text-slate-900 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis text-center">
+                      <h5
+                        className={`font-black text-slate-900 text-center leading-snug whitespace-nowrap ${
+                          m.name.length >= 16
+                            ? "text-[11.5px] sm:text-xs md:text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] tracking-tighter"
+                            : "text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base tracking-tight"
+                        }`}
+                      >
                         {m.name}
                       </h5>
-                      <div className="min-h-[46px] flex items-center justify-center mt-1.5">
+                      <div className="min-h-[46px] flex items-center justify-center mt-1.5 px-0.5">
                         <p className="text-xs text-amber-900 font-semibold leading-snug">
                           {m.role}
                         </p>
@@ -397,7 +425,7 @@ export default function DuotoneOrgHierarchy({
                     </div>
 
                     {/* Chip */}
-                    <span className="mt-3 inline-block px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-300 rounded-full shrink-0 shadow-sm">
+                    <span className="mt-3 inline-block px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-300 rounded-full shrink-0 shadow-sm">
                       {m.craft}
                     </span>
                   </motion.div>
