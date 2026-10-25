@@ -102,7 +102,7 @@ export default function PartnerPage() {
       }
     } catch (error) {
       console.error("Failed to send email:", error);
-      alert("Something went right wrong. Please try again later or email us directly at info@novaliseo.com.");
+      alert("Something went right wrong. Please try again later or email us directly at official@novaliseo.com.");
     } finally {
       setLoading(false);
     }
@@ -202,7 +202,7 @@ export default function PartnerPage() {
 
             <div className="pt-8 border-t border-white/10">
               <p className="text-sm text-slate-500 uppercase tracking-widest font-bold mb-4">Direct Contact</p>
-              <a href="mailto:info@novaliseo.com" className="text-2xl font-bold text-white hover:text-cyan-400 transition-colors">info@novaliseo.com</a>
+              <a href="mailto:official@novaliseo.com" className="text-2xl font-bold text-white hover:text-cyan-400 transition-colors">official@novaliseo.com</a>
             </div>
           </motion.div>
 

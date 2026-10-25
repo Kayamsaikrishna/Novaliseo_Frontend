@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion, useScroll } from "framer-motion"
 import icon from "../assets/icon.png"
 import DuotoneOrgHierarchy from "../components/ui/duotone-org-hierarchy"
+import DuotoneTeamRoster, { type TeamMember } from "../components/ui/duotone-team-roster"
 
 import thejaaImg from "../assets/team/Kayam Thejaa.png"
 import kushanthrajImg from "../assets/team/Kushanthraj S. N..png"
@@ -28,6 +29,65 @@ const TEAM_PHOTOS = {
   sampathkumaran: sampathkumaranImg,
 }
 
+const NOVALISEO_ROSTER: TeamMember[] = [
+  {
+    name: "Kayam Thejaa",
+    role: "Founder & CEO | Director - External Relations & Strategic Affairs",
+    craft: "Founder & CEO",
+    photo: thejaaImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Kushanthraj S. N.",
+    role: "Director of Operations",
+    craft: "Operations",
+    photo: kushanthrajImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Sai Krishna",
+    role: "Chief Technology Officer (CTO)",
+    craft: "CTO",
+    photo: saiKrishnaImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "S. N. Sharanraj",
+    role: "Head of Strategic Planning & Business Analytics",
+    craft: "Strategy & Analytics",
+    photo: sharanrajImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Anguluri Annarao",
+    role: "Head of Corporate Affairs",
+    craft: "Corporate Affairs",
+    photo: annaraoImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Dr. Shubha B",
+    role: "Aerospace Technology & Innovation Advisor",
+    craft: "Aerospace Advisor",
+    photo: shubhaImg,
+    focus: "50% 25%",
+  },
+  {
+    name: "Ravi Kumar",
+    role: "Head of Technology Development & Delivery",
+    craft: "Tech Delivery",
+    photo: raviImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Dr. P Sampathkumaran",
+    role: "Head of Material Development",
+    craft: "Material Dev",
+    photo: sampathkumaranImg,
+    focus: "50% 20%",
+  },
+]
+
 const ASSETS = {
   HERO: "https://pub-940ccf6255b54fa799a9b01050e6c227.r2.dev/ruixen_hero_gradient.jpg",
   CHAT: "https://pub-940ccf6255b54fa799a9b01050e6c227.r2.dev/ruixen_chat_gradient.png",
@@ -36,6 +96,7 @@ const ASSETS = {
 
 export default function AboutPage() {
   const { scrollYProgress } = useScroll()
+  const [teamView, setTeamView] = useState<"hierarchy" | "roster">("hierarchy")
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -228,8 +289,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- OUR CUSTOMERS & JOINT VENTURES (NEW SECTION) ---------------- */}
-      <section className="py-20 md:py-32 relative z-10 bg-slate-50/60 border-t border-b border-slate-200/80">
+      {/* ---------------- OUR CUSTOMERS & JOINT VENTURES ---------------- */}
+      <section className="py-20 md:py-32 relative z-10 bg-slate-50/70 border-t border-b border-slate-200/80">
         <div className="mx-auto max-w-7xl px-6 space-y-16">
 
           {/* Section Header */}
@@ -253,11 +314,11 @@ export default function AboutPage() {
             <motion.div
               {...fadeInUp}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-xl shadow-slate-200/50 flex flex-col justify-between group transition-all duration-300 hover:border-sky-400 hover:shadow-2xl"
+              className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl shadow-slate-200/50 flex flex-col justify-between group transition-all duration-300 hover:border-sky-400 hover:shadow-2xl"
             >
               <div className="space-y-6">
                 <div className="flex items-center justify-between flex-wrap gap-4">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-800 border border-sky-200">
+                  <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200">
                     Enterprise Customer &amp; Partner
                   </span>
                   <span className="text-xs font-semibold text-slate-500">
@@ -265,18 +326,18 @@ export default function AboutPage() {
                   </span>
                 </div>
 
-                {/* Logo Presentation */}
-                <div className="h-32 w-full rounded-2xl bg-gradient-to-br from-slate-50 to-sky-50/30 border border-slate-100 p-6 flex items-center justify-center">
+                {/* Big Clean Logo Presentation (No Black Background) */}
+                <div className="h-44 sm:h-52 w-full rounded-2xl bg-slate-50/80 border border-slate-200/60 p-6 sm:p-8 flex items-center justify-center">
                   <img
                     src={southernAgroLogo}
                     alt="Southern Agro Engine Private Limited"
-                    className="max-h-full max-w-[85%] object-contain filter group-hover:scale-105 transition-transform duration-300"
+                    className="max-h-36 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 
                 {/* Description */}
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-extrabold text-slate-900">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
                     Southern Agro Engine Private Limited
                   </h3>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -286,40 +347,40 @@ export default function AboutPage() {
 
                 {/* Key Synergy Pillars */}
                 <div className="pt-2 space-y-2 border-t border-slate-100">
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     Heavy-duty powertrain integration and industrial equipment
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     Field deployment validation across agricultural corridors
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     Large-scale mechanical tooling and manufacturing ecosystem
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm font-bold text-sky-700">
                 <span>COMMERCIAL INDUSTRIAL PARTNERSHIP</span>
                 <span>Active Deployment →</span>
               </div>
             </motion.div>
 
-            {/* PARTNER CARD 2: NOVA VILLIERS (JOINT VENTURE) */}
+            {/* PARTNER CARD 2: NOVA VILLIERS (JOINT VENTURE - NO BLACK BOX) */}
             <motion.div
               {...fadeInUp}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -6 }}
               className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-sky-300 shadow-xl shadow-sky-100/70 flex flex-col justify-between group transition-all duration-300 hover:border-sky-500 hover:shadow-2xl relative overflow-hidden"
             >
-              {/* Highlight ribbon */}
-              <div className="absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br from-sky-400 to-blue-600 rounded-full blur-2xl opacity-40 pointer-events-none" />
+              {/* Highlight gradient wash */}
+              <div className="absolute -top-12 -right-12 w-32 h-32 bg-sky-200/50 rounded-full blur-2xl opacity-60 pointer-events-none" />
 
               <div className="space-y-6 relative z-10">
                 <div className="flex items-center justify-between flex-wrap gap-4">
-                  <span className="px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-sm flex items-center gap-1.5">
+                  <span className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-sm flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     Joint Venture
                   </span>
@@ -328,18 +389,18 @@ export default function AboutPage() {
                   </span>
                 </div>
 
-                {/* Logo Presentation */}
-                <div className="h-32 w-full rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 p-6 flex items-center justify-center shadow-inner">
+                {/* Big Clean Logo Presentation (Clean Light Card - No Black Background) */}
+                <div className="h-44 sm:h-52 w-full rounded-2xl bg-gradient-to-br from-slate-50 to-sky-50/50 border border-slate-200/60 p-6 sm:p-8 flex items-center justify-center">
                   <img
                     src={novaVilliersLogo}
                     alt="Nova Villiers Joint Venture"
-                    className="max-h-full max-w-[85%] object-contain filter group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_4px_12px_rgba(56,189,248,0.4)]"
+                    className="max-h-36 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
                   />
                 </div>
 
                 {/* Description */}
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-extrabold text-slate-900">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
                     Nova Villiers
                   </h3>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -349,22 +410,22 @@ export default function AboutPage() {
 
                 {/* Key Synergy Pillars */}
                 <div className="pt-2 space-y-2 border-t border-slate-100">
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     Indigenous autonomous flight controllers powered by Novaliseo
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     Heavy-duty aerial spraying and multi-sensor survey drones
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0" />
                     End-to-end DGCA-certified commercial drone manufacturing
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm font-bold text-sky-700">
                 <span>STRATEGIC AEROSPACE VENTURE</span>
                 <span>Indigenous UAV Fleet →</span>
               </div>
@@ -374,11 +435,59 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- ORGANISATION STRUCTURE (LIGHT THEME) ---------------- */}
+      {/* ---------------- ORGANISATION STRUCTURE & THE CREW (WITH TOGGLE) ---------------- */}
       <section className="py-20 md:py-32 relative z-10">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 space-y-8">
+          
+          {/* Interactive View Switcher */}
+          <div className="flex justify-center">
+            <div className="inline-flex p-1.5 rounded-full bg-slate-100 border border-slate-200/90 shadow-md backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => setTeamView("hierarchy")}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 ${
+                  teamView === "hierarchy"
+                    ? "bg-sky-600 text-white shadow-md shadow-sky-200"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                Organisation Structure
+              </button>
+              <button
+                type="button"
+                onClick={() => setTeamView("roster")}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 ${
+                  teamView === "roster"
+                    ? "bg-sky-600 text-white shadow-md shadow-sky-200"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                The Crew (Kinetic Wall)
+              </button>
+            </div>
+          </div>
+
+          {/* Active View Render */}
           <motion.div {...fadeInUp} className="w-full">
-            <DuotoneOrgHierarchy photos={TEAM_PHOTOS} />
+            {teamView === "hierarchy" ? (
+              <DuotoneOrgHierarchy photos={TEAM_PHOTOS} />
+            ) : (
+              <div className="rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-2xl bg-white">
+                <DuotoneTeamRoster
+                  members={NOVALISEO_ROSTER}
+                  openRoles={[]}
+                  eyebrow="The Minds Behind"
+                  title={"The\nCrew"}
+                  intro="Researchers, roboticists, firmware developers, and systems architects building next-generation sovereign intelligence and physical autonomy."
+                  cta={{ label: "Join the mission", href: "/careers" }}
+                  secondaryCta={{ label: "Our research", href: "/research" }}
+                  preset="cobalt"
+                  height="85vh"
+                />
+              </div>
+            )}
           </motion.div>
         </div>
       </section>

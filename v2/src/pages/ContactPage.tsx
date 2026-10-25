@@ -80,7 +80,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Phone</p>
-                        <p className="text-lg text-white font-medium">+91 6366969269</p>
+                        <p className="text-lg text-white font-medium">+91 821 772 6842</p>
                       </div>
                    </div>
 
@@ -152,15 +152,11 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-2xl font-bold text-white mb-1">Novaliseo Global Tech Pvt Ltd</h4>
-                      <h5 className="text-md text-cyan-400 mb-4">Sri Paripoorna Sanathana Incubation Center</h5>
+                      <h4 className="text-2xl font-bold text-white mb-3">Novaliseo Global Tech Pvt Ltd</h4>
                       <p className="text-slate-300 leading-relaxed font-light text-lg">
-                        No. 91, Kaivalya Sannidhanam,<br />
-                        Arjunabettahalli, Kasaba Hobli,<br />
-                        Railway Gollahalli Post,<br />
-                        Nelamangala Taluk,<br />
-                        Bengaluru Rural,<br />
-                        Karnataka - 562123
+                        509, 5th main, 8th cross,<br />
+                        AMS Layout, Bengaluru North,<br />
+                        Karnataka - 560097
                       </p>
                     </div>
                  </div>

@@ -973,7 +973,7 @@ export default function CareersPage() {
             {/* High-Impact CTA Button */}
             <div className="mt-6 flex items-center justify-center">
               <a
-                href="mailto:info@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
+                href="mailto:official@novaliseo.com?subject=Open%20Engineering%20Application%20-%20Novaliseo"
                 className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 active:scale-95 transition-all group cursor-pointer"
               >
                 <span>Submit General Portfolio</span>
