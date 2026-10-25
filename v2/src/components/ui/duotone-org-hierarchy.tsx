@@ -119,7 +119,7 @@ export default function DuotoneOrgHierarchy({
 
   return (
     <div
-      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-slate-200/90 bg-gradient-to-b from-white via-sky-50/20 to-slate-50/80 text-slate-900 p-6 sm:p-10 md:p-14 shadow-2xl shadow-slate-200/60 select-none ${className}`}
+      className={`relative w-full rounded-[2.5rem] overflow-hidden border border-slate-200/90 bg-gradient-to-b from-white via-sky-50/20 to-slate-50/80 text-slate-900 p-4 sm:p-8 md:p-10 lg:p-12 shadow-2xl shadow-slate-200/60 select-none ${className}`}
     >
       {/* Background Grid & Ambient Glow (Light Theme) */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -136,7 +136,7 @@ export default function DuotoneOrgHierarchy({
       </div>
 
       {/* Header Section */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto mb-14 md:mb-18 space-y-3">
+      <div className="relative z-10 text-center max-w-3xl mx-auto mb-12 md:mb-16 space-y-3">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-300 bg-sky-50 text-xs font-bold tracking-[0.2em] text-sky-800 uppercase shadow-sm">
           <span className="w-2 h-2 rounded-full bg-sky-600 animate-pulse" />
           NOVALISEO GOVERNANCE
@@ -149,11 +149,11 @@ export default function DuotoneOrgHierarchy({
         </p>
       </div>
 
-      {/* ================= HIERARCHY TREE ================= */}
-      <div className="relative z-10 flex flex-col items-center max-w-7xl mx-auto">
+      {/* ================= HIERARCHY TREE (FULL WIDTH) ================= */}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-[1720px] mx-auto">
         
         {/* LEVEL 1: EXECUTIVE LEADERSHIP (ROOT NODE) */}
-        <div className="relative flex flex-col items-center mb-2">
+        <div className="relative flex flex-col items-center">
           <motion.div
             whileHover={{ y: -4, scale: 1.02 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
@@ -207,46 +207,55 @@ export default function DuotoneOrgHierarchy({
               )}
             </AnimatePresence>
           </motion.div>
+        </div>
 
-          {/* Stem downwards from CEO */}
-          <div className="w-0.5 h-12 sm:h-14 bg-gradient-to-b from-sky-500 to-blue-600 relative">
-            <div className="absolute bottom-0 -left-1 w-2.5 h-2.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm" />
+        {/* ================= CONNECTING TREE LINES (Solid linked lines & dots, zero blank gaps) ================= */}
+        <div className="hidden lg:block w-full relative h-16 pointer-events-none -mt-1 -mb-1">
+          {/* Stem downwards from CEO directly into the horizontal bus line */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-sky-500">
+            {/* Central Junction Dot linking CEO stem to horizontal bus line */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+          </div>
+
+          {/* Horizontal Bus Line linking Left Division (20.83%) to Right Division (70.83%) */}
+          <div
+            className="absolute top-8 h-0.5 bg-sky-500 shadow-sm"
+            style={{ left: "20.83%", right: "29.17%" }}
+          />
+
+          {/* Left Vertical Drop Line into Operations & Strategy Container */}
+          <div
+            className="absolute top-8 w-0.5 h-8 bg-sky-500"
+            style={{ left: "20.83%" }}
+          >
+            {/* Top Junction Dot at Left corner */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+            {/* Bottom Terminal Dot right at top of Operations container */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+          </div>
+
+          {/* Right Vertical Drop Line into Corporate, Advisory & Technology Container */}
+          <div
+            className="absolute top-8 w-0.5 h-8 bg-sky-500"
+            style={{ left: "70.83%" }}
+          >
+            {/* Top Junction Dot at Right corner */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+            {/* Bottom Terminal Dot right at top of Corporate container */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
           </div>
         </div>
 
-        {/* ================= CONNECTING SVG TREE (Desktop & Tablet) ================= */}
-        <div className="hidden lg:block w-full h-12 relative pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 1000 48" fill="none" preserveAspectRatio="none">
-            {/* Central Vertical Feed */}
-            <path d="M 500 0 L 500 24" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
-            {/* Horizontal Bus Line spanning left to right division */}
-            <path d="M 235 24 L 765 24" stroke="url(#tree-grad-light)" strokeWidth="2.5" strokeDasharray="5 3" />
-            {/* Left drop to Operations */}
-            <path d="M 235 24 L 235 48" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
-            {/* Right drop to Advisory */}
-            <path d="M 765 24 L 765 48" stroke="url(#tree-grad-light)" strokeWidth="2.5" />
-            
-            <defs>
-              <linearGradient id="tree-grad-light" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0284c7" />
-                <stop offset="50%" stopColor="#2563eb" />
-                <stop offset="100%" stopColor="#0284c7" />
-              </linearGradient>
-            </defs>
-          </svg>
-          {/* Glowing Junction Dots */}
-          <div className="absolute top-[20px] left-[23.5%] -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-sky-600 shadow-sm" />
-          <div className="absolute top-[20px] left-[76.5%] -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-sky-600 shadow-sm" />
+        {/* Mobile vertical line connector */}
+        <div className="lg:hidden w-0.5 h-8 bg-sky-500 my-2 relative">
+          <div className="absolute bottom-0 -left-1 w-2.5 h-2.5 rounded-full bg-sky-600 ring-4 ring-sky-200" />
         </div>
 
-        {/* Mobile vertical line connector */}
-        <div className="lg:hidden w-0.5 h-6 bg-gradient-to-b from-sky-500 to-transparent" />
-
         {/* ================= LEVEL 2: TWO DIVISION CARDS ================= */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 mt-2 items-stretch">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* DIVISION 1: OPERATIONS & STRATEGY (Left Container) */}
-          <div className="lg:col-span-5 flex flex-col rounded-3xl p-6 sm:p-8 bg-white/95 border border-sky-200/90 shadow-xl shadow-sky-100/60 relative group">
+          <div className="lg:col-span-5 flex flex-col rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 bg-white/95 border border-sky-200/90 shadow-xl shadow-sky-100/60 relative group">
             {/* Division Top Accent */}
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
@@ -261,7 +270,7 @@ export default function DuotoneOrgHierarchy({
             </div>
 
             {/* Member Cards - Big images, names on 1 line, identical aligned heights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 flex-1 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5 flex-1 items-stretch">
               {operationsGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
@@ -275,7 +284,7 @@ export default function DuotoneOrgHierarchy({
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl p-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] ${
+                    className={`cursor-pointer rounded-2xl px-3 py-5 sm:px-4 sm:py-6 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full min-w-0 ${
                       isHovered || isSelected
                         ? "bg-sky-50/70 border-sky-400 shadow-xl shadow-sky-100 ring-2 ring-sky-200"
                         : "bg-white border-slate-200 hover:border-sky-300 hover:shadow-md"
@@ -300,8 +309,8 @@ export default function DuotoneOrgHierarchy({
                     </div>
 
                     {/* Info - Name on one line, Aligned designation */}
-                    <div className="w-full my-auto flex flex-col justify-center">
-                      <h5 className="text-base font-black text-slate-900 tracking-tight whitespace-nowrap">
+                    <div className="w-full my-auto flex flex-col justify-center px-1 min-w-0">
+                      <h5 className="text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base font-black text-slate-900 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis text-center">
                         {m.name}
                       </h5>
                       <div className="min-h-[46px] flex items-center justify-center mt-1.5">
@@ -322,7 +331,7 @@ export default function DuotoneOrgHierarchy({
           </div>
 
           {/* DIVISION 2: CORPORATE, ADVISORY & TECHNOLOGY (Right Container) */}
-          <div className="lg:col-span-7 flex flex-col rounded-3xl p-6 sm:p-8 bg-white/95 border border-amber-200/90 shadow-xl shadow-amber-100/50 relative group">
+          <div className="lg:col-span-7 flex flex-col rounded-3xl p-4 sm:p-6 lg:p-6 xl:p-7 bg-white/95 border border-amber-200/90 shadow-xl shadow-amber-100/50 relative group">
             {/* Division Top Accent */}
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
@@ -337,7 +346,7 @@ export default function DuotoneOrgHierarchy({
             </div>
 
             {/* Member Cards - Big images, names on 1 line, identical aligned heights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 flex-1 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5 flex-1 items-stretch">
               {advisoryGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
@@ -351,7 +360,7 @@ export default function DuotoneOrgHierarchy({
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl p-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] ${
+                    className={`cursor-pointer rounded-2xl px-3 py-5 sm:px-4 sm:py-6 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full min-w-0 ${
                       isHovered || isSelected
                         ? "bg-amber-50/70 border-amber-400 shadow-xl shadow-amber-100 ring-2 ring-amber-200"
                         : "bg-white border-slate-200 hover:border-amber-300 hover:shadow-md"
@@ -376,8 +385,8 @@ export default function DuotoneOrgHierarchy({
                     </div>
 
                     {/* Info - Name on one line, Aligned designation */}
-                    <div className="w-full my-auto flex flex-col justify-center">
-                      <h5 className="text-base font-black text-slate-900 tracking-tight whitespace-nowrap">
+                    <div className="w-full my-auto flex flex-col justify-center px-1 min-w-0">
+                      <h5 className="text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base font-black text-slate-900 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis text-center">
                         {m.name}
                       </h5>
                       <div className="min-h-[46px] flex items-center justify-center mt-1.5">

@@ -436,8 +436,8 @@ export default function AboutPage() {
       </section>
 
       {/* ---------------- ORGANISATION STRUCTURE & THE CREW (WITH TOGGLE) ---------------- */}
-      <section className="py-20 md:py-32 relative z-10">
-        <div className="mx-auto max-w-7xl px-6 space-y-8">
+      <section className="py-20 md:py-32 relative z-10 w-full">
+        <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8">
           
           {/* Interactive View Switcher */}
           <div className="flex justify-center">
