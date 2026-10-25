@@ -1,46 +1,87 @@
+import { useState } from "react"
 import { motion, useScroll } from "framer-motion"
 import logo from "../assets/logo.png"
 import icon from "../assets/icon.png"
 import { ShaderBackground } from "../components/ShaderBackground"
 import DuotoneTeamRoster, { type TeamMember } from "../components/ui/duotone-team-roster"
+import DuotoneOrgHierarchy from "../components/ui/duotone-org-hierarchy"
 
-import drShubhaImg from "../assets/team/dr_shubha_iyengar.png"
-import annaraoImg from "../assets/team/portrait_annarao.png"
-import kushanthImg from "../assets/team/portrait_kushanth.png"
-import raviImg from "../assets/team/portrait_ravi.png"
-import thejaaImg from "../assets/team/portrait_thejaa.png"
-import saiKrishnaImg from "../assets/team/sai krishna.png"
+import thejaaImg from "../assets/team/Kayam Thejaa.png"
+import kushanthrajImg from "../assets/team/Kushanthraj S. N..png"
+import saiKrishnaImg from "../assets/team/Kayam Sai Krishna.png"
+import sharanrajImg from "../assets/team/S. N. Sharanraj.png"
+import annaraoImg from "../assets/team/Anguluri Annarao.png"
+import shubhaImg from "../assets/team/Dr. Shubha Iyengar.png"
+import raviImg from "../assets/team/Ravi Kumar.png"
+import sampathkumaranImg from "../assets/team/Dr. P. Sampathkumaran.png"
 
-const NOVALISEO_TEAM: TeamMember[] = [
+const TEAM_PHOTOS = {
+  thejaa: thejaaImg,
+  kushanthraj: kushanthrajImg,
+  saikrishna: saiKrishnaImg,
+  sharanraj: sharanrajImg,
+  annarao: annaraoImg,
+  shubha: shubhaImg,
+  ravi: raviImg,
+  sampathkumaran: sampathkumaranImg,
+}
+
+const NOVALISEO_ROSTER: TeamMember[] = [
+  {
+    name: "Kayam Thejaa",
+    role: "Founder & CEO | Director - External Relations & Strategic Affairs",
+    craft: "Founder & CEO",
+    photo: thejaaImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Kushanthraj S. N.",
+    role: "Director of Operations",
+    craft: "Operations",
+    photo: kushanthrajImg,
+    focus: "50% 20%",
+  },
   {
     name: "Sai Krishna",
+    role: "Core Engineering & Systems",
+    craft: "Core Systems",
     photo: saiKrishnaImg,
     focus: "50% 20%",
   },
   {
-    name: "Dr. Shubha Iyengar",
-    photo: drShubhaImg,
+    name: "S. N. Sharanraj",
+    role: "Head of Strategic Planning & Business Analytics",
+    craft: "Strategy & Analytics",
+    photo: sharanrajImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Anguluri Annarao",
+    role: "Head of Corporate Affairs",
+    craft: "Corporate Affairs",
+    photo: annaraoImg,
+    focus: "50% 20%",
+  },
+  {
+    name: "Shubha V",
+    role: "Aerospace Technology & Innovation Advisor",
+    craft: "Aerospace Advisor",
+    photo: shubhaImg,
     focus: "50% 25%",
   },
   {
-    name: "Annarao",
-    photo: annaraoImg,
-    focus: "50% 22%",
-  },
-  {
-    name: "Thejaa",
-    photo: thejaaImg,
-    focus: "50% 22%",
-  },
-  {
-    name: "Kushanth",
-    photo: kushanthImg,
-    focus: "50% 22%",
-  },
-  {
-    name: "Ravi",
+    name: "Ravi Kumar",
+    role: "Head of Technology Development & Delivery",
+    craft: "Tech Delivery",
     photo: raviImg,
-    focus: "50% 22%",
+    focus: "50% 20%",
+  },
+  {
+    name: "Dr. P. Sampathkumaran",
+    role: "Head of Material Development",
+    craft: "Material Dev",
+    photo: sampathkumaranImg,
+    focus: "50% 20%",
   },
 ]
 
@@ -52,6 +93,7 @@ const ASSETS = {
 
 export default function AboutPage() {
   const { scrollYProgress } = useScroll()
+  const [teamView, setTeamView] = useState<"hierarchy" | "roster">("hierarchy")
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -217,24 +259,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- TEAM ROSTER SECTION ---------------- */}
+      {/* ---------------- TEAM & ORGANISATION STRUCTURE SECTION ---------------- */}
       <section className="py-16 md:py-24 relative z-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            {...fadeInUp}
-            className="rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl bg-slate-950/40 backdrop-blur-xl"
-          >
-            <DuotoneTeamRoster
-              members={NOVALISEO_TEAM}
-              openRoles={[]}
-              eyebrow="The Minds Behind"
-              title={"The\nCrew"}
-              intro="Researchers, roboticists, firmware developers, and systems architects building next-generation sovereign intelligence and physical autonomy."
-              cta={{ label: "Join the mission", href: "/careers" }}
-              secondaryCta={{ label: "Our research", href: "/research" }}
-              preset="cobalt"
-              height="85vh"
-            />
+        <div className="mx-auto max-w-7xl px-6 space-y-6">
+          {/* View Mode Switcher */}
+          <div className="flex justify-center">
+            <div className="inline-flex p-1.5 rounded-full bg-slate-900/90 border border-white/10 shadow-2xl backdrop-blur-xl">
+              <button
+                type="button"
+                onClick={() => setTeamView("hierarchy")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 ${
+                  teamView === "hierarchy"
+                    ? "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                Organisation Structure
+              </button>
+              <button
+                type="button"
+                onClick={() => setTeamView("roster")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 ${
+                  teamView === "roster"
+                    ? "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                Kinetic Roster Wall
+              </button>
+            </div>
+          </div>
+
+          {/* Render Active View */}
+          <motion.div {...fadeInUp} className="w-full">
+            {teamView === "hierarchy" ? (
+              <DuotoneOrgHierarchy preset="cobalt" photos={TEAM_PHOTOS} />
+            ) : (
+              <div className="rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl bg-slate-950/40 backdrop-blur-xl">
+                <DuotoneTeamRoster
+                  members={NOVALISEO_ROSTER}
+                  openRoles={[]}
+                  eyebrow="The Minds Behind"
+                  title={"The\nCrew"}
+                  intro="Researchers, roboticists, firmware developers, and systems architects building next-generation sovereign intelligence and physical autonomy."
+                  cta={{ label: "Join the mission", href: "/careers" }}
+                  secondaryCta={{ label: "Our research", href: "/research" }}
+                  preset="cobalt"
+                  height="85vh"
+                />
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
