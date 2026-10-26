@@ -43,11 +43,11 @@ export default function DuotoneOrgHierarchy({
     {
       id: "kushanthraj",
       name: "Kushanthraj S. N.",
-      role: "Chief Operating Officer (COO) | Director of Operations",
+      role: "Founder & COO | Director of Operations",
       department: "executive",
-      craft: "Chief Operating Officer (COO)",
+      craft: "Founder & COO",
       focus: "50% 20%",
-      bio: "Spearheading multi-facility manufacturing, operational governance, production scheduling, supply-chain logistics, and field deployment operations.",
+      bio: "Co-Founder and COO spearheading multi-facility manufacturing, operational governance, production scheduling, supply-chain logistics, and field deployment operations.",
     },
   ];
 
