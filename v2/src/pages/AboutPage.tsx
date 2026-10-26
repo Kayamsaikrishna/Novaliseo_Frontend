@@ -39,8 +39,8 @@ const NOVALISEO_ROSTER: TeamMember[] = [
   },
   {
     name: "Kushanthraj S. N.",
-    role: "Director of Operations",
-    craft: "Operations",
+    role: "Chief Operating Officer (COO) | Director of Operations",
+    craft: "COO",
     photo: kushanthrajImg,
     focus: "50% 20%",
   },

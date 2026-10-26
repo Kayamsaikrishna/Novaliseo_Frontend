@@ -29,28 +29,30 @@ export default function DuotoneOrgHierarchy({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // Executive node (Root)
-  const executiveLeader: OrgMember = {
-    id: "thejaa",
-    name: "Kayam Thejaa",
-    role: "Founder & CEO | Director – External Relations & Strategic Affairs",
-    department: "executive",
-    craft: "Founder & CEO",
-    focus: "50% 20%",
-    bio: "Steering Novaliseo's vision, global strategic partnerships, research alliances, and deep-tech autonomous intelligence roadmap.",
-  };
-
-  // Operations & Strategic Planning Division (Left group)
-  const operationsGroup: OrgMember[] = [
+  // Executive Leadership (Root Duo) - CEO & COO
+  const executiveLeaders: OrgMember[] = [
+    {
+      id: "thejaa",
+      name: "Kayam Thejaa",
+      role: "Founder & CEO | Director – External Relations & Strategic Affairs",
+      department: "executive",
+      craft: "Founder & CEO",
+      focus: "50% 20%",
+      bio: "Steering Novaliseo's vision, global strategic partnerships, research alliances, and deep-tech autonomous intelligence roadmap.",
+    },
     {
       id: "kushanthraj",
       name: "Kushanthraj S. N.",
-      role: "Director of Operations",
-      department: "operations",
-      craft: "Operations",
+      role: "Chief Operating Officer (COO) | Director of Operations",
+      department: "executive",
+      craft: "Chief Operating Officer (COO)",
       focus: "50% 20%",
-      bio: "Spearheading multi-facility manufacturing, production scheduling, supply-chain logistics, and deployment operations.",
+      bio: "Spearheading multi-facility manufacturing, operational governance, production scheduling, supply-chain logistics, and field deployment operations.",
     },
+  ];
+
+  // Operations & Strategic Planning Division (Left group)
+  const operationsGroup: OrgMember[] = [
     {
       id: "saikrishna",
       name: "Sai Krishna",
@@ -152,80 +154,108 @@ export default function DuotoneOrgHierarchy({
       {/* ================= HIERARCHY TREE (FULL WIDTH) ================= */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-[1720px] mx-auto">
         
-        {/* LEVEL 1: EXECUTIVE LEADERSHIP (ROOT NODE) */}
-        <div className="relative flex flex-col items-center">
-          <motion.div
-            whileHover={{ y: -4, scale: 1.02 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            onMouseEnter={() => setHoveredId(executiveLeader.id)}
-            onMouseLeave={() => setHoveredId(null)}
-            onClick={() => handleMemberClick(executiveLeader)}
-            className={`cursor-pointer relative z-20 w-80 sm:w-[460px] rounded-3xl p-6 sm:p-8 text-center transition-all duration-300 border ${
-              hoveredId === executiveLeader.id || selectedId === executiveLeader.id
-                ? "bg-white border-sky-500 shadow-2xl shadow-sky-200/90 ring-4 ring-sky-100"
-                : "bg-white/95 border-slate-200 shadow-xl hover:shadow-2xl hover:border-sky-400"
-            }`}
-          >
-            {/* Craft Pill */}
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wider uppercase text-sky-800 bg-sky-50 border border-sky-300 mb-4 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-sky-600" />
-              {executiveLeader.craft}
-            </div>
+        {/* LEVEL 1: EXECUTIVE LEADERSHIP (CEO & COO) */}
+        <div className="relative w-full max-w-4xl mx-auto z-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch justify-center">
+            {executiveLeaders.map((leader) => {
+              const isHovered = hoveredId === leader.id;
+              const isSelected = selectedId === leader.id;
+              const photoSrc = photos[leader.id];
 
-            {/* Large High-Resolution Portrait */}
-            <div className="relative w-36 h-36 sm:w-40 sm:h-40 mx-auto mb-4 rounded-2xl overflow-hidden border-2 border-sky-500/80 shadow-md bg-slate-100 group">
-              <img
-                src={photos[executiveLeader.id] || ""}
-                alt={executiveLeader.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{
-                  objectPosition: executiveLeader.focus || "50% 20%",
-                }}
-              />
-            </div>
-
-            {/* Name - On One Single Line */}
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight whitespace-nowrap">
-              {executiveLeader.name}
-            </h3>
-            {/* Designation */}
-            <p className="mt-2 text-xs sm:text-sm text-sky-800 font-semibold leading-relaxed px-2">
-              {executiveLeader.role}
-            </p>
-
-            {/* Click indicator / expandable bio */}
-            <AnimatePresence>
-              {selectedId === executiveLeader.id && (
+              return (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-600 leading-relaxed text-left bg-slate-50 p-4 rounded-2xl"
+                  key={leader.id}
+                  whileHover={{ y: -4, scale: 1.015 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  onMouseEnter={() => setHoveredId(leader.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => handleMemberClick(leader)}
+                  className={`cursor-pointer relative z-20 rounded-3xl p-6 sm:p-7 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[340px] ${
+                    isHovered || isSelected
+                      ? "bg-white border-sky-500 shadow-2xl shadow-sky-200/90 ring-4 ring-sky-100"
+                      : "bg-white/95 border-slate-200 shadow-xl hover:shadow-2xl hover:border-sky-400"
+                  }`}
                 >
-                  {executiveLeader.bio}
+                  {/* Craft Pill */}
+                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wider uppercase text-sky-800 bg-sky-50 border border-sky-300 mb-4 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-sky-600" />
+                    {leader.craft}
+                  </div>
+
+                  {/* Large High-Resolution Portrait */}
+                  <div className="relative w-32 h-32 sm:w-36 sm:h-36 mx-auto mb-4 rounded-2xl overflow-hidden border-2 border-sky-500/80 shadow-md bg-slate-100 group">
+                    <img
+                      src={photoSrc || ""}
+                      alt={leader.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{
+                        objectPosition: leader.focus || "50% 20%",
+                      }}
+                    />
+                  </div>
+
+                  {/* Name - Single Line */}
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight whitespace-nowrap">
+                    {leader.name}
+                  </h3>
+
+                  {/* Designation */}
+                  <p className="mt-2 text-xs sm:text-sm text-sky-800 font-semibold leading-relaxed px-2">
+                    {leader.role}
+                  </p>
+
+                  {/* Click indicator / expandable bio */}
+                  <AnimatePresence>
+                    {selectedId === leader.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="mt-4 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-600 leading-relaxed text-left bg-slate-50 p-4 rounded-2xl w-full"
+                      >
+                        {leader.bio}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* ================= CONNECTING TREE LINES (Solid linked lines & dots, zero blank gaps) ================= */}
-        <div className="hidden lg:block w-full relative h-16 pointer-events-none -mt-1 -mb-1">
-          {/* Stem downwards from CEO directly into the horizontal bus line */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-sky-500">
-            {/* Central Junction Dot linking CEO stem to horizontal bus line */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+        <div className="hidden lg:block w-full relative h-24 pointer-events-none -mt-1 -mb-1">
+          {/* Executive Bridge linking CEO (left) & COO (right) into the central governance trunk */}
+          <div className="w-full max-w-4xl mx-auto relative h-10">
+            {/* CEO stem down from left executive card (col 1 center = 25%) */}
+            <div className="absolute top-0 left-[25%] -translate-x-1/2 w-0.5 h-6 bg-sky-500">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+            </div>
+            {/* COO stem down from right executive card (col 2 center = 75%) */}
+            <div className="absolute top-0 left-[75%] -translate-x-1/2 w-0.5 h-6 bg-sky-500">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+            </div>
+            {/* Executive Bridge connecting CEO & COO stems */}
+            <div
+              className="absolute top-6 h-0.5 bg-sky-500 shadow-sm"
+              style={{ left: "25%", right: "25%" }}
+            />
+            {/* Central stem dropping from Executive Bridge down to Main Distribution Line */}
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-sky-500">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 rounded-full bg-sky-600 ring-4 ring-sky-200 shadow-sm z-20" />
+            </div>
           </div>
 
-          {/* Horizontal Bus Line linking Left Division (20.83%) to Right Division (70.83%) */}
+          {/* Horizontal Distribution Bus Line linking Left Division (20.83%) to Right Division (70.83%) */}
           <div
-            className="absolute top-8 h-0.5 bg-sky-500 shadow-sm"
+            className="absolute top-[56px] h-0.5 bg-sky-500 shadow-sm"
             style={{ left: "20.83%", right: "29.17%" }}
           />
 
           {/* Left Vertical Drop Line into Operations & Strategy Container */}
           <div
-            className="absolute top-8 w-0.5 h-8 bg-sky-500"
+            className="absolute top-[56px] w-0.5 h-10 bg-sky-500"
             style={{ left: "20.83%" }}
           >
             {/* Top Junction Dot at Left corner */}
@@ -236,7 +266,7 @@ export default function DuotoneOrgHierarchy({
 
           {/* Right Vertical Drop Line into Corporate, Advisory & Technology Container */}
           <div
-            className="absolute top-8 w-0.5 h-8 bg-sky-500"
+            className="absolute top-[56px] w-0.5 h-10 bg-sky-500"
             style={{ left: "70.83%" }}
           >
             {/* Top Junction Dot at Right corner */}
@@ -247,7 +277,7 @@ export default function DuotoneOrgHierarchy({
         </div>
 
         {/* Mobile vertical line connector */}
-        <div className="lg:hidden w-0.5 h-8 bg-sky-500 my-2 relative">
+        <div className="lg:hidden w-0.5 h-8 bg-sky-500 my-2 relative mx-auto">
           <div className="absolute bottom-0 -left-1 w-2.5 h-2.5 rounded-full bg-sky-600 ring-4 ring-sky-200" />
         </div>
 
@@ -265,23 +295,16 @@ export default function DuotoneOrgHierarchy({
                 </h4>
               </div>
               <span className="text-[11px] font-bold text-sky-800 uppercase tracking-widest px-3 py-1 rounded-full bg-sky-50 border border-sky-200">
-                3 Leaders
+                2 Leaders
               </span>
             </div>
 
-            {/* Member Cards - Flex layout with auto-expanding width for Kushanthraj S. N. */}
+            {/* Member Cards - 2 Leaders */}
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-3.5 flex-1 items-stretch w-full">
               {operationsGroup.map((m) => {
                 const isHovered = hoveredId === m.id;
                 const isSelected = selectedId === m.id;
                 const photoSrc = photos[m.id];
-                // Automatically allocate more width to Kushanthraj S. N. so full name fits on 1 line
-                const flexClass =
-                  m.id === "kushanthraj"
-                    ? "sm:flex-[1.28] min-w-0"
-                    : m.id === "saikrishna"
-                    ? "sm:flex-[0.84] min-w-0"
-                    : "sm:flex-[0.98] min-w-0";
 
                 return (
                   <motion.div
@@ -291,7 +314,7 @@ export default function DuotoneOrgHierarchy({
                     onMouseEnter={() => setHoveredId(m.id)}
                     onMouseLeave={() => setHoveredId(null)}
                     onClick={() => handleMemberClick(m)}
-                    className={`cursor-pointer rounded-2xl px-2.5 py-4 sm:px-3 sm:py-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full ${flexClass} ${
+                    className={`cursor-pointer rounded-2xl px-3 py-4 sm:px-4 sm:py-5 text-center transition-all duration-300 border flex flex-col items-center justify-between min-h-[300px] w-full flex-1 min-w-0 ${
                       isHovered || isSelected
                         ? "bg-sky-50/70 border-sky-400 shadow-xl shadow-sky-100 ring-2 ring-sky-200"
                         : "bg-white border-slate-200 hover:border-sky-300 hover:shadow-md"
@@ -317,13 +340,7 @@ export default function DuotoneOrgHierarchy({
 
                     {/* Info - Name on one line without any dots */}
                     <div className="w-full my-auto flex flex-col justify-center px-1 min-w-0">
-                      <h5
-                        className={`font-black text-slate-900 text-center leading-snug whitespace-nowrap ${
-                          m.name.length >= 16
-                            ? "text-[11.5px] sm:text-xs md:text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] tracking-tighter"
-                            : "text-xs sm:text-[13px] md:text-sm xl:text-[14px] 2xl:text-base tracking-tight"
-                        }`}
-                      >
+                      <h5 className="font-black text-slate-900 text-center leading-snug whitespace-nowrap text-sm sm:text-base tracking-tight">
                         {m.name}
                       </h5>
                       <div className="min-h-[46px] flex items-center justify-center mt-1.5 px-0.5">
@@ -448,7 +465,7 @@ export default function DuotoneOrgHierarchy({
             className="mt-12 max-w-2xl mx-auto rounded-3xl p-6 sm:p-8 bg-white border-2 border-sky-400 text-center shadow-2xl shadow-sky-100 relative z-20"
           >
             {(() => {
-              const all = [executiveLeader, ...operationsGroup, ...advisoryGroup];
+              const all = [...executiveLeaders, ...operationsGroup, ...advisoryGroup];
               const mem = all.find((m) => m.id === selectedId);
               if (!mem) return null;
               return (
